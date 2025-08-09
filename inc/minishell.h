@@ -6,17 +6,18 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 17:07:02 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/09 21:05:27 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/09 23:14:04 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#define _GNU_SOURCE
 #ifndef MINISHELL_H_
 # define MINISHELL_H_
 
 /* ************************************************************************** */
 /*                               Includes                                     */
 /* ************************************************************************** */
-# include "../lib/libft_plus/libft_plus.h"
+# include "../lib/libft_plus.h"
 # include "minishell_structs.h"
 # include "minishell_macros.h"
 # include <readline/readline.h>
@@ -31,6 +32,11 @@
 # include <signal.h>
 # include <errno.h>
 # include <term.h>
+
+/* ************************************************************************** */
+/*                                 Globales                                   */
+/* ************************************************************************** */
+extern volatile sig_atomic_t g_signal_event;
 
 /* ************************************************************************** */
 /*                                Minishell                                   */
@@ -59,6 +65,8 @@
 /* ************************************************************************** */
 /*                                Signals                                     */
 /* ************************************************************************** */
+int			init_signals(void);
+void		signal_handler(int sig, siginfo_t *info, void *context);
 
 /* ************************************************************************** */
 /*                                 Exits                                      */

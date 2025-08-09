@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/09 21:05:44 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/09 23:13:28 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 
 # include "minishell.h"
 
-volatile sig_atomic_t	g_signal_event;
+typedef	struct s_exp	t_exp;
+typedef struct s_token	t_token;
+typedef struct s_token	t_node;
 
 typedef enum	e_type
 {
@@ -24,21 +26,25 @@ typedef enum	e_type
 	PIPE,
 	REDIR_IN,
 	REDIR_OUT,
+	REDIR_APD,
 	HEREDOC,
 	COMMAND,
+	SEMICOLON,
+	LPAREN,
+	RPAREN,
 	AND,
 	OR
 }	t_type;
 
-typedef struct	s_token
+struct s_token
 {
 	t_type		type;
 	char		*value;
 	bool		quoted;
 	bool		expand;
-	t_exp		expansion;
+	t_exp		*expansion;
 	t_token		*next;
-}	t_token;
+};
 
 typedef struct	s_prompt
 {
@@ -66,13 +72,13 @@ typedef struct	s_env
 	int			size;
 }	t_env;
 
-typedef	struct s_exp
+struct s_exp
 {
 	bool		asterisk;
 	bool		dolar;
 	char		*input;
 	t_env		*env;
-}	t_exp;
+};
 
 typedef struct s_exec
 {
@@ -85,7 +91,7 @@ typedef struct s_exec
 	t_env	*env;
 }	t_exec;
 
-typedef struct	s_node
+struct s_node
 {
 	int				id;
 	t_type			type;
@@ -95,7 +101,7 @@ typedef struct	s_node
 	pid_t			pid;
 	int				exit_code;
 	bool			executed;
-}	t_node;
+};
 
 typedef struct	s_shell
 {

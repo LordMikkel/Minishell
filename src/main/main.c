@@ -6,11 +6,11 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 17:07:14 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/09 16:19:50 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/09 23:01:21 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include ".h"
+#include "../../inc/minishell.h"
 
 /*Here we are initializing the struct data that contains the main structs/lists
 that we'll work on. We also set or inialize the struc sa that comes with the use
@@ -24,14 +24,14 @@ int	main(int argc, char **argv)
 	char	*input;
 
 	init_signals(); //inicializamos sa
-	init_data(&data, &input); //inicializamos data
-	while (recieve_input(&input) != NULL) //llamamos a readline
-	{
-		if (*input) //por si el usuario presiona solo ENTER "\0"
-			add_history(input);
-		if (!steps_manager(&data, input)) //Empezamos el proceso. La razon por la que se pasa input es porque no se quiere anadir input a data. Queda feo.
-			return (exit_error(&data));
-	}
-	ft_printf("Exit\n");
+	// init_data(&data, &input); //inicializamos data
+	// while (recieve_input(&input, &data) != NULL) //llamamos a readline
+	// {
+	// 	if (*input) //por si el usuario presiona solo ENTER "\0"
+	// 		add_history(input);
+	// 	if (!steps_manager(&data, input)) //Empezamos el proceso. La razon por la que se pasa input es porque no se quiere anadir input a data. Queda feo.
+	// 		return (exit_error(&data));
+	// }
+	ft_printf_fd(STDOUT, "Exit\n");
 	return (0);
 }
