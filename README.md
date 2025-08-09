@@ -157,3 +157,75 @@ Orden de desarrollo
                 │ clean_data(data)            │
                 │ Vuelve al MAIN LOOP         │
                 └─────────────────────────────┘
+
+
+DAY 02:
+
+parseando(t_shell data, t_prompt *prompt)
+{
+	int i;
+	char *start;
+	int end;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if ( str[i] == '(')
+		{
+			prompt->n_parentesis++;
+			ft_add_token(str[i]);
+		}
+		else if (str[i] != unitarios && != espacio)
+		{
+			prompt->n_cmds++;
+			start = str[i];
+			while (str[i] != unitarios && != espacio)
+			{
+				end++;
+			}
+			ft_add_token(start + end);
+		}
+	}
+	if (!ft_validate(data) || !ft_validate_tokens)
+	{
+
+	}
+
+
+}
+int ft_add_token(t_prompt *prompt, char *value)
+{
+	static int i = 0;
+	prompt->tokens->array_tokens[i] = value;
+	i++;
+	return (0);
+}
+
+validate()
+{
+	if (data->prompt->n_parentesis % 2 == 0 )
+		tot be
+	else if (data->prompt->n_comd % 2 != 0)
+	{
+		clean(data);
+	}
+	if (data->prompt->cmd % 2 == 0 )
+		tot be
+	else if (data->prompt->n_parentesis % 2 != 0)
+	{
+		clean(data);
+	}
+	if (data->prompt->pipe % 2 == 0 )
+		tot be
+	else if (data->prompt->n_parentesis % 2 != 0)
+	{
+		clean(data);
+	}
+	if (data->prompt->n_parentesis % 2 == 0 )
+		tot be
+	else if (data->prompt->n_parentesis % 2 != 0)
+	{
+		clean(data);
+	}
+}
+
