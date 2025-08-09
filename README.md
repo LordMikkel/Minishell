@@ -160,7 +160,12 @@ Orden de desarrollo
 
 
 DAY 02:
+ La idea aqui es:
 
+ HAcer un parseo inicial en el que se va tanto a contar cada cmd, pipe, quoute, parentesis, etc... y tambien asignar cada tipo a su respectiva structura t_token con toda su informacion.
+ Luego, al finalizar el parseo se llama a:
+ ft_validate_numbers-> Esta funcion verifica si el ocntador de cada tipo tiene concordancia con los demas y en general.
+ ft_validate_token-> ESta funcion verifica que cada token tenga sentido en su contexto. POr ejemplo, si aunque hayan 2 parentesis, hay que revisar si hay conetido dentro de ellos o no. EL modo en que lo hacemos es recorriendo cada tipo desde el primer parentesis hasta el de cierre. Si hay mas tipos dentro, entonces hay concordancia y se puede proseguir. SI no, ERROR.
 parseando(t_shell data, t_prompt *prompt)
 {
 	int i;
