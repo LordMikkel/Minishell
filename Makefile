@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/08/08 17:03:44 by migarrid         ###   ########.fr        #
+#    Updated: 2025/08/09 22:58:02 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ NAME				= minishell
 #                            Compiler and Flags                                #
 # **************************************************************************** #
 CC					= cc
-WFLAGS				= -Wall -Wextra -Werror
+#WFLAGS				= -Wall -Wextra -Werror
 DFLAGS				= -g
 OFLAGS				= -O2 -march=native -flto
 SFLAGS				= -fsanitize=address
@@ -42,19 +42,20 @@ OBJ_DIR				= obj
 OBJ_BONUS_DIR		= $(OBJ_DIR)/bonus
 SRC_DIR				= src
 SRC_BONUS_DIR 		= $(SRC_DIR)/bonus
-LIBFT_DIR			= $(LIB_DIR)/libft_plus
+LIBFT_DIR			= $(LIB_DIR)
 DEPS				= $(HEADER) $(MAKEFILE) $(LIBFT_H) $(LIBFT_MAKEFILE)
 
 # **************************************************************************** #
 #                      File Paths and Dependencies                             #
 # **************************************************************************** #
 MAKEFILE				= Makefile
-HEADER					= $(INC_DIR)/.h \
-						  $(INC_DIR)/macros.h \
-						  $(INC_DIR)/structs.h
+HEADER					= $(INC_DIR)/minishell.h \
+						  $(INC_DIR)/minishell_macros.h \
+						  $(INC_DIR)/minishell_structs.h
 LIBFT_A					= $(LIBFT_DIR)/libft_plus.a
 LIBFT_H					= $(LIBFT_DIR)/libft_plus.h
 LIBFT_MAKEFILE			= $(LIBFT_DIR)/Makefile
+LDLIBS					= -lreadline
 
 # **************************************************************************** #
 #                                   Colors                                     #
@@ -76,7 +77,9 @@ CLEAR 				= \r\033[K
 # **************************************************************************** #
 #                               Source File                                    #
 # **************************************************************************** #
-SRCS =
+SRCS =				main/main.c \
+					signals/init_signals.c \
+					signals/signal_handler.c
 
 # **************************************************************************** #
 #                              Progress Bars                                   #
@@ -98,26 +101,27 @@ BONUS_PCT = $(shell expr 100 \* $(BONUS_COUNT) / $(BONUS_COUNT_TOT))
 # **************************************************************************** #
 #                               Object File                                    #
 # **************************************************************************** #
-OBJS		= $(SRCS:%.c=$(OBJ_DIR)/%.o)
-OBJS_BONUS 	= $(SRC_BONUS:%.c=$(OBJ_BONUS_DIR)/%.o)
-
-# Create the directory if it doesn't exist
-${OBJS}: | ${OBJ_DIR}
-${OBJS_BONUS}: | $(OBJ_DIR)
+# Create directories
 $(OBJ_DIR):
 	@$(MKDIR) $(OBJ_DIR)
+$(OBJ_BONUS_DIR):
 	@$(MKDIR) $(OBJ_BONUS_DIR)
+
+OBJS		= $(SRCS:%.c=$(OBJ_DIR)/%.o)
+OBJS_BONUS 	= $(SRC_BONUS:%.c=$(OBJ_BONUS_DIR)/%.o)
 
 # Rule to compile archive .c to ,o with progress bars
 ${OBJ_DIR}/%.o: ${SRC_DIR}/%.c $(DEPS) | $(OBJ_DIR)
 	@$(eval SRC_COUNT = $(shell expr $(SRC_COUNT) + 1))
 	@$(PRINT) "\r%100s\r[ %d/%d (%d%%) ] Compiling $(BLUE)$<$(DEFAULT)...\n" "" $(SRC_COUNT) $(SRC_COUNT_TOT) $(SRC_PCT)
-	@$(CC) $(CFLAGS) -I. -c -o $@ $<
+	@$(MKDIR) $(dir $@)
+	@$(CC) $(WFLAGS) $(DFLAGS) $(SFLAGS) $(OFLAGS) -I. -c -o $@ $<
 
 # Rule to compile archive .c to ,o with progress bars (Bonus)
 $(OBJ_BONUS_DIR)/%.o: $(SRC_BONUS_DIR)/%.c $(DEPS) | $(OBJ_BONUS_DIR)
 	@$(eval BONUS_COUNT = $(shell expr $(BONUS_COUNT) + 1))
 	@$(PRINT) "\r%100s\r[ %d/%d (%d%%) ] Compiling $(MAGENTA)$<$(DEFAULT)...\n" "" $(BONUS_COUNT) $(BONUS_COUNT_TOT) $(BONUS_PCT)
+	@$(MKDIR) $(dir $@)
 	@$(CC) $(WFLAGS) $(DFLAGS) $(SFLAGS) $(OFLAGS) -I. -c -o $@ $<
 
 # **************************************************************************** #
@@ -128,7 +132,7 @@ all: $(LIBFT_A) $(NAME)
 
 # Build executable
 $(NAME): $(OBJS)
-	@$(CC) $(WFLAGS) $(DFLAGS) $(SFLAGS) $(OFLAGS) $(OBJS) $(LIBFT_A) -I$(INC_DIR) -o $(NAME)
+	@$(CC) $(WFLAGS) $(DFLAGS) $(SFLAGS) $(OFLAGS) $(RFLAGS) $(OBJS) $(LIBFT_A) -I$(INC_DIR) $(LDLIBS) -o $(NAME)
 	@$(PRINT) "${CLEAR}${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}${GREEN}»${RESET} [${PURPLE}${BOLD}${NAME}${RESET}]: ${RED}${BOLD}${NAME} ${RESET}compiled ${GREEN}successfully${RESET}.${GREY}\n${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}"
 
 # Rebuild libft.a
