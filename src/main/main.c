@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 17:07:14 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/08 22:19:36 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/09 16:19:50 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int ac, char **av)
 	t_shell	data;
 	char	*input
 
-	init_signals();
+	init_signals(void)
 	init(&data, &input);
 	while(1)
 	{
@@ -30,7 +30,7 @@ int	main(int ac, char **av)
 		{
 			add_history(input);
 			if (!minishell(data, input))
-				return (error(data));
+				return (exit_error(data));
 		}
 	}
 	return (0);
@@ -49,6 +49,15 @@ int minishell(t_shell *data, char *input);
 	clean_data(data);
 }
 
+int	tokenizer
+{
+	review_global();
+	asdv.kasbbdv.sc
+	sdvasdv
+	asdvasvvsa
+	return (1)
+}
+
 int error(t_shell *data, char *error, int code)
 {
 	if (error)
@@ -58,24 +67,33 @@ int error(t_shell *data, char *error, int code)
 	return (exit(code))
 }
 
-int init_signals(void)
+int init_signals()
 {
 	struct sa;
 
 	sa.sa_handler = sigint_handler;
-    sigemptyset(&sa.sa_mask);
-    sa.sa_flags = SA_RESTART;
-	if (sigaction(ft_handler, ) == -1)
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = SA_RESTART;
+	if (sigaction(ft_handler, sa) == ERROR)
 	{
-		flag = false;
-		return (-1);
+		perror(sigaction fail);
+		exit(EXIT_FAILURE);
 	}
-	flag = true;
 	return (0);
-
 }
 
 int ft_handler(int signal, saafw)
 {
-
+	if (signal == CTR_D)
+	{
+		global_flag == CLEAN_KILL;
+	}
+	else if (signal == CTRL_C)
+	{
+		global_flag == CLEAN;
+	}
+	else
+	{
+		global_flag == CONTINUE;
+	}
 }
