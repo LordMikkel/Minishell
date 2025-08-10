@@ -6,19 +6,21 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:46:24 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/09 22:49:27 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/10 21:57:46 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-/*Here we simply manage all the key functions/steps of the program.
-We first tokenize, then we'll do the expantionthe we create
-the tree, in this particular case, will use the ast (syntaxis tree).
-To conlcude we use execute_recursive to go through all the
-nodes by suing recursion and execute the commands*/
+/*
+	Gestiona las funciones/pasos clave del programa.
+	Primero tokenizamos, luego hacemos la expansión,
+	después creamos el árbol de sintaxis (AST),
+	y por último usamos `execute_recursive` para recorrer
+	todos los nodos mediante recursión y ejecutar los comandos.
+*/
 
-int steps_manager(t_shell *data, char *input)
+int	steps_manager(t_shell *data, char *input)
 {
 	if (!tokenizer(data, input))
 		return (error(data));

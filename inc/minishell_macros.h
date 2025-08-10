@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:23:16 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/09 21:48:15 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/10 23:31:54 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,8 @@
 # define ERR_FORK		"minishell: fork: Resource temporarily unavailable\n"
 # define ERR_PIPE		"minishell: pipe: Too many open files\n"
 # define ERR_DUP		"minishell: dup2: Bad file descriptor\n"
+# define ERR_SIGNAL		"minishell: signals initialization failed\n"
+# define ERRNO			"Errno: %s\n"
 
 //File Directory Errors
 # define ERR_FILE_NOT_FOUND	"minishell: %s: No such file or directory\n"

@@ -6,30 +6,33 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 17:07:14 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/09 23:01:21 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/10 23:36:44 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-/*Here we are initializing the struct data that contains the main structs/lists
-that we'll work on. We also set or inialize the struc sa that comes with the use
-os sigaction. We are defining an infinite loop in which we call recieve_input,
-which contains the readline();. Then we add the input to our command log history
-and begin the process with steps_manager*/
+/*
+	Aquí inicializamos la estructura principal `data` con las listas y datos
+	con los que trabajaremos. También inicializamos la estructura `sa`
+	para el manejo de señales con `sigaction`. Luego definimos un bucle
+	infinito donde llamamos a `recieve_input` (que usa `readline`).
+	Guardamos la entrada en el historial de comandos y empezamos el proceso
+	con `steps_manager`.
+*/
 
 int	main(int argc, char **argv)
 {
 	t_shell	data;
 	char	*input;
 
-	init_signals(); //inicializamos sa
-	// init_data(&data, &input); //inicializamos data
-	// while (recieve_input(&input, &data) != NULL) //llamamos a readline
+	init_signals();									//inicializamos sa
+	// init_data(&data);							//inicializamos data
+	// while (recieve_input(&input, &data) != NULL)	//llamamos a readline
 	// {
-	// 	if (*input) //por si el usuario presiona solo ENTER "\0"
+	// 	if (*input)									//por si el usuario presiona solo ENTER "\0"
 	// 		add_history(input);
-	// 	if (!steps_manager(&data, input)) //Empezamos el proceso. La razon por la que se pasa input es porque no se quiere anadir input a data. Queda feo.
+	// 	if (!steps_manager(&data, input))			//Empezamos el proceso. La razon por la que se pasa input es porque no se quiere anadir input a data. Queda feo.
 	// 		return (exit_error(&data));
 	// }
 	ft_printf_fd(STDOUT, "Exit\n");
