@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/10 23:34:20 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/11 00:00:17 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,33 +81,33 @@ struct s_exp
 
 typedef struct s_exec
 {
-	pid_t	*pids;
-	int		n_pids;
-	int		n_pipes;
-	int		**pipes;
-	int		original_stdin;
-	int		original_stdout;
-	t_env	*env;
+	pid_t		*pids;
+	int			n_pids;
+	int			n_pipes;
+	int			**pipes;
+	int			original_stdin;
+	int			original_stdout;
+	t_env		*env;
 }	t_exec;
 
 struct s_node
 {
-	int				id;
-	t_type			type;
-	t_token			token;
-	t_node			*left;
-	t_node			*right;
-	pid_t			pid;
-	int				exit_code;
-	bool			executed;
+	int			id;
+	t_type		type;
+	t_token		token;
+	t_node		*left;
+	t_node		*right;
+	pid_t		pid;
+	int			exit_code;
+	bool		executed;
 };
 
 typedef struct s_shell
 {
-	t_prompt		prompt;
-	t_node			*ast_root;
-	t_exec			executor;
-	t_env			env;
+	t_prompt	prompt;
+	t_node		*ast_root;
+	t_exec		executor;
+	t_env		env;
 }	t_shell;
 
 #endif
