@@ -6,7 +6,8 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:36:57 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/09 16:36:58 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/10 21:39:13 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../../inc/minishell.h"

@@ -6,20 +6,20 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/09 23:13:28 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/10 23:34:20 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_STRUCTS_H_
-# define MINISHELL_STRUCTS_H_
+#ifndef MINISHELL_STRUCTS_H
+# define MINISHELL_STRUCTS_H
 
 # include "minishell.h"
 
-typedef	struct s_exp	t_exp;
+typedef struct s_exp	t_exp;
 typedef struct s_token	t_token;
 typedef struct s_token	t_node;
 
-typedef enum	e_type
+typedef enum e_type
 {
 	WORD,
 	GROUP,
@@ -46,9 +46,9 @@ struct s_token
 	t_token		*next;
 };
 
-typedef struct	s_prompt
+typedef struct s_prompt
 {
-	int 		n_parentesis;
+	int			n_parentesis;
 	int			n_single_quotes;
 	int			n_double_quotes;
 	int			n_escape;
@@ -56,17 +56,16 @@ typedef struct	s_prompt
 	int			n_cmds;
 	int			n_tokens;
 	char		*prompt;
-	t_token 	*tokens;
+	t_token		*tokens;
 }	t_prompt;
 
-
-typedef struct	s_var
+typedef struct s_var
 {
 	char		*key;
 	char		*value;
 }	t_var;
 
-typedef struct	s_env
+typedef struct s_env
 {
 	t_var		*vars;
 	int			size;
@@ -103,12 +102,12 @@ struct s_node
 	bool			executed;
 };
 
-typedef struct	s_shell
+typedef struct s_shell
 {
 	t_prompt		prompt;
 	t_node			*ast_root;
 	t_exec			executor;
 	t_env			env;
-} t_shell;
+}	t_shell;
 
 #endif
