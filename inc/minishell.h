@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 17:07:02 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/11 21:34:34 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/12 03:34:22 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ extern volatile sig_atomic_t	g_signal_event;
 /* ************************************************************************** */
 /*                                Minishell                                   */
 /* ************************************************************************** */
+int		steps_manager(t_shell *data, char *input);
+char	*recieve_input(char **input, t_shell *data);
 
 /* ************************************************************************** */
 /*                             Initialization                                 */
@@ -52,7 +54,7 @@ void	allocate_tokens(t_shell *data, t_prompt *prompt, char *input);
 /*                               Tokenizer                                    */
 /* ************************************************************************** */
 int		tokenizer(t_shell *data, t_prompt *prompt, char *input);
-void 	get_tokens(t_shell *data, t_token *tokens, char *input);
+void	get_tokens(t_shell *data, t_token *tokens, char *input);
 void	is_word_or_cmd(t_shell *d, t_prompt *p, t_token *t, char *s);
 void	add_token(t_token *tokens, char *value, int type);
 
@@ -94,10 +96,10 @@ void	is_pipe(t_token *tokens, char c);
 void	is_parenten(t_token *tokens, char c);
 void	is_semicolon(t_token *tokensmm, char c);
 void	is_wildcar(t_token *tokens, char c);
+void	is_scape(t_token *tokens, char c);
 void	is_or(t_token *tokens, const char *str, int *i);
 void	is_and(t_token *tokens, const char *str, int *i);
 void	is_redir(t_token *tokens, const char *str, int *i);
 void	is_heredoc(t_token *tokens, const char *str, int *i);
-void	is_finished(t_token *tokens, char c);
 
 #endif
