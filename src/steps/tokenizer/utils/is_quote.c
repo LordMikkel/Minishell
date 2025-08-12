@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:47 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/12 18:18:02 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/12 18:53:18 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 	El último caso sería para sustitución de comandos (pendiente).
 */
 
-void	is_quote(t_token *tokens, const char *str, int  *i)
+void	is_quote(t_token *tokens, const char *str, int *i)
 {
 	char	c;
 

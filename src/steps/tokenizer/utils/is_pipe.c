@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:50 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/12 18:17:59 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/12 18:53:25 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 	Detecta el operador pipe '|' y añade un token de tipo PIPE.
 */
 
-void	is_pipe(t_token *tokens, const char *str,  int *i)
+void	is_pipe(t_token *tokens, const char *str, int *i)
 {
 	char	c;
 
