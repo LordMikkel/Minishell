@@ -6,11 +6,17 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/12 15:56:05 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/12 16:24:28 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/minishell.h"
+
+/*
+	Extrae texto hasta espacio o carácter especial y lo guarda como
+	token WORD. Luego pasa el texto a is_word_or_cmd para decidir si
+	es palabra normal o comando.
+*/
 
 void	is_word(t_shell *data, t_token *tokens, const char *str, int *i)
 {

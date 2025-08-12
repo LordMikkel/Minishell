@@ -6,11 +6,17 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:37:27 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/12 03:27:19 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/12 16:25:25 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/minishell.h"
+
+/*
+	Añade un nuevo token al array `tokens` con el valor y tipo dados.
+	Si es de tipo EXPANSION, marca su flag `expand` como TRUE.
+	Usa un índice estático para añadir en la posición correcta.
+*/
 
 void	add_token(t_token *tokens, char *value, int type)
 {
@@ -22,6 +28,11 @@ void	add_token(t_token *tokens, char *value, int type)
 		tokens[i].expand = TRUE;
 	i++;
 }
+
+/*
+	Recorre el string `input` y llama a las funciones `is_*` para
+	detectar cada tipo de token. Avanza el índice según lo detectado.
+*/
 
 void	get_tokens(t_shell *data, t_token *tokens, char *input)
 {
