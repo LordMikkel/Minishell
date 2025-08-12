@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 17:07:02 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/12 03:34:22 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/12 16:10:01 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int		exit_error(t_shell *data, char *error, int exit_code);
 /*                                 Clean                                      */
 /* ************************************************************************** */
 void	clean_all(t_shell *data);
+void	clean_prompt(t_prompt *prompt);
 
 /* ************************************************************************** */
 /*                                 utils                                      */

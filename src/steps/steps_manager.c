@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:46:24 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/12 03:18:54 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/12 16:10:24 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ int	steps_manager(t_shell *data, char *input)
 	// 	return (error(data));
 	// if (!execute_recursive(data, data->ast_root))
 	// 	return (error(data));
-	// clean_data(data);
+	clean_prompt(&data->prompt);
 	return (SUCCESS);
 }
