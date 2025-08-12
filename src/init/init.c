@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 23:17:43 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/11 20:18:46 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/12 03:22:42 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	init_data(t_shell *data, char **input)
 {
 	*input = NULL;
 	*data = (t_shell){0};
-	*data->prompt.tokens = (t_token){0};
-	*data->ast_root = (t_node){0};
-	*data->env.vars = (t_var){0};
+	data->prompt.tokens = NULL;
+	data->ast_root = NULL;
+	data->env.vars = NULL;
 }
