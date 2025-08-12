@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:37:27 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/12 18:51:06 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/12 18:53:07 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	add_token(t_token *tokens, char *value, int type)
 {
 	static int	i = 0;
 
-	if (type  == RESET)
+	if (type == RESET)
 	{
 		i = 0;
-		return;
+		return ;
 	}
 	tokens[i].value = value;
 	tokens[i].type = type;
