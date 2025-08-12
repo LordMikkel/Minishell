@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 21:47:38 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/12 16:08:55 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/12 17:16:22 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	clean_prompt(t_prompt *prompt)
 	free(prompt->tokens);
 	prompt->tokens = NULL;
 	*prompt = (t_prompt){0};
+	add_token(NULL, NULL, RESET);
 }
 
 void	clean_all(t_shell *data)

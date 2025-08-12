@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:45 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/12 16:22:46 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/12 18:36:48 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,20 @@
 
 void	is_redir(t_token *tokens, const char *str, int *i)
 {
-	if (!ft_strncmp(str, ">>", 2))
+	if (!ft_strncmp(str + *i, ">>", 2))
 	{
 		add_token(tokens, ">>", REDIR_APPEND);
 		(*i)++;
+		(*i)++;
 	}
-	else if (str[0] == '>')
+	else if (str[*i] == '>')
+	{
 		add_token(tokens, ">", REDIR_OUTPUT);
-	else if (str[0] == '<')
+		(*i)++;
+	}
+	else if (str[*i] == '<')
+	{
 		add_token(tokens, "<", REDIR_INPUT);
+		(*i)++;
+	}
 }
