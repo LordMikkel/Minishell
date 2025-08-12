@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/12 03:31:44 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/12 15:56:05 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	is_word(t_shell *data, t_token *tokens, const char *str, int *i)
 	char	*word;
 
 	start = *i;
-	while (str[*i] && !ft_isspace(str[*i] && ft_isspecial(str[*i])))
+	while (str[*i] != '\0' && !ft_isspace(str[*i]) && !ft_isspecial(str[*i]))
 		(*i)++;
 	len = *i - start;
 	if (len > 0)

@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/08/12 03:33:33 by migarrid         ###   ########.fr        #
+#    Updated: 2025/08/12 16:11:33 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ CC					= cc
 #WFLAGS				= -Wall -Wextra -Werror
 DFLAGS				= -g
 OFLAGS				= -O2 -march=native -flto
-SFLAGS				= -fsanitize=address
+SLAGS				= -fsanitize=address
 
 # **************************************************************************** #
 #                               Shell Comands                                  #
