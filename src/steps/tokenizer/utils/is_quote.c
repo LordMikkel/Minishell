@@ -6,11 +6,16 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:47 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/11 19:45:13 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/12 16:22:31 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/minishell.h"
+
+/*
+	Detecta comillas simples o dobles y añade el token correspondiente.
+	El último caso sería para sustitución de comandos (pendiente).
+*/
 
 void	is_quote(t_token *tokens, char c)
 {
