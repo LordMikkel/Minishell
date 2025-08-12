@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:37:27 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/12 16:25:25 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/12 18:51:06 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ void	add_token(t_token *tokens, char *value, int type)
 {
 	static int	i = 0;
 
+	if (type  == RESET)
+	{
+		i = 0;
+		return;
+	}
 	tokens[i].value = value;
 	tokens[i].type = type;
 	if (tokens[i].type == EXPANSION)
@@ -41,19 +46,19 @@ void	get_tokens(t_shell *data, t_token *tokens, char *input)
 	i = 0;
 	while (input[i] != '\0')
 	{
-		is_dolar(data, tokens, &input[i], &i);
-		is_word(data, tokens, &input[i], &i);
-		is_heredoc(tokens, &input[i], &i);
-		is_parenten(tokens, input[i]);
-		is_scape(tokens, input[i]);
-		is_quote(tokens, input[i]);
-		is_pipe(tokens, input[i]);
-		is_semicolon(tokens, input[i]);
-		is_wildcar(tokens, input[i]);
-		is_and(tokens, &input[i], &i);
-		is_or(tokens, &input[i], &i);
-		is_redir(tokens, &input[i], &i);
-		i++;
+		is_not_token(input, &i);
+		is_heredoc(tokens, input, &i);
+		is_and(tokens, input, &i);
+		is_or(tokens, input, &i);
+		is_redir(tokens, input, &i);
+		is_pipe(tokens, input, &i);
+		is_parenten(tokens, input, &i);
+		is_quote(tokens, input, &i);
+		is_semicolon(tokens, input, &i);
+		is_wildcar(tokens, input, &i);
+		is_scape(tokens, input, &i);
+		is_dolar(data, tokens, input, &i);
+		is_word(data, tokens, input, &i);
 	}
 }
 

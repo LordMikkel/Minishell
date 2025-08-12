@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:54 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/12 16:21:29 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/12 18:37:17 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@
 
 void	is_or(t_token *tokens, const char *str, int *i)
 {
-	if (!ft_strncmp(str, "||", 2))
+	if (!ft_strncmp(str + *i, "||", 2))
 	{
 		add_token(tokens, "||", OR);
+		(*i)++;
 		(*i)++;
 	}
 }
