@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:46:24 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/12 16:15:55 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/15 22:01:34 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,10 @@
 
 int	steps_manager(t_shell *data, char *input)
 {
-	if (!tokenizer(data, &data->prompt, input))
-		return (exit_error(data, NULL, EXIT_FAILURE));
-	// if (!expanstion(data->prompt.tokens, data->env))
-	// if (!ast(data, data->prompt.tokens))
-	// 	return (error(data));
-	// if (!execute_recursive(data, data->ast_root))
-	// 	return (error(data));
+	tokenizer(data, &data->prompt, input);
+	expansion(data, data->prompt.tokens, &data->env);
+	ast_built(data, data->prompt.tokens);
+	execute_recursive(data, data->ast_root, &data->executor);
 	clean_prompt(&data->prompt);
 	return (SUCCESS);
 }

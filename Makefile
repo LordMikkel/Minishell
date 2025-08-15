@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/08/13 15:02:50 by migarrid         ###   ########.fr        #
+#    Updated: 2025/08/15 22:02:35 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,9 +96,11 @@ SRCS =				main/main.c \
 					steps/tokenizer/utils/is_word.c \
 					steps/tokenizer/utils/is_not_token.c \
 					steps/tokenizer/utils/is_hash.c \
-					steps/tokenizer/utils/is_word_or_cmd.c \
-					steps/tokenizer/utils/valid_tokens.c \
-					steps/tokenizer/utils/valid_numbers.c \
+					steps/tokenizer/utils/is_cmd.c \
+					steps/tokenizer/utils/check_syntax.c \
+					steps/expansion/expansion.c \
+					steps/ast/ast_builder.c \
+					steps/executor/executor.c \
 					signals/init_signals.c \
 					signals/signal_handler.c \
 					exit/exit.c \

@@ -6,8 +6,12 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:36:48 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/10 21:38:38 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/15 22:02:21 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/minishell.h"
+
+void	ast_built(t_shell *data, t_token *tokens)
+{
+}

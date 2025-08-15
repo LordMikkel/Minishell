@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:23:16 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/13 14:07:29 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/15 21:46:57 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@
 /* ************************************************************************** */
 # define ERROR						-1
 # define OK							0
+# define YES						1
+# define NO							0
+# define NOT_FOUND					0
 
 /* ************************************************************************** */
 /*                               Global Flag                                  */
@@ -122,7 +125,7 @@
 //Command Errors
 # define ERR_CMD_NOT_FOUND	"minishell: %s: command not found\n"
 # define ERR_CMD_NOT_EXEC	"minishell: %s: cannot execute binary file\n"
-# define ERR_EXEC_FORMAT	"minishell: %s: cannot execute binary file: Exec format error\n"
+# define ERR_EXEC_FORMAT "minishell: %s: cannot execute binary file: Exec format error\n"
 
 //Built-in Errors
 # define ERR_CD_TOO_MANY	"minishell: cd: too many arguments\n"
@@ -136,7 +139,7 @@
 # define ERR_ENV_NO_ARGS	"minishell: env: invalid option\n"
 
 //Syntax Errors
-# define ERR_SYNTAX			"minishell: syntax error near unexpected token `%s'\n"
+# define ERR_SYNTAX			"minishell: syntax error near unexpected token\n"
 # define ERR_SYNTAX_EOF		"minishell: syntax error: unexpected end of file\n"
 # define ERR_SYNTAX_NEWLINE	"minishell: syntax error near unexpected token `newline'\n"
 # define ERR_UNCLOSED_QUOTE	"minishell: unexpected EOF while looking for matching `%c'\n"
