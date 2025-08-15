@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 21:42:44 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/15 17:33:33 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/15 21:53:37 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	exit_error(t_shell *data, char *error, int exit_code)
 		clean_all(data);
 	if (error)
 		ft_printf_fd(STDERR, error);
-	if (errno)
+	if ((exit_code == FAILURE || exit_code == EXIT_CMD_NOT_EXECUTABLE) && errno)
 		ft_printf_fd(STDERR, ERRNO, strerror(errno));
 	exit(exit_code);
 	return (exit_code);

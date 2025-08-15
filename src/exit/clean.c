@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 21:47:38 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/13 15:14:24 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/15 20:50:11 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ void	clean_tokens(t_prompt *prompt)
 	i = 0;
 	while (i < prompt->n_tokens)
 	{
-		if (prompt->tokens[i].value && prompt->tokens[i].type == WORD)
+		if (prompt->tokens[i].value
+			&& (prompt->tokens[i].type == WORD
+				|| prompt->tokens[i].type == BUILT_IN
+				|| prompt->tokens[i].type == COMMAND))
 		{
 			free(prompt->tokens[i].value);
 			prompt->tokens[i].value = NULL;

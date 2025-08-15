@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:37:27 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/15 18:06:32 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/15 22:13:33 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ char	*g_type_names[] = {
 	Usa un índice estático para añadir en la posición correcta.
 */
 
-void	add_token(t_token *tokens, char *value, int type)
+int	add_token(t_token *tokens, char *value, int type)
 {
 	static int	i = 0;
 
 	if (type == RESET)
 	{
 		i = 0;
-		return ;
+		return (0);
 	}
 	tokens[i].id = i;
 	tokens[i].value = value;
@@ -56,6 +56,7 @@ void	add_token(t_token *tokens, char *value, int type)
 	if (tokens[i].type == EXPANSION)
 		tokens[i].expand = TRUE;
 	i++;
+	return (tokens[tokens[i - 1].id].id);
 }
 
 /*
@@ -87,14 +88,36 @@ void	get_tokens(t_shell *data, t_token *tokens, char *input)
 	}
 }
 
-int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
+/*
+	Revisa cada token del input y valida operadores como '|', '(', ')',
+	'&&' y '||'. Comprueba que estén correctamente colocados y emparejados.
+*/
+
+int	valid_tokens(t_shell *data, t_prompt *prompt, t_token *tokens)
+{
+	int	i;
+
+	i = 0;
+	while (tokens[i].type)
+	{
+		check_open_parent(data, prompt, tokens, i);
+		check_close_parent(data, prompt, tokens, i);
+		check_pipe(data, prompt, tokens, i);
+		check_or_and(data, prompt, tokens, i);
+		i++;
+	}
+	valid_pair_operands(data, prompt);
+	return (0);
+}
+
+void	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 {
 	int	i;
 
 	i = 0;
 	allocate_tokens(data, prompt, input);
 	get_tokens(data, prompt->tokens, input);
-	valid_tokens(data, prompt, prompt->tokens);
+	// valid_tokens(data, prompt, prompt->tokens);
 	while (i < prompt->n_tokens)
 	{
 		if (prompt->tokens[i].value)
@@ -102,5 +125,4 @@ int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 				g_type_names[prompt->tokens[i].type]);
 		i++;
 	}
-	return (SUCCESS);
 }

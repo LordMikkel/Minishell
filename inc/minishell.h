@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 17:07:02 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/13 15:03:17 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/15 22:06:42 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,23 +53,25 @@ void	allocate_tokens(t_shell *data, t_prompt *prompt, char *input);
 /* ************************************************************************** */
 /*                               Tokenizer                                    */
 /* ************************************************************************** */
-int		tokenizer(t_shell *data, t_prompt *prompt, char *input);
+void	tokenizer(t_shell *data, t_prompt *prompt, char *input);
 void	get_tokens(t_shell *data, t_token *tokens, char *input);
-int     is_word_or_cmd(t_shell *d, t_prompt *p, t_token *t, char *s);
-int     valid_numbers(t_shell *data, t_prompt *prompt);
-void	add_token(t_token *tokens, char *value, int type);
+int		valid_tokens(t_shell *data, t_prompt *prompt, t_token *tokens);
+int		valid_pair_operands(t_shell *data, t_prompt *prompt);
+int		add_token(t_token *tokens, char *value, int type);
 
 /* ************************************************************************** */
 /*                                  AST                                       */
 /* ************************************************************************** */
-
+void	ast_built(t_shell *data, t_token *tokens);
 /* ************************************************************************** */
 /*                                Executor                                    */
 /* ************************************************************************** */
+void	execute_recursive(t_shell *data, t_node *ast_root, t_exec *executor);
 
 /* ************************************************************************** */
 /*                               Expansion                                    */
 /* ************************************************************************** */
+void	expansion(t_shell *data, t_token *tokens, t_env *env);
 
 /* ************************************************************************** */
 /*                                Signals                                     */
@@ -93,6 +95,8 @@ void	clean_tokens(t_prompt *prompt);
 /* ************************************************************************** */
 /*                                 utils                                      */
 /* ************************************************************************** */
+// GET TOKENS
+void	is_cmd(t_shell *d, t_prompt *p, t_token *t, char *s);
 void	is_word(t_shell *data, t_token *tokens, const char *str, int *i);
 void	is_dolar(t_shell *data, t_token *tokens, const char *str, int *i);
 void	is_quote(t_token *tokens, const char *str, int *i);
@@ -107,5 +111,12 @@ void	is_redir(t_token *tokens, const char *str, int *i);
 void	is_heredoc(t_token *tokens, const char *str, int *i);
 void	is_not_token(const char *str, int *i);
 void	is_hash(const char *str, int *i);
+
+//VALID TOKENS
+int		check_open_parent(t_shell *d, t_prompt *p, t_token *t, int i);
+int		check_close_parent(t_shell *d, t_prompt *p, t_token *t, int i);
+int		check_pipe(t_shell *data, t_prompt *prompt, t_token *tokens, int i);
+int		check_or_and(t_shell *data, t_prompt *prompt, t_token *tokens, int i);
+int		valid_pair_operands(t_shell *data, t_prompt *prompt);
 
 #endif
