@@ -6,11 +6,11 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 19:06:35 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/15 21:28:20 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/16 17:02:49 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../inc/minishell.h"
+#include "../../../../../inc/minishell.h"
 
 /*
 	Comprueba que un paréntesis de apertura tenga un comando antes de cerrarse.

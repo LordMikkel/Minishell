@@ -8,6 +8,7 @@
 *.swp
 ./obj
 .editorconfig
+.vscode
 
 # Prerequisites
 *.d

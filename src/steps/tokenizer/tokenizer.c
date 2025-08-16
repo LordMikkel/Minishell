@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:37:27 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/16 16:37:45 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/16 17:00:47 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ int	valid_tokens(t_shell *data, t_prompt *prompt, t_token *tokens)
 		i++;
 	}
 	valid_pair_operands(data, prompt);
+	logic_trans_args_cmd(data, tokens);
 	return (0);
 }
 

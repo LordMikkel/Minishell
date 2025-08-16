@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_or.c                                            :+:      :+:    :+:   */
+/*   is_heredoc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/11 19:43:54 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/12 18:37:17 by migarrid         ###   ########.fr       */
+/*   Created: 2025/08/11 19:43:58 by migarrid          #+#    #+#             */
+/*   Updated: 2025/08/16 17:01:38 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../inc/minishell.h"
+#include "../../../../../inc/minishell.h"
 
 /*
-	Detecta el operador lógico '||' y añade un token de tipo OR.
-	Avanza el índice para no volver a procesar el token.
+	Detecta el operador de redirección heredoc '<<' y añade token.
+	Avanza el índice para saltar el token.
 */
 
-void	is_or(t_token *tokens, const char *str, int *i)
+void	is_heredoc(t_token *tokens, const char *str, int *i)
 {
-	if (!ft_strncmp(str + *i, "||", 2))
+	if (!ft_strncmp(str + *i, "<<", 2))
 	{
-		add_token(tokens, "||", OR);
+		add_token(tokens, "<<", REDIR_HEREDOC);
 		(*i)++;
 		(*i)++;
 	}
