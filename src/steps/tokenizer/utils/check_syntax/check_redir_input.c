@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 18:39:51 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/16 21:51:32 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/16 22:43:19 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	check_redir_input(t_shell *data, t_prompt *prompt, t_token *tokens, int i)
 				|| tokens[i + 1].type == WORD
 				|| tokens[i + 1].type == BUILT_IN)
 			{
-				if(access(tokens[i + 1].value, F_OK) != 0)
+				if (access(tokens[i + 1].value, F_OK) != 0)
 					return ((void)syntax_error(data, ERR_NO_INPUT_FILE, EXIT_FAILURE));
 				if (access(tokens[i + 1].value, R_OK) != 0)
 					return ((void)syntax_error(data, ERR_NO_INPUT_FILE, EXIT_FAILURE));
@@ -34,4 +34,3 @@ void	check_redir_input(t_shell *data, t_prompt *prompt, t_token *tokens, int i)
 		syntax_error(data, ERR_SYNTAX, EXIT_MISUSE);
 	}
 }
-

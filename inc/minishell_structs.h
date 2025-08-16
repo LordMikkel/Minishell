@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/16 21:56:26 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/16 23:18:46 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ struct s_token
 	char		*value;
 	bool		single_quoted;
 	bool		double_quoted;
-	bool		expand;
 	t_exp		*expansion;
 };
 
