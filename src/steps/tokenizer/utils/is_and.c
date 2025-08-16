@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:44:05 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/13 15:18:37 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/16 16:13:26 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	is_and(t_token *tokens, const char *str, int *i)
 		}
 		else
 		{
-			add_token(tokens, ft_strdup("&"), WORD);
+			add_token(tokens, "&", BACKGROUND);
 			(*i)++;
 		}
 	}
