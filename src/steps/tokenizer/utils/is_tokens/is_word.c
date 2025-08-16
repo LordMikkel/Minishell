@@ -6,11 +6,11 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/15 21:33:59 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/16 17:02:06 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../inc/minishell.h"
+#include "../../../../../inc/minishell.h"
 
 /*
 	Extrae texto hasta espacio o carácter especial y lo guarda como

@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_semicolon.c                                     :+:      :+:    :+:   */
+/*   is_hash.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/11 19:48:30 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/12 18:18:13 by migarrid         ###   ########.fr       */
+/*   Created: 2025/08/12 17:48:47 by migarrid          #+#    #+#             */
+/*   Updated: 2025/08/16 17:01:35 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../inc/minishell.h"
+#include "../../../../../inc/minishell.h"
 
 /*
-	Detecta punto y coma ';' y añade un token de tipo SEMICOLON.
+	Detecta el carácter '#' que inicia un comentario.
+	Ignora todo el resto de la línea desde el '#' hasta el final.
+	Avanza el índice hasta el final del string para terminar el parsing.
 */
 
-void	is_semicolon(t_token *tokens, const char *str, int *i)
+void	is_hash(const char *str, int *i)
 {
-	char	c;
-
-	c = str[*i];
-	if (c == ';')
+	if (str[*i] == '#')
 	{
-		add_token(tokens, ";", SEMICOLON);
-		(*i)++;
+		while (str[*i] != '\0')
+			(*i)++;
 	}
 }

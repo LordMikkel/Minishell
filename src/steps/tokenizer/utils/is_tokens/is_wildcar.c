@@ -1,36 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_and.c                                           :+:      :+:    :+:   */
+/*   is_wildcar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/11 19:44:05 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/16 16:13:26 by migarrid         ###   ########.fr       */
+/*   Created: 2025/08/11 19:43:41 by migarrid          #+#    #+#             */
+/*   Updated: 2025/08/16 17:02:03 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../inc/minishell.h"
+#include "../../../../../inc/minishell.h"
 
 /*
-	Detecta el operador lógico '&&' y añade un token de tipo AND.
-	Avanza el índice para no volver a procesar el token.
+	Detecta comodines '*' o '?' y añade un token de tipo WILDCAR.
 */
 
-void	is_and(t_token *tokens, const char *str, int *i)
+void	is_wildcar(t_token *tokens, const char *str, int *i)
 {
-	if (str[*i] == '&')
+	char	c;
+
+	c = str[*i];
+	if (c == '*')
 	{
-		if (str[*i + 1] == '&')
-		{
-			add_token(tokens, "&&", AND);
-			(*i)++;
-			(*i)++;
-		}
-		else
-		{
-			add_token(tokens, "&", BACKGROUND);
-			(*i)++;
-		}
+		add_token(tokens, "*", WILDCAR);
+		(*i)++;
+	}
+	else if (c == '?')
+	{
+		add_token(tokens, "?", WILDCAR);
+		(*i)++;
 	}
 }

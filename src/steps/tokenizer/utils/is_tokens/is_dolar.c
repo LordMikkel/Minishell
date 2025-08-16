@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../inc/minishell.h"
+#include "../../../../../inc/minishell.h"
 
 /*
 	Si el carácter es '$', añade un token de tipo EXPANSION.
