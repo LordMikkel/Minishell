@@ -1,12 +1,12 @@
 /* ************************************************************************** */
-/*                                                                            */
+/*	                                                                        */
 /*                                                        :::      ::::::::   */
 /*   is_dolar.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:58:46 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/15 23:53:52 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/16 15:52:48 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,13 @@
 	Luego procesa el resto como palabra con is_word.
 */
 
-// void	is_dolar(t_shell *data, t_token *tokens, const char *str, int *i)
-// {
-// 	if (str[*i] == '$')
-// 	{
-// 		add_token(tokens, "$", EXPANSION);
-// 		(*i)++;
-// 		is_word(data, tokens, str, i);
-// 	}
-// }
+static int	ft_isvalid_expansion(int c)
+{
+	if (ft_isalnum(c) || c == '_' || c == '?' || c == '$' || c == '!' ||
+		c == '#' || c == '*' || c == '@')
+		return (1);
+	return (0);
+}
 
 void	is_dolar(t_shell *data, t_token *tokens, const char *str, int *i)
 {
@@ -36,7 +34,8 @@ void	is_dolar(t_shell *data, t_token *tokens, const char *str, int *i)
 	if (str[*i] == '$')
 	{
 		start = *i;
-		while (str[*i] != '\0' && !ft_isspace(str[*i]))
+		(*i)++;
+		while (str[*i] != '\0' && !ft_isspace(str[*i]) && ft_isvalid_expansion(str[*i]))
 			(*i)++;
 		len = *i - start;
 		if (len > 0)

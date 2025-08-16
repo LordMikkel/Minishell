@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/15 18:05:24 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/16 16:06:44 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef enum e_type
 	PAREN_CLOSE,
 	WILDCAR,
 	EXPANSION,
+	BACKGROUND,
 	AND,
 	OR
 }	t_type;

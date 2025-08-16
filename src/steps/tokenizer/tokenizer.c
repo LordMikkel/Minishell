@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:37:27 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/15 22:13:33 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/16 16:37:45 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ char	*g_type_names[] = {
 	"PAREN_CLOSE",
 	"WILDCAR",
 	"EXPANSION",
+	"BACKGROUND",
 	"AND",
 	"OR"
 };
@@ -80,8 +81,8 @@ void	get_tokens(t_shell *data, t_token *tokens, char *input)
 		is_parenten(tokens, input, &i);
 		is_quote(tokens, input, &i);
 		is_semicolon(tokens, input, &i);
-		is_wildcar(tokens, input, &i);
 		is_scape(tokens, input, &i);
+		is_wildcar(tokens, input, &i);
 		is_dolar(data, tokens, input, &i);
 		is_word(data, tokens, input, &i);
 		is_hash(input, &i);
@@ -117,7 +118,7 @@ void	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 	i = 0;
 	allocate_tokens(data, prompt, input);
 	get_tokens(data, prompt->tokens, input);
-	// valid_tokens(data, prompt, prompt->tokens);
+	valid_tokens(data, prompt, prompt->tokens);
 	while (i < prompt->n_tokens)
 	{
 		if (prompt->tokens[i].value)
