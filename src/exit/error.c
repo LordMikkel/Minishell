@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_wildcar.c                                       :+:      :+:    :+:   */
+/*   errror.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/11 19:43:41 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/17 03:48:30 by migarrid         ###   ########.fr       */
+/*   Created: 2025/08/17 03:26:20 by migarrid          #+#    #+#             */
+/*   Updated: 2025/08/17 03:26:31 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../../inc/minishell.h"
+#include "../../inc/minishell.h"
 
-/*
-	Detecta comodines '*' o '?' y añade un token de tipo WILDCAR.
-*/
-
-void	is_wildcar(t_token *tokens, const char *str, int *i)
+int	syntax_error(t_shell *data, char *error, int exit_code)
 {
-	char	c;
-
-	c = str[*i];
-	if (c == '*')
-	{
-		add_token(tokens, "*", WILDCAR);
-		(*i)++;
-	}
+	if (data->prompt.tokens)
+		clean_prompt(&data->prompt);
+	if (error)
+		ft_printf_fd(STDERR, error);
+	data->last_exit_code = exit_code;
+	data->prompt.error = TRUE;
+	return (exit_code);
 }

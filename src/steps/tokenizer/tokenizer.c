@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:37:27 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/16 23:50:37 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/17 04:12:00 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,20 @@ char	*g_type_names[] = {
 	"AND",
 	"OR"
 };
+
+static void	print_tokens_debug(t_prompt *prompt)
+{
+	int	i;
+
+	i = 0;
+	while (i < prompt->n_tokens)
+	{
+		if (prompt->tokens[i].value)
+			printf("Token [%d]: '%s' (type: %s)\n", i, prompt->tokens[i].value,
+				g_type_names[prompt->tokens[i].type]);
+		i++;
+	}
+}
 
 /*
 	Añade un nuevo token al array `tokens` con el valor y tipo dados.
@@ -100,7 +114,7 @@ int	valid_tokens(t_shell *data, t_prompt *prompt, t_token *tokens)
 	int	i;
 
 	i = 0;
-	while (tokens[i].type && prompt->error == VIRGIN)
+	while (tokens[i].type)
 	{
 		check_open_parent(data, prompt, tokens, i);
 		check_close_parent(data, prompt, tokens, i);
@@ -108,35 +122,25 @@ int	valid_tokens(t_shell *data, t_prompt *prompt, t_token *tokens)
 		check_or_and(data, prompt, tokens, i);
 		check_redir_input(data, prompt, tokens, i);
 		check_redir_output(data, prompt, tokens, i);
+		check_background(data, prompt, tokens, i);
+		check_semicolon(data, prompt, tokens, i);
 		i++;
 	}
 	valid_pair_operands(data, prompt);
 	logic_trans_args_cmd(data, tokens);
-	return (0);
+	if (prompt->error == TRUE) //  este checkeo no funciona tiene que ser cada
+		return (FAILURE); //funcion individual sino accede a memoria liberada
+	return (SUCCESS); //y ademas es mas ineficiente
 }
 
-void	tokenizer(t_shell *data, t_prompt *prompt, char *input)
+int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 {
-	int	i;
-
-	i = 0;
 	allocate_tokens(data, prompt, input);
 	get_tokens(data, prompt->tokens, input);
-	while (i < prompt->n_tokens)
-	{
-		if (prompt->tokens[i].value)
-			printf("Before Token [%d]: '%s' (type: %s)\n", i, prompt->tokens[i].value,
-				g_type_names[prompt->tokens[i].type]);
-		i++;
-	}
-	valid_tokens(data, prompt, prompt->tokens);
+	print_tokens_debug(prompt);
+	if (!valid_tokens(data, prompt, prompt->tokens))
+		return (SYNTAX_ERROR);
 	printf("------------------------------------------------\n");
-	i = 0;
-	while (i < prompt->n_tokens)
-	{
-		if (prompt->tokens[i].value)
-			printf("After Token [%d]: '%s' (type: %s)\n", i, prompt->tokens[i].value,
-				g_type_names[prompt->tokens[i].type]);
-		i++;
-	}
+	print_tokens_debug(prompt);
+	return (SUCCESS);
 }

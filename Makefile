@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/08/16 23:50:58 by migarrid         ###   ########.fr        #
+#    Updated: 2025/08/17 03:54:36 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,6 +100,8 @@ SRCS =				main/main.c \
 					steps/tokenizer/utils/check_syntax/check_syntax.c \
 					steps/tokenizer/utils/check_syntax/check_redir_input.c \
 					steps/tokenizer/utils/check_syntax/check_redir_output.c \
+					steps/tokenizer/utils/check_syntax/check_background.c \
+					steps/tokenizer/utils/check_syntax/check_semicolon.c \
 					steps/tokenizer/utils/check_syntax/logic_trans_args_cmd.c \
 					steps/expansion/expansion.c \
 					steps/ast/ast_builder.c \
@@ -107,6 +109,7 @@ SRCS =				main/main.c \
 					signals/init_signals.c \
 					signals/signal_handler.c \
 					exit/exit.c \
+					exit/error.c \
 					exit/clean.c
 
 # **************************************************************************** #

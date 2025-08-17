@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 21:42:44 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/16 22:01:39 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/17 03:26:18 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,5 @@ int	exit_succes(t_shell *data, char *msg, int exit_code)
 	if (msg)
 		ft_printf_fd(STDOUT, msg);
 	exit(exit_code);
-	return (exit_code);
-}
-
-int	syntax_error(t_shell *data, char *error, int exit_code)
-{
-	if (data->prompt.tokens)
-		clean_prompt(&data->prompt);
-	if (error)
-		ft_printf_fd(STDERR, error);
-	data->last_exit_code = exit_code;
-	data->prompt.error = TRUE;
 	return (exit_code);
 }

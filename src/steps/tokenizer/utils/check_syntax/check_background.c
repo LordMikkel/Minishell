@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_wildcar.c                                       :+:      :+:    :+:   */
+/*   check_background.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/11 19:43:41 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/17 03:48:30 by migarrid         ###   ########.fr       */
+/*   Created: 2025/08/17 03:51:59 by migarrid          #+#    #+#             */
+/*   Updated: 2025/08/17 04:10:09 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../../inc/minishell.h"
 
-/*
-	Detecta comodines '*' o '?' y añade un token de tipo WILDCAR.
-*/
-
-void	is_wildcar(t_token *tokens, const char *str, int *i)
+void	check_background(t_shell *data, t_prompt *prompt, t_token *tokens, int i)
 {
-	char	c;
-
-	c = str[*i];
-	if (c == '*')
+	if (tokens[i].type == BACKGROUND)
 	{
-		add_token(tokens, "*", WILDCAR);
-		(*i)++;
+		if (i == 0)
+			return ((void)syntax_error(data, ERR_SYNTAX, EXIT_MISUSE));
+		if (!(tokens[i - 1].type == COMMAND
+				|| tokens[i - 1].type == WORD
+				|| tokens[i - 1].type == BUILT_IN
+				|| tokens[i - 1].type == WILDCAR))
+			return ((void)syntax_error(data, ERR_SYNTAX, EXIT_MISUSE));
 	}
 }

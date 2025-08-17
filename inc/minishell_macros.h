@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:23:16 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/16 21:59:28 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/17 03:33:33 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define YES						1
 # define NO							0
 # define NOT_FOUND					0
+# define SYNTAX_ERROR				0
 
 /* ************************************************************************** */
 /*                               Global Flag                                  */
