@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
+#    By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/08/17 17:21:12 by migarrid         ###   ########.fr        #
+#    Updated: 2025/08/19 21:23:56 by davdiaz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,12 +97,19 @@ SRCS =				main/main.c \
 					tokenizer/utils/is_tokens/is_hash.c \
 					tokenizer/utils/is_tokens/is_cmd.c \
 					tokenizer/utils/is_tokens/reset_tokens.c \
-					tokenizer/utils/check_syntax/check_syntax.c \
+					tokenizer/utils/check_syntax/logic_trans_args_cmd.c \
 					tokenizer/utils/check_syntax/check_redir_input.c \
 					tokenizer/utils/check_syntax/check_redir_output.c \
 					tokenizer/utils/check_syntax/check_background.c \
 					tokenizer/utils/check_syntax/check_semicolon.c \
-					tokenizer/utils/check_syntax/logic_trans_args_cmd.c \
+					tokenizer/utils/check_syntax/check_open_parent.c \
+					tokenizer/utils/check_syntax/check_closed_parent.c \
+					tokenizer/utils/check_syntax/check_pipe.c \
+					tokenizer/utils/check_syntax/check_or_and.c \
+					tokenizer/utils/check_syntax/check_single_balance.c \
+					tokenizer/utils/check_syntax/check_double_balance.c \
+					tokenizer/utils/check_syntax/check_cmd_syntaxis.c \
+					tokenizer/utils/check_syntax/check_parent_balance.c \
 					expansion/expansion.c \
 					ast/ast_builder.c \
 					executor/executor.c \
