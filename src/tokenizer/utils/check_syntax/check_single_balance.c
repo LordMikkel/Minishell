@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 22:39:40 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/08/20 16:58:19 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/20 17:49:24 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	first_coincidence(t_token *tokens, int *flag, int *balance, int i)
 	if (tokens[i].type == SINGLE_QUOTE && flag == FALSE)
 	{
 		*flag = TRUE;
-		*balance++;
+		(*balance)++;
 	}
 }
 
