@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:37:27 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/20 21:43:02 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/20 22:11:08 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,9 @@ void	get_tokens(t_shell *data, t_token *tokens, char *input)
 		is_redir(tokens, input, &i);
 		is_pipe(tokens, input, &i);
 		is_parenten(tokens, input, &i);
-		is_quote(tokens, input, &i);
 		is_semicolon(tokens, input, &i);
 		is_scape(tokens, input, &i);
+		is_quote(data, tokens, input, &i);
 		is_wildcar(tokens, input, &i);
 		is_dolar(data, tokens, input, &i);
 		is_word(data, tokens, input, &i);
