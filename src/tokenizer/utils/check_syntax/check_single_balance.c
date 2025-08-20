@@ -3,71 +3,71 @@
 /*                                                        :::      ::::::::   */
 /*   check_single_balance.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 22:39:40 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/08/19 22:39:44 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/08/20 16:58:19 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/minishell.h"
 
 /*
-    Verifica si el balance de comillas está equilibrado.
-    Si hay más cierres que aperturas o viceversa, lanza error de sintaxis.
+	Verifica si el balance de comillas está equilibrado.
+	Si hay más cierres que aperturas o viceversa, lanza error de sintaxis.
 */
 
-static int check_the_balance(t_shell *data, int balance, char *quote_type)
+static int	check_the_balance(t_shell *data, int balance, char *quote_type)
 {
-    if (balance < 0)
+	if (balance < 0) // cierre sin apertura
 	{
-	    syntax_error(data, ERR_SYNTAX, EXIT_USE, quote_type);// cierre sin apertura
+		syntax_error(data, ERR_SYNTAX, EXIT_USE, quote_type);
 		return (SYNTAX_ERROR);
 	}
-    else if (balance > 0)
-    {
-		syntax_error(data, ERR_SYNTAX, EXIT_USE, quote_type);// apertura sin cierre
+	else if (balance > 0) // apertura sin cierre
+	{
+		syntax_error(data, ERR_SYNTAX, EXIT_USE, quote_type);
 		return (SYNTAX_ERROR);
-    }
-    return (SUCCESS);
+	}
+	return (SUCCESS);
 }
 
 /*
-    Recorre los tokens buscando comillas simples emparejadas.
-    Usa un flag y balance para detectar errores de apertura o cierre.
+	Recorre los tokens buscando comillas simples emparejadas.
+	Usa un flag y balance para detectar errores de apertura o cierre.
 */
-static void first_coincidence(t_token *tokens, int *flag_check, int *balance, int i)
+static void	first_coincidence(t_token *tokens, int *flag, int *balance, int i)
 {
-    if (tokens[i].type == SINGLE_QUOTE && flag_check == FALSE)
+	if (tokens[i].type == SINGLE_QUOTE && flag == FALSE)
 	{
-		*flag_check = TRUE;
+		*flag = TRUE;
 		*balance++;
-    }
+	}
 }
 
-int check_single_balance(t_shell *data, t_prompt *prompt, t_token *tokens, int i)
+int	check_single_balance(t_shell *data, t_prompt *promp, t_token *tokens, int i)
 {
-	int balance;
-	int flag_check;
+	int	balance;
+	int	flag_check;
 
 	balance = 0;
 	flag_check = FALSE;
-    if (tokens[i].type == SINGLE_QUOTE)
-    {
-        while (i < prompt->n_tokens)
-	    {
-            first_coincidence(tokens, &flag_check, &balance, i);
-		    if (tokens[i].type == SINGLE_QUOTE && i > 0)
-		    {
-                flag_check = FALSE;
-                balance--;
-            }
-		    if (!check_the_balance(data, balance, "\'"))
-                return (SYNTAX_ERROR);
-		    i++;
-	    }
-	    if (!check_the_balance(data, balance, "\'"))
-            return (SYNTAX_ERROR);
-    }
-    return (SUCCESS);
+	if (tokens[i].type == SINGLE_QUOTE)
+	{
+		while (i < promp->n_tokens)
+		{
+			first_coincidence(tokens, &flag_check, &balance, i);
+			if (tokens[i].type == SINGLE_QUOTE && i > 0)
+			{
+				flag_check = FALSE;
+				balance--;
+			}
+			if (!check_the_balance(data, balance, "\'"))
+				return (SYNTAX_ERROR);
+			i++;
+		}
+		if (!check_the_balance(data, balance, "\'"))
+			return (SYNTAX_ERROR);
+	}
+	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 17:07:02 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/20 16:35:56 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/20 17:12:23 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,18 +124,17 @@ int		check_semicolon(t_shell *d, t_prompt *p, t_token *t, int i);
 int		check_background(t_shell *d, t_prompt *p, t_token *t, int i);
 int		check_pipe(t_shell *data, t_prompt *prompt, t_token *tokens, int i);
 int		check_or_and(t_shell *data, t_prompt *prompt, t_token *tokens, int i);
-int     check_cmd_syntax(t_shell *data, t_prompt *prompt, t_token *token, int i);
+int		check_cmd_syntax(t_shell *d, t_prompt *p, t_token *t, int i);
 int		check_parent_balance(t_shell *data, t_prompt *prompt, t_token *tokens);
-int		check_double_balance(t_shell *data, t_prompt *prompt, t_token *tokens, int i);
-int     check_single_balance(t_shell *data, t_prompt *prompt, t_token *tokens, int i);
+int		check_double_balance(t_shell *d, t_prompt *p, t_token *t, int i);
+int		check_single_balance(t_shell *d, t_prompt *p, t_token *t, int i);
 void	logic_trans_args_cmd(t_shell *data, t_token *tokens);
 
 /* ************************************************************************** */
 /*                               extras - time                                */
 /* ************************************************************************** */
-void    print_session_start(time_t start);
-void    print_session_end(time_t start);
-void    print_time_of_day(time_t start);
-
+void	print_session_start(time_t start);
+void	print_session_end(time_t start);
+void	print_time_of_day(time_t start);
 
 #endif

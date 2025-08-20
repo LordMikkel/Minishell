@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_pipe.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 22:40:33 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/08/19 22:40:36 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/08/20 16:59:03 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@
 
 int	check_pipe(t_shell *data, t_prompt *prompt, t_token *tokens, int i)
 {
-	// heardoc:    cmd | nothing if (tokens[i - 1].type && !tokens[i - 1].type)
-	// command not found: cmd | cmd success;      cmd | word fails;   word | cmd fails and success;  word | word fails;
-	// syntax error near unexpected token `|':    nothing | nothing fails;   nothing | cmd fails;
+	// heardoc: cmd | nothing if (tokens[i - 1].type && !tokens[i - 1].type)
+	// command not found: cmd | cmd success; cmd | word fails;
+	//word | cmd fails and success;  word | word fails;
+	// syntax error near unexpected token `|': nothing | nothing fails;
+	// nothing | cmd fails;
 	if (tokens[i].type == PIPE)
 	{
 		if ((i > 0 && i < prompt->n_tokens)
@@ -30,7 +32,7 @@ int	check_pipe(t_shell *data, t_prompt *prompt, t_token *tokens, int i)
 					|| tokens[i + 1].type == WORD
 					|| tokens[i + 1].type == BUILT_IN
 					|| tokens[i + 1].type == PAREN_OPEN)
-			&& (tokens[i - 1].type == COMMAND
+				&& (tokens[i - 1].type == COMMAND
 					|| tokens[i - 1].type == WORD
 					|| tokens[i - 1].type == BUILT_IN
 					|| tokens[i - 1].type == PAREN_CLOSE)))
