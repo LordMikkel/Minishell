@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:37:27 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/19 18:29:31 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/20 16:37:09 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,18 +117,45 @@ int	valid_tokens(t_shell *data, t_prompt *prompt, t_token *tokens)
 	int	i;
 
 	i = 0;
+	logic_trans_args_cmd(data, tokens);
 	while (tokens[i].type)
 	{
-		// if (!check_open_parent(data, prompt, tokens, i))
-		// 	return (SYNTAX_ERROR);
-		// if (!check_close_parent(data, prompt, tokens, i))
-		// 	return (SYNTAX_ERROR);
+		 if (!check_open_parent(data, prompt, tokens, i)
+		 	|| (!check_close_parent(data, prompt, tokens, i))
+			|| (!check_pipe(data, prompt, tokens, i))
+			|| (!check_or_and(data, prompt, tokens, i))
+			|| (!check_redir_input(data, prompt, tokens, i))
+			|| (!check_redir_output(data, prompt, tokens, i))
+			|| (!check_double_balance(data, prompt, tokens, i))
+			|| (!check_single_balance(data, prompt, tokens, i))
+			|| (!check_background(data, prompt, tokens, i))
+			|| (!check_semicolon(data, prompt, tokens, i))
+			|| (!check_cmd_syntax(data, prompt, tokens, i)))
+				return (SYNTAX_ERROR);
+		i++;
+	}
+	if (!check_parent_balance(data, prompt, tokens))
+		return (SYNTAX_ERROR);
+	return (SUCCESS); //y ademas es mas ineficiente
+}
+
+/*int	valid_tokens(t_shell *data, t_prompt *prompt, t_token *tokens)
+{
+	int	i;
+
+	i = 0;
+	while (tokens[i].type)
+	{
+		 if (!check_open_parent(data, prompt, tokens, i))
+		 	return (SYNTAX_ERROR);
+		if (!check_close_parent(data, prompt, tokens, i))
+		 	return (SYNTAX_ERROR);
 		if (!check_pipe(data, prompt, tokens, i))
 			return (SYNTAX_ERROR);
 		if (!check_or_and(data, prompt, tokens, i))
 			return (SYNTAX_ERROR);
-		// if (!check_quotes(data, prompt, tokens, i))
-		// 	return (SYNTAX_ERROR);
+		if (!check_quotes(data, prompt, tokens, i))
+		 	return (SYNTAX_ERROR);
 		if (!check_redir_input(data, prompt, tokens, i))
 			return (SYNTAX_ERROR);
 		if (!check_redir_output(data, prompt, tokens, i))
@@ -137,12 +164,14 @@ int	valid_tokens(t_shell *data, t_prompt *prompt, t_token *tokens)
 			return (SYNTAX_ERROR);
 		if (!check_semicolon(data, prompt, tokens, i))
 			return (SYNTAX_ERROR);
+		if (!check_cmd_syntax(data, prompt, tokens, i))
+				return (SYNTAX_ERROR);
 		i++;
 	}
 	valid_pair_operands(data, prompt, tokens);
 	logic_trans_args_cmd(data, tokens);
-	return (SUCCESS);
-}
+	return (SUCCESS); //y ademas es mas ineficiente
+}*/
 
 int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 {
