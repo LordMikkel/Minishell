@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   check_parent_balance.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 22:39:51 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/08/19 22:41:12 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/08/20 16:56:28 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/minishell.h"
 
 /*
-    Verifica que los paréntesis estén correctamente balanceados.
-    Si hay más cierres que aperturas o viceversa, lanza error de sintaxis.
-    Recorre todos los tokens y ajusta el balance según el tipo.
-    Devuelve SUCCESS si el balance es cero al final.
+	Verifica que los paréntesis estén correctamente balanceados.
+	Si hay más cierres que aperturas o viceversa, lanza error de sintaxis.
+	Recorre todos los tokens y ajusta el balance según el tipo.
+	Devuelve SUCCESS si el balance es cero al final.
 */
 
 int	check_parent_balance(t_shell *data, t_prompt *prompt, t_token *tokens)
 {
-	int i;
-	int balance;
+	int	i;
+	int	balance;
 
 	i = 0;
 	balance = 0;

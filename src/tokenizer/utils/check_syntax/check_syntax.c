@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_syntax.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 19:06:35 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/19 19:43:14 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/08/20 16:52:34 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,10 +238,9 @@
 		return (SYNTAX_ERROR);
 	}
 	balance = 0;
-	
+
 	return (SUCCESS);
 }*/
-
 
 /*int	valid_pair_quotes(t_shell *data, t_prompt *prompt, t_token *tokens)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_quotes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 22:40:29 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/08/19 22:40:58 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/08/20 16:47:18 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	check_quotes(t_shell *data, t_prompt *prompt, t_token *tokens, int i)
 {
 	if (tokens[i].type == DOUBLE_QUOTE)
 	{
-        prompt->n_double_quotes++;
+		prompt->n_double_quotes++;
 		while (i < prompt->n_tokens)
 		{
 			if (tokens[i].type == DOUBLE_QUOTE)
@@ -33,14 +33,14 @@ int	check_quotes(t_shell *data, t_prompt *prompt, t_token *tokens, int i)
 	}
 	else if (tokens[i].type == SINGLE_QUOTE)
 	{
-        prompt->n_single_quotes++;
-        while (i < prompt->n_tokens)
-	    {
-		    if (tokens[i].type == SINGLE_QUOTE)
-			    return (SUCCESS);
-		    i++;
-	    }
-        syntax_error(data, ERR_SYNTAX, EXIT_USE, "\'");//HEARDOC
+		prompt->n_single_quotes++;
+		while (i < prompt->n_tokens)
+		{
+			if (tokens[i].type == SINGLE_QUOTE)
+				return (SUCCESS);
+			i++;
+		}
+		syntax_error(data, ERR_SYNTAX, EXIT_USE, "\'");//HEARDOC
 		return (SYNTAX_ERROR);
 	}
 	return (SUCCESS);
