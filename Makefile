@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/08/19 18:23:42 by migarrid         ###   ########.fr        #
+#    Updated: 2025/08/20 16:35:11 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,9 @@ CLEAR 				= \r\033[K
 # **************************************************************************** #
 SRCS =				main/main.c \
 					main/recieve_input.c \
+					main/print_session_start.c \
+					main/print_session_end.c \
+					main/print_time_of_day.c \
 					init/init.c \
 					init/alloc.c \
 					tokenizer/tokenizer.c \
@@ -98,12 +101,19 @@ SRCS =				main/main.c \
 					tokenizer/utils/is_tokens/is_cmd.c \
 					tokenizer/utils/is_tokens/calculate_tokens.c \
 					tokenizer/utils/is_tokens/reset_tokens.c \
-					tokenizer/utils/check_syntax/check_syntax.c \
+					tokenizer/utils/check_syntax/logic_trans_args_cmd.c \
 					tokenizer/utils/check_syntax/check_redir_input.c \
 					tokenizer/utils/check_syntax/check_redir_output.c \
 					tokenizer/utils/check_syntax/check_background.c \
 					tokenizer/utils/check_syntax/check_semicolon.c \
-					tokenizer/utils/check_syntax/logic_trans_args_cmd.c \
+					tokenizer/utils/check_syntax/check_open_parent.c \
+					tokenizer/utils/check_syntax/check_closed_parent.c \
+					tokenizer/utils/check_syntax/check_pipe.c \
+					tokenizer/utils/check_syntax/check_or_and.c \
+					tokenizer/utils/check_syntax/check_single_balance.c \
+					tokenizer/utils/check_syntax/check_double_balance.c \
+					tokenizer/utils/check_syntax/check_cmd_syntaxis.c \
+					tokenizer/utils/check_syntax/check_parent_balance.c \
 					expansion/expansion.c \
 					ast/ast_builder.c \
 					executor/executor.c \
