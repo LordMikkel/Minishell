@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/17 16:16:56 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/21 20:36:55 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,61 @@
 	es palabra normal o comando.
 */
 
+static void	process_slash_char(char *word, char *clean_word, int *j, int *k)
+{
+	if (word[*j] == '\\' && word[*j + 1] == '\\')
+	{
+		clean_word[(*k)++] = '\\';
+		*j += 2;
+	}
+	else if (word[*j] != '\\')
+		clean_word[(*k)++] = word[(*j)++];
+	else
+		(*j)++;
+}
+
+static char	*cleanner_slash(t_shell *data, char *word, int len, char slash)
+{
+	int		j;
+	int		k;
+	char	*clean_word;
+
+	j = 0;
+	k = 0;
+	if (ft_strchr(word, slash))
+	{
+		clean_word = ft_calloc(len + 1, sizeof(char *));
+		if (!clean_word)
+		{
+			free(word);
+			exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+		}
+		while(word[j])
+			process_slash_char(word, clean_word, &j, &k);
+		clean_word[k] = '\0';
+		free(word);
+		return (clean_word);
+	}
+	return (word);
+}
+
+static int	ft_special_w(const char *str, int *i)
+{
+	char	c;
+
+	c = str[*i];
+	if (c == '<' || c == '>' || c == '&' || c == '|' || c == '\'' \
+		|| c == '\"' || c == '(' || c == ')' || c == '#' \
+		|| c == '*'  || c == '`')
+		return (1);
+	if (str[*i] == '\\' && str[*i + 1] != '\0')
+	{
+		(*i)++;
+		(*i)++;
+	}
+	return (0);
+}
+
 void	is_word(t_shell *data, t_token *tokens, const char *str, int *i)
 {
 	int		len;
@@ -26,7 +81,7 @@ void	is_word(t_shell *data, t_token *tokens, const char *str, int *i)
 	int		token_id;
 
 	start = *i;
-	while (str[*i] != '\0' && !ft_isspace(str[*i]) && !ft_isspecial(str[*i]))
+	while (str[*i] != '\0' && !ft_isspace(str[*i]) && !ft_special_w(str, i))
 		(*i)++;
 	len = *i - start;
 	if (len > 0)
@@ -34,6 +89,7 @@ void	is_word(t_shell *data, t_token *tokens, const char *str, int *i)
 		word = ft_substr(str, start, len);
 		if (!word)
 			exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+		word = cleanner_slash(data, word, len, '\\');
 		token_id = add_token(tokens, word, WORD);
 		is_cmd(data, &data->prompt, &tokens[token_id], word);
 	}
