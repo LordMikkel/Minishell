@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/21 20:36:55 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/21 20:54:15 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static char	*cleanner_slash(t_shell *data, char *word, int len, char slash)
 			free(word);
 			exit_error(data, ERR_MALLOC, EXIT_FAILURE);
 		}
-		while(word[j])
+		while (word[j])
 			process_slash_char(word, clean_word, &j, &k);
 		clean_word[k] = '\0';
 		free(word);
@@ -61,9 +61,9 @@ static int	ft_special_w(const char *str, int *i)
 	char	c;
 
 	c = str[*i];
-	if (c == '<' || c == '>' || c == '&' || c == '|' || c == '\'' \
-		|| c == '\"' || c == '(' || c == ')' || c == '#' \
-		|| c == '*'  || c == '`')
+	if (c == '<' || c == '>' || c == '&' || c == '|' || c == '\''
+		|| c == '\"' || c == '(' || c == ')' || c == '#'
+		|| c == '*' || c == '`')
 		return (1);
 	if (str[*i] == '\\' && str[*i + 1] != '\0')
 	{
