@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 17:07:02 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/20 22:10:49 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/21 17:42:27 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,10 @@ void	is_cmd(t_shell *d, t_prompt *p, t_token *t, char *s);
 void	is_word(t_shell *data, t_token *tokens, const char *str, int *i);
 void	is_dolar(t_shell *data, t_token *tokens, const char *str, int *i);
 void	is_quote(t_shell *data, t_token *tokens, const char *str, int *i);
+void	is_wildcar(t_shell *data, t_token *tokens, const char *str, int *i);
 void	is_pipe(t_token *tokens, const char *str, int *i);
 void	is_parenten(t_token *tokens, const char *str, int *i);
 void	is_semicolon(t_token *tokensmm, const char *str, int *i);
-void	is_wildcar(t_token *tokens, const char *str, int *i);
 void	is_scape(t_token *tokens, const char *str, int *i);
 void	is_or(t_token *tokens, const char *str, int *i);
 void	is_and(t_token *tokens, const char *str, int *i);

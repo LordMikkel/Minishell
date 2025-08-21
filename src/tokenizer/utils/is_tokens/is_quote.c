@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:47 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/20 22:23:03 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/21 17:50:13 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,45 @@
 	El último caso sería para sustitución de comandos (pendiente).
 */
 
-int	ft_is_dead_space(const char *str, int i)
+char	*cleanner_word(t_shell *data, char *word, int len, char quote)
 {
-	if (str[i] == ' ' && str[i + 1] != '\'')
-		return (0);
-	else if (str[i] == ' ' && str[i +1] != '\"')
-		return (0);
-	return (1);
+	int		j;
+	int		k;
+	char	*clean_word;
+
+	j = 0;
+	k = 0;
+	if (ft_strchr(word, quote))
+	{
+		clean_word = ft_calloc(len + 1, sizeof(char *));
+		if (!clean_word)
+		{
+			free(word);
+			exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+		}
+		while(word[j])
+		{
+			if (word[j] != quote)
+				clean_word[k++] = word[j];
+			j++;
+		}
+		clean_word[k] = '\0';
+		free(word);
+		return (clean_word);
+	}
+	return (word);
+}
+
+int	ft_is_dead_space(const char *str, int *i, char quote)
+{
+	if ((str[*i] == quote && str[*i + 1] != quote) )
+		return (1);
+	else if (str[*i] == quote && str[*i + 1] == quote)
+	{
+		(*i)++;
+		(*i)++;
+	}
+	return (0);
 }
 
 void	is_special_word(t_shell *data, t_token *tokens, const char *str, int *i)
@@ -31,11 +63,13 @@ void	is_special_word(t_shell *data, t_token *tokens, const char *str, int *i)
 	int		len;
 	int		start;
 	char	*word;
+	char	quote;
 
-	if (ft_strchr(str + *i + 1, str[*i]))
+	quote = str[*i - 1];
+	if (*i + 1 < ft_strlen(str) && ft_strchr(str + *i + 1, quote))
 	{
 		start = *i;
-		while (str[*i] != '\0' && !ft_is_dead_space(str, *i))
+		while (str[*i] != '\0' && !ft_is_dead_space(str, i, quote))
 			(*i)++;
 		len = *i - start;
 		if (len > 0)
@@ -43,10 +77,11 @@ void	is_special_word(t_shell *data, t_token *tokens, const char *str, int *i)
 			word = ft_substr(str, start, len);
 			if (!word)
 				exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+			word = cleanner_word(data, word, len, quote);
 			add_token(tokens, word, WORD);
 		}
+		return ;
 	}
-	syntax_error(data, ERR_SYNTAX, EXIT_USE, str[*i]);
 }
 
 void	is_quote(t_shell *data, t_token *tokens, const char *str, int *i)
@@ -57,12 +92,14 @@ void	is_quote(t_shell *data, t_token *tokens, const char *str, int *i)
 	if (c == '\'')
 	{
 		add_token(tokens, "\'", SINGLE_QUOTE);
+		(*i)++;
 		is_special_word(data, tokens, str, i);
 	}
 	else if (c == '\"')
 	{
 		add_token(tokens, "\"", DOUBLE_QUOTE);
 		(*i)++;
+		is_special_word(data, tokens, str, i);
 	}
 	else if (c == '`')
 	{
