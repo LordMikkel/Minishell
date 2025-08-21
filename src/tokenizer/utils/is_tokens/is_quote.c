@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:47 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/21 21:28:17 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/21 22:01:17 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,7 @@ int	is_special_word(t_shell *data, t_token *tokens, const char *str, int *i)
 
 void	is_quote(t_shell *data, t_token *tokens, const char *str, int *i)
 {
-	char	c;
-
-	c = str[*i];
-	if (c == '\'')
+	if (str[*i] == '\'')
 	{
 		add_token(tokens, "\'", SINGLE_QUOTE);
 		(*i)++;
@@ -102,7 +99,7 @@ void	is_quote(t_shell *data, t_token *tokens, const char *str, int *i)
 			(*i)++;
 		}
 	}
-	else if (c == '\"')
+	else if (str[*i] == '\"')
 	{
 		add_token(tokens, "\"", DOUBLE_QUOTE);
 		(*i)++;
@@ -112,7 +109,7 @@ void	is_quote(t_shell *data, t_token *tokens, const char *str, int *i)
 			(*i)++;
 		}
 	}
-	else if (c == '`')
+	else if (str[*i] == '`')
 	{
 		add_token(tokens, "`", CMD_SUBSTITUTION);
 		(*i)++;
