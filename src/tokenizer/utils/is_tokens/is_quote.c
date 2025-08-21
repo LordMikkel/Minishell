@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:47 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/21 17:50:13 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/21 21:28:17 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*cleanner_word(t_shell *data, char *word, int len, char quote)
 			free(word);
 			exit_error(data, ERR_MALLOC, EXIT_FAILURE);
 		}
-		while(word[j])
+		while (word[j])
 		{
 			if (word[j] != quote)
 				clean_word[k++] = word[j];
@@ -48,7 +48,7 @@ char	*cleanner_word(t_shell *data, char *word, int len, char quote)
 
 int	ft_is_dead_space(const char *str, int *i, char quote)
 {
-	if ((str[*i] == quote && str[*i + 1] != quote) )
+	if ((str[*i] == quote && str[*i + 1] != quote))
 		return (1);
 	else if (str[*i] == quote && str[*i + 1] == quote)
 	{
@@ -58,12 +58,13 @@ int	ft_is_dead_space(const char *str, int *i, char quote)
 	return (0);
 }
 
-void	is_special_word(t_shell *data, t_token *tokens, const char *str, int *i)
+int	is_special_word(t_shell *data, t_token *tokens, const char *str, int *i)
 {
 	int		len;
 	int		start;
 	char	*word;
 	char	quote;
+	int		token_id;
 
 	quote = str[*i - 1];
 	if (*i + 1 < ft_strlen(str) && ft_strchr(str + *i + 1, quote))
@@ -78,10 +79,12 @@ void	is_special_word(t_shell *data, t_token *tokens, const char *str, int *i)
 			if (!word)
 				exit_error(data, ERR_MALLOC, EXIT_FAILURE);
 			word = cleanner_word(data, word, len, quote);
-			add_token(tokens, word, WORD);
+			token_id = add_token(tokens, word, WORD);
+			is_cmd(data, &data->prompt, &tokens[token_id], word);
 		}
-		return ;
+		return (TRUE);
 	}
+	return (FALSE);
 }
 
 void	is_quote(t_shell *data, t_token *tokens, const char *str, int *i)
@@ -93,13 +96,21 @@ void	is_quote(t_shell *data, t_token *tokens, const char *str, int *i)
 	{
 		add_token(tokens, "\'", SINGLE_QUOTE);
 		(*i)++;
-		is_special_word(data, tokens, str, i);
+		if (is_special_word(data, tokens, str, i))
+		{
+			add_token(tokens, "\'", SINGLE_QUOTE);
+			(*i)++;
+		}
 	}
 	else if (c == '\"')
 	{
 		add_token(tokens, "\"", DOUBLE_QUOTE);
 		(*i)++;
-		is_special_word(data, tokens, str, i);
+		if (is_special_word(data, tokens, str, i))
+		{
+			add_token(tokens, "\"", DOUBLE_QUOTE);
+			(*i)++;
+		}
 	}
 	else if (c == '`')
 	{

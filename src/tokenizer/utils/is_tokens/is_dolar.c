@@ -33,7 +33,7 @@ char	*cleanner_exp(t_shell *data, char *expansion, int len, char trash)
 			free(expansion);
 			exit_error(data, ERR_MALLOC, EXIT_FAILURE);
 		}
-		while(expansion[j])
+		while (expansion[j])
 		{
 			if (expansion[j] != trash)
 				clean_expansion[k++] = expansion[j];
@@ -49,7 +49,7 @@ char	*cleanner_exp(t_shell *data, char *expansion, int len, char trash)
 static int	isn_exp(int c, int *i)
 {
 	if (c == '|' || c == '<' || c == '>' || c == '&' || c == '(' || c == ')'
-		|| c == '\'' || c == '\"' || c ==  '.')
+		|| c == '\'' || c == '\"' || c == '.')
 		return (1);
 	else if (c == ';')
 	{

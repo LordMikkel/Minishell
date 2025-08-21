@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:41 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/21 17:50:41 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/21 20:53:44 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*cleanner_wildcar(t_shell *data, char *wildcar, int len, char trash)
 			free(wildcar);
 			exit_error(data, ERR_MALLOC, EXIT_FAILURE);
 		}
-		while(wildcar[j])
+		while (wildcar[j])
 		{
 			if (wildcar[j] != trash)
 				clean_wildcar[k++] = wildcar[j];
