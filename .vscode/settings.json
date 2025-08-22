@@ -1,4 +1,5 @@
 {
+	// Editor general
 	"editor.acceptSuggestionOnEnter": "on",
 	"editor.tabSize": 4,
 	"editor.insertSpaces": false,
@@ -6,18 +7,34 @@
 	"editor.renderWhitespace": "boundary",
 	"files.trimTrailingWhitespace": true,
 	"files.insertFinalNewline": true,
-	"files.associations": {
+
+	// Asociaciones de archivos
+	"files.associations":
+	{
 		"*.h": "c",
 		"*.inc": "c",
-		"minishell.h": "c"
+		"minishell.h": "c",
+		"Makefile": "makefile"
 	},
+
+	// Configuración C/C++
 	"C_Cpp.default.cStandard": "c99",
 	"C_Cpp.default.compilerPath": "/usr/bin/clang",
 	"C_Cpp.errorSquiggles": "enabled",
 	"C_Cpp.inlayHints.autoDeclarationTypes.enabled": true,
 	"C_Cpp.inlayHints.parameterNames.enabled": false,
 	"C_Cpp.default.intelliSenseMode": "linux-clang-x64",
+	"C_Cpp.suggestSnippets": true,
 	"cmake.ignoreCMakeListsMissing": true,
+	"C_Cpp.enhancedColorization": "enabled",
+
+	// Editor general
 	"editor.rulers": [81],
-	"editor.wordWrap": "off"
+	"editor.wordWrap": "off",
+	"editor.bracketPairColorization.enabled": true,
+	"editor.guides.bracketPairs": false,
+	"workbench.colorCustomizations":
+	{
+		"editorRuler.foreground": "#2b2929"
+	}
 }
