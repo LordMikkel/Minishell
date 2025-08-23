@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:37:27 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/22 03:09:47 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/23 01:06:53 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ char	*g_type_names[] = {
 	"EXPANSION",
 	"BACKGROUND",
 	"AND",
-	"OR"
+	"OR",
+	"EXPAN_VALUE",
+	"EXPAN_CMD",
+	"NO_SPACE",
 };
 
 static void	print_tokens_debug(t_prompt *prompt)
@@ -71,6 +74,10 @@ int	add_token(t_token *tokens, char *value, int type)
 	tokens[i].type = type;
 	if (tokens[i].type == EXPANSION)
 		tokens[i].expand = TRUE;
+	if (i > 0 && tokens[i - 1].type == DOUBLE_QUOTE)
+		tokens[i].double_quoted = TRUE;
+	if (i > 0  && tokens[i - 1].type == SINGLE_QUOTE)
+		tokens[i].single_quoted = TRUE;
 	i++;
 	return (tokens[tokens[i - 1].id].id);
 }
@@ -144,10 +151,10 @@ int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 	reset_tokens();
 	allocate_tokens(data, prompt, input);
 	get_tokens(data, prompt->tokens, input);
-	// print_tokens_debug(prompt);
-	if (!valid_tokens(data, prompt, prompt->tokens))
-		return (SYNTAX_ERROR);
-	// printf("------------------------------------------------\n");
 	print_tokens_debug(prompt);
+	// if (!valid_tokens(data, prompt, prompt->tokens))
+	// 	return (SYNTAX_ERROR);
+	// // printf("------------------------------------------------\n");
+	// print_tokens_debug(prompt);
 	return (SUCCESS);
 }
