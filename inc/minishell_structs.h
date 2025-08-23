@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/21 17:17:13 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/22 23:25:46 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ typedef enum e_type
 	AND,
 	OR,
 	EXPAN_VALUE,
-	EXPAN_CMD
+	EXPAN_CMD,
+	NO_SPACE,
 }	t_type;
 
 struct s_token
@@ -73,7 +74,6 @@ typedef struct s_prompt
 	int			n_alloc_tokens;
 	int			n_redir_input;
 	int			n_redir_output;
-	bool		error;
 	char		*prompt;
 	t_token		*tokens;
 }	t_prompt;

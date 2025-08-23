@@ -1,6 +1,20 @@
 # Minishell
 Minishell - Bash
 
+TO DO LIST:
+-implementar .d files para dependencias
+-gestionar git a traves de ramas para features del proyecto en vez de por personas
+-resolver el caso de ejecutables con rutas relativas como ./minishell o cualquier otro binario.
+
+- << lim > outfile cat > outfile2 -e etiqueta "cat" como word deberia ser command culpa del logic
+- echo $USER& deberia funcionar pero checksyntax de & lo tira abajo
+
+no se si tiene facil solucion...
+- expansion "echo $USER.t" el token de expansion deberia aceptar el punto y solo acabar con el " pero solo remplazar el $USER aasi -> mikel.t, lo mismo pasa con comillas. podria haber un sistema que detecte spacio porque aunque metas muchos eespacios solo ve uno
+
+Tener en cuenta:
+-expansion:echo "My home is $HOME" -> My home is /home/mikel (Comillas dobles) | echo 'My home is $HOME'-> My home is $HOME (comillas simples)
+
 dia 1:
 
 1. Arquitectura general
