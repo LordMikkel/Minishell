@@ -46,25 +46,45 @@ char	*cleanner_exp(t_shell *data, char *expansion, int len, char trash)
 	return (expansion);
 }
 
-static int	isn_exp(int c, int *i)
+static int	isn_exp(int c, int *i, int *flag)
 {
-	if (c == '|' || c == '<' || c == '>' || c == '&' || c == '(' || c == ')'
-		|| c == '\'' || c == '\"' || c == '.')
+	if (c == '|' || c == '<' || c == '>' || c == '&' || c == '(' || c == ')')
 		return (1);
 	else if (c == ';')
 	{
 		(*i)++;
 		return (1);
 	}
+	else if (c == '.' || c == '\'' || c == '\"')
+	{
+		*flag = TRUE;
+		return (1);
+	}
 	return (0);
 }
 
-void	is_dolar(t_shell *data, t_token *tokens, const char *str, int *i)
+static void	make_expan_token(t_shell *data, const char *str, int start, int *i)
 {
 	int		len;
-	int		start;
 	char	*expansion;
 
+	len = *i - start;
+	if (len > 0)
+	{
+		expansion = ft_substr(str, start, len);
+		if (!expansion)
+			exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+		expansion = cleanner_exp(data, expansion, len, ';');
+		add_token(data->prompt.tokens, expansion, EXPANSION);
+	}
+}
+
+void	is_dolar(t_shell *data, t_token  *tokens, const char *str, int *i)
+{
+	int		flag;
+	int		start;
+
+	flag = FALSE;
 	if (str[*i] == '$')
 	{
 		start = *i;
@@ -74,16 +94,10 @@ void	is_dolar(t_shell *data, t_token *tokens, const char *str, int *i)
 			(*i)++;
 			return ;
 		}
-		while (str[*i] != '\0' && !ft_isspace(str[*i]) && !isn_exp(str[*i], i))
+		while (str[*i] != '\0' && !ft_isspace(str[*i]) && !isn_exp(str[*i], i, &flag))
 			(*i)++;
-		len = *i - start;
-		if (len > 0)
-		{
-			expansion = ft_substr(str, start, len);
-			if (!expansion)
-				exit_error(data, ERR_MALLOC, EXIT_FAILURE);
-			expansion = cleanner_exp(data, expansion, len, ';');
-			add_token(tokens, expansion, EXPANSION);
-		}
+		make_expan_token(data, str, start, i);
+		if (flag == TRUE)
+			add_token(tokens, "", NO_SPACE);
 	}
 }
