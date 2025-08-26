@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 17:04:19 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/25 17:42:13 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/26 17:22:10 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,10 @@ void	logic_trans_args_cmd(t_shell *data, t_token *tokens)
 	while (tokens[i].type)
 	{
 		if ((i == 1 && is_cmd_type(tokens[i - 1].type))
-		|| (i > 1 && is_cmd_type(tokens[i - 1].type) && !is_redir_type(tokens[i - 2].type))
-		|| (i > 1 && is_quote_type(tokens[i - 1].type) && is_cmd_type(tokens[i - 2].type)))
+			|| (i > 1 && is_cmd_type(tokens[i - 1].type)
+				&& !is_redir_type(tokens[i - 2].type))
+			|| (i > 1 && is_quote_type(tokens[i - 1].type)
+				&& is_cmd_type(tokens[i - 2].type)))
 		{
 			if (is_quote_type(tokens[i].type))
 			{
