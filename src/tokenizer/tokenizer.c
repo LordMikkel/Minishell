@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:37:27 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/24 17:12:25 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/26 17:24:33 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	add_token(t_token *tokens, char *value, int type)
 		tokens[i].expand = TRUE;
 	if (i > 0 && tokens[i - 1].type == DOUBLE_QUOTE)
 		tokens[i].double_quoted = TRUE;
-	if (i > 0  && tokens[i - 1].type == SINGLE_QUOTE)
+	if (i > 0 && tokens[i - 1].type == SINGLE_QUOTE)
 		tokens[i].single_quoted = TRUE;
 	i++;
 	return (tokens[tokens[i - 1].id].id);

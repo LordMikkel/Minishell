@@ -79,8 +79,7 @@ static void	make_expan_token(t_shell *data, const char *str, int start, int *i)
 	}
 }
 
-void	is_dolar(t_shell *data, t_token
-	*tokens, const char *str, int *i)
+void	is_dolar(t_shell *data, t_token *tokens, const char *str, int *i)
 {
 	int		flag;
 	int		start;
@@ -95,7 +94,8 @@ void	is_dolar(t_shell *data, t_token
 			(*i)++;
 			return ;
 		}
-		while (str[*i] != '\0' && !ft_isspace(str[*i]) && !isn_exp(str[*i], i, &flag))
+		while (str[*i] != '\0' && !ft_isspace(str[*i])
+			&& !isn_exp(str[*i], i, &flag))
 			(*i)++;
 		make_expan_token(data, str, start, i);
 		if (flag == TRUE)

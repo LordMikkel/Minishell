@@ -7,8 +7,6 @@ TO DO LIST:
 -bash + argumento deberia abrir ese archivo (solo el primero) y tratar de ejecutar los que haya dentro como input;
 -resolver el caso de ejecutables con rutas relativas como ./minishell o cualquier otro binario.
 
-- << lim > outfile cat > outfile2 -e etiqueta "cat" como word deberia ser command culpa del logic
-
 el syntax checker no funciona para casos con comillas como "ls" | "ls"
 
 Tener en cuenta:
