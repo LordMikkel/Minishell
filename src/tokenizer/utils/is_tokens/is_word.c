@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/26 18:42:34 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/27 00:05:03 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	process_slash_char(char *word, char *clean_word, int *j, int *k)
 		(*j)++;
 }
 
-static char	*cleanner_slash(t_shell *data, char *word, int len, char slash)
+char	*cleanner_slash(t_shell *data, char *word, int len, char slash)
 {
 	int		j;
 	int		k;
@@ -70,7 +70,7 @@ static int	ft_bash_w(const char *str, int *i, int *flag)
 		(*i)++;
 		(*i)++;
 	}
-	if (c == '\'' || c == '\"' )
+	if (c == '\'' || c == '\"' || c == '$')
 	{
 		*flag = TRUE;
 		return (1);

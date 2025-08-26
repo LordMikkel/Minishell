@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 17:07:02 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/26 21:00:56 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/27 00:05:14 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,9 @@ int		check_parent_balance(t_shell *data, t_prompt *prompt, t_token *tokens);
 int		check_double_balance(t_shell *d, t_prompt *p, t_token *t, int i);
 int		check_single_balance(t_shell *d, t_prompt *p, t_token *t, int i);
 void	logic_trans_args_cmd(t_shell *data, t_token *tokens);
+
+//UTILS
+char	*cleanner_slash(t_shell *data, char *word, int len, char slash);
 
 /* ************************************************************************** */
 /*                               extras - time                                */
