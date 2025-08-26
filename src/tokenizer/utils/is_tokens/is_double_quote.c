@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:47 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/26 21:36:58 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/27 00:05:52 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	make_word_d(t_shell *data, t_token *tokens, const char *s, int range[2])
 	if (!word)
 		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
 	word = cleanner_word(data, word, range[1] - range[0], '\"');
+	word = cleanner_slash(data, word, range[1] - range[0], '\\');
 	if (ft_strcmp(word, ""))
 	{
 		token_id = add_token(tokens, word, WORD);
@@ -69,6 +70,11 @@ int	ft_is_dead_d(const char *s, int *i, char quote, int *flag)
 		if (ft_isalpha(s[*i + 1]))
 			*flag = TRUE;
 		return (1);
+	}
+	if (s[*i] == '\\' && s[*i + 1] != '\0')
+	{
+		(*i)++;
+		(*i)++;
 	}
 	else if (s[*i] == quote && s[*i + 1] == quote)
 	{
@@ -93,7 +99,7 @@ int	is_special_word_d(t_shell *data, t_token *tokens, const char *str, int *i)
 		start_end[1] = *i;
 		len = start_end[1] - start_end[0];
 		if (len >= 1)
-			make_word_s(data, tokens, str, start_end);
+			make_word_d(data, tokens, str, start_end);
 		if (flag)
 			return (NO_SPACE);
 		return (TRUE);
