@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 17:07:02 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/22 01:24:28 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/26 21:00:56 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,12 +100,14 @@ void	clean_tokens(t_prompt *prompt);
 void	is_cmd(t_shell *d, t_prompt *p, t_token *t, char *s);
 void	is_word(t_shell *data, t_token *tokens, const char *str, int *i);
 void	is_dolar(t_shell *data, t_token *tokens, const char *str, int *i);
-void	is_quote(t_shell *data, t_token *tokens, const char *str, int *i);
+void	is_single_quote(t_shell *data, t_token *tokens, const char *str, int *i);
+void	is_double_quote(t_shell *data, t_token *tokens, const char *str, int *i);
 void	is_wildcar(t_shell *data, t_token *tokens, const char *str, int *i);
 void	is_scape(t_shell *data, t_token *tokens, const char *str, int *i);
 void	is_redir(t_shell *data, t_token *tokens, const char *str, int *i);
 void	is_heredoc(t_shell *data, t_token *tokens, const char *str, int *i);
-void	is_semicolon(t_token *tokensmm, const char *str, int *i);
+void	is_semicolon(t_token *tokens, const char *str, int *i);
+void	is_cmdsubs(t_token *tokens, const char *str, int *i);
 void	is_pipe(t_token *tokens, const char *str, int *i);
 void	is_or(t_token *tokens, const char *str, int *i);
 void	is_and(t_token *tokens, const char *str, int *i);

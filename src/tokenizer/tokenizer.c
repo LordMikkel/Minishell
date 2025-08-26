@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:37:27 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/26 17:24:33 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/26 20:59:34 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,12 @@ void	get_tokens(t_shell *data, t_token *tokens, char *input)
 		is_pipe(tokens, input, &i);
 		is_parenten(tokens, input, &i);
 		is_semicolon(tokens, input, &i);
+		is_cmdsubs(tokens, input, &i);
 		is_heredoc(data, tokens, input, &i);
 		is_redir(data, tokens, input, &i);
 		is_scape(data, tokens, input, &i);
-		is_quote(data, tokens, input, &i);
+		is_single_quote(data, tokens, input, &i);
+		is_double_quote(data, tokens, input, &i);
 		is_wildcar(data, tokens, input, &i);
 		is_dolar(data, tokens, input, &i);
 		is_word(data, tokens, input, &i);
@@ -151,7 +153,7 @@ int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 	reset_tokens();
 	allocate_tokens(data, prompt, input);
 	get_tokens(data, prompt->tokens, input);
-	// print_tokens_debug(prompt);
+	print_tokens_debug(prompt);
 	if (!valid_tokens(data, prompt, prompt->tokens))
 		return (SYNTAX_ERROR);
 	printf("------------------------------------------------\n");
