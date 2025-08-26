@@ -7,7 +7,7 @@ TO DO LIST:
 -bash + argumento deberia abrir ese archivo (solo el primero) y tratar de ejecutar los que haya dentro como input;
 -resolver el caso de ejecutables con rutas relativas como ./minishell o cualquier otro binario.
 
-el syntax checker no funciona para casos con comillas como "ls" | "ls"
+- $USER$HOME mejor separar con no space pero tambien tener en cuenta $$
 
 Tener en cuenta:
 -expansion:echo "My home is $HOME" -> My home is /home/mikel (Comillas dobles) | echo 'My home is $HOME'-> My home is $HOME (comillas simples)

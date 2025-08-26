@@ -46,8 +46,11 @@ char	*cleanner_exp(t_shell *data, char *expansion, int len, char trash)
 	return (expansion);
 }
 
-static int	isn_exp(int c, int *i, int *flag)
+static int	isn_exp(const char *str, int *i, int *flag)
 {
+	char	c;
+
+	c = str[*i];
 	if (c == '|' || c == '<' || c == '>' || c == '&' || c == '(' || c == ')')
 		return (1);
 	else if (c == ';')
@@ -95,10 +98,13 @@ void	is_dolar(t_shell *data, t_token *tokens, const char *str, int *i)
 			return ;
 		}
 		while (str[*i] != '\0' && !ft_isspace(str[*i])
-			&& !isn_exp(str[*i], i, &flag))
+			&& !isn_exp(str, i, &flag))
 			(*i)++;
 		make_expan_token(data, str, start, i);
 		if (flag == TRUE)
+		{
 			add_token(tokens, "", NO_SPACE);
+			is_dolar(data, tokens, str, i);
+		}
 	}
 }

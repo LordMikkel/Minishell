@@ -7,7 +7,6 @@
 *.py
 *.swp
 ./obj
-.editorconfig
 
 # Prerequisites
 *.d
