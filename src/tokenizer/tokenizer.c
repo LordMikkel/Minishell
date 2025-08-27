@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:37:27 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/27 00:21:15 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/27 15:15:19 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	get_tokens(t_shell *data, t_token *tokens, char *input)
 	while (input[i] != '\0')
 	{
 		is_not_token(input, &i);
-		is_and(tokens, input, &i);
+		is_and(data, tokens, input, &i);
 		is_or(tokens, input, &i);
 		is_pipe(tokens, input, &i);
 		is_parenten(tokens, input, &i);

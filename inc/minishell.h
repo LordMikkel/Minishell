@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 17:07:02 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/27 00:05:14 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/27 15:15:25 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	is_semicolon(t_token *tokens, const char *str, int *i);
 void	is_cmdsubs(t_token *tokens, const char *str, int *i);
 void	is_pipe(t_token *tokens, const char *str, int *i);
 void	is_or(t_token *tokens, const char *str, int *i);
-void	is_and(t_token *tokens, const char *str, int *i);
+void	is_and(t_shell *data, t_token *tokens, const char *str, int *i);
 void	is_parenten(t_token *tokens, const char *str, int *i);
 void	is_not_token(const char *str, int *i);
 void	is_hash(const char *str, int *i);
