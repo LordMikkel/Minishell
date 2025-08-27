@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:45 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/27 15:17:58 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/27 21:49:11 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,28 @@ void	is_redir_output(t_shell *data, t_token *tokens, const char *str, int *i)
 	}
 }
 
+void	is_redir_noclobber(t_shell *d, t_token *tokens, const char *str, int *i)
+{
+	char	*no_clobber;
+
+	if (ft_isdigit(str[*i]) && str[*i + 1] == '>' && str[*i + 2] == '|')
+	{
+		no_clobber = ft_substr(str, *i, 3);
+		if (!no_clobber)
+			exit_error(d, ERR_MALLOC, EXIT_FAILURE);
+		add_token(tokens, no_clobber, REDIR_OUTPUT);
+		(*i) += 3;
+	}
+	else if (str[*i] == '>' && str[*i + 1] == '|')
+	{
+		no_clobber = ft_substr(str, *i, 2);
+		if (!no_clobber)
+			exit_error(d, ERR_MALLOC, EXIT_FAILURE);
+		add_token(tokens, no_clobber, REDIR_OUTPUT);
+		(*i) += 2;
+	}
+}
+
 void	is_redir_input(t_shell *data, t_token *tokens, const char *str, int *i)
 {
 	char	*input;
@@ -85,6 +107,7 @@ void	is_redir_input(t_shell *data, t_token *tokens, const char *str, int *i)
 
 void	is_redir(t_shell *data, t_token *tokens, const char *str, int *i)
 {
+	is_redir_noclobber(data, tokens, str, i);
 	is_redir_append(data, tokens, str, i);
 	is_redir_output(data, tokens, str, i);
 	is_redir_input(data, tokens, str, i);

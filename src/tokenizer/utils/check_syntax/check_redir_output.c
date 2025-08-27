@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 18:39:51 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/27 00:35:17 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/27 22:09:11 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,12 @@ int	check_redir_output(t_shell *data, t_prompt *p, t_token *tokens, int i)
 				|| tokens[i + 1].type == SINGLE_QUOTE
 				|| tokens[i + 1].type == DOUBLE_QUOTE))
 		{
-			syntax_error(data, ERR_SYNTAX, EXIT_USE, tokens[i + 1].value);
+			ft_printf_fd(2, "test: %s\n", tokens[i + 1].value);
+			printf("test: %s\n", tokens[i + 1].value);
+			if (tokens[i].type == REDIR_OUTPUT)
+				syntax_error(data, ERR_SYNTAX, EXIT_USE, ">");
+			else if (tokens[i].type == REDIR_APPEND)
+				syntax_error(data, ERR_SYNTAX, EXIT_USE, ">>");
 			return (SYNTAX_ERROR);
 		}
 	}
