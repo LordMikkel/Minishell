@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/27 00:53:50 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/27 14:56:41 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static int	ft_bash_w(const char *str, int *i, int *flag)
 		(*i)++;
 		(*i)++;
 	}
-	if (c == '\'' || c == '\"' || c == '$')
+	if (str[*i] == '\'' || str[*i] == '\"' || str[*i] == '$')
 	{
 		*flag = TRUE;
 		return (1);
