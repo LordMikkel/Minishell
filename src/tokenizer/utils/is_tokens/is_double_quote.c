@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:47 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/27 15:44:04 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/27 22:52:16 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static char	*cleanner_word(t_shell *data, char *word, int len, char quote)
 
 void	make_word_d(t_shell *data, t_token *tokens, const char *s, int range[2])
 {
+	char	*ptr;
 	char	*word;
 	int		token_id;
 
@@ -58,7 +59,8 @@ void	make_word_d(t_shell *data, t_token *tokens, const char *s, int range[2])
 	word = cleanner_slash(data, word, range[1] - range[0], '\\');
 	if (ft_strcmp(word, ""))
 	{
-		if (ft_strchr (word, '$'))
+		ptr = ft_strchr(word, '$');
+		if (ptr && *(ptr + 1) && !ft_isspace(*(ptr + 1)) && *(ptr + 1) != '\"')
 			token_id = add_token(tokens, word, EXPANSION);
 		else
 			token_id = add_token(tokens, word, WORD);
@@ -71,7 +73,7 @@ int	ft_is_dead_d(const char *s, int *i, char quote, int *flag)
 	if ((s[*i] == quote && s[*i + 1] != quote))
 	{
 		if (s[*i + 1] && (ft_isalpha(s[*i + 1]) || s[*i + 1] == '\\'
-		|| s[*i + 1] == '$' || s[*i + 1] == '\''))
+				|| s[*i + 1] == '$' || s[*i + 1] == '\'') || s[*i + 1] == '/')
 			*flag = TRUE;
 		return (1);
 	}
@@ -82,7 +84,7 @@ int	ft_is_dead_d(const char *s, int *i, char quote, int *flag)
 	}
 	else if (s[*i] == quote && s[*i + 1] == quote)
 	{
-		if (ft_strchr(s + *i +2, quote))
+		if (ft_strchr(s + *i + 2, quote))
 			(*i)++;
 	}
 	return (0);

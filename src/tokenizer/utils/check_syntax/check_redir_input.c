@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 18:39:51 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/27 00:34:40 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/27 21:26:51 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ int	check_redir_input(t_shell *data, t_prompt *p, t_token *tokens, int i)
 				|| tokens[i + 1].type == SINGLE_QUOTE
 				|| tokens[i + 1].type == DOUBLE_QUOTE))
 		{
-			syntax_error(data, ERR_SYNTAX, EXIT_USE, tokens[i + 1].value);
+			if (tokens[i].type == REDIR_INPUT)
+				syntax_error(data, ERR_SYNTAX, EXIT_USE, "<");
+			else if (tokens[i].type == REDIR_HEREDOC)
+				syntax_error(data, ERR_SYNTAX, EXIT_USE, "<<");
 			return (SYNTAX_ERROR);
 		}
 	}

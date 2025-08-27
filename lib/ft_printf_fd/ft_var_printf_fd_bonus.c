@@ -6,21 +6,21 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 00:32:45 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/17 17:45:05 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/27 22:09:40 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft_plus.h"
 
-static int	ft_atoi_advance(const char **str)
+static int	ft_atoi_advance(const char *str)
 {
 	int			num;
 	const char	*start;
 
-	start = *str;
+	start = str;
 	num = ft_atoi(start);
-	while (ft_isdigit(**str))
-		(*str)++;
+	while (ft_isdigit(*str))
+		str++;
 	return (num);
 }
 
@@ -46,42 +46,42 @@ static int	ft_specifiers_fd(char specify, va_list args, t_format *fmt, int fd)
 	return (0);
 }
 
-static void	process_flags(const char **str, t_format *fmt)
+static void	process_flags(const char *str, t_format *fmt)
 {
-	if (**str == '-')
+	if (*str == '-')
 		fmt->left_align = 1;
-	else if (**str == '0')
+	else if (*str == '0')
 		fmt->zero_pad = 1;
-	else if (**str == '#')
+	else if (*str == '#')
 		fmt->hash = 1;
-	else if (**str == ' ')
+	else if (*str == ' ')
 		fmt->space = 1;
-	else if (**str == '+')
+	else if (*str == '+')
 		fmt->plus = 1;
-	else if (**str == '.')
+	else if (*str == '.')
 	{
-		(*str)++;
+		str++;
 		fmt->precision = 0;
-		if (ft_isdigit(**str))
+		if (ft_isdigit(*str))
 			fmt->precision = ft_atoi_advance(str);
 		return ;
 	}
-	else if (ft_isdigit(**str))
+	else if (ft_isdigit(*str))
 	{
 		fmt->width = ft_atoi_advance(str);
 		return ;
 	}
-	(*str)++;
+	str++;
 }
 
-static int	ft_flags_fd(char const **str, va_list args, int fd)
+static int	ft_flags_fd(char const *str, va_list args, int fd)
 {
 	t_format	fmt;
 
 	fmt = (t_format){0, -1, 0, 0, 0, 0, 0, 0};
-	while (**str && !ft_strchr("cspdiuxXf%", **str))
+	while (*str && !ft_strchr("cspdiuxXf%", *str))
 		process_flags(str, &fmt);
-	fmt.specifier = **str;
+	fmt.specifier = *str;
 	return (ft_specifiers_fd(fmt.specifier, args, &fmt, fd));
 }
 
@@ -96,7 +96,7 @@ int	ft_var_printf_fd(int fd, char const *str, va_list args)
 		if (*str == '%')
 		{
 			str++;
-			result = ft_flags_fd(&str, args, fd);
+			result = ft_flags_fd(str, args, fd);
 			if (result == -1)
 			{
 				return (-1);

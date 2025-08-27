@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:44:05 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/27 15:17:17 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/08/27 21:51:19 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,18 @@ void	is_and(t_shell *data, t_token *tokens, const char *str, int *i)
 			add_token(tokens, "&&", AND);
 			(*i) += 2;
 		}
+		else if (ft_isdigit(str[*i + 1]))
+		{
+			dup_fd = ft_substr(str, *i, 2);
+			if (!dup_fd)
+				exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+			add_token(tokens, dup_fd, WORD);
+			(*i) += 2;
+		}
 		else
 		{
-			if (ft_isdigit(str[*i + 1]))
-			{
-				dup_fd = ft_substr(str, *i, 2);
-				if (!dup_fd)
-					exit_error(data, ERR_MALLOC, EXIT_FAILURE);
-				add_token(tokens, dup_fd, WORD);
-				(*i) += 2;
-			}
-			else
-				add_token(tokens, "&", BACKGROUND);
-				(*i)++;
+			add_token(tokens, "&", BACKGROUND);
+			(*i)++;
 		}
 	}
 }
