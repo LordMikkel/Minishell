@@ -8,10 +8,6 @@ TO DO LIST:
 -resolver el caso de ejecutables con rutas relativas como ./minishell o cualquier otro binario.
 
 - asi tambien pueden ser las redirecciones -> 2>&1 o &> ... Token: '2>&1'
-- genera token comando vacio echo "He said \"Hello $USER\""
-- echo$HOME"test"$USER -> Token [5]: 'test' (type: WORD)  # No COMMAND
-- echo 'can'\''t stop' error de ' cuando no deberia (imposible resolver)
-
 
 Tener en cuenta:
 -expansion:echo "My home is $HOME" -> My home is /home/mikel (Comillas dobles) | echo 'My home is $HOME'-> My home is $HOME (comillas simples)
