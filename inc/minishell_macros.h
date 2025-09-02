@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:23:16 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/26 23:47:33 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/02 22:34:57 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@
 /* ************************************************************************** */
 # define EXIT_SUCCESS				0
 # define EXIT_FAILURE				1
+# define EXIT_FAIL					1
 # define EXIT_USE					2
 # define EXIT_CMD_NOT_FOUND			127
 # define EXIT_CMD_NOT_EXECUTABLE	126

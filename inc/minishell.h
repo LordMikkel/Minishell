@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 17:07:02 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/02 20:47:51 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/02 20:57:40 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*recieve_input(char **input, t_shell *data);
 /* ************************************************************************** */
 /*                             Initialization                                 */
 /* ************************************************************************** */
-void	init_data(t_shell *data, char **input);
+void	init_data(t_shell *data, char **input, char **envp);
 void	allocate_tokens(t_shell *data, t_prompt *prompt, char *input);
 
 /* ************************************************************************** */
