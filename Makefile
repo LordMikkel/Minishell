@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/08/27 21:32:36 by migarrid         ###   ########.fr        #
+#    Updated: 2025/09/02 20:48:23 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,6 +103,7 @@ SRCS =				main/main.c \
 					tokenizer/utils/is_tokens/calculate_tokens.c \
 					tokenizer/utils/is_tokens/reset_tokens.c \
 					tokenizer/utils/is_tokens/is_cmdsubs.c \
+					tokenizer/utils/is_tokens/is_type.c \
 					tokenizer/utils/check_syntax/logic_trans_args_cmd.c \
 					tokenizer/utils/check_syntax/check_redir_input.c \
 					tokenizer/utils/check_syntax/check_redir_output.c \
