@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 17:07:02 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/02 20:21:08 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/02 20:47:51 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,10 @@ int		check_parent_balance(t_shell *data, t_prompt *prompt, t_token *tokens);
 int		check_double_balance(t_shell *d, t_prompt *p, t_token *t);
 int		check_single_balance(t_shell *d, t_prompt *p, t_token *t);
 void	logic_trans_args_cmd(t_shell *data, t_token *tokens);
+int		is_cmd_type(int type);
+int		is_quote_type(int type);
+int		is_redir_type(int type);
+int 	is_delimiter_type(int type);
 
 //UTILS
 char	*cleanner_slash(t_shell *data, char *word, int len, char slash);
