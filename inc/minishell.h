@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 17:07:02 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/02 19:50:23 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/02 20:21:08 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,8 @@ void	clean_tokens(t_prompt *prompt);
 void	is_cmd(t_shell *d, t_prompt *p, t_token *t, char *s);
 void	is_word(t_shell *data, t_token *tokens, const char *str, int *i);
 void	is_dolar(t_shell *data, t_token *tokens, const char *str, int *i);
-void	is_single_quote(t_shell *data, t_token *tokens, const char *str, int *i);
-void	is_double_quote(t_shell *data, t_token *tokens, const char *str, int *i);
+void	is_single_quote(t_shell *d, t_token *t, const char *s, int *i);
+void	is_double_quote(t_shell *d, t_token *t, const char *s, int *i);
 void	is_wildcar(t_shell *data, t_token *tokens, const char *str, int *i);
 void	is_scape(t_shell *data, t_token *tokens, const char *str, int *i);
 void	is_redir(t_shell *data, t_token *tokens, const char *str, int *i);
