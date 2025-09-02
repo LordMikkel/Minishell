@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 17:07:02 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/27 15:15:25 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/02 19:50:23 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,8 +128,8 @@ int		check_pipe(t_shell *data, t_prompt *prompt, t_token *tokens, int i);
 int		check_or_and(t_shell *data, t_prompt *prompt, t_token *tokens, int i);
 int		check_cmd_syntax(t_shell *d, t_prompt *p, t_token *t, int i);
 int		check_parent_balance(t_shell *data, t_prompt *prompt, t_token *tokens);
-int		check_double_balance(t_shell *d, t_prompt *p, t_token *t, int i);
-int		check_single_balance(t_shell *d, t_prompt *p, t_token *t, int i);
+int		check_double_balance(t_shell *d, t_prompt *p, t_token *t);
+int		check_single_balance(t_shell *d, t_prompt *p, t_token *t);
 void	logic_trans_args_cmd(t_shell *data, t_token *tokens);
 
 //UTILS

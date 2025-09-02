@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 22:40:47 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/08/26 18:50:56 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/02 19:57:38 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 	Si no encuentra un paréntesis abierto válido, lanza error de sintaxis.
 */
 
-/*static void	is_only_symbol(int i, t_token *tokens, int content_flag, int *error)
+/*static void	is_only_symbol(int i, t_token *tokens, int content_flag,
+int *error)
 {
 	if (i >= 1 && tokens[i - 1].type
 		&& (tokens[i - 1].type == PIPE
@@ -46,11 +47,17 @@ int	check_close_parent(t_shell *data, t_prompt *prompt, t_token *tokens, int i)
 		{
 			if (tokens[i].type != PAREN_OPEN && tokens[i].type != PAREN_CLOSE)
 				content_flag++;
-			if (tokens[i].type == PAREN_OPEN && i < j && content_flag == 1 && error_flag == TRUE) //Si es un comando que tiene "|" justo antes de ")" y nada mas: (|)
+			if (tokens[i].type == PAREN_OPEN && i < j && content_flag == 1 &&
+			error_flag == TRUE) //Si es un comando que tiene "|" justo antes
+			de ")" y nada mas: (|)
 				return (SUCCESS);
-			else if (tokens[i].type == PAREN_OPEN && i < j && content_flag >= 1 && error_flag == FALSE) //Si es un comando que no tiene un "|" justo antes del ")": (ls)
+			else if (tokens[i].type == PAREN_OPEN && i < j && content_flag >=
+			1 && error_flag == FALSE) //Si es un comando que no tiene un "|"
+			justo antes del ")": (ls)
 				return (SUCCESS);
-			else if (tokens[i].type == PAREN_OPEN && i < j && content_flag > 1 && error_flag == TRUE) //Si lo que esta antes de ")" es un "|" y hay mas contenido: (ls |)
+			else if (tokens[i].type == PAREN_OPEN && i < j && content_flag >
+			1 && error_flag == TRUE) //Si lo que esta antes de ")" es un "|"
+			y hay mas contenido: (ls |)
 			{
 				syntax_error(data, ERR_SYNTAX, EXIT_USE, ")");
 				return (SYNTAX_ERROR);
@@ -77,9 +84,13 @@ int	check_close_parent(t_shell *data, t_prompt *prompt, t_token *tokens, int i)
 	{
 		if (tokens[i].type != PAREN_CLOSE)
 			content_flag++;
-		if (tokens[i].type == PIPE || tokens[i].type == OR || tokens[i].type == AND)
+		if (tokens[i].type == PIPE || tokens[i].type == OR
+			|| tokens[i].type == AND)
+		{
 			if (content_flag == 1)
-				return (syntax_error(data, ERR_SYNTAX, EXIT_USE, ")"), SYNTAX_ERROR);
+				return (syntax_error(data, ERR_SYNTAX, EXIT_USE, ")"),
+					SYNTAX_ERROR);
+		}
 		i--;
 	}
 	if (i < 0 || content_flag == 0)
