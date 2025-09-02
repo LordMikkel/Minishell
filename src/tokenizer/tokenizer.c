@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:37:27 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/27 20:37:40 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/02 19:58:14 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,8 +135,8 @@ int	valid_tokens(t_shell *data, t_prompt *prompt, t_token *tokens)
 			|| (!check_or_and(data, prompt, tokens, i))
 			|| (!check_redir_input(data, prompt, tokens, i))
 			|| (!check_redir_output(data, prompt, tokens, i))
-			|| (!check_double_balance(data, prompt, tokens, i))
-			|| (!check_single_balance(data, prompt, tokens, i))
+			|| (!check_double_balance(data, prompt, tokens))
+			|| (!check_single_balance(data, prompt, tokens))
 			|| (!check_background(data, prompt, tokens, i))
 			|| (!check_semicolon(data, prompt, tokens, i))
 			|| (!check_cmd_syntax(data, prompt, tokens, i)))
