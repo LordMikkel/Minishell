@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 21:35:11 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/17 16:15:46 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/03 00:55:36 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,12 @@ void	is_cmd(t_shell *data, t_prompt *prompt, t_token *token, char *str)
 	path = getenv("PATH");
 	if (is_built_in(prompt, token, str) == YES)
 		return ;
+	if (!path)
+	{
+		path = strdup("/usr/bin:/bin:/usr/local/bin");
+		if (!path)
+			exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+	}
 	path_arr = ft_split(path, ':');
 	if (!path_arr)
 		exit_error(data, ERR_MALLOC, EXIT_FAILURE);

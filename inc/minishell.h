@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 17:07:02 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/02 20:57:40 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/03 01:16:06 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ char	*recieve_input(char **input, t_shell *data);
 /* ************************************************************************** */
 void	init_data(t_shell *data, char **input, char **envp);
 void	allocate_tokens(t_shell *data, t_prompt *prompt, char *input);
+void	init_enviroment(t_shell *data, char **envp);
+void	add_var(t_shell *data, char *key, char *value, int type);
 
 /* ************************************************************************** */
 /*                               Tokenizer                                    */
@@ -72,6 +74,11 @@ void	execute_recursive(t_shell *data, t_node *ast_root, t_exec *executor);
 /*                               Expansion                                    */
 /* ************************************************************************** */
 void	expansion(t_shell *data, t_token *tokens, t_env *env);
+
+/* ************************************************************************** */
+/*                                buil_in                                     */
+/* ************************************************************************** */
+void	shell_env(t_var *vars);
 
 /* ************************************************************************** */
 /*                                Signals                                     */
