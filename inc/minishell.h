@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 17:07:02 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/03 02:13:00 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/03 17:13:19 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ void	add_var(t_shell *data, char *key, char *value, int type);
 /*                               Tokenizer                                    */
 /* ************************************************************************** */
 int		tokenizer(t_shell *data, t_prompt *prompt, char *input);
-void	get_tokens(t_shell *data, t_token *tokens, char *input);
+void	get_tokens(t_shell *data, t_prompt *prompt, char *input);
 int		valid_tokens(t_shell *data, t_prompt *prompt, t_token *tokens);
-int		add_token(t_token *tokens, char *value, int type);
+int		add_token(t_shell *data, t_prompt *prompt, char *value, int type);
 
 /* ************************************************************************** */
 /*                                  AST                                       */
@@ -107,23 +107,22 @@ void	clean_tokens(t_prompt *prompt);
 /* ************************************************************************** */
 // GET TOKENS
 void	is_cmd(t_shell *d, t_prompt *p, t_token *t, char *s);
-void	is_word(t_shell *data, t_token *tokens, const char *str, int *i);
-void	is_dolar(t_shell *data, t_token *tokens, const char *str, int *i);
-void	is_single_quote(t_shell *d, t_token *t, const char *s, int *i);
-void	is_double_quote(t_shell *d, t_token *t, const char *s, int *i);
-void	is_wildcar(t_shell *data, t_token *tokens, const char *str, int *i);
-void	is_scape(t_shell *data, t_token *tokens, const char *str, int *i);
-void	is_redir(t_shell *data, t_token *tokens, const char *str, int *i);
-void	is_heredoc(t_shell *data, t_token *tokens, const char *str, int *i);
-void	is_semicolon(t_token *tokens, const char *str, int *i);
-void	is_cmdsubs(t_token *tokens, const char *str, int *i);
-void	is_pipe(t_token *tokens, const char *str, int *i);
-void	is_or(t_token *tokens, const char *str, int *i);
-void	is_and(t_shell *data, t_token *tokens, const char *str, int *i);
-void	is_parenten(t_token *tokens, const char *str, int *i);
+void	is_word(t_shell *data,t_prompt *prompt, const char *str, int *i);
+void	is_dolar(t_shell *data,t_prompt *prompt, const char *str, int *i);
+void	is_single_quote(t_shell *d, t_prompt *prompt, const char *s, int *i);
+void	is_double_quote(t_shell *d, t_prompt *prompt, const char *s, int *i);
+void	is_wildcar(t_shell *data,t_prompt *prompt, const char *str, int *i);
+void	is_scape(t_shell *data,t_prompt *prompt, const char *str, int *i);
+void	is_redir(t_shell *data,t_prompt *prompt, const char *str, int *i);
+void	is_heredoc(t_shell *data,t_prompt *prompt, const char *str, int *i);
+void	is_semicolon(t_shell *data,t_prompt *prompt, const char *str, int *i);
+void	is_cmdsubs(t_shell *data,t_prompt *prompt, const char *str, int *i);
+void	is_pipe(t_shell *data,t_prompt *prompt, const char *str, int *i);
+void	is_or(t_shell *data,t_prompt *prompt, const char *str, int *i);
+void	is_and(t_shell *data,t_prompt *prompt, const char *str, int *i);
+void	is_parenten(t_shell *data,t_prompt *prompt, const char *str, int *i);
 void	is_not_token(const char *str, int *i);
 void	is_hash(const char *str, int *i);
-void	calculate_tokens(t_prompt *prompt, t_token *tokens);
 void	reset_tokens(void);
 
 //VALID TOKENS

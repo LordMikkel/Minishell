@@ -14,7 +14,10 @@
 		"*.h": "c",
 		"*.inc": "c",
 		"minishell.h": "c",
-		"Makefile": "makefile"
+		"Makefile": "makefile",
+		"array": "c",
+		"string": "c",
+		"string_view": "c"
 	},
 
 	// Configuración C/C++

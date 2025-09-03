@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/02 19:41:53 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/03 17:11:20 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static int	ft_bash_w(const char *str, int *i, int *flag)
 	return (0);
 }
 
-void	is_word(t_shell *data, t_token *tokens, const char *str, int *i)
+void	is_word(t_shell *data, t_prompt *prompt, const char *str, int *i)
 {
 	int		flag;
 	int		len;
@@ -97,9 +97,9 @@ void	is_word(t_shell *data, t_token *tokens, const char *str, int *i)
 		if (!word)
 			exit_error(data, ERR_MALLOC, EXIT_FAILURE);
 		word = cleanner_slash(data, word, len, '\\');
-		token_id = add_token(tokens, word, WORD);
-		is_cmd(data, &data->prompt, &tokens[token_id], word);
+		token_id = add_token(data, prompt, word, WORD);
+		is_cmd(data, &data->prompt, &prompt->tokens[token_id], word);
 		if (flag == TRUE)
-			add_token(tokens, "", NO_SPACE);
+			add_token(data, prompt, "", NO_SPACE);
 	}
 }

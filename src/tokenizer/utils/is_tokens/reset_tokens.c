@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 17:20:11 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/17 17:37:57 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/03 16:08:24 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	reset_tokens(void)
 {
-	add_token(NULL, NULL, RESET);
+	add_token(NULL, NULL, NULL, RESET);
 }
