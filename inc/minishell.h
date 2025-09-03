@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 17:07:02 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/03 01:16:06 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/03 02:13:00 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ void	expansion(t_shell *data, t_token *tokens, t_env *env);
 /*                                buil_in                                     */
 /* ************************************************************************** */
 void	shell_env(t_var *vars);
+void	shell_echo(char **args);
+void	shell_pwd(t_shell *data);
 
 /* ************************************************************************** */
 /*                                Signals                                     */
