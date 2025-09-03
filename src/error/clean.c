@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 21:47:38 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/22 01:57:01 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/03 00:43:12 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,22 @@ void	clean_prompt(t_prompt *prompt)
 	*prompt = (t_prompt){0};
 }
 
+void clean_env(t_var *vars)
+{
+	t_var	*var;
+
+	var = vars;
+	while (var)
+	{
+		free(var->key);
+		free(var->value);
+		var = var->next;
+	}
+}
+
 void	clean_all(t_shell *data)
 {
-	clean_prompt(&data->prompt);
 	clear_history();
+	clean_prompt(&data->prompt);
+	clean_env(data->env.vars);
 }
