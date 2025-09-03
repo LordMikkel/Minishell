@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:47 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/02 20:01:02 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/03 17:31:33 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static char	*cleanner_word(t_shell *data, char *word, int len, char quote)
 	return (word);
 }
 
-void	make_word_s(t_shell *data, t_token *tokens, const char *s, int range[2])
+void	make_word_s(t_shell *data, t_prompt *prompt, const char *s, int range[2])
 {
 	char	*word;
 	int		token_id;
@@ -57,9 +57,11 @@ void	make_word_s(t_shell *data, t_token *tokens, const char *s, int range[2])
 	word = cleanner_word(data, word, range[1] - range[0], '\'');
 	if (ft_strcmp(word, ""))
 	{
-		token_id = add_token(tokens, word, WORD);
-		is_cmd(data, &data->prompt, &tokens[token_id], word);
+		token_id = add_token(data, prompt, word, WORD);
+		is_cmd(data, &data->prompt, &prompt->tokens[token_id], word);
 	}
+	else
+		free(word);
 }
 
 int	ft_is_dead_s(const char *s, int *i, char quote, int *flag)
@@ -79,7 +81,7 @@ int	ft_is_dead_s(const char *s, int *i, char quote, int *flag)
 	return (0);
 }
 
-int	is_special_word_s(t_shell *data, t_token *tokens, const char *str, int *i)
+int	is_special_word_s(t_shell *data, t_prompt *prompt, const char *str, int *i)
 {
 	int		flag;
 	int		len;
@@ -94,7 +96,7 @@ int	is_special_word_s(t_shell *data, t_token *tokens, const char *str, int *i)
 		start_end[1] = *i;
 		len = start_end[1] - start_end[0];
 		if (len >= 1)
-			make_word_s(data, tokens, str, start_end);
+			make_word_s(data, prompt, str, start_end);
 		if (flag)
 			return (NO_SPACE);
 		return (TRUE);
@@ -102,21 +104,21 @@ int	is_special_word_s(t_shell *data, t_token *tokens, const char *str, int *i)
 	return (FALSE);
 }
 
-void	is_single_quote(t_shell *data, t_token *tokens, const char *str, int *i)
+void	is_single_quote(t_shell *data, t_prompt *prompt, const char *str, int *i)
 {
 	int	status;
 
 	if (str[*i] == '\'')
 	{
-		add_token(tokens, "\'", SINGLE_QUOTE);
+		add_token(data, prompt, "\'", SINGLE_QUOTE);
 		(*i)++;
-		status = is_special_word_s(data, tokens, str, i);
+		status = is_special_word_s(data, prompt, str, i);
 		if (status == TRUE || status == NO_SPACE)
 		{
-			add_token(tokens, "\'", SINGLE_QUOTE);
+			add_token(data, prompt, "\'", SINGLE_QUOTE);
 			(*i)++;
 			if (status == NO_SPACE)
-				add_token(tokens, "", NO_SPACE);
+				add_token(data, prompt, "", NO_SPACE);
 		}
 	}
 }

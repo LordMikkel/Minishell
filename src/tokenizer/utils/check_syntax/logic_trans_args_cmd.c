@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 17:04:19 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/02 20:41:05 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/03 17:24:05 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	logic_trans_args_cmd(t_shell *data, t_token *tokens)
 	int	i;
 
 	i = 0;
-	while (tokens[i].type)
+	while (i < data->prompt.n_tokens)
 	{
 		if (should_tranform_token(tokens, i))
 		{

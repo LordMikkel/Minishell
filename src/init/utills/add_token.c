@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 01:07:14 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/03 01:07:39 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/03 17:16:49 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,34 @@
 	Usa un índice estático para añadir en la posición correcta.
 */
 
-int	add_token(t_token *tokens, char *value, int type)
+void	check_buffer(t_shell *d, t_prompt *p)
 {
-	static int	i = 0;
+	size_t new_capacity;
+	t_token *new_tokens;
 
-	if (type == RESET)
+	if (p->n_tokens >= p->n_alloc_tokens)
 	{
-		i = 0;
-		return (0);
+		new_capacity = p->n_alloc_tokens * 2;
+		if (new_capacity > INT_MAX)
+			exit_error(d, ERR_MAX_TOKENS, EXIT_FAILURE);
+		new_tokens = ft_realloc(p->tokens,
+			p->n_alloc_tokens * sizeof(t_token),
+			new_capacity * sizeof(t_token));
+		if (!new_tokens)
+			exit_error(d, ERR_MALLOC, EXIT_FAILURE);
+		p->tokens = new_tokens;
+		p->n_alloc_tokens = new_capacity;
 	}
+}
+
+int	add_token(t_shell *data, t_prompt *prompt, char *value, int type)
+{
+	int	i;
+	t_token *tokens;
+
+	i = prompt->n_tokens;
+	check_buffer(data, prompt);
+	tokens = prompt->tokens;
 	tokens[i].id = i;
 	tokens[i].value = value;
 	tokens[i].type = type;
@@ -36,6 +55,6 @@ int	add_token(t_token *tokens, char *value, int type)
 		tokens[i].double_quoted = TRUE;
 	if (i > 0 && tokens[i - 1].type == SINGLE_QUOTE)
 		tokens[i].single_quoted = TRUE;
-	i++;
-	return (tokens[tokens[i - 1].id].id);
+	prompt->n_tokens++;
+	return (tokens[tokens[i].id].id);
 }

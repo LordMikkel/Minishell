@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 20:20:21 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/03 01:07:35 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/03 17:25:13 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	print_tokens_debug(t_prompt *prompt)
 	int	i;
 
 	i = 0;
-	while (i < prompt->n_alloc_tokens)
+	while (i < prompt->n_tokens)
 	{
 		if (prompt->tokens[i].value)
 			printf("Token [%d]: '%s' (type: %s)\n", i, prompt->tokens[i].value,
@@ -59,7 +59,7 @@ static void	print_tokens_debug(t_prompt *prompt)
 	detectar cada tipo de token. Avanza el índice según lo detectado.
 */
 
-void	get_tokens(t_shell *data, t_token *tokens, char *input)
+void	get_tokens(t_shell *data, t_prompt *prompt, char *input)
 {
 	int	i;
 
@@ -67,23 +67,22 @@ void	get_tokens(t_shell *data, t_token *tokens, char *input)
 	while (input[i] != '\0')
 	{
 		is_not_token(input, &i);
-		is_and(data, tokens, input, &i);
-		is_or(tokens, input, &i);
-		is_pipe(tokens, input, &i);
-		is_parenten(tokens, input, &i);
-		is_semicolon(tokens, input, &i);
-		is_cmdsubs(tokens, input, &i);
-		is_heredoc(data, tokens, input, &i);
-		is_redir(data, tokens, input, &i);
-		is_scape(data, tokens, input, &i);
-		is_single_quote(data, tokens, input, &i);
-		is_double_quote(data, tokens, input, &i);
-		is_wildcar(data, tokens, input, &i);
-		is_dolar(data, tokens, input, &i);
-		is_word(data, tokens, input, &i);
+		is_and(data, prompt, input, &i);
+		is_or(data, prompt, input, &i);
+		is_pipe(data, prompt, input, &i);
+		is_parenten(data, prompt, input, &i);
+		is_semicolon(data, prompt, input, &i);
+		is_cmdsubs(data, prompt, input, &i);
+		is_heredoc(data, prompt, input, &i);
+		is_redir(data, prompt, input, &i);
+		is_scape(data, prompt, input, &i);
+		is_single_quote(data, prompt, input, &i);
+		is_double_quote(data, prompt, input, &i);
+		is_wildcar(data, prompt, input, &i);
+		is_dolar(data, prompt, input, &i);
+		is_word(data, prompt, input, &i);
 		is_hash(input, &i);
 	}
-	calculate_tokens(&data->prompt, tokens);
 	printf("Alloc Tokens: %d\n", data->prompt.n_alloc_tokens);
 	printf("Syntax Tokens: %d\n", data->prompt.n_tokens);
 }
@@ -99,7 +98,7 @@ int	valid_tokens(t_shell *data, t_prompt *prompt, t_token *tokens)
 
 	i = 0;
 	logic_trans_args_cmd(data, tokens);
-	while (tokens[i].type)
+	while (i < prompt->n_tokens)
 	{
 		if (!check_open_parent(data, prompt, tokens, i)
 			|| (!check_close_parent(data, prompt, tokens, i))
@@ -122,9 +121,8 @@ int	valid_tokens(t_shell *data, t_prompt *prompt, t_token *tokens)
 
 int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 {
-	reset_tokens();
 	allocate_tokens(data, prompt, input);
-	get_tokens(data, prompt->tokens, input);
+	get_tokens(data, prompt, input);
 	// print_tokens_debug(prompt);
 	if (!valid_tokens(data, prompt, prompt->tokens))
 		return (SYNTAX_ERROR);

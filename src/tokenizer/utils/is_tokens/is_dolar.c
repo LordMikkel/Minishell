@@ -85,11 +85,11 @@ static void	make_expan_token(t_shell *data, const char *str, int start, int *i)
 		expansion = cleanner_exp(data, expansion, len, ';');
 		expansion = cleanner_exp(data, expansion, len, '{');
 		expansion = cleanner_exp(data, expansion, len, '}');
-		add_token(data->prompt.tokens, expansion, EXPANSION);
+		add_token(data, &data->prompt, expansion, EXPANSION);
 	}
 }
 
-void	is_dolar(t_shell *data, t_token *tokens, const char *str, int *i)
+void	is_dolar(t_shell *data, t_prompt *prompt, const char *str, int *i)
 {
 	int		flag;
 	int		start;
@@ -109,6 +109,6 @@ void	is_dolar(t_shell *data, t_token *tokens, const char *str, int *i)
 			(*i)++;
 		make_expan_token(data, str, start, i);
 		if (flag == TRUE)
-			add_token(tokens, "", NO_SPACE);
+			add_token(data, prompt, "", NO_SPACE);
 	}
 }
