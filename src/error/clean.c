@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 21:47:38 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/03 18:36:47 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/04 22:58:46 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	clean_tokens(t_prompt *prompt)
 				|| prompt->tokens[i].type == REDIR_APPEND
 				|| prompt->tokens[i].type == REDIR_HEREDOC
 				|| prompt->tokens[i].type == REDIR_INPUT
-				|| prompt->tokens[i].type == REDIR_OUTPUT))
+				|| prompt->tokens[i].type == REDIR_OUTPUT
+				|| prompt->tokens[i].type == EXPANSION))
 		{
 			free(prompt->tokens[i].value);
 			prompt->tokens[i].value = NULL;
