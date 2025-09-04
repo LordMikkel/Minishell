@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/28 19:51:37 by migarrid          #+#    #+#              #
-#    Updated: 2025/09/03 14:37:15 by migarrid         ###   ########.fr        #
+#    Updated: 2025/09/04 22:18:16 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -111,6 +111,7 @@ SRCS =	libft/ft_isalpha.c \
 
 # Objetos obligatorios
 OBJS = $(SRCS:.c=.o)
+DEPS = $(SRCS:.c=.d)
 
 # Variables de progreso
 SRC_COUNT_TOT := $(shell echo -n $(SRCS) | wc -w)
@@ -130,11 +131,14 @@ $(NAME): $(OBJS)
 %.o: %.c libft_plus.h Makefile
 	@$(eval SRC_COUNT = $(shell expr $(SRC_COUNT) + 1))
 	@$(PRINTF) "\r%100s\r[ %d/%d (%d%%) ] Compiling $(BLUE)$<$(DEFAULT)..." "" $(SRC_COUNT) $(SRC_COUNT_TOT) $(SRC_PCT)
-	@$(CC) $(CFLAGS) -I. -c -o $@ $<
+	@$(CC) $(CFLAGS) -I. -MMD -MP -c -o $@ $<
+
+# Incluir archivos de dependencia
+-include $(DEPS)
 
 # Limpiar objetos
 clean:
-	@$(RM) $(OBJS)
+	@$(RM) $(OBJS) $(DEPS)
 
 # Limpiar todo (objetos + biblioteca)
 fclean: clean
