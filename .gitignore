@@ -9,6 +9,18 @@
 ./obj
 minishell
 
+# Readline post config
+lib/readline/.rl_confi
+lib/readline/Makefile
+lib/readline/config.h
+lib/readline/config.log
+lib/readline/config.status
+lib/readline/doc/Makefile
+lib/readline/examples/Makefile
+lib/readline/readline.pc
+lib/readline/shlib/Makefile
+lib/readline/stamp-h
+
 # Prerequisites
 *.d
 
