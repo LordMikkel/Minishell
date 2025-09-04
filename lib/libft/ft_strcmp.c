@@ -6,9 +6,11 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:32:31 by migarrid          #+#    #+#             */
-/*   Updated: 2025/04/01 20:44:39 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/04 14:48:04 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../libft_plus.h"
 
 int	ft_strcmp(const char *s1, const char *s2)
 {
