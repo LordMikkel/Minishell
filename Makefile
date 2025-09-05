@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/09/04 22:33:21 by migarrid         ###   ########.fr        #
+#    Updated: 2025/09/05 15:06:33 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,15 +36,12 @@ NORM				= norminette
 # **************************************************************************** #
 #                              Directories                                     #
 # **************************************************************************** #
-INC_DIR				=	inc
-LIB_DIR				=	lib
-OBJ_DIR				=	obj
-OBJ_BONUS_DIR		=	$(OBJ_DIR)/bonus
-SRC_DIR				=	src
-SRC_BONUS_DIR 		=	$(SRC_DIR)/bonus
-LIBFT_DIR			=	$(LIB_DIR)/libft_plus
-READLINE_DIR		=	$(LIB_DIR)/readline
-DEPS				=	$(HEADER) $(MAKEFILE) $(LIBFT_H) $(LIBFT_MAKEFILE)
+INC_DIR				= inc
+LIB_DIR				= lib
+OBJ_DIR				= obj
+SRC_DIR				= src
+LIBFT_DIR			= $(LIB_DIR)/libft_plus
+READLINE_DIR		= $(LIB_DIR)/readline
 
 # **************************************************************************** #
 #                      File Paths and Dependencies                             #
@@ -67,6 +64,7 @@ READLINE_H			= $(addprefix $(READLINE_DIR)/, $(READLINE_HEADERS))
 READLINE_MAKEFILE	= $(READLINE_DIR)/Makefile
 READLINE_CONFIGURE	= $(READLINE_DIR)/configure
 LDLIBS				= $(READLINE_A) $(HISTORY_A) -ltermcap
+DEPS				= $(HEADER) $(MAKEFILE) $(LIBFT_H) $(LIBFT_MAKEFILE)
 
 # **************************************************************************** #
 #                                   Colors                                     #
@@ -149,13 +147,6 @@ endif
 SRC_COUNT := 0
 SRC_PCT = $(shell expr 100 \* $(SRC_COUNT) / $(SRC_COUNT_TOT))
 
-BONUS_COUNT_TOT := $(shell echo -n $(SRC_BONUS) | wc -w)
-ifeq ($(shell test $(BONUS_COUNT_TOT) -le 0; echo $$?),0)
-	BONUS_COUNT_TOT := $(shell echo -n $(SRC_BONUS) | wc -w)
-endif
-BONUS_COUNT := 0
-BONUS_PCT = $(shell expr 100 \* $(BONUS_COUNT) / $(BONUS_COUNT_TOT))
-
 # **************************************************************************** #
 #                               Object File                                    #
 # **************************************************************************** #
@@ -226,12 +217,9 @@ fclean: clean
 # Rebuild everything
 re: fclean all
 
-# Rebuild everything including bonus
-rebonus: fclean all bonus
-
 # Force verification every build
 FORCE:
 
 # Phony targets
-.PHONY: all bonus clean fclean re rebonus
+.PHONY: all clean fclean re
 .DEFAULT_GOAL := all
