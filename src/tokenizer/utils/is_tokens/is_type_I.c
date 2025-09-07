@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 20:48:00 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/02 20:52:52 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/06 22:41:02 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,14 @@ int	is_delimiter_type(int type)
 	if (type == PIPE || type == SEMICOLON || type == AND || type == OR)
 		return (1);
 	return (0);
+}
+
+int is_alloc_type(int type)
+{
+	if (type == WORD || type == BUILT_IN || type == COMMAND || type == WILDCAR
+			|| type == REDIR_APPEND || type == REDIR_HEREDOC
+			|| type == REDIR_INPUT || type == REDIR_OUTPUT
+			|| type == EXPANSION)
+		return (1);
+	return(0);
 }
