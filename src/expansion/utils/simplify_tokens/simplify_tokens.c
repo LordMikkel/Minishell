@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 20:37:22 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/07 22:00:21 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/07 22:31:09 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,12 @@ static int	is_possible_simplify(t_token *tokens, int *range)
 int	get_no_space_range(t_token *tokens, int *range, int start_i)
 {
 	int	i;
-	int	j;
 
 	i = start_i;
 	while (tokens[i].type)
 	{
 		if (tokens[i].type == NO_SPACE)
 		{
-			j = i + 1;
 			range[0] = find_range_start(tokens, i);
 			range[1] = find_range_end(tokens, i);
 			return (SUCCESS);
