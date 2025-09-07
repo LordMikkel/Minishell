@@ -17,7 +17,11 @@
 		"Makefile": "makefile",
 		"array": "c",
 		"string": "c",
-		"string_view": "c"
+		"string_view": "c",
+		"deque": "c",
+		"unordered_map": "c",
+		"vector": "c",
+		"initializer_list": "c"
 	},
 
 	// Configuración C/C++

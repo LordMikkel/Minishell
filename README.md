@@ -10,6 +10,7 @@ https://github.com/rogerdevworld/minishell/blob/main/src/bonus/syntax/ft_lexer_2
 <h2>MIKEL:</h2>
 <div>
 -Cometarios <br>
+-Por ahora en la segunda expansion metera un espacio de mas y cuando hay ''"" y pegado algo mas no genera token "no_space"
 </div>
 
 <h2>DAVID:</h2>
