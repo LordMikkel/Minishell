@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 17:07:02 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/07 20:37:30 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/08 02:08:01 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,12 +152,14 @@ void	simplify_tokens(t_shell *data, t_prompt *prompt, t_token *tokens);
 void	reorganize_tokens(t_prompt *p, t_token *tokens, int *range, char *res);
 int		find_range_start(t_token *tokens, int no_space_position);
 int		find_range_end(t_token *tokens, int no_space_position);
+void	remove_quotes_tokens(t_prompt *prompt, t_token *tokens);
 
 //ENV
 void	path_null_no_env(t_shell *data, char **path);
 
 //UTILS
 char	*cleanner_slash(t_shell *data, char *word, int len, char slash);
+void	void_tokens_at_the_end(t_token *tokens, int n_alloc, int n_tokens);
 
 /* ************************************************************************** */
 /*                               extras - time                                */

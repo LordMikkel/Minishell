@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 22:44:45 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/07 22:49:30 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/08 02:03:15 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 	para que no queden datos residuales tras mover tokens.
 */
 
-static void	void_tokens_at_the_end(t_token *tokens, int n_alloc, int n_tokens)
+void	void_tokens_at_the_end(t_token *tokens, int n_alloc, int n_tokens)
 {
 	int	i;
 

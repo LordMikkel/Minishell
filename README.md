@@ -9,14 +9,16 @@ https://github.com/rogerdevworld/minishell/blob/main/src/bonus/syntax/ft_lexer_2
 
 <h2>MIKEL:</h2>
 <div>
-- problemas de simplifly tokens ->  echo 'h'"$sds"'ola' ->
-Token [0]: 'echo' (type: BUILT_IN)
-Token [1]: 'h' (type: WORD)
-Token [2]: '$sds' (type: EXPANSION)
-Token [3]: 'ola' (type: WORD)
 
-- problemas de simplifly tokens -> sds""''"$ls""$mikel
-se puede solucionar implementando que completen el input al principio del programa
+- problemas de simplifly tokens ->  sds""''"$ls"hola''$mikel
+genera doble NO_SPACE pero creo que no hay problema.
+
+- problema de logic trasnform -> cd cd $cd cd ->
+Token [0]: 'cd' (type: BUILT_IN)
+Token [1]: 'cd' (type: WORD)
+Token [2]: '$cd' (type: EXPANSION)
+Token [3]: 'cd' (type: BUILT_IN)
+
 </div>
 
 <h2>DAVID:</h2>
