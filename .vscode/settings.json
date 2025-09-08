@@ -14,7 +14,21 @@
 		"*.h": "c",
 		"*.inc": "c",
 		"minishell.h": "c",
-		"Makefile": "makefile"
+		"Makefile": "makefile",
+		"__locale": "c",
+		"locale": "c",
+		"__bit_reference": "c",
+		"__node_handle": "c",
+		"bitset": "c",
+		"chrono": "c",
+		"__memory": "c",
+		"limits": "c",
+		"optional": "c",
+		"ratio": "c",
+		"system_error": "c",
+		"tuple": "c",
+		"type_traits": "c",
+		"vector": "c"
 	},
 
 	// Configuración C/C++
