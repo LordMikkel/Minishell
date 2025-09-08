@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 19:57:07 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/07 21:54:38 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/08 02:43:01 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,10 @@ int	find_range_start(t_token *tokens, int no_space_position)
 		&& is_quote_type(tokens[start - 1].type)
 		&& is_quote_type(tokens[start - 2].type))
 		return (start - 2);
+	else if (start >= 2
+		&& is_quote_type(tokens[start - 1].type)
+		&& tokens[start - 2].type == EXPANSION)
+		return (start + 1);
 	else if (start >= 1)
 		return (start - 1);
 	else
@@ -93,6 +97,10 @@ int	find_range_end(t_token *tokens, int no_space_position)
 		&& is_quote_type(tokens[end + 1].type)
 		&& is_quote_type(tokens[end + 2].type))
 		return (end + 2);
+	else if (tokens[end + 2].type
+		&& is_quote_type(tokens[end + 1].type)
+		&& tokens[end + 2].type == EXPANSION)
+		return (end - 1);
 	else if (end >= 1)
 		return (end + 1);
 	else

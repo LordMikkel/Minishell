@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 20:37:22 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/07 22:31:09 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/08 02:07:56 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,31 @@ int	get_no_space_range(t_token *tokens, int *range, int start_i)
 		i++;
 	}
 	return (FAILURE);
+}
+
+void	remove_quotes_tokens(t_prompt *prompt, t_token *tokens)
+{
+	int read_index;
+	int	write_index;
+	int quotes_removed;
+
+	read_index = 0;
+	write_index = 0;
+	quotes_removed = 0;
+	while(tokens[read_index].type)
+	{
+		if (is_quote_type(tokens[read_index].type))
+			quotes_removed++;
+		else
+		{
+			if (read_index != write_index)
+				tokens[write_index] = tokens[read_index];
+			write_index++;
+		}
+		read_index++;
+	}
+	prompt->n_tokens -= quotes_removed;
+	void_tokens_at_the_end(tokens, prompt->n_alloc_tokens, prompt->n_tokens);
 }
 
 /*
