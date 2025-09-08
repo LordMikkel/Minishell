@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 17:07:14 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/26 16:32:23 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/06 18:49:39 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int argc, char **argv, char **envp)
 		if (!tokenizer(&data, &data.prompt, input))
 			continue ;
 		ast_built(&data, data.prompt.tokens);
-		execute_recursive(&data, data.ast_root, &data.executor);
+		//execute_recursive(&data, data.ast_root, &data.executor);
 		clean_prompt(&data.prompt);
 	}
 	exit_succes(&data, MSG_GOODBYE, EXIT_SUCCESS);

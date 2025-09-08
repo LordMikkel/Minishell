@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:36:57 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/20 21:33:20 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/07 22:32:09 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	execute_recursive(t_shell *data, t_node *ast_root, t_exec *executor)
 {
-	expansion(data, data->prompt.tokens, &data->env);
+	//expansion(data, data->prompt.tokens, &data->env);
 }
