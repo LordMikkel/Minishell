@@ -6,7 +6,11 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:37:06 by migarrid          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/09/10 01:05:18 by davdiaz-         ###   ########.fr       */
+=======
+/*   Updated: 2025/09/08 21:28:25 by migarrid         ###   ########.fr       */
+>>>>>>> main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +80,7 @@ static int aux_mem_alloc(t_shell *data, t_token *token, char **key_to_find)
 	return (SUCCESS);
 }
 
+<<<<<<< HEAD
 int copy_key(char *buffer, char **key_to_find)
 {
 	int	i;
@@ -269,3 +274,18 @@ int send_tokens_for_expansion(t_shell *data, t_token *tokens, int phase)
 	return (SUCCESS);
 }
 
+=======
+// void export(char **av)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	if (!ft_strchr(av[i], '='))
+// 	{
+// 		if (ft_strcmp(av[i], "export") == 0)
+// 			export(av + i + 1);
+// 		i++;
+// 	}
+// 	//funcion de setear;
+// }
+>>>>>>> main

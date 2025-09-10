@@ -6,7 +6,11 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 17:07:14 by migarrid          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/09/06 18:49:39 by davdiaz-         ###   ########.fr       */
+=======
+/*   Updated: 2025/09/03 16:10:15 by migarrid         ###   ########.fr       */
+>>>>>>> main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +31,7 @@ int	main(int argc, char **argv, char **envp)
 	char	*input;
 
 	init_signals();
-	init_data(&data, &input);
+	init_data(&data, &input, envp);
 	while (recieve_input(&input, &data) != NULL)
 	{
 		if (!tokenizer(&data, &data.prompt, input))

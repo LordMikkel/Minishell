@@ -2,16 +2,17 @@
 Minishell - Bash
 
 TO DO LIST:
--implementar .d files para dependencias 
--gestionar git a traves de ramas para features del proyecto en vez de por personas
 -bash + argumento deberia abrir ese archivo (solo el primero) y tratar de ejecutar los que haya dentro como input;
--resolver el caso de ejecutables con rutas relativas como ./minishell o cualquier otro binario.
+-Bash te abra linea para que completes el comando ver -> Modificar balance de ' " ( || && |
+https://github.com/rogerdevworld/minishell/blob/main/src/bonus/loop_processing.c
+https://github.com/rogerdevworld/minishell/blob/main/src/bonus/syntax/ft_lexer_2.c#L93
+
 <h2>MIKEL:</h2>
 <div>
--INIT de los nodos y copia del envp <br>
--Limpieza de los nodos cuando el programa termina <br>
--COmetarios <br>
--Quitar recursion <br>
+
+- problemas de simplifly tokens ->  sds""''"$ls"''$mikel
+genera doble NO_SPACE pero creo que no hay problema a malas se podria hacer una fucion que borre dobles NO_SPACES seguidos.
+
 </div>
 
 <h2>DAVID:</h2>
@@ -21,6 +22,7 @@ TO DO LIST:
 </div>
 <br>
 <br>
+
 ERRORES
 - (echo) hi -> deberia dar error syntax
 - (echo hi && ((echo hi && (echo hi) && echo hi))) -> deberia dar error syntax
