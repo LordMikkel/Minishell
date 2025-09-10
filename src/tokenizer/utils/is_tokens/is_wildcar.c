@@ -6,15 +6,18 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:41 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/21 20:53:44 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/07 21:31:34 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/minishell.h"
 
 /*
-	Detecta comodines '*' o '?' y añade un token de tipo WILDCAR.
+	Elimina todos los caracteres 'trash' de la cadena wildcard.
+	Reserva una nueva cadena limpia, copia los caracteres válidos,
+	libera la original y devuelve la nueva.
 */
+
 char	*cleanner_wildcar(t_shell *data, char *wildcar, int len, char trash)
 {
 	int		j;
@@ -25,7 +28,7 @@ char	*cleanner_wildcar(t_shell *data, char *wildcar, int len, char trash)
 	k = 0;
 	if (ft_strchr(wildcar, trash))
 	{
-		clean_wildcar = ft_calloc(len + 1, sizeof(char *));
+		clean_wildcar = ft_calloc(len + 1, sizeof(char));
 		if (!clean_wildcar)
 		{
 			free(wildcar);
@@ -44,6 +47,12 @@ char	*cleanner_wildcar(t_shell *data, char *wildcar, int len, char trash)
 	return (wildcar);
 }
 
+/*
+	Comprueba si un carácter termina una wildcard.
+	- Devuelve 1 si es un operador o comilla.
+	- Si es ';', lo incorpora al token y termina la wildcard.
+*/
+
 static int	isn_wild(int c, int *i)
 {
 	if (c == '|' || c == '<' || c == '>' || c == '&' || c == '(' || c == ')'
@@ -57,7 +66,14 @@ static int	isn_wild(int c, int *i)
 	return (0);
 }
 
-void	is_wildcar(t_shell *data, t_token *tokens, const char *str, int *i)
+/*
+	Procesa un patrón de wildcard que empieza con '*'.
+	- Recorre hasta espacio o carácter que termina la wildcard.
+	- Limpia la cadena de caractees como ';' y '?'.
+	- Crea el token WILDCAR
+*/
+
+void	is_wildcar(t_shell *data, t_prompt *prompt, const char *str, int *i)
 {
 	int		len;
 	int		start;
@@ -77,7 +93,7 @@ void	is_wildcar(t_shell *data, t_token *tokens, const char *str, int *i)
 				exit_error(data, ERR_MALLOC, EXIT_FAILURE);
 			wildcar = cleanner_wildcar(data, wildcar, len, ';');
 			wildcar = cleanner_wildcar(data, wildcar, len, '?');
-			add_token(tokens, wildcar, WILDCAR);
+			add_token(data, prompt, wildcar, WILDCAR);
 		}
 	}
 }

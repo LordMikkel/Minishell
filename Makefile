@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/09/02 20:48:23 by migarrid         ###   ########.fr        #
+#    Updated: 2025/09/08 19:08:25 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,11 +39,9 @@ NORM				= norminette
 INC_DIR				= inc
 LIB_DIR				= lib
 OBJ_DIR				= obj
-OBJ_BONUS_DIR		= $(OBJ_DIR)/bonus
 SRC_DIR				= src
-SRC_BONUS_DIR 		= $(SRC_DIR)/bonus
-LIBFT_DIR			= $(LIB_DIR)
-DEPS				= $(HEADER) $(MAKEFILE) $(LIBFT_H) $(LIBFT_MAKEFILE)
+LIBFT_DIR			= $(LIB_DIR)/libft_plus
+READLINE_DIR		= $(LIB_DIR)/readline
 
 # **************************************************************************** #
 #                      File Paths and Dependencies                             #
@@ -55,7 +53,18 @@ HEADER				= $(INC_DIR)/minishell.h \
 LIBFT_A				= $(LIBFT_DIR)/libft_plus.a
 LIBFT_H				= $(LIBFT_DIR)/libft_plus.h
 LIBFT_MAKEFILE		= $(LIBFT_DIR)/Makefile
-LDLIBS				= -lreadline
+HISTORY_A			= $(READLINE_DIR)/libhistory.a
+READLINE_A			= $(READLINE_DIR)/libreadline.a
+READLINE_HEADERS	=	ansi_stdlib.h chardefs.h colors.h config.h histlib.h \
+						history.h keymaps.h parse-colors.h posixdir.h posixjmp.h \
+						posixselect.h posixstat.h readline.h rlconf.h rldefs.h \
+						rlmbutil.h rlprivate.h rlshell.h rlstdc.h rltty.h \
+						rltypedefs.h rlwinsize.h tcap.h tilde.h xmalloc.h
+READLINE_H			= $(addprefix $(READLINE_DIR)/, $(READLINE_HEADERS))
+READLINE_MAKEFILE	= $(READLINE_DIR)/Makefile
+READLINE_CONFIGURE	= $(READLINE_DIR)/configure
+LDLIBS				= $(READLINE_A) $(HISTORY_A) -ltermcap
+DEPS				= $(HEADER) $(MAKEFILE) $(LIBFT_H) $(LIBFT_MAKEFILE)
 
 # **************************************************************************** #
 #                                   Colors                                     #
@@ -77,12 +86,15 @@ CLEAR 				= \r\033[K
 #                               Source File                                    #
 # **************************************************************************** #
 SRCS =				main/main.c \
-					main/recieve_input.c \
-					main/print_session_start.c \
-					main/print_session_end.c \
-					main/print_time_of_day.c \
-					init/init.c \
-					init/alloc.c \
+					main/utils/recieve_input.c \
+					main/utils/time/print_session_start.c \
+					main/utils/time/print_session_end.c \
+					main/utils/time/print_time_of_day.c \
+					init/init_data.c \
+					init/init_env.c \
+					init/utils/alloc_tokens.c \
+					init/utils/add_token.c \
+					init/utils/add_var.c \
 					tokenizer/tokenizer.c \
 					tokenizer/utils/is_tokens/is_and.c \
 					tokenizer/utils/is_tokens/is_dolar.c \
@@ -100,10 +112,9 @@ SRCS =				main/main.c \
 					tokenizer/utils/is_tokens/is_not_token.c \
 					tokenizer/utils/is_tokens/is_hash.c \
 					tokenizer/utils/is_tokens/is_cmd.c \
-					tokenizer/utils/is_tokens/calculate_tokens.c \
-					tokenizer/utils/is_tokens/reset_tokens.c \
 					tokenizer/utils/is_tokens/is_cmdsubs.c \
-					tokenizer/utils/is_tokens/is_type.c \
+					tokenizer/utils/is_tokens/is_type_I.c \
+					tokenizer/utils/is_tokens/is_type_II.c \
 					tokenizer/utils/check_syntax/logic_trans_args_cmd.c \
 					tokenizer/utils/check_syntax/check_redir_input.c \
 					tokenizer/utils/check_syntax/check_redir_output.c \
@@ -118,13 +129,17 @@ SRCS =				main/main.c \
 					tokenizer/utils/check_syntax/check_cmd_syntaxis.c \
 					tokenizer/utils/check_syntax/check_parent_balance.c \
 					expansion/expansion.c \
+					expansion/utils/simplify_tokens/simplify_tokens.c \
+					expansion/utils/simplify_tokens/reorganize_tokens.c \
+					expansion/utils/simplify_tokens/adjust_range_tokens.c \
 					ast/ast_builder.c \
 					executor/executor.c \
 					signals/init_signals.c \
 					signals/signal_handler.c \
-					error/exit.c \
-					error/error.c \
-					error/clean.c
+					builtin/env.c \
+					exit/exit.c \
+					exit/error.c \
+					exit/clean.c
 
 # **************************************************************************** #
 #                              Progress Bars                                   #
@@ -136,47 +151,35 @@ endif
 SRC_COUNT := 0
 SRC_PCT = $(shell expr 100 \* $(SRC_COUNT) / $(SRC_COUNT_TOT))
 
-BONUS_COUNT_TOT := $(shell echo -n $(SRC_BONUS) | wc -w)
-ifeq ($(shell test $(BONUS_COUNT_TOT) -le 0; echo $$?),0)
-	BONUS_COUNT_TOT := $(shell echo -n $(SRC_BONUS) | wc -w)
-endif
-BONUS_COUNT := 0
-BONUS_PCT = $(shell expr 100 \* $(BONUS_COUNT) / $(BONUS_COUNT_TOT))
-
 # **************************************************************************** #
 #                               Object File                                    #
 # **************************************************************************** #
 # Create directories
 $(OBJ_DIR):
 	@$(MKDIR) $(OBJ_DIR)
-$(OBJ_BONUS_DIR):
-	@$(MKDIR) $(OBJ_BONUS_DIR)
 
 OBJS		= $(SRCS:%.c=$(OBJ_DIR)/%.o)
-OBJS_BONUS 	= $(SRC_BONUS:%.c=$(OBJ_BONUS_DIR)/%.o)
+DEPS_DIR	= $(OBJ_DIR)
+DEPS_FILES	= $(SRCS:%.c=$(DEP_DIR)/%.d)
 
 # Rule to compile archive .c to ,o with progress bars
 ${OBJ_DIR}/%.o: ${SRC_DIR}/%.c $(DEPS) $(LIBFT_A) | $(OBJ_DIR)
 	@$(eval SRC_COUNT = $(shell expr $(SRC_COUNT) + 1))
 	@$(PRINT) "\r%100s\r[ %d/%d (%d%%) ] Compiling $(BLUE)$<$(DEFAULT)...\n" "" $(SRC_COUNT) $(SRC_COUNT_TOT) $(SRC_PCT)
 	@$(MKDIR) $(dir $@)
-	@$(CC) $(WFLAGS) $(DFLAGS) $(SFLAGS) $(OFLAGS) -I. -c -o $@ $<
+	@$(CC) $(WFLAGS) $(DFLAGS) $(SFLAGS) $(OFLAGS) -I$(INC_DIR) -MMD -MP -c -o $@ $<
 
-# Rule to compile archive .c to ,o with progress bars (Bonus)
-$(OBJ_BONUS_DIR)/%.o: $(SRC_BONUS_DIR)/%.c $(DEPS) | $(OBJ_BONUS_DIR)
-	@$(eval BONUS_COUNT = $(shell expr $(BONUS_COUNT) + 1))
-	@$(PRINT) "\r%100s\r[ %d/%d (%d%%) ] Compiling $(MAGENTA)$<$(DEFAULT)...\n" "" $(BONUS_COUNT) $(BONUS_COUNT_TOT) $(BONUS_PCT)
-	@$(MKDIR) $(dir $@)
-	@$(CC) $(WFLAGS) $(DFLAGS) $(SFLAGS) $(OFLAGS) -I. -c -o $@ $<
+# Include .deps files
+-include $(DEPS_FILES)
 
 # **************************************************************************** #
 #                              Targets                                         #
 # **************************************************************************** #
 
-all: $(LIBFT_A) $(NAME)
+all: $(READLINE_A) $(LIBFT_A) $(NAME)
 
 # Build executable
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(LIBFT_A) $(READLINE_A) $(HISTORY_A)
 	@$(CC) $(WFLAGS) $(DFLAGS) $(SFLAGS) $(OFLAGS) $(RFLAGS) $(OBJS) $(LIBFT_A) -I$(INC_DIR) $(LDLIBS) -o $(NAME)
 	@$(PRINT) "${CLEAR}${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}${GREEN}»${RESET} [${PURPLE}${BOLD}${NAME}${RESET}]: ${RED}${BOLD}${NAME} ${RESET}compiled ${GREEN}successfully${RESET}.${GREY}\n${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}"
 
@@ -184,37 +187,41 @@ $(NAME): $(OBJS)
 $(LIBFT_A): FORCE $(LIBFT_MAKEFILE) $(LIBFT_H)
 	@$(MAKE) -s -C $(LIBFT_DIR)
 
-# Rule to compile bonus
-Bonus: all
+# Rebuild readline libraries
+$(READLINE_A): $(READLINE_DIR)/config.h
+	@$(PRINT) "Compiling $(BLUE)readline libraries$(DEFAULT)...\n"
+	@$(MAKE) -s -C $(READLINE_DIR)
+
+$(READLINE_DIR)/config.h:
+	@$(PRINT) "Configuring $(BLUE)readline$(DEFAULT)...\n"
+	@cd $(READLINE_DIR) && ./configure --enable-static --disable-shared > /dev/null 2>&1
 
 # Test the norminette in my .c files
 norm:
-	@$(NORM) $(SRC_DIR)
-	@$(NORM) $(INC_DIR)
-	@$(NORM) $(LIBFT_DIR)
+	-@$(NORM) $(LIBFT_DIR)
+	-@$(NORM) $(INC_DIR)
+	-@$(NORM) $(SRC_DIR)
 
 # Clean object files
 clean:
 	@$(MAKE) clean -s -C $(LIBFT_DIR)
+	@$(MAKE) clean -s -C $(READLINE_DIR)
 	@$(RM) $(OBJ_DIR)
 	@$(PRINT) "${CLEAR}${RESET}${GREEN}»${RESET} [${PURPLE}${BOLD}${NAME}${RESET}]: Objects were cleaned ${GREEN}successfully${RESET}.\n${RESET}"
 
 # Full clean
 fclean: clean
 	@$(MAKE) fclean -s -C $(LIBFT_DIR)
+	@$(MAKE) distclean -s -C $(READLINE_DIR)
 	@$(RM) $(NAME)
-	@$(RM) $(NAME_BONUS)
 	@$(PRINT) "${CLEAR}${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}${GREEN}»${RESET} [${PURPLE}${BOLD}${NAME}${RESET}]: Project cleaned ${GREEN}successfully${RESET}.${GREY}\n${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}"
 
 # Rebuild everything
 re: fclean all
 
-# Rebuild everything including bonus
-rebonus: fclean all bonus
-
 # Force verification every build
 FORCE:
 
 # Phony targets
-.PHONY: all bonus clean fclean re rebonus
+.PHONY: all clean fclean re
 .DEFAULT_GOAL := all

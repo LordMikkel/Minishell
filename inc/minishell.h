@@ -6,7 +6,11 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 17:07:02 by migarrid          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/09/08 17:46:57 by davdiaz-         ###   ########.fr       */
+=======
+/*   Updated: 2025/09/08 02:08:01 by migarrid         ###   ########.fr       */
+>>>>>>> main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +21,7 @@
 /* ************************************************************************** */
 /*                               Includes                                     */
 /* ************************************************************************** */
-# include "../lib/libft_plus.h"
+# include "../lib/libft_plus/libft_plus.h"
 # include "minishell_structs.h"
 # include "minishell_macros.h"
 # include <readline/readline.h>
@@ -48,16 +52,18 @@ char	*recieve_input(char **input, t_shell *data);
 /* ************************************************************************** */
 /*                             Initialization                                 */
 /* ************************************************************************** */
-void	init_data(t_shell *data, char **input);
+void	init_data(t_shell *data, char **input, char **envp);
 void	allocate_tokens(t_shell *data, t_prompt *prompt, char *input);
+void	init_enviroment(t_shell *data, char **envp);
+void	add_var(t_shell *data, char *key, char *value, int type);
 
 /* ************************************************************************** */
 /*                               Tokenizer                                    */
 /* ************************************************************************** */
 int		tokenizer(t_shell *data, t_prompt *prompt, char *input);
-void	get_tokens(t_shell *data, t_token *tokens, char *input);
+void	get_tokens(t_shell *data, t_prompt *prompt, char *input);
 int		valid_tokens(t_shell *data, t_prompt *prompt, t_token *tokens);
-int		add_token(t_token *tokens, char *value, int type);
+int		add_token(t_shell *data, t_prompt *prompt, char *value, int type);
 
 /* ************************************************************************** */
 /*                                  AST                                       */
@@ -72,6 +78,13 @@ void	execute_recursive(t_shell *data, t_node *ast_root, t_exec *executor);
 /*                               Expansion                                    */
 /* ************************************************************************** */
 int		expansion(t_shell *data, t_token *tokens, t_env *env, int phase);
+
+/* ************************************************************************** */
+/*                                buil_in                                     */
+/* ************************************************************************** */
+void	shell_env(t_var *vars);
+void	shell_echo(char **args);
+void	shell_pwd(t_shell *data);
 
 /* ************************************************************************** */
 /*                                Signals                                     */
@@ -98,23 +111,22 @@ void	clean_tokens(t_prompt *prompt);
 /* ************************************************************************** */
 // GET TOKENS
 void	is_cmd(t_shell *d, t_prompt *p, t_token *t, char *s);
-void	is_word(t_shell *data, t_token *tokens, const char *str, int *i);
-void	is_dolar(t_shell *data, t_token *tokens, const char *str, int *i);
-void	is_single_quote(t_shell *d, t_token *t, const char *s, int *i);
-void	is_double_quote(t_shell *d, t_token *t, const char *s, int *i);
-void	is_wildcar(t_shell *data, t_token *tokens, const char *str, int *i);
-void	is_scape(t_shell *data, t_token *tokens, const char *str, int *i);
-void	is_redir(t_shell *data, t_token *tokens, const char *str, int *i);
-void	is_heredoc(t_shell *data, t_token *tokens, const char *str, int *i);
-void	is_semicolon(t_token *tokens, const char *str, int *i);
-void	is_cmdsubs(t_token *tokens, const char *str, int *i);
-void	is_pipe(t_token *tokens, const char *str, int *i);
-void	is_or(t_token *tokens, const char *str, int *i);
-void	is_and(t_shell *data, t_token *tokens, const char *str, int *i);
-void	is_parenten(t_token *tokens, const char *str, int *i);
+void	is_word(t_shell *data, t_prompt *prompt, const char *str, int *i);
+void	is_dolar(t_shell *data, t_prompt *prompt, const char *str, int *i);
+void	is_single_quote(t_shell *d, t_prompt *prompt, const char *s, int *i);
+void	is_double_quote(t_shell *d, t_prompt *prompt, const char *s, int *i);
+void	is_wildcar(t_shell *data, t_prompt *prompt, const char *str, int *i);
+void	is_scape(t_shell *data, t_prompt *prompt, const char *str, int *i);
+void	is_redir(t_shell *data, t_prompt *prompt, const char *str, int *i);
+void	is_heredoc(t_shell *data, t_prompt *prompt, const char *str, int *i);
+void	is_semicolon(t_shell *data, t_prompt *prompt, const char *str, int *i);
+void	is_cmdsubs(t_shell *data, t_prompt *prompt, const char *str, int *i);
+void	is_pipe(t_shell *data, t_prompt *prompt, const char *str, int *i);
+void	is_or(t_shell *data, t_prompt *prompt, const char *str, int *i);
+void	is_and(t_shell *data, t_prompt *prompt, const char *str, int *i);
+void	is_parenten(t_shell *data, t_prompt *prompt, const char *str, int *i);
 void	is_not_token(const char *str, int *i);
 void	is_hash(const char *str, int *i);
-void	calculate_tokens(t_prompt *prompt, t_token *tokens);
 void	reset_tokens(void);
 
 //VALID TOKENS
@@ -134,10 +146,24 @@ void	logic_trans_args_cmd(t_shell *data, t_token *tokens);
 int		is_cmd_type(int type);
 int		is_quote_type(int type);
 int		is_redir_type(int type);
-int 	is_delimiter_type(int type);
+int		is_delimiter_type(int type);
+int		is_alloc_type(int type);
+int		is_between_quotes_type(int type);
+int		is_simplify_type(int type);
+
+//SIMPLIFY TOKENS
+void	simplify_tokens(t_shell *data, t_prompt *prompt, t_token *tokens);
+void	reorganize_tokens(t_prompt *p, t_token *tokens, int *range, char *res);
+int		find_range_start(t_token *tokens, int no_space_position);
+int		find_range_end(t_token *tokens, int no_space_position);
+void	remove_quotes_tokens(t_prompt *prompt, t_token *tokens);
+
+//ENV
+void	path_null_no_env(t_shell *data, char **path);
 
 //UTILS
 char	*cleanner_slash(t_shell *data, char *word, int len, char slash);
+void	void_tokens_at_the_end(t_token *tokens, int n_alloc, int n_tokens);
 
 /* ************************************************************************** */
 /*                               extras - time                                */

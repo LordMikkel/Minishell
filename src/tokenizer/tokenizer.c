@@ -6,7 +6,11 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 20:20:21 by migarrid          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/09/08 20:53:43 by davdiaz-         ###   ########.fr       */
+=======
+/*   Updated: 2025/09/08 03:10:29 by migarrid         ###   ########.fr       */
+>>>>>>> main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +49,7 @@ static void	print_tokens_debug(t_prompt *prompt)
 	int	i;
 
 	i = 0;
-	while (i < prompt->n_alloc_tokens)
+	while (i < prompt->n_tokens)
 	{
 		if (prompt->tokens[i].value)
 			printf("Token [%d]: '%s' (type: %s)\n", i, prompt->tokens[i].value,
@@ -55,39 +59,11 @@ static void	print_tokens_debug(t_prompt *prompt)
 }
 
 /*
-	Añade un nuevo token al array `tokens` con el valor y tipo dados.
-	Si es de tipo EXPANSION, marca su flag `expand` como TRUE.
-	Usa un índice estático para añadir en la posición correcta.
-*/
-
-int	add_token(t_token *tokens, char *value, int type)
-{
-	static int	i = 0;
-
-	if (type == RESET)
-	{
-		i = 0;
-		return (0);
-	}
-	tokens[i].id = i;
-	tokens[i].value = value;
-	tokens[i].type = type;
-	if (tokens[i].type == EXPANSION)
-		tokens[i].expand = TRUE;
-	if (i > 0 && tokens[i - 1].type == DOUBLE_QUOTE)
-		tokens[i].double_quoted = TRUE;
-	if (i > 0 && tokens[i - 1].type == SINGLE_QUOTE)
-		tokens[i].single_quoted = TRUE;
-	i++;
-	return (tokens[tokens[i - 1].id].id);
-}
-
-/*
 	Recorre el string `input` y llama a las funciones `is_*` para
 	detectar cada tipo de token. Avanza el índice según lo detectado.
 */
 
-void	get_tokens(t_shell *data, t_token *tokens, char *input)
+void	get_tokens(t_shell *data, t_prompt *prompt, char *input)
 {
 	int	i;
 
@@ -95,23 +71,22 @@ void	get_tokens(t_shell *data, t_token *tokens, char *input)
 	while (input[i] != '\0')
 	{
 		is_not_token(input, &i);
-		is_and(data, tokens, input, &i);
-		is_or(tokens, input, &i);
-		is_pipe(tokens, input, &i);
-		is_parenten(tokens, input, &i);
-		is_semicolon(tokens, input, &i);
-		is_cmdsubs(tokens, input, &i);
-		is_heredoc(data, tokens, input, &i);
-		is_redir(data, tokens, input, &i);
-		is_scape(data, tokens, input, &i);
-		is_single_quote(data, tokens, input, &i);
-		is_double_quote(data, tokens, input, &i);
-		is_wildcar(data, tokens, input, &i);
-		is_dolar(data, tokens, input, &i);
-		is_word(data, tokens, input, &i);
+		is_and(data, prompt, input, &i);
+		is_or(data, prompt, input, &i);
+		is_pipe(data, prompt, input, &i);
+		is_parenten(data, prompt, input, &i);
+		is_semicolon(data, prompt, input, &i);
+		is_cmdsubs(data, prompt, input, &i);
+		is_heredoc(data, prompt, input, &i);
+		is_redir(data, prompt, input, &i);
+		is_scape(data, prompt, input, &i);
+		is_single_quote(data, prompt, input, &i);
+		is_double_quote(data, prompt, input, &i);
+		is_wildcar(data, prompt, input, &i);
+		is_dolar(data, prompt, input, &i);
+		is_word(data, prompt, input, &i);
 		is_hash(input, &i);
 	}
-	calculate_tokens(&data->prompt, tokens);
 	printf("Alloc Tokens: %d\n", data->prompt.n_alloc_tokens);
 	printf("Syntax Tokens: %d\n", data->prompt.n_tokens);
 }
@@ -127,7 +102,7 @@ int	valid_tokens(t_shell *data, t_prompt *prompt, t_token *tokens)
 
 	i = 0;
 	logic_trans_args_cmd(data, tokens);
-	while (tokens[i].type)
+	while (i < prompt->n_tokens)
 	{
 		if (!check_open_parent(data, prompt, tokens, i)
 			|| (!check_close_parent(data, prompt, tokens, i))
@@ -150,12 +125,17 @@ int	valid_tokens(t_shell *data, t_prompt *prompt, t_token *tokens)
 
 int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 {
-	reset_tokens();
 	allocate_tokens(data, prompt, input);
-	get_tokens(data, prompt->tokens, input);
-	print_tokens_debug(prompt);
+	get_tokens(data, prompt, input);
+	// print_tokens_debug(prompt);
 	if (!valid_tokens(data, prompt, prompt->tokens))
 		return (SYNTAX_ERROR);
+	// printf("------------------------------------------------\n");
+	print_tokens_debug(prompt);
+	simplify_tokens(data, prompt, prompt->tokens);
+	// printf("------------------------------------------------\n");
+	// print_tokens_debug(prompt);
+	remove_quotes_tokens(prompt, prompt->tokens);
 	printf("------------------------------------------------\n");
 	print_tokens_debug(prompt);
 	return (SUCCESS);
