@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 17:07:02 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/02 20:47:51 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/08 17:46:57 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	execute_recursive(t_shell *data, t_node *ast_root, t_exec *executor);
 /* ************************************************************************** */
 /*                               Expansion                                    */
 /* ************************************************************************** */
-void	expansion(t_shell *data, t_token *tokens, t_env *env);
+int		expansion(t_shell *data, t_token *tokens, t_env *env, int phase);
 
 /* ************************************************************************** */
 /*                                Signals                                     */

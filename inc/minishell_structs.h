@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/08 16:38:47 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/08 17:48:43 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,12 @@ typedef enum e_type
 	SEMICOLON,
 	SINGLE_QUOTE,
 	DOUBLE_QUOTE,
+	CMD_SUBSTITUTION,
 	PAREN_OPEN,
 	PAREN_CLOSE,
 	WILDCAR,
-	ASIGNATION,
 	EXPANSION,
+	ASIGNATION,
 	BACKGROUND,
 	AND,
 	OR,
