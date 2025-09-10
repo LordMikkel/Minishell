@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 22:35:11 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/09/08 15:59:10 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/09 23:57:23 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,14 @@ int asignation(t_shell *data, t_token *token, int type)
 {
 	char	*key;
 	char	*value;
-	char	len;
+	int		len;
 	int		i;
 
 	len = ft_strlen(token->value);
 	i = 0;
 	if (aux_mem_alloc(&key, &value, len) == ERROR)
 	{
-		exit_error(data, ERR_MALLOC, EXIT_USE, key);
+		exit_error(data, ERR_MALLOC, EXIT_USE);
 		return (ERROR);
 	}
 	aux_key_asig(token, &key, &i);
