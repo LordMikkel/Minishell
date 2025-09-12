@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 23:17:43 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/12 17:28:54 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/12 22:50:07 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ void	init_data(t_shell *data, char **input, char **envp)
 	data->extra_features.session_start = time(NULL);
 	init_enviroment(data, envp);
 	print_session_start(data, data->extra_features.session_start,
-			data->extra_features.user_name);
+		data->extra_features.user_name);
 }

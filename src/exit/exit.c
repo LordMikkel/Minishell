@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 21:42:44 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/12 17:27:15 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/12 22:53:27 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,11 @@ int	exit_error(t_shell *data, const char *error, int exit_code, ...)
 
 int	exit_succes(t_shell *data, char *msg, int exit_code)
 {
-	if (data->extra_features.user_name)
-	{
-		print_session_end(data->extra_features.session_start,
-		data->extra_features.user_name);
-	}
-	else
-		print_session_end(data->extra_features.session_start, NULL);
+	print_session_end(data->extra_features.session_start, NULL);
+	if (msg)
+		ft_printf_fd(STDOUT, msg, data->extra_features.user_name);
 	if (data)
 		clean_all(data);
-	if (msg)
-		ft_printf_fd(STDOUT, msg);
 	exit(exit_code);
 	return (exit_code);
 }

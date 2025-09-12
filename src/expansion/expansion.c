@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:57:33 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/11 23:04:07 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/12 18:39:59 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,12 @@ static int	aux_mem_alloc(t_shell *data, t_token *token, char **key_to_find)
 	int	len;
 
 	len = ft_strlen(token->value);
-	*key_to_find = (char *)malloc((len + 1) * sizeof(char));
+	*key_to_find = ft_calloc(len + 1, sizeof(char));
 	if (!*key_to_find)
 	{
 		exit_error(data, ERR_MALLOC, EXIT_USE);
 		return (ERROR);
 	}
-	(*key_to_find)[len] = '\0';
 	return (SUCCESS);
 }
 

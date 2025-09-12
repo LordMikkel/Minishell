@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 21:47:38 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/11 19:16:59 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/12 22:00:42 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,13 @@ void	clean_prompt(t_prompt *prompt)
 	*prompt = (t_prompt){0};
 }
 
+void	clean_extras(t_extras *extra_features)
+{
+	if (extra_features->user_name)
+		free(extra_features->user_name);
+	extra_features->user_name = NULL;
+}
+
 /*
 	Libera la lista enlazada de variables de entorno, incluyendo
 	'key' y 'value' de cada nodo.
@@ -88,8 +95,7 @@ void	clean_env(t_var *vars)
 void	clean_all(t_shell *data)
 {
 	clear_history();
-	free (data->extra_features.user_name);
-	data->extra_features.user_name = NULL;
 	clean_prompt(&data->prompt);
 	clean_env(data->env.vars);
+	clean_extras(&data->extra_features);
 }

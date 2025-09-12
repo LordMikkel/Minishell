@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   which_builtin.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:58:35 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/12 17:07:34 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/12 23:04:11 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ void	which_builtin(t_shell *data, t_token *tokens, t_token *token)
 	else if (ft_strcmp(token->value, BUILTIN_ENV) == 0)
 		data->last_exit_code = my_env(data->env.vars);
 	else if (ft_strcmp(token->value, BUILTIN_EXIT) == 0)
-		my_exit(data, token);
+		my_exit(data, tokens);
 }

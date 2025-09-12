@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_asignation_syntax.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 22:34:34 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/09/11 03:37:50 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/12 18:32:11 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static int	count_syntax(t_token *token)
 	int	before_text;
 	int	after_text;
 
+	i = 0;
 	check_for_equal = 0;
 	before_text = 0;
 	after_text = 0;

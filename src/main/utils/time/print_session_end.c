@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_session_end.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 02:11:39 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/09/12 17:32:27 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/12 22:02:27 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,5 @@ void	print_session_end(time_t start, char *user_name)
 	duration = difftime(end, start);
 	minutes = (int)(duration / 60);
 	seconds = (int)(duration) % 60;
-	if (user_name)
-		ft_printf_fd(STDOUT, MSG_TIME_END_V1, user_name, minutes, seconds);
-	ft_printf_fd(STDOUT, MSG_TIME_END_V2, minutes, seconds);
+	ft_printf_fd(STDOUT, MSG_TIME_END, minutes, seconds);
 }

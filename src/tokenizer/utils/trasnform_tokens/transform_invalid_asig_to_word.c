@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   transform_invalid_asig_to_word.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 21:56:00 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/09/12 18:12:36 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/12 22:47:51 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/minishell.h"
 
-void transform_invalid_asig_to_word(t_prompt *prompt, t_token *tokens)
+void	transform_invalid_asig_to_word(t_prompt *prompt, t_token *tokens)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < prompt->n_tokens)

@@ -15,7 +15,8 @@
 			"compilerArgs": [
 				"-Wall",
 				"-Wextra",
-				"-Werror"
+				"-Werror",
+				"-g"
 			]
 		}
 	],
