@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/10 22:33:11 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/11 22:28:59 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	my_env(t_var *vars);
 void	my_echo(t_token *tokens);
 void	my_pwd(t_shell *data);
 int		my_export(t_shell *data, t_token *tokens, t_env *env);
+void	my_unset(t_shell *data, t_env *env, t_token *tokens);
 
 /* ************************************************************************** */
 /*                                Signals                                     */
@@ -157,7 +158,8 @@ void	remove_quotes_tokens(t_prompt *prompt, t_token *tokens);
 
 //TRANSFORM TOKENS
 void	transform_word_to_cmd(t_shell *data, t_token *tokens);
-void	transform_word_to_asignation(t_shell *data, t_token *tokens);
+void	transform_word_to_asignation(t_shell *data, t_token *tokens, int phase);
+void	transform_invalid_asig_to_word(t_prompt *prompt, t_token *tokens);
 
 //EXPANSION
 int		calculate_total_length(t_shell *data, char *str, char *key_to_find);
@@ -182,8 +184,8 @@ void	void_tokens_at_the_end(t_token *tokens, int n_alloc, int n_tokens);
 /* ************************************************************************** */
 /*                               extras - time                                */
 /* ************************************************************************** */
-void	print_session_start(time_t start);
-void	print_session_end(time_t start);
-void	print_time_of_day(time_t start);
+void	print_session_start(t_shell *data, time_t start, char *user_name);
+void	print_session_end(time_t start, char *user_name);
+void	print_time_of_day(time_t start, char *user_name);
 
 #endif

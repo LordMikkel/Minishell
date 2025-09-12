@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:10 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/10 22:11:37 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/12 13:38:55 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void	parse_tokens(t_shell *data, t_prompt *prompt, char *input)
 	'&&' y '||'. Comprueba que estén correctamente colocados y emparejados.
 */
 
-int	valid_tokens(t_shell *data, t_prompt *prompt, t_token *tokens)
+int	check_if_valid_tokens(t_shell *data, t_prompt *prompt, t_token *tokens)
 {
 	int	i;
 
@@ -146,17 +146,20 @@ int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 	transform_word_to_cmd(data, prompt->tokens);
 	printf("------------------------------------------------\n");
 	print_tokens_debug(prompt);
-	if (!valid_tokens(data, prompt, prompt->tokens))
+	if (!check_if_valid_tokens(data, prompt, prompt->tokens))
 		return (SYNTAX_ERROR);
-	// printf("------------------------------------------------\n");
-	// print_tokens_debug(prompt);
-	simplify_tokens(data, prompt, prompt->tokens);
-	// printf("------------------------------------------------\n");
-	// print_tokens_debug(prompt);
-	transform_word_to_asignation(data, prompt->tokens);
 	printf("------------------------------------------------\n");
 	print_tokens_debug(prompt);
-	send_tokens_for_expansion(data, prompt->tokens, 1);
+	simplify_tokens(data, prompt, prompt->tokens);
+	printf("------------------------------------------------\n");
+	print_tokens_debug(prompt);
+	transform_word_to_asignation(data, prompt->tokens, 1);
+	transform_invalid_asig_to_word(prompt, prompt->tokens);
+	transform_word_to_asignation(data, prompt->tokens, 2);
+	printf("------------------------------------------------\n");
+	print_tokens_debug(prompt);
+	if (send_tokens_for_expansion(data, prompt->tokens, 2) == ERROR)
+		return (ERROR);
 	printf("------------------------------------------------\n");
 	test_built_in(data, prompt->tokens, prompt->n_tokens);
 	return (SUCCESS);

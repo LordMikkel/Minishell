@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_session_end.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 02:11:39 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/09/03 22:04:32 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/11 22:26:08 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 	formateado y con color en la salida estándar (STDOUT).
 */
 
-void	print_session_end(time_t start)
+void	print_session_end(time_t start, char *user_name)
 {
 	int		minutes;
 	int		seconds;
@@ -30,5 +30,7 @@ void	print_session_end(time_t start)
 	duration = difftime(end, start);
 	minutes = (int)(duration / 60);
 	seconds = (int)(duration) % 60;
-	ft_printf_fd(STDOUT, MSG_TIME_END, minutes, seconds);
+	if (user_name)
+		ft_printf_fd(STDOUT, MSG_TIME_END_V1, user_name, minutes, seconds);
+	ft_printf_fd(STDOUT, MSG_TIME_END_V2, minutes, seconds);
 }
