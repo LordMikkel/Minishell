@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asignation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 22:35:11 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/09/10 21:57:01 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/11 03:38:14 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,23 @@ static void	aux_value_asig(t_token *token, char **value, int *i)
 	(*value)[j] = '\0';
 }
 
+static int verify_if_already_set(t_shell *data, char *key, char *value)
+{
+	t_var *var;
+
+	var = data->env.vars;
+	while (var)
+	{
+		if (ft_strcmp(var->key, key) == 0)
+		{
+			var->value = value;
+			return (TRUE);
+		}
+		var = var->next;
+	}
+	return (FALSE);
+}
+
 int	asignation(t_shell *data, t_token *token, int type)
 {
 	char	*key;
@@ -82,6 +99,11 @@ int	asignation(t_shell *data, t_token *token, int type)
 	}
 	aux_key_asig(token, &key, &i);
 	aux_value_asig(token, &value, &i);
+	if (verify_if_already_set(data, key, value) == TRUE)
+	{
+		free (key);
+		return (SUCCESS);
+	}
 	add_var(data, key, value, type);
 	return (SUCCESS);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
+#    By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/09/10 21:21:36 by migarrid         ###   ########.fr        #
+#    Updated: 2025/09/11 23:04:09 by davdiaz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -132,6 +132,7 @@ SRCS =				main/main.c \
 					tokenizer/utils/simplify_tokens/adjust_range_tokens.c \
 					tokenizer/utils/trasnform_tokens/transform_word_to_cmd.c \
 					tokenizer/utils/trasnform_tokens/transform_word_to_asignation.c \
+					tokenizer/utils/trasnform_tokens/transform_invalid_asig_to_word.c \
 					expansion/expansion.c \
 					expansion/send_tokens_for_expansion.c \
 					expansion/utils/find_swap/copy_key.c \
@@ -151,6 +152,7 @@ SRCS =				main/main.c \
 					builtin/env.c \
 					builtin/echo.c \
 					builtin/export.c \
+					builtin/unset.c \
 					builtin/pwd.c \
 					exit/exit.c \
 					exit/error.c \

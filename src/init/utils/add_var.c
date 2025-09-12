@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_var.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 01:05:00 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/07 20:52:52 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/11 23:04:07 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,14 @@ void	add_var(t_shell *data, char *key, char *value, int type)
 	new_var->value = value;
 	new_var->type = type;
 	new_var->next = NULL;
+	new_var->prev = NULL;
 	last_var = lstlast_var(data->env.vars);
 	if (!last_var)
 		data->env.vars = new_var;
 	else
+	{
 		last_var->next = new_var;
+		new_var->prev = last_var;
+	}
 	data->env.size++;
 }
