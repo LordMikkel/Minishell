@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   send_tokens_for_expansion.c                        :+:      :+:    :+:   */
+/*   transform_invalid_asig_to_word.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/10 21:57:13 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/11 19:41:11 by davdiaz-         ###   ########.fr       */
+/*   Created: 2025/09/11 21:56:00 by davdiaz-          #+#    #+#             */
+/*   Updated: 2025/09/11 21:56:01 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../../../inc/minishell.h"
 
-int	send_tokens_for_expansion(t_shell *data, t_token *tokens, int phase)
+void transform_invalid_asig_to_word(t_prompt *prompt, t_token *tokens)
 {
-	int	i;
+	int i;
 
 	i = 0;
-	while (i < data->prompt.n_alloc_tokens)
+	while (i < prompt->n_tokens)
 	{
-		if (tokens[i].type == EXPANSION)
+		if (tokens[i - 1].type)
 		{
-			if (expansion(data, &tokens[i], &data->env, phase) == ERROR)
-				return (ERROR);
+			if (tokens[i].type == ASIGNATION)
+			{
+				if (tokens[i - 1].type == COMMAND
+					|| tokens[i - 1].type == WORD
+					|| (tokens[i - 1].type == BUILT_IN
+					&& ft_strcmp(tokens[i - 1].value, BUILTIN_EXPORT) != 0))
+						tokens[i].type = WORD;
+			}
 		}
 		i++;
 	}
-	return (SUCCESS);
+
 }

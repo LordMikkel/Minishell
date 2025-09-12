@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   transform_word_to_asignation.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:15:55 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/10 21:16:20 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/11 21:43:07 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/minishell.h"
 
-void	transform_word_to_asignation(t_shell *data, t_token *tokens)
+void	transform_word_to_asignation(t_shell *data, t_token *tokens, int phase)
 {
 	int	i;
 	int	result;
@@ -20,12 +20,15 @@ void	transform_word_to_asignation(t_shell *data, t_token *tokens)
 	i = 0;
 	while (i < data->prompt.n_tokens)
 	{
-		if (tokens[i].type != WORD)
+		if (tokens[i].type != WORD || tokens[i].type != ASIGNATION)
 		{
 			i++;
 			continue ;
 		}
-		result = check_externs_syntax(data, &tokens[i]);
+		if (phase == 1)
+			result = check_asignation_syntax(&tokens[i]);
+		else if (phase == 2)
+			result = check_externs_syntax(data, &tokens[i]);
 		if (result == TRUE)
 			tokens[i].type = ASIGNATION;
 		else if (result == IGNORE)

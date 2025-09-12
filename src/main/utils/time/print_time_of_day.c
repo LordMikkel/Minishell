@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_time_of_day.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 02:12:51 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/09/03 22:04:38 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/11 05:20:41 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 	El mensaje se imprime en la salida estándar (STDOUT) con formato.
 */
 
-void	print_time_of_day(time_t start)
+void	print_time_of_day(time_t start, char *user_name)
 {
 	struct tm	*local;
 	int			hour;
@@ -27,13 +27,13 @@ void	print_time_of_day(time_t start)
 	local = localtime(&start);
 	hour = local->tm_hour;
 	if (hour < 6)
-		ft_printf_fd(STDOUT, MSG_WELCOME_EARLY);
+		ft_printf_fd(STDOUT, MSG_WELCOME_EARLY, user_name);
 	else if (hour < 12)
-		ft_printf_fd(STDOUT, MSG_WELCOME_MORNING);
+		ft_printf_fd(STDOUT, MSG_WELCOME_MORNING, user_name);
 	else if (hour < 18)
-		ft_printf_fd(STDOUT, MSG_WELCOME_AFTER);
+		ft_printf_fd(STDOUT, MSG_WELCOME_AFTER, user_name);
 	else if (hour < 22)
-		ft_printf_fd(STDOUT, MSG_WELCOME_NIGHT);
+		ft_printf_fd(STDOUT, MSG_WELCOME_NIGHT, user_name);
 	else
-		ft_printf_fd(STDOUT, MSG_WELCOME_MIDNIGHT);
+		ft_printf_fd(STDOUT, MSG_WELCOME_MIDNIGHT, user_name);
 }

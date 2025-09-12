@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/10 17:07:24 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/11 20:12:52 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef struct s_var	t_var;
 typedef struct s_env	t_env;
 typedef struct s_token	t_token;
 typedef struct s_token	t_node;
+typedef struct s_extras	t_extras;
 
 typedef enum e_type
 {
@@ -88,6 +89,7 @@ struct s_var
 	char	*value;
 	t_type	type;
 	t_var	*next;
+	t_var	*prev;
 };
 
 typedef struct s_env
@@ -120,14 +122,20 @@ struct s_node
 	bool		executed;
 };
 
+typedef struct s_extras
+{
+	char	*user_name;
+	time_t	session_start;
+}	t_extras;
+
 typedef struct s_shell
 {
 	t_prompt	prompt;
 	t_node		*ast_root;
 	t_exec		executor;
 	t_env		env;
-	time_t		session_start;
-	int			last_exit_code;
+	t_extras	extra_features;
+	int		last_exit_code;
 }	t_shell;
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 23:55:15 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/11 22:30:30 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/12 17:09:31 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int check_exit(t_shell *data, t_token *tokens)
 	n_args = counter_args(tokens);
 	if (n_args > 1)
 		exit_error(data, ERR_EXIT_TOO_MANY, EXIT_USE);
-	if (n_args = 1)
+	if (n_args == 1)
 	{
 		if (is_numeric(tokens[1].value))
 		{

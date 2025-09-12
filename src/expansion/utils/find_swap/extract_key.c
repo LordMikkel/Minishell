@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_key.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:18:26 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/10 21:55:58 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/11 23:04:05 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	extract_key(t_shell *data, t_token *token, char **key_to_find, int phase)
 		return (ERROR);
 	if (!found && phase == 2)
 	{
+		//copy_value(data, &token->value, " ", *key_to_find);
 		token->value = ft_strdup("");// //cambiar el value por una str vacia
 		// si no se haya CREO QUE ESTO ESTA MAL porque reemplaza todo el valu
 		if (!token->value) // por ""y solo necesito que reemplaze la expansion
