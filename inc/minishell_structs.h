@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_structs.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/12 17:19:41 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/12 22:39:26 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ struct s_token
 	bool		single_quoted;
 	bool		double_quoted;
 	bool		expand;
-	t_env		*env;
 };
 
 typedef struct s_prompt
@@ -94,7 +93,7 @@ struct s_var
 
 typedef struct s_env
 {
-	char	**og_env;
+	char	**envp;
 	t_var	*vars;
 	int		size;
 }	t_env;

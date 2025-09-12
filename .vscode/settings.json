@@ -15,7 +15,6 @@
 		"*.inc": "c",
 		"minishell.h": "c",
 		"Makefile": "makefile",
-<<<<<<< HEAD
 		"__locale": "c",
 		"locale": "c",
 		"__bit_reference": "c",
@@ -29,16 +28,13 @@
 		"system_error": "c",
 		"tuple": "c",
 		"type_traits": "c",
-		"vector": "c"
-=======
+		"vector": "c",
 		"array": "c",
 		"string": "c",
 		"string_view": "c",
 		"deque": "c",
 		"unordered_map": "c",
-		"vector": "c",
 		"initializer_list": "c"
->>>>>>> main
 	},
 
 	// Configuración C/C++
@@ -51,6 +47,16 @@
 	"C_Cpp.suggestSnippets": true,
 	"cmake.ignoreCMakeListsMissing": true,
 	"C_Cpp.enhancedColorization": "enabled",
+
+	// Configuración Debug Visualizer para C
+	"debugVisualizer.debugAdapterConfigurations":
+	{
+		"cppdbg":
+		{
+			"expressionTemplate": "${expr}",
+			"context": "watch"
+		}
+	},
 
 	// Editor general
 	"editor.rulers": [80],

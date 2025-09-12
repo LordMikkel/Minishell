@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/12 18:26:07 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/12 22:55:49 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int		my_echo(t_token *tokens);
 int		my_pwd(t_shell *data);
 int		my_export(t_shell *data, t_token *tokens, t_env *env);
 int		my_unset(t_shell *data, t_env *env, t_token *tokens);
-void 	my_exit(t_shell *data, t_token *tokens);
+void	my_exit(t_shell *data, t_token *tokens);
 
 /* ************************************************************************** */
 /*                                Signals                                     */
@@ -159,6 +159,7 @@ int		find_range_end(t_token *tokens, int no_space_position);
 void	remove_quotes_tokens(t_prompt *prompt, t_token *tokens);
 
 //TRANSFORM TOKENS
+void	transform_tokens_logic(t_shell *data, t_prompt *promp, t_token *tokens);
 void	transform_cmd_to_word(t_shell *data, t_token *tokens);
 void	transform_word_to_asignation(t_shell *data, t_token *tokens, int phase);
 void	transform_invalid_asig_to_word(t_prompt *prompt, t_token *tokens);

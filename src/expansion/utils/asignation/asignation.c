@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asignation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 22:35:11 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/09/12 18:09:03 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/12 19:08:56 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 
 static int	aux_mem_alloc(char **key, char **value, int len)
 {
-	*key = (char *)malloc((len + 1) * sizeof(char));
-	*value = (char *)malloc((len + 1) * sizeof(char));
+	*key = ft_calloc(len + 1, sizeof(char));
+	*value = ft_calloc(len + 1, sizeof(char));
 	if (!*key || !*value)
 	{
 		free (*key);
@@ -40,13 +40,12 @@ static int	aux_mem_alloc(char **key, char **value, int len)
 
 static void	aux_key_asig(t_token *token, char **key, int *i)
 {
-	while (token->value[*i] != '=')
+	while (token->value[*i] != '=' && token->value[*i] != '\0')
 	{
 		(*key)[*i] = token->value[*i];
 		(*i)++;
 	}
-	(*key)[*i] = '\0';
-	(*i)++;
+	//(*i)++;
 }
 
 static void	aux_value_asig(t_token *token, char **value, int *i)
@@ -54,6 +53,8 @@ static void	aux_value_asig(t_token *token, char **value, int *i)
 	int	j;
 
 	j = 0;
+	if (token->value[*i] == '=')
+		(*i)++;
 	while (token->value[*i] != '\0')
 	{
 		if (token->value[*i] != '\"' && token->value[*i] != '\''

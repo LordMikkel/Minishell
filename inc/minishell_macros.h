@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_macros.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:23:16 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/12 17:17:59 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/12 22:55:30 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define NOT_FOUND					0
 # define SYNTAX_ERROR				0
 # define IGNORE						2
+# define VOID						0
 
 /* ************************************************************************** */
 /*                               Global Flag                                  */
@@ -48,6 +49,8 @@
 # define VIRGIN						0
 # define FORDWARD					1
 # define BACKWARDS					-1
+# define INITIAL_PHASE				1
+# define FINAL_PHASE				2
 
 /* ************************************************************************** */
 /*                               Exit Codes                                   */
@@ -74,7 +77,7 @@
 /*                               Buffer Sizes                                 */
 /* ************************************************************************** */
 # define BUFFER_SIZE				1024
-# define INIT_TOKENS				32
+# define INIT_TOKENS				2
 # define PATH_MAX_SIZE				4096
 # define CMD_MAX_LEN				1024
 # define ARG_MAX_COUNT				1024
@@ -162,11 +165,11 @@ delimited by end-of-file (wanted `%s')\n"
 /*                          Time messsage                                     */
 /* ************************************************************************** */
 # define MSG_TIME_START "\
-\033[0;36m %s, Your session started at: %02d:%02d:%02d on %02d/%02d/%04d\033[0m\n\n"
-# define MSG_TIME_END_V1 "\
-\n\033[0;36m %s, Your session ended. Duration: %d minutes and %d seconds ⏳\033[0m\n\n"
-# define MSG_TIME_END_V2 "\
-\n\033[0;36m Your session ended. Duration: %d minutes and %d seconds ⏳\033[0m\n\n"
+\033[0;36m Your session started \
+at: %02d:%02d:%02d on %02d/%02d/%04d\033[0m\n\n"
+# define MSG_TIME_END "\
+\n\033[0;36m Your session ended. \
+Duration: %d minutes and %d seconds ⏳\033[0m\n\n"
 
 /* ************************************************************************** */
 /*                          Prompt & Success Messages                         */
@@ -191,8 +194,9 @@ delimited by end-of-file (wanted `%s')\n"
 /* ************************************************************************** */
 /*                          Error User_name Messages                          */
 /* ************************************************************************** */
-# define MSG_INVALID_NAME			"\
-\033[1m\033[1;31mInvalid loggin: It must be alphanumeric, please try again \033[0m\n\n"
+# define MSG_INVALID_NAME "\
+\033[1m\033[1;31mInvalid loggin: It must be alphanumeric, \
+please try again \033[0m\n\n"
 
 /* ************************************************************************** */
 /*                          Entry Message                                     */

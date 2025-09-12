@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   my_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 23:55:15 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/12 17:09:31 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/12 22:58:03 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 static int	counter_args(t_token *tokens)
 {
-	int i;
-	int n_args;
+	int	i;
+	int	n_args;
 
 	i = 1;
 	n_args = 0;
-	while(tokens[i].type && !is_delimiter_type((tokens[i].type)))
+	while (tokens[i].type && !is_delimiter_type((tokens[i].type)))
 	{
 		if (tokens[i].type == WORD)
 			n_args++;
@@ -39,7 +39,7 @@ static int	is_numeric(const char *str)
 		i++;
 	if (!str[i])
 		return (FAILURE);
-	while(str[i])
+	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))
 			return (FAILURE);
@@ -48,7 +48,7 @@ static int	is_numeric(const char *str)
 	return (SUCCESS);
 }
 
-static int check_exit(t_shell *data, t_token *tokens)
+static int	check_exit(t_shell *data, t_token *tokens)
 {
 	long	num;
 	int		status;
@@ -70,7 +70,7 @@ static int check_exit(t_shell *data, t_token *tokens)
 	return (0);
 }
 
-void my_exit(t_shell *data, t_token *tokens)
+void	my_exit(t_shell *data, t_token *tokens)
 {
 	int	status;
 

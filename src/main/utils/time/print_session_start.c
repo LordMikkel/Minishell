@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_session_start.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 02:13:28 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/09/12 17:31:29 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/12 22:50:02 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	print_minishell_title(void)
 	printf("\n\n" RESET_COLOR);
 }
 
-static void check_user_name_syntax(char *user_name, int *validation)
+static void	check_user_name_syntax(char *user_name, int *validation)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (user_name[i] != '\0')
@@ -49,7 +49,7 @@ static void check_user_name_syntax(char *user_name, int *validation)
 	*validation = SUCCESS;
 }
 
-static char *get_user_name(char **user_name, int *validation)
+static char	*get_user_name(char **user_name, int *validation)
 {
 	*user_name = readline("\033[1m\033[1;32mIntroduce your login: \033[0m");
 	printf("\n\n");
@@ -68,7 +68,7 @@ static char *get_user_name(char **user_name, int *validation)
 	return (*user_name);
 }
 
-static char *is_valid_user_name(void)
+static char	*is_valid_user_name(void)
 {
 	char	*user_name;
 	int		validation;
@@ -85,23 +85,21 @@ static char *is_valid_user_name(void)
 	return (user_name);
 }
 
-void	print_session_start(t_shell *data, time_t start, char *user_name)
+void	print_session_start(t_shell *data, time_t start, char *name)
 {
 	struct tm	*local;
-	char *temp;
 
 	local = localtime(&start);
 	print_minishell_title();
-	user_name = is_valid_user_name();
-	if (!user_name)
+	name = is_valid_user_name();
+	if (!name)
 		exit_succes(data, MSG_GOODBYE, EXIT_SUCCESS);
-	temp = user_name;
-	user_name = ft_strdup(temp);
-	if (!user_name)
-		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
-	free (temp);
-	print_time_of_day(start, user_name);
+	data->extra_features.user_name = ft_strdup(name);
+	if (!data->extra_features.user_name)
+		return (free(name), exit_error(data, ERR_MALLOC, EXIT_FAIL), (void)0);
+	print_time_of_day(start, data->extra_features.user_name);
 	printf(MSG_TIME_START,
-		user_name, local->tm_hour, local->tm_min, local->tm_sec,
+		local->tm_hour, local->tm_min, local->tm_sec,
 		local->tm_mday, local->tm_mon + 1, local->tm_year + 1900);
+	free(name);
 }

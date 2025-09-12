@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 19:57:07 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/11 17:28:47 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/12 22:48:16 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,6 @@ int	find_range_start(t_token *tokens, int no_space_position)
 	int	start;
 
 	start = no_space_position;
-	// if (start >= 5
-	// 	&& is_quote_type(tokens[start - 1].type)
-	// 	&& is_quote_type(tokens[start - 2].type)
-	// 	&& is_quote_type(tokens[start - 3].type)
-	// 	&& is_between_quotes_type(tokens[start - 4].type))
-	// 	return (start - 5);
-	// else if (start >= 4
-	// 	&& is_quote_type(tokens[start - 1].type)
-	// 	&& is_quote_type(tokens[start - 2].type)
-	// 	&& is_quote_type(tokens[start - 3].type)
-	// 	&& is_quote_type(tokens[start - 4].type))
-	// 	return (start - 4);
 	if (start >= 4
 		&& is_quote_type(tokens[start - 1].type)
 		&& is_quote_type(tokens[start - 2].type)
@@ -71,18 +59,6 @@ int	find_range_end(t_token *tokens, int no_space_position)
 	int	end;
 
 	end = no_space_position;
-	// if (tokens[end + 5].type
-	// 	&& is_quote_type(tokens[end + 1].type)
-	// 	&& is_quote_type(tokens[end + 2].type)
-	// 	&& is_quote_type(tokens[end + 3].type)
-	// 	&& is_between_quotes_type(tokens[end + 4].type))
-	// 	return (end + 5);
-	// else if (tokens[end + 4].type
-	// 	&& is_quote_type(tokens[end + 1].type)
-	// 	&& is_quote_type(tokens[end + 2].type)
-	// 	&& is_quote_type(tokens[end + 3].type)
-	// 	&& is_quote_type(tokens[end + 4].type))
-	// 	return (end + 4);
 	if (tokens[end + 4].type
 		&& is_quote_type(tokens[end + 1].type)
 		&& is_quote_type(tokens[end + 2].type)
