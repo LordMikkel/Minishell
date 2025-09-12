@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:22:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/10 22:31:12 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/11 03:36:36 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,34 +47,53 @@
  *   (como `export -p` o variables sin valor).
  */
 
+
+
+static int check_for_valid_args(t_token *tokens, int i)
+{
+	if (tokens[i].type == PIPE || tokens[i].type == AND
+		|| tokens[i].type == OR || tokens[i].type == PAREN_OPEN
+		|| ((tokens[i].type == WORD)
+			&& ft_strcmp(tokens[i].value, BUILTIN_EXPORT) == 0))
+		return (FALSE);
+	return (TRUE);
+}
+
+static void print_env_variables(t_var	*var)
+{
+	while (var)
+	{
+		if (var->type == ENV)
+			printf("declare -x %s=\"%s\"\n", var->key, var->value);
+		var = var->next;
+	}
+}
+
 int	my_export(t_shell *data, t_token *tokens, t_env *env)
 {
 	t_var	*var;
 	int		i;
 	int		result;
+	int		args_found;
 
 	var = env->vars;
 	i = tokens->id;
-	while (i < data->prompt.n_alloc_tokens)
+	args_found = FALSE;
+	while (tokens[i].type)
 	{
-		if (tokens[i].type == PIPE || tokens[i].type == AND
-			|| tokens[i].type == OR || tokens[i].type == PAREN_OPEN
-			|| (tokens[i].type == WORD)
-			&& ft_strcmp(tokens[i].value, BUILTIN_EXPORT) == 0)
+		if (i > 0)
+			args_found = TRUE;
+		if (check_for_valid_args(tokens, i) == FALSE)
 			break ;
 		if (tokens[i].type == ASIGNATION)
+		{
 			result = is_it_asig(data, &tokens[i], env, ENV);
+			if (result == ERROR)
+				return (ERROR);
+		}
 		i++;
 	}
-	if (i == 1 && (tokens[i].type == WORD
-			&& ft_strcmp(tokens[i].value, BUILTIN_EXPORT) == 0))
-	{
-		while (var)
-		{
-			if (var->type == ENV)
-				printf("declare -x %s=\"%s\"\n", var->key, var->value);
-			var = var->next;
-		}
-	}
+	if (!args_found)
+		print_env_variables(var);
 	return (result);
 }

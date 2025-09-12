@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:57:33 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/10 22:23:51 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/11 23:04:07 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@
  *
  * Este sistema permite una expansión segura, dinámica y escalable de variables
  * dentro de un shell, respetando fases de ejecución y tipos de token.
- */
+*/
 
 static int	aux_mem_alloc(t_shell *data, t_token *token, char **key_to_find)
 {

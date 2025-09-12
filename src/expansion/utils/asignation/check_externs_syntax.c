@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_externs_syntax.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:30:59 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/10 22:27:01 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/12 16:35:39 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ static int	check_case_1(t_token *token)
 		if (((token[-1].type == AND
 					|| token[-1].type == OR
 					|| (token[-1].type == BUILT_IN)
-					&& ft_strcmp(token[-1].value, BUILTIN_EXPORT) == 0)
-				//importante
-				//manerjarlo en el arbol si es false o true
+					&& ft_strcmp(token[-1].value, BUILTIN_EXPORT) == 0) //importante manerjarlo en el arbol si es false o true
 				&& (token[+1].type == AND || token[+1].type == OR))
 			|| (token[+1].type == BUILT_IN)
 			&& ft_strcmp(token[+1].value, BUILTIN_EXPORT) == 0)
@@ -70,7 +68,7 @@ int	check_externs_syntax(t_shell *data, t_token *token)
 
 	result = 0;
 	validate = TRUE;
-	if (token->id >= 0 && token->id < data->prompt.n_tokens
+	if (token->id >= 1 && token->id < data->prompt.n_tokens
 		&& (token[+1].type || token[-1].type))
 	{
 		validate = check_case_1(token);
@@ -84,8 +82,7 @@ int	check_externs_syntax(t_shell *data, t_token *token)
 			result = check_asignation_syntax(token);
 	}
 	else
-		result = check_asignation_syntax(token); //en caso de que sea
-		//el primero y no haya ningun otro token
+		result = check_asignation_syntax(token); //en caso de que sea el primero y no haya ningun otro token
 	if (result == TRUE && validate == IGNORE)
 		result = IGNORE;
 	return (result);
