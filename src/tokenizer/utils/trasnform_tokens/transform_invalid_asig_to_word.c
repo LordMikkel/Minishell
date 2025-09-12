@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 21:56:00 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/09/11 21:56:01 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/12 18:12:36 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void transform_invalid_asig_to_word(t_prompt *prompt, t_token *tokens)
 	i = 0;
 	while (i < prompt->n_tokens)
 	{
-		if (tokens[i - 1].type)
+		if (i >= 1 && tokens[i - 1].type)
 		{
 			if (tokens[i].type == ASIGNATION)
 			{

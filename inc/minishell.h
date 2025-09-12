@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/12 17:29:02 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/12 18:26:07 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,6 +175,7 @@ int		asignation(t_shell *data, t_token *token, int type);
 int		is_it_asig(t_shell *data, t_token *token, t_env *env, int type);
 int		check_asignation_syntax(t_token *token);
 int		check_externs_syntax(t_shell *data, t_token *token);
+int		send_tokens_for_asig(t_shell *data, t_token *tokens, int phase);
 
 //ENV
 void	path_null_no_env(t_shell *data, char **path);
