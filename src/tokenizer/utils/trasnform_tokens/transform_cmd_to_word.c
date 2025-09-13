@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 15:39:12 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/12 16:51:29 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/13 22:34:30 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,11 @@ static int	before_is_cmd_word_redir(t_token *tokens, int i)
 			&& tokens[i - 3].type == EXPANSION
 			&& is_redir_type(tokens[i - 4].type)))
 			return (0);
-	if (i >= 2 && tokens[i - 1].type == WORD
+	else if ((i >= 2 && tokens[i - 1].type == BACKGROUND
+			&& (tokens[i - 2].type == REDIR_OUTPUT
+				|| tokens[i - 2].type == REDIR_APPEND)))
+			return (1);
+	else if (i >= 2 && tokens[i - 1].type == WORD
 			&& !is_redir_type(tokens[i - 2].type))
 			return (1);
 	else if (i >= 2 && tokens[i - 1].type == EXPANSION
