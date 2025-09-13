@@ -8,21 +8,18 @@ Minishell - Bash
   - https://github.com/rogerdevworld/minishell/blob/main/src/bonus/syntax/ft_lexer_2.c#L93
 
 ## MIKEL:
-
-- Problemas de simplify tokens → `sds""''"$ls"''$mikel` genera doble NO_SPACE pero creo que no hay problema a malas se podría hacer una función que borre dobles NO_SPACES seguidos.
-- `is_double_quote` manejar \ correctamente
-- `is_double_quote` seguido de word → NO_SPACE
 - Crear envp char **
-- bash + argumento debería abrir ese archivo (solo el primero) y tratar de ejecutar los que haya dentro como input
 - SHLVL actualizar
+- bash + argumento debería abrir ese archivo (solo el primero) y tratar de ejecutar los que haya dentro como input
 
 ## DAVID:
-
 - Arreglar `is_cmd` para que esto lo catalogue como cmd → Token [3]: '/usr/bin/ls' (type: WORD)
 - Errores sintáctico
 	`(echo) hi` → debería dar error syntax
 	`(echo hi && ((echo hi && (echo hi) && echo hi)))` → debería dar error syntax
-- Expansiones $?, $$, $!...
+- Error en expansion echo "$1" en quotes permite hacer este tipo de expansiones que resultan en "" pero
+  nuestra expansion devueleToken [0]: 'echo' (type: BUILT_IN) Token [1]: '$1' (type: EXPANSION) ----> $1
+- Expansiones $, $?, $$, $!...
 - Actualizar el size de env cada vez que se setea con export
 - `my_assignation` builtin
 - `echo $a && a=1`

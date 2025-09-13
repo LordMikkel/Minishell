@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:47 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/13 21:44:48 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/13 21:44:30 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	make_word_d(t_shell *data, t_prompt *promp, const char *s, int range[2])
 	word = cleanner_word(data, word, range[1] - range[0], '\"');
 	word = cleanner_slash_quotes_d(data, word, range[1] - range[0], '\\');
 	ptr = ft_strchr(word, '$');
-	if (ptr)
+	if (ptr && *(ptr + 1) && !ft_isspace(*(ptr + 1)) && *(ptr + 1) != '\"')
 	{
 		if (*(ptr - 1) != '\\')
 			token_id = add_token(data, promp, word, EXPANSION);

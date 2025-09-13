@@ -34,7 +34,8 @@
 		"string_view": "c",
 		"deque": "c",
 		"unordered_map": "c",
-		"initializer_list": "c"
+		"initializer_list": "c",
+		"random": "c"
 	},
 
 	// Configuración C/C++

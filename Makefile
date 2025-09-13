@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/09/12 22:57:09 by migarrid         ###   ########.fr        #
+#    Updated: 2025/09/13 21:33:25 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -115,6 +115,7 @@ SRCS =				main/main.c \
 					tokenizer/utils/is_tokens/is_cmdsubs.c \
 					tokenizer/utils/is_tokens/is_type_I.c \
 					tokenizer/utils/is_tokens/is_type_II.c \
+					tokenizer/utils/is_tokens/utils_is_double_quote.c \
 					tokenizer/utils/check_syntax/check_redir_input.c \
 					tokenizer/utils/check_syntax/check_redir_output.c \
 					tokenizer/utils/check_syntax/check_background.c \
@@ -214,6 +215,16 @@ $(READLINE_A): $(READLINE_DIR)/config.h
 $(READLINE_DIR)/config.h:
 	@$(PRINT) "Configuring $(BLUE)readline$(DEFAULT)...\n"
 	@cd $(READLINE_DIR) && ./configure --enable-static --disable-shared > /dev/null 2>&1
+
+# Test minishell rapidly
+test: all
+	@clear
+	@./minishell
+
+# Test leaks in minishell
+leaks: all
+	@clear
+	@valgrind --leak-check=full --show-leak-kinds=definite,indirect,possible --track-origins=yes ./minishell
 
 # Test the norminette in my .c files
 norm:
