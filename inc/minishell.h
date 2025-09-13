@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/12 22:55:49 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/13 21:35:51 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,7 +182,9 @@ int		send_tokens_for_asig(t_shell *data, t_token *tokens, int phase);
 void	path_null_no_env(t_shell *data, char **path);
 
 //UTILS
-char	*cleanner_slash(t_shell *data, char *word, int len, char slash);
+char	*cleanner_slash_quotes_d(t_shell *d, char *word, int len, char slash);
+char	*clean_slash_expan_d(t_shell *data, char *word, int len, char slash);
+void	clean_quote_until_slash_d(char *word, char *clean_word, char quote);
 void	void_tokens_at_the_end(t_token *tokens, int n_alloc, int n_tokens);
 
 /* ************************************************************************** */
