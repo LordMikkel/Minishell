@@ -32,6 +32,10 @@ Minishell - Bash
 - Norminette
 - Comentarios
 
+## Errores:
+- En is_double_quote -> no se pueden hacer dos expansiones seguidas cuando hay `\` antes del `$` funciona para expansiones
+  individuales pero la flag seteada evita las demas expansiones
+
 ## ARQUITECTURA GENERAL
 
 ```

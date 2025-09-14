@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 21:47:38 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/12 23:53:40 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/14 23:56:28 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ void	clean_env(t_var *vars)
 
 void	clean_all(t_shell *data)
 {
+	ic_history_clear();
 	clear_history();
 	clean_prompt(&data->prompt);
 	clean_env(data->env.vars);

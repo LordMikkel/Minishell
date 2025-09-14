@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/09/13 21:33:25 by migarrid         ###   ########.fr        #
+#    Updated: 2025/09/15 01:00:24 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ PRINT				= printf
 MAKE				= make
 MKDIR				= mkdir -p
 NORM				= norminette
+CMAKE				= cmake
 
 # **************************************************************************** #
 #                              Directories                                     #
@@ -42,6 +43,7 @@ OBJ_DIR				= obj
 SRC_DIR				= src
 LIBFT_DIR			= $(LIB_DIR)/libft_plus
 READLINE_DIR		= $(LIB_DIR)/readline
+ISOCLINE_DIR		= $(LIB_DIR)/isocline
 
 # **************************************************************************** #
 #                      File Paths and Dependencies                             #
@@ -55,6 +57,8 @@ LIBFT_H				= $(LIBFT_DIR)/libft_plus.h
 LIBFT_MAKEFILE		= $(LIBFT_DIR)/Makefile
 HISTORY_A			= $(READLINE_DIR)/libhistory.a
 READLINE_A			= $(READLINE_DIR)/libreadline.a
+ISOCLINE_A			= $(ISOCLINE_DIR)/build/release/libisocline.a
+ISOCLINE_H			= $(ISOCLINE_DIR)/include/isocline.h
 READLINE_HEADERS	=	ansi_stdlib.h chardefs.h colors.h config.h histlib.h \
 						history.h keymaps.h parse-colors.h posixdir.h posixjmp.h \
 						posixselect.h posixstat.h readline.h rlconf.h rldefs.h \
@@ -196,11 +200,11 @@ ${OBJ_DIR}/%.o: ${SRC_DIR}/%.c $(DEPS) $(LIBFT_A) | $(OBJ_DIR)
 #                              Targets                                         #
 # **************************************************************************** #
 
-all: $(READLINE_A) $(LIBFT_A) $(NAME)
+all: $(READLINE_A) $(ISOCLINE_A) $(LIBFT_A) $(NAME)
 
 # Build executable
-$(NAME): $(OBJS) $(LIBFT_A) $(READLINE_A) $(HISTORY_A)
-	@$(CC) $(WFLAGS) $(DFLAGS) $(SFLAGS) $(OFLAGS) $(RFLAGS) $(OBJS) $(LIBFT_A) -I$(INC_DIR) $(LDLIBS) -o $(NAME)
+$(NAME): $(OBJS) $(LIBFT_A) $(READLINE_A) $(HISTORY_A) $(ISOCLINE_A)
+	@$(CC) $(WFLAGS) $(DFLAGS) $(SFLAGS) $(OFLAGS) $(RFLAGS) $(OBJS) $(LIBFT_A) $(ISOCLINE_A) -I$(INC_DIR) $(LDLIBS) -o $(NAME)
 	@$(PRINT) "${CLEAR}${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}${GREEN}»${RESET} [${PURPLE}${BOLD}${NAME}${RESET}]: ${RED}${BOLD}${NAME} ${RESET}compiled ${GREEN}successfully${RESET}.${GREY}\n${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}"
 
 # Rebuild libft.a
@@ -216,14 +220,21 @@ $(READLINE_DIR)/config.h:
 	@$(PRINT) "Configuring $(BLUE)readline$(DEFAULT)...\n"
 	@cd $(READLINE_DIR) && ./configure --enable-static --disable-shared > /dev/null 2>&1
 
+# Rebuild readline libraries
+$(ISOCLINE_A):
+	@$(PRINT) "Compiling $(BLUE)isocline library$(DEFAULT)...\n"
+	@cd $(ISOCLINE_DIR) && $(MKDIR) build/release && cd build/release && $(CMAKE) ../.. > /dev/null 2>&1 && $(CMAKE) --build . > /dev/null 2>&1
+
 # Test minishell rapidly
-test: all
+test:
 	@clear
+	@$(MAKE) all
 	@./minishell
 
 # Test leaks in minishell
-leaks: all
+leaks:
 	@clear
+	@$(MAKE) all
 	@valgrind --leak-check=full --show-leak-kinds=definite,indirect,possible --track-origins=yes ./minishell
 
 # Test the norminette in my .c files
@@ -236,6 +247,7 @@ norm:
 clean:
 	@$(MAKE) clean -s -C $(LIBFT_DIR)
 	@$(MAKE) clean -s -C $(READLINE_DIR)
+	@$(RM) $(ISOCLINE_DIR)/build
 	@$(RM) $(OBJ_DIR)
 	@$(PRINT) "${CLEAR}${RESET}${GREEN}»${RESET} [${PURPLE}${BOLD}${NAME}${RESET}]: Objects were cleaned ${GREEN}successfully${RESET}.\n${RESET}"
 
