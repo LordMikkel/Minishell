@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:47 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/13 21:44:48 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/14 18:29:25 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,22 +50,21 @@ void	make_word_d(t_shell *data, t_prompt *promp, const char *s, int range[2])
 	char	*ptr;
 	char	*word;
 	int		token_id;
+	int		flag;
 
+	flag = FALSE;
 	word = ft_substr(s, range[0], range[1] - range[0]);
 	if (!word)
 		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
 	word = cleanner_word(data, word, range[1] - range[0], '\"');
-	word = cleanner_slash_quotes_d(data, word, range[1] - range[0], '\\');
+	word = cleanner_slash_quotes_d(data, word, range[1] - range[0], &flag);
 	ptr = ft_strchr(word, '$');
 	if (ptr)
 	{
-		if (*(ptr - 1) != '\\')
-			token_id = add_token(data, promp, word, EXPANSION);
-		else
-		{
-			word = clean_slash_expan_d(data, word, range[1] - range[0], '\\');
+		if (flag == TRUE)
 			token_id = add_token(data, promp, word, WORD);
-		}
+		else
+			token_id = add_token(data, promp, word, EXPANSION);
 	}
 	else
 		token_id = add_token(data, promp, word, WORD);

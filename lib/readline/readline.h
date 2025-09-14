@@ -3,7 +3,7 @@
 /* Copyright (C) 1987-2020 Free Software Foundation, Inc.
 
    This file is part of the GNU Readline Library (Readline), a library
-   for reading lines of text with interactive input and history editing.      
+   for reading lines of text with interactive input and history editing.
 
    Readline is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -339,7 +339,7 @@ extern rl_command_func_t *rl_function_of_keyseq_len PARAMS((const char *, size_t
 extern void rl_list_funmap_names PARAMS((void));
 extern char **rl_invoking_keyseqs_in_map PARAMS((rl_command_func_t *, Keymap));
 extern char **rl_invoking_keyseqs PARAMS((rl_command_func_t *));
- 
+
 extern void rl_function_dumper PARAMS((int));
 extern void rl_macro_dumper PARAMS((int));
 extern void rl_variable_dumper PARAMS((int));
@@ -379,6 +379,7 @@ extern void rl_push_macro_input PARAMS((char *));
 /* Functions for undoing, from undo.c */
 extern void rl_add_undo PARAMS((enum undo_code, int, int, char *));
 extern void rl_free_undo_list PARAMS((void));
+extern void rl_clear_undo_list PARAMS((void));
 extern int rl_do_undo PARAMS((void));
 extern int rl_begin_undo_group PARAMS((void));
 extern int rl_end_undo_group PARAMS((void));
@@ -464,7 +465,7 @@ extern void rl_free_line_state PARAMS((void));
 extern int rl_pending_signal PARAMS((void));
 extern void rl_check_signals PARAMS((void));
 
-extern void rl_echo_signal_char PARAMS((int)); 
+extern void rl_echo_signal_char PARAMS((int));
 
 extern int rl_set_paren_blink_timeout PARAMS((int));
 
@@ -591,7 +592,7 @@ extern rl_hook_func_t *rl_startup_hook;
    readline_internal_setup () returns and readline_internal starts
    reading input characters. */
 extern rl_hook_func_t *rl_pre_input_hook;
-      
+
 /* The address of a function to call periodically while Readline is
    awaiting character input, or NULL, for no event handling. */
 extern rl_hook_func_t *rl_event_hook;
@@ -697,7 +698,7 @@ extern /*const*/ char *rl_completer_word_break_characters;
 extern rl_cpvfunc_t *rl_completion_word_break_hook;
 
 /* List of characters which can be used to quote a substring of the line.
-   Completion occurs on the entire substring, and within the substring   
+   Completion occurs on the entire substring, and within the substring
    rl_completer_word_break_characters are treated as any other character,
    unless they also appear within this list. */
 extern const char *rl_completer_quote_characters;
@@ -859,7 +860,7 @@ extern int rl_inhibit_completion;
    readline-6.2.  This should be used with care, because it can result in
    readline receiving signals and not handling them until it's called again
    via rl_callback_read_char, thereby stealing them from the application.
-   By default, signal handlers are only active while readline is active. */   
+   By default, signal handlers are only active while readline is active. */
 extern int rl_persistent_signal_handlers;
 
 /* Input error; can be returned by (*rl_getc_function) if readline is reading
@@ -954,7 +955,7 @@ struct readline_state {
   /* options state */
 
   /* hook state */
-  
+
   /* reserved for future expansion, so the struct size doesn't change */
   char reserved[64];
 };

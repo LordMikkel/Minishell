@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 02:13:28 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/09/12 22:50:02 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/14 19:37:59 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static char	*is_valid_user_name(void)
 			return (NULL);
 		if (validation == SUCCESS)
 			break ;
-		ft_printf_fd(STDOUT, MSG_INVALID_NAME);
+		free(user_name);
 	}
 	return (user_name);
 }
