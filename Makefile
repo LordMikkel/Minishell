@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/09/15 01:00:24 by migarrid         ###   ########.fr        #
+#    Updated: 2025/09/15 03:46:09 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ CC					= cc
 #WFLAGS				= -Wall -Wextra -Werror
 DFLAGS				= -g
 #OFLAGS				= -O2 -march=native -flto
-SLAGS				= -fsanitize=address
+SFLAGS				= -fsanitize=address
 
 # **************************************************************************** #
 #                               Shell Comands                                  #
@@ -200,11 +200,18 @@ ${OBJ_DIR}/%.o: ${SRC_DIR}/%.c $(DEPS) $(LIBFT_A) | $(OBJ_DIR)
 #                              Targets                                         #
 # **************************************************************************** #
 
-all: $(READLINE_A) $(ISOCLINE_A) $(LIBFT_A) $(NAME)
+# all: $(READLINE_A) $(ISOCLINE_A) $(LIBFT_A) $(NAME)
+
+# # Build executable
+# $(NAME): $(OBJS) $(LIBFT_A) $(READLINE_A) $(HISTORY_A) $(ISOCLINE_A)
+# 	@$(CC) $(WFLAGS) $(DFLAGS) $(SFLAGS) $(OFLAGS) $(OBJS) $(LIBFT_A) $(ISOCLINE_A) -I$(INC_DIR) $(LDLIBS) -o $(NAME)
+# 	@$(PRINT) "${CLEAR}${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}${GREEN}»${RESET} [${PURPLE}${BOLD}${NAME}${RESET}]: ${RED}${BOLD}${NAME} ${RESET}compiled ${GREEN}successfully${RESET}.${GREY}\n${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}"
+
+all: $(ISOCLINE_A) $(LIBFT_A) $(NAME)
 
 # Build executable
-$(NAME): $(OBJS) $(LIBFT_A) $(READLINE_A) $(HISTORY_A) $(ISOCLINE_A)
-	@$(CC) $(WFLAGS) $(DFLAGS) $(SFLAGS) $(OFLAGS) $(RFLAGS) $(OBJS) $(LIBFT_A) $(ISOCLINE_A) -I$(INC_DIR) $(LDLIBS) -o $(NAME)
+$(NAME): $(OBJS) $(LIBFT_A) $(ISOCLINE_A)
+	@$(CC) $(WFLAGS) $(DFLAGS) $(SFLAGS) $(OFLAGS) $(OBJS) $(LIBFT_A) $(ISOCLINE_A) -I$(INC_DIR) -o $(NAME)
 	@$(PRINT) "${CLEAR}${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}${GREEN}»${RESET} [${PURPLE}${BOLD}${NAME}${RESET}]: ${RED}${BOLD}${NAME} ${RESET}compiled ${GREEN}successfully${RESET}.${GREY}\n${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}"
 
 # Rebuild libft.a
@@ -223,7 +230,8 @@ $(READLINE_DIR)/config.h:
 # Rebuild readline libraries
 $(ISOCLINE_A):
 	@$(PRINT) "Compiling $(BLUE)isocline library$(DEFAULT)...\n"
-	@cd $(ISOCLINE_DIR) && $(MKDIR) build/release && cd build/release && $(CMAKE) ../.. > /dev/null 2>&1 && $(CMAKE) --build . > /dev/null 2>&1
+	@$(MKDIR) $(ISOCLINE_DIR)/build/release
+	@cd $(ISOCLINE_DIR)/build/release && $(CMAKE) ../.. > /dev/null 2>&1 && $(CMAKE) --build . > /dev/null 2>&1
 
 # Test minishell rapidly
 test:
@@ -246,7 +254,7 @@ norm:
 # Clean object files
 clean:
 	@$(MAKE) clean -s -C $(LIBFT_DIR)
-	@$(MAKE) clean -s -C $(READLINE_DIR)
+# 	@$(MAKE) clean -s -C $(READLINE_DIR)
 	@$(RM) $(ISOCLINE_DIR)/build
 	@$(RM) $(OBJ_DIR)
 	@$(PRINT) "${CLEAR}${RESET}${GREEN}»${RESET} [${PURPLE}${BOLD}${NAME}${RESET}]: Objects were cleaned ${GREEN}successfully${RESET}.\n${RESET}"
@@ -254,7 +262,7 @@ clean:
 # Full clean
 fclean: clean
 	@$(MAKE) fclean -s -C $(LIBFT_DIR)
-	@$(MAKE) distclean -s -C $(READLINE_DIR)
+# 	@$(MAKE) distclean -s -C $(READLINE_DIR)
 	@$(RM) $(NAME)
 	@$(PRINT) "${CLEAR}${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}${GREEN}»${RESET} [${PURPLE}${BOLD}${NAME}${RESET}]: Project cleaned ${GREEN}successfully${RESET}.${GREY}\n${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}"
 

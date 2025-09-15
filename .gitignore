@@ -9,6 +9,9 @@
 ./obj
 minishell
 
+# Exceptions
+!CMakeLists.txt
+
 # Readline post config
 lib/readline/Makefile
 lib/readline/config.h

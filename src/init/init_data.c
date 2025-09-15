@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 23:17:43 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/15 00:54:29 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/15 03:51:59 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,11 @@
 void	init_ic_readline(void)
 {
 	ic_set_history(NO_FILE, ILIMITED);
-	ic_set_prompt_marker("\033[1;34m> \033[0m", "");
+	ic_set_prompt_marker("", "");
 	ic_enable_multiline(true);
 	ic_enable_multiline_indent(false);
 	ic_enable_color(true);
+	ic_style_def("ic-prompt", "#4A90E2");
 	ic_style_def("ic-info", "#6272a4");
 	ic_style_def("ic-diminish", "#6272a4 italic");
 	ic_style_def("ic-emphasis", "#8be9fd bold");
