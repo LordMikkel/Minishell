@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 21:11:15 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/16 21:14:42 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/17 01:22:24 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ char	*ft_strjoin_multi(int count, ...)
 	result = (char *)malloc(total_len + 1);
 	if (!result)
 		return (NULL);
+	result[0] = '\0';
 	va_start(args, count);
 	if (!concatenate_strings(count, args, result, total_len))
 		return (va_end(args), free(result), NULL);

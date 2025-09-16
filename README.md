@@ -8,7 +8,6 @@ Minishell - Bash
   - https://github.com/rogerdevworld/minishell/blob/main/src/bonus/syntax/ft_lexer_2.c#L93
 
 ## MIKEL:
-- Crear envp char **
 - SHLVL actualizar
 - bash + argumento debería abrir ese archivo (solo el primero) y tratar de ejecutar los que haya dentro como input
 
