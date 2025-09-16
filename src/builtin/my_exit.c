@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 23:55:15 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/12 23:58:31 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/16 05:16:55 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,17 @@
 	Cuenta los argumentos tipo WORD que siguen a "exit".
 */
 
-static int	counter_args(t_token *tokens)
+static int	counter_args(t_token *token, int n_tokens)
 {
 	int	i;
 	int	n_args;
 
 	i = 1;
 	n_args = 0;
-	while (tokens[i].type && !is_delimiter_type((tokens[i].type)))
+	while (token->id + i < n_tokens &&
+		token[+i].type && !is_delimiter_type((token[+i].type)))
 	{
-		if (tokens[i].type == WORD)
+		if (token[+i].type == WORD)
 			n_args++;
 		i++;
 	}
@@ -65,20 +66,22 @@ static int	is_numeric(const char *str)
 	- Sin argumentos → devuelve 0.
 */
 
-static int	check_exit(t_shell *data, t_token *tokens)
+static int	check_exit(t_shell *data, t_token *token, int n_tokens)
 {
 	long	num;
 	int		status;
 	int		n_args;
+	int		i;
 
-	n_args = counter_args(tokens);
+	i = 1;
+	n_args = counter_args(token, n_tokens);
 	if (n_args > 1)
 		exit_error(data, ERR_EXIT_TOO_MANY, EXIT_USE);
 	if (n_args == 1)
 	{
-		if (is_numeric(tokens[1].value))
+		if (is_numeric(token[+i].value))
 		{
-			num = ft_atol(tokens[1].value);
+			num = ft_atol(token[+i].value);
 			status = num % 256;
 			return (status);
 		}
@@ -91,10 +94,10 @@ static int	check_exit(t_shell *data, t_token *tokens)
 	Ejecuta el built-in "exit" con el status validado.
 */
 
-void	my_exit(t_shell *data, t_token *tokens)
+void	my_exit(t_shell *data, t_prompt *prompt, t_token *token)
 {
 	int	status;
 
-	status = check_exit(data, tokens);
+	status = check_exit(data, token, prompt->n_tokens);
 	exit_succes(data, NULL, status);
 }
