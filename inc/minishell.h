@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/15 19:32:20 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/16 05:17:44 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int		my_pwd(t_shell *data);
 int		my_echo(t_prompt *prompt, t_token *tokens);
 int		my_export(t_shell *data, t_token *tokens, t_env *env);
 int		my_unset(t_shell *data, t_env *env, t_token *tokens);
-void	my_exit(t_shell *data, t_token *tokens);
+void	my_exit(t_shell *data, t_prompt *prompt, t_token *tokens);
 
 /* ************************************************************************** */
 /*                                Signals                                     */

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 01:23:24 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/15 22:22:53 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/16 05:21:03 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ static void	handle_n_flag(t_token *token, int *new_line, int n_tokens, int *i)
 	int	j;
 
 	j = 0;
-	while (token->id + *i < n_tokens && token[*i].type
-		&& token[*i].value[0] == '-' && token[*i].value[1] == 'n')
+	while (token->id + *i < n_tokens && token[+*i].type
+		&& token[+*i].value[0] == '-' && token[+*i].value[1] == 'n')
 	{
-		j += 2;
-		while (token[*i].value[j] == 'n')
+		j = 2;
+		while (token[+*i].value[j] == 'n')
 			j++;
-		if (token[*i].value[j] == '\0')
+		if (token[+*i].value[j] == '\0')
 		{
 			*new_line = FALSE;
 			(*i)++;
@@ -53,16 +53,15 @@ int	my_echo(t_prompt *prompt, t_token *token)
 	new_line = TRUE;
 	handle_n_flag(token, &new_line, prompt->n_tokens, &i);
 	while (token->id + i < prompt->n_tokens
-		&& !is_delimiter_type(token[i].type))
+		&& !is_delimiter_type(token[+i].type))
 	{
-		ft_printf_fd(STDOUT, "%s", token[i].value);
+		ft_printf_fd(STDOUT, "%s", token[+i].value);
 		if (token->id + i + 1 < prompt->n_tokens
-			&& !is_delimiter_type(token[i + 1].type))
+			&& !is_delimiter_type(token[+ i + 1].type))
 			ft_printf_fd(STDOUT, " ");
 		i++;
 	}
 	if (new_line)
 		ft_printf_fd(STDOUT, "\n");
-	// fflush(stdout);
 	return (0);
 }
