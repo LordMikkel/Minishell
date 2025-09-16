@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/16 05:17:44 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/16 20:40:42 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,42 +41,37 @@
 extern volatile sig_atomic_t	g_signal_event;
 
 /* ************************************************************************** */
-/*                                Minishell                                   */
-/* ************************************************************************** */
-int		steps_manager(t_shell *data, char *input);
-char	*recieve_input(char **input, t_shell *data);
-
-/* ************************************************************************** */
 /*                             Initialization                                 */
 /* ************************************************************************** */
 void	init_data(t_shell *data, char **input, char **envp);
-void	allocate_tokens(t_shell *data, t_prompt *prompt, char *input);
 void	init_enviroment(t_shell *data, char **envp);
-void	add_var(t_shell *data, char *key, char *value, int type);
+void	init_ic_readline(void);
 
 /* ************************************************************************** */
 /*                               Tokenizer                                    */
 /* ************************************************************************** */
 int		tokenizer(t_shell *data, t_prompt *prompt, char *input);
+char	*recieve_input(char **input, t_shell *data);
 void	parse_tokens(t_shell *data, t_prompt *prompt, char *input);
 int		valid_tokens(t_shell *data, t_prompt *prompt, t_token *tokens);
 int		add_token(t_shell *data, t_prompt *prompt, char *value, int type);
-
-/* ************************************************************************** */
-/*                                  AST                                       */
-/* ************************************************************************** */
-void	ast_built(t_shell *data, t_token *tokens);
-/* ************************************************************************** */
-/*                                Executor                                    */
-/* ************************************************************************** */
-void	execute_recursive(t_shell *data, t_node *ast_root, t_exec *executor);
-void	which_builtin(t_shell *data, t_token *tokens, t_token *token);
 
 /* ************************************************************************** */
 /*                               Expansion                                    */
 /* ************************************************************************** */
 int		expansion(t_shell *data, t_token *token, t_env *env, int phase);
 int		send_tokens_for_expansion(t_shell *data, t_token *tokens, int phase);
+
+/* ************************************************************************** */
+/*                                  AST                                       */
+/* ************************************************************************** */
+void	ast_built(t_shell *data, t_token *tokens);
+
+/* ************************************************************************** */
+/*                                Executor                                    */
+/* ************************************************************************** */
+void	execute_recursive(t_shell *data, t_node *ast_root, t_exec *executor);
+void	which_builtin(t_shell *data, t_token *tokens, t_token *token);
 
 /* ************************************************************************** */
 /*                                buil_in                                     */
@@ -95,13 +90,6 @@ int		init_signals(void);
 void	signal_handler(int sig, siginfo_t *info, void *context);
 
 /* ************************************************************************** */
-/*                                 Exits                                      */
-/* ************************************************************************** */
-int		exit_error(t_shell *data, const char *error, int exit_code, ...);
-int		exit_succes(t_shell *data, char *msg, int exit_code);
-int		syntax_error(t_shell *data, const char *error, int exit_code, ...);
-
-/* ************************************************************************** */
 /*                                 Clean                                      */
 /* ************************************************************************** */
 void	clean_all(t_shell *data);
@@ -109,8 +97,19 @@ void	clean_prompt(t_prompt *prompt);
 void	clean_tokens(t_prompt *prompt);
 
 /* ************************************************************************** */
+/*                                 Exits                                      */
+/* ************************************************************************** */
+int		exit_error(t_shell *data, const char *error, int exit_code, ...);
+int		exit_succes(t_shell *data, char *msg, int exit_code);
+int		syntax_error(t_shell *data, const char *error, int exit_code, ...);
+
+/* ************************************************************************** */
 /*                                 utils                                      */
 /* ************************************************************************** */
+// INIT
+void	allocate_tokens(t_shell *data, t_prompt *prompt, char *input);
+void	add_var(t_shell *data, char *key, char *value, int type);
+
 // GET TOKENS
 void	is_cmd(t_shell *d, t_prompt *p, t_token *t, char *s);
 void	is_word(t_shell *data, t_prompt *prompt, const char *str, int *i);

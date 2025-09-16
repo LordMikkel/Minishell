@@ -62,6 +62,7 @@
 			"context": "watch"
 		}
 	},
+	"debugVisualizer.useChromeKioskMode": true,
 
 	// Editor general
 	"editor.rulers": [80],
