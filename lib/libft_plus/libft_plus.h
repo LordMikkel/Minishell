@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 16:10:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/10 22:41:24 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/16 21:15:21 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
 char	**ft_split(const char *s, char c);
 char	*ft_strjoin(const char *s1, const char *s2);
+char	*ft_strjoin_multi(int count, ...);
 char	*ft_strtrim(const char *s1, const char *s2);
 char	*ft_strfilter_c(const char *str, char c);
 char	*ft_substr(const char *s, unsigned int start, size_t len);
