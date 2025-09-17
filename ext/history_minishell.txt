@@ -137,7 +137,6 @@ echo $A $B
 A=1
 AB=2
 echo $AB
-ls
 scsd
 ces
 vves
@@ -152,7 +151,6 @@ echo $A $B $C
 echo $vsdvsvd
 export a=3
 echo $a
-Mikel
 .vscode/launch.json
 ls > ''
 ls > 
@@ -168,13 +166,18 @@ ls > |
 ls > ""
 ls > &&
 ls > &
-ls > ls
-ls > & ls
-ls >&
-ls >& ls
 echo $1
 export A=1 ls B=2
 env
 echo "hola $A"
 echo "hola $sdvsddvd"
 echo "hola$sdvsddvd"
+echo hola & > ls
+Mikel
+ls > ls
+ls > &ls
+ls > & ls
+ls >& ls
+ls >&
+ls &
+ls

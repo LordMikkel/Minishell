@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 18:39:51 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/17 19:59:03 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/17 21:35:52 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	check_redir_output(t_shell *data, t_prompt *p, t_token *tokens, int i)
 				|| tokens[i + 1].type == BUILT_IN
 				|| tokens[i + 1].type == EXPANSION
 				|| tokens[i + 1].type == WILDCAR
-				|| tokens[i + 1].type == BACKGROUND
 				|| tokens[i + 1].type == SINGLE_QUOTE
 				|| tokens[i + 1].type == DOUBLE_QUOTE))
 		{
