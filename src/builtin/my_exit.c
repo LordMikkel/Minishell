@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 23:55:15 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/16 20:30:14 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/17 16:05:02 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ static int	counter_args(t_token *token, int n_tokens)
 	i = 1;
 	n_args = 0;
 	while (token->id + i < n_tokens
-		&& token[+i].type && !is_delimiter_type((token[+i].type)))
+		&& token[+i].type
+		&& (!is_delimiter_type((token[+i].type))
+			&& !is_redir_type(token[+i].type)))
 	{
 		if (token[+i].type == WORD)
 			n_args++;
