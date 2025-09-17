@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/09/17 19:27:27 by migarrid         ###   ########.fr        #
+#    Updated: 2025/09/17 23:11:56 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,13 +94,16 @@ SRCS =				main/main.c \
 					main/utils/time/print_session_start.c \
 					main/utils/time/print_session_end.c \
 					main/utils/time/print_time_of_day.c \
-					init/init_data.c \
-					init/init_env.c \
-					init/init_readline.c \
-					init/utils/alloc_tokens.c \
-					init/utils/add_token.c \
-					init/utils/add_var.c \
-					init/utils/make_envp.c \
+					init/init_minishell.c \
+					init/utils/init/init_data.c \
+					init/utils/init/init_env.c \
+					init/utils/init/init_arg.c \
+					init/utils/init/init_readline.c \
+					init/utils/tokens/alloc_tokens.c \
+					init/utils/tokens/add_token.c \
+					init/utils/env/add_var.c \
+					init/utils/env/make_envp.c \
+					init/utils/env/update_shlvl.c \
 					tokenizer/tokenizer.c \
 					tokenizer/utils/is_tokens/is_and.c \
 					tokenizer/utils/is_tokens/is_dolar.c \

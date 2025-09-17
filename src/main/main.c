@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:43 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/14 22:10:24 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/17 22:46:02 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ int	main(int argc, char **argv, char **envp)
 	t_shell	data;
 	char	*input;
 
-	init_signals();
-	init_data(&data, &input, envp);
+	init_minishell(&data, argc, argv, envp);
 	while (recieve_input(&input, &data) != NULL)
 	{
 		if (!tokenizer(&data, &data.prompt, input))

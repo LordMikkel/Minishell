@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:23:16 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/17 17:49:14 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/17 22:01:00 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,8 @@ delimited by end-of-file (wanted `%s')\n"
 //Variable Errors
 # define ERR_VAR_NOT_SET	"minishell: %s: parameter null or not set\n"
 # define ERR_BAD_SUBST		"minishell: %s: bad substitution\n"
+# define ERR_SHLVL_HIGH		"minishell: warning: shell level (INT_MAX) \
+too high, resetting to 1\n"
 
 //Redirection Errors
 # define ERR_AMBIGUOUS_REDIR	"minishell: ambiguous redirect\n"
