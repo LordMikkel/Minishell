@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 18:39:51 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/13 22:23:23 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/17 19:59:03 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	check_redir_output(t_shell *data, t_prompt *p, t_token *tokens, int i)
 {
 	if (tokens[i].type == REDIR_OUTPUT || tokens[i].type == REDIR_APPEND)
 	{
-		if (!tokens[i + 1].type)
+		if (i > p->n_tokens || !tokens[i + 1].type)
 		{
 			syntax_error(data, ERR_SYNTAX, EXIT_USE, "newline");
 			return (SYNTAX_ERROR);
@@ -41,10 +41,7 @@ int	check_redir_output(t_shell *data, t_prompt *p, t_token *tokens, int i)
 				|| tokens[i + 1].type == SINGLE_QUOTE
 				|| tokens[i + 1].type == DOUBLE_QUOTE))
 		{
-			if (tokens[i].type == REDIR_OUTPUT)
-				syntax_error(data, ERR_SYNTAX, EXIT_USE, ">");
-			else if (tokens[i].type == REDIR_APPEND)
-				syntax_error(data, ERR_SYNTAX, EXIT_USE, ">>");
+			syntax_error(data, ERR_SYNTAX, EXIT_USE, tokens[i + 1].value);
 			return (SYNTAX_ERROR);
 		}
 	}

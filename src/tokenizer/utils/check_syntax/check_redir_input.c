@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 18:39:51 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/07 21:46:00 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/17 19:58:58 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	check_redir_input(t_shell *data, t_prompt *p, t_token *tokens, int i)
 {
 	if (tokens[i].type == REDIR_INPUT || tokens[i].type == REDIR_HEREDOC)
 	{
-		if (!tokens[i + 1].type)
+		if (i > p->n_tokens || !tokens[i + 1].type)
 		{
 			syntax_error(data, ERR_SYNTAX, EXIT_USE, "newline");
 			return (SYNTAX_ERROR);
@@ -40,10 +40,7 @@ int	check_redir_input(t_shell *data, t_prompt *p, t_token *tokens, int i)
 				|| tokens[i + 1].type == SINGLE_QUOTE
 				|| tokens[i + 1].type == DOUBLE_QUOTE))
 		{
-			if (tokens[i].type == REDIR_INPUT)
-				syntax_error(data, ERR_SYNTAX, EXIT_USE, "<");
-			else if (tokens[i].type == REDIR_HEREDOC)
-				syntax_error(data, ERR_SYNTAX, EXIT_USE, "<<");
+			syntax_error(data, ERR_SYNTAX, EXIT_USE, tokens[i + 1].value);
 			return (SYNTAX_ERROR);
 		}
 	}
