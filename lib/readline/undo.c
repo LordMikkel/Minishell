@@ -3,7 +3,7 @@
 /* Copyright (C) 1987-2017 Free Software Foundation, Inc.
 
    This file is part of the GNU Readline Library (Readline), a library
-   for reading lines of text with interactive input and history editing.      
+   for reading lines of text with interactive input and history editing.
 
    Readline is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -96,6 +96,40 @@ rl_add_undo (enum undo_code what, int start, int end, char *text)
   rl_undo_list = temp;
 }
 
+/* Free all undo entries. */
+void
+rl_clear_undo_list (void)
+{
+  while (rl_undo_list)
+    {
+      UNDO_LIST *next = rl_undo_list->next;
+      free (rl_undo_list);
+      rl_undo_list = next;
+    }
+	rl_undo_list = NULL;
+}
+
+// void rl_clear_undo_list(void)
+// {
+//     while (rl_undo_list)
+//     {
+//         UNDO_LIST *next = rl_undo_list->next;
+
+//         // ¡IMPORTANTE! Liberar el texto si es UNDO_DELETE
+//         if (rl_undo_list->what == UNDO_DELETE && rl_undo_list->text)
+//         {
+//             xfree(rl_undo_list->text);
+//             rl_undo_list->text = NULL;
+//         }
+
+//         xfree(rl_undo_list);
+//         rl_undo_list = next;
+//     }
+
+//     // Asegurarse de que queda NULL
+//     rl_undo_list = NULL;
+// }
+
 /* Free an UNDO_LIST */
 void
 _rl_free_undo_list (UNDO_LIST *ul)
@@ -107,11 +141,14 @@ _rl_free_undo_list (UNDO_LIST *ul)
       release = ul;
       ul = ul->next;
 
-      if (release->what == UNDO_DELETE)
-	xfree (release->text);
-
+      if (release->what == UNDO_DELETE && rl_undo_list->text)
+      {
+        xfree (release->text);
+        rl_undo_list->text = NULL;
+      }
       xfree (release);
     }
+	rl_undo_list = NULL;
 }
 
 /* Free the existing undo list. */
@@ -342,7 +379,7 @@ rl_revert_line (int count, int key)
 	rl_point = rl_mark = 0;		/* rl_end should be set correctly */
 #endif
     }
-    
+
   return 0;
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/17 16:58:24 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/17 17:08:46 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@
 /* ************************************************************************** */
 /*                               Includes                                     */
 /* ************************************************************************** */
+# include "../lib/isocline/include/isocline.h"
 # include "../lib/libft_plus/libft_plus.h"
+# include "../lib/readline/readline.h"
+# include "../lib/readline/history.h"
 # include "minishell_structs.h"
 # include "minishell_macros.h"
-# include <readline/readline.h>
-# include <readline/history.h>
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <sys/stat.h>
@@ -40,35 +41,20 @@
 extern volatile sig_atomic_t	g_signal_event;
 
 /* ************************************************************************** */
-/*                                Minishell                                   */
-/* ************************************************************************** */
-char	*recieve_input(char **input, t_shell *data);
-
-/* ************************************************************************** */
 /*                             Initialization                                 */
 /* ************************************************************************** */
 void	init_data(t_shell *data, char **input, char **envp);
-void	allocate_tokens(t_shell *data, t_prompt *prompt, char *input);
 void	init_enviroment(t_shell *data, char **envp);
-void	add_var(t_shell *data, char *key, char *value, int type);
+void	init_ic_readline(void);
 
 /* ************************************************************************** */
 /*                               Tokenizer                                    */
 /* ************************************************************************** */
 int		tokenizer(t_shell *data, t_prompt *prompt, char *input);
+char	*recieve_input(char **input, t_shell *data);
 void	parse_tokens(t_shell *data, t_prompt *prompt, char *input);
 int		check_if_valid_tokens(t_shell *data, t_prompt *prompt, t_token *tokens);
 int		add_token(t_shell *data, t_prompt *prompt, char *value, int type);
-
-/* ************************************************************************** */
-/*                                  AST                                       */
-/* ************************************************************************** */
-void	ast_built(t_shell *data, t_token *tokens);
-/* ************************************************************************** */
-/*                                Executor                                    */
-/* ************************************************************************** */
-void	execute_recursive(t_shell *data, t_node *ast_root, t_exec *executor);
-void	which_builtin(t_shell *data, t_token *tokens, t_token *token);
 
 /* ************************************************************************** */
 /*                               Expansion                                    */
@@ -76,27 +62,31 @@ void	which_builtin(t_shell *data, t_token *tokens, t_token *token);
 int		expansion(t_shell *data, t_token *token, t_env *env, int phase);
 
 /* ************************************************************************** */
+/*                                  AST                                       */
+/* ************************************************************************** */
+void	ast_built(t_shell *data, t_token *tokens);
+
+/* ************************************************************************** */
+/*                                Executor                                    */
+/* ************************************************************************** */
+void	execute_recursive(t_shell *data, t_node *ast_root, t_exec *executor);
+void	which_builtin(t_shell *data, t_token *tokens, t_token *token);
+
+/* ************************************************************************** */
 /*                                buil_in                                     */
 /* ************************************************************************** */
 int		my_env(t_var *vars);
 int		my_pwd(t_shell *data);
-int		my_echo(t_prompt *prompt, t_token *token);
+int		my_echo(t_prompt *prompt, t_token *tokens);
 int		my_export(t_shell *data, t_token *tokens, t_env *env);
 int		my_unset(t_shell *data, t_env *env, t_token *tokens);
-void	my_exit(t_shell *data, t_token *tokens);
+void	my_exit(t_shell *data, t_prompt *prompt, t_token *tokens);
 
 /* ************************************************************************** */
 /*                                Signals                                     */
 /* ************************************************************************** */
 int		init_signals(void);
 void	signal_handler(int sig, siginfo_t *info, void *context);
-
-/* ************************************************************************** */
-/*                                 Exits                                      */
-/* ************************************************************************** */
-int		exit_error(t_shell *data, const char *error, int exit_code, ...);
-int		exit_succes(t_shell *data, char *msg, int exit_code);
-int		syntax_error(t_shell *data, const char *error, int exit_code, ...);
 
 /* ************************************************************************** */
 /*                                 Clean                                      */
@@ -106,8 +96,19 @@ void	clean_prompt(t_prompt *prompt);
 void	clean_tokens(t_prompt *prompt);
 
 /* ************************************************************************** */
+/*                                 Exits                                      */
+/* ************************************************************************** */
+int		exit_error(t_shell *data, const char *error, int exit_code, ...);
+int		exit_succes(t_shell *data, char *msg, int exit_code);
+int		syntax_error(t_shell *data, const char *error, int exit_code, ...);
+
+/* ************************************************************************** */
 /*                                 utils                                      */
 /* ************************************************************************** */
+// INIT
+void	allocate_tokens(t_shell *data, t_prompt *prompt, char *input);
+void	add_var(t_shell *data, char *key, char *value, int type);
+
 // GET TOKENS
 void	is_cmd(t_shell *d, t_prompt *p, t_token *t, char *s);
 void	is_word(t_shell *data, t_prompt *prompt, const char *str, int *i);
@@ -179,9 +180,12 @@ int		send_tokens_for_asig(t_shell *data, t_token *tokens, int phase);
 
 //ENV
 void	path_null_no_env(t_shell *data, char **path);
+char	**make_envp(t_shell *data, t_env *env, t_var *vars);
 
 //UTILS
-char	*cleanner_slash(t_shell *data, char *word, int len, char slash);
+char	*cleanner_slash_quotes_d(t_shell *data, char *word, int len, int *flag);
+char	*clean_slash_expan_d(t_shell *data, char *word, int len, char slash);
+void	clean_quote_until_slash_d(char *word, char *clean_word, char quote);
 void	void_tokens_at_the_end(t_token *tokens, int n_alloc, int n_tokens);
 
 /* ************************************************************************** */

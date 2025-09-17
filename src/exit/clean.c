@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 21:47:38 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/12 22:00:42 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/16 20:25:08 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,11 @@ void	clean_prompt(t_prompt *prompt)
 	*prompt = (t_prompt){0};
 }
 
+/*
+	Libera la memoria reservada para `user_name` en `t_extras`
+	y lo deja apuntando a NULL para evitar accesos inválidos.
+*/
+
 void	clean_extras(t_extras *extra_features)
 {
 	if (extra_features->user_name)
@@ -92,9 +97,17 @@ void	clean_env(t_var *vars)
 	variables de entorno asociadas a 'data'.
 */
 
+// void	clean_all(t_shell *data)
+// {
+// 	ic_history_clear();
+// 	clear_history();
+// 	clean_prompt(&data->prompt);
+// 	clean_env(data->env.vars);
+// 	clean_extras(&data->extra_features);
+// }
+
 void	clean_all(t_shell *data)
 {
-	clear_history();
 	clean_prompt(&data->prompt);
 	clean_env(data->env.vars);
 	clean_extras(&data->extra_features);

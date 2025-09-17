@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+         #
+#    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/09/15 16:55:26 by davdiaz-         ###   ########.fr        #
+#    Updated: 2025/09/17 17:08:09 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ CC					= cc
 #WFLAGS				= -Wall -Wextra -Werror
 DFLAGS				= -g
 #OFLAGS				= -O2 -march=native -flto
-SLAGS				= -fsanitize=address
+#SFLAGS				= -fsanitize=address
 
 # **************************************************************************** #
 #                               Shell Comands                                  #
@@ -32,6 +32,7 @@ PRINT				= printf
 MAKE				= make
 MKDIR				= mkdir -p
 NORM				= norminette
+CMAKE				= cmake
 
 # **************************************************************************** #
 #                              Directories                                     #
@@ -42,6 +43,7 @@ OBJ_DIR				= obj
 SRC_DIR				= src
 LIBFT_DIR			= $(LIB_DIR)/libft_plus
 READLINE_DIR		= $(LIB_DIR)/readline
+ISOCLINE_DIR		= $(LIB_DIR)/isocline
 
 # **************************************************************************** #
 #                      File Paths and Dependencies                             #
@@ -55,6 +57,8 @@ LIBFT_H				= $(LIBFT_DIR)/libft_plus.h
 LIBFT_MAKEFILE		= $(LIBFT_DIR)/Makefile
 HISTORY_A			= $(READLINE_DIR)/libhistory.a
 READLINE_A			= $(READLINE_DIR)/libreadline.a
+ISOCLINE_A			= $(ISOCLINE_DIR)/build/release/libisocline.a
+ISOCLINE_H			= $(ISOCLINE_DIR)/include/isocline.h
 READLINE_HEADERS	=	ansi_stdlib.h chardefs.h colors.h config.h histlib.h \
 						history.h keymaps.h parse-colors.h posixdir.h posixjmp.h \
 						posixselect.h posixstat.h readline.h rlconf.h rldefs.h \
@@ -92,9 +96,11 @@ SRCS =				main/main.c \
 					main/utils/time/print_time_of_day.c \
 					init/init_data.c \
 					init/init_env.c \
+					init/init_readline.c \
 					init/utils/alloc_tokens.c \
 					init/utils/add_token.c \
 					init/utils/add_var.c \
+					init/utils/make_envp.c \
 					tokenizer/tokenizer.c \
 					tokenizer/utils/is_tokens/is_and.c \
 					tokenizer/utils/is_tokens/is_dolar.c \
@@ -115,6 +121,7 @@ SRCS =				main/main.c \
 					tokenizer/utils/is_tokens/is_cmdsubs.c \
 					tokenizer/utils/is_tokens/is_type_I.c \
 					tokenizer/utils/is_tokens/is_type_II.c \
+					tokenizer/utils/is_tokens/utils_is_double_quote.c \
 					tokenizer/utils/check_syntax/check_redir_input.c \
 					tokenizer/utils/check_syntax/check_double_parent.c \
 					tokenizer/utils/check_syntax/check_redir_output.c \
@@ -196,11 +203,18 @@ ${OBJ_DIR}/%.o: ${SRC_DIR}/%.c $(DEPS) $(LIBFT_A) | $(OBJ_DIR)
 #                              Targets                                         #
 # **************************************************************************** #
 
-all: $(READLINE_A) $(LIBFT_A) $(NAME)
+# all: $(READLINE_A) $(ISOCLINE_A) $(LIBFT_A) $(NAME)
+
+# # Build executable
+# $(NAME): $(OBJS) $(LIBFT_A) $(READLINE_A) $(HISTORY_A) $(ISOCLINE_A)
+# 	@$(CC) $(WFLAGS) $(DFLAGS) $(SFLAGS) $(OFLAGS) $(OBJS) $(LIBFT_A) $(ISOCLINE_A) -I$(INC_DIR) $(LDLIBS) -o $(NAME)
+# 	@$(PRINT) "${CLEAR}${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}${GREEN}»${RESET} [${PURPLE}${BOLD}${NAME}${RESET}]: ${RED}${BOLD}${NAME} ${RESET}compiled ${GREEN}successfully${RESET}.${GREY}\n${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}"
+
+all: $(ISOCLINE_A) $(LIBFT_A) $(NAME)
 
 # Build executable
-$(NAME): $(OBJS) $(LIBFT_A) $(READLINE_A) $(HISTORY_A)
-	@$(CC) $(WFLAGS) $(DFLAGS) $(SFLAGS) $(OFLAGS) $(RFLAGS) $(OBJS) $(LIBFT_A) -I$(INC_DIR) $(LDLIBS) -o $(NAME)
+$(NAME): $(OBJS) $(LIBFT_A) $(ISOCLINE_A)
+	@$(CC) $(WFLAGS) $(DFLAGS) $(SFLAGS) $(OFLAGS) $(OBJS) $(LIBFT_A) $(ISOCLINE_A) -I$(INC_DIR) -o $(NAME)
 	@$(PRINT) "${CLEAR}${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}${GREEN}»${RESET} [${PURPLE}${BOLD}${NAME}${RESET}]: ${RED}${BOLD}${NAME} ${RESET}compiled ${GREEN}successfully${RESET}.${GREY}\n${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}"
 
 # Rebuild libft.a
@@ -216,6 +230,24 @@ $(READLINE_DIR)/config.h:
 	@$(PRINT) "Configuring $(BLUE)readline$(DEFAULT)...\n"
 	@cd $(READLINE_DIR) && ./configure --enable-static --disable-shared > /dev/null 2>&1
 
+# Rebuild readline libraries
+$(ISOCLINE_A):
+	@$(PRINT) "Compiling $(BLUE)isocline library$(DEFAULT)...\n"
+	@$(MKDIR) $(ISOCLINE_DIR)/build/release
+	@cd $(ISOCLINE_DIR)/build/release && $(CMAKE) ../.. > /dev/null 2>&1 && $(CMAKE) --build . > /dev/null 2>&1
+
+# Test minishell rapidly
+test:
+	@clear
+	@$(MAKE) all
+	@./minishell
+
+# Test leaks in minishell
+leaks:
+	@clear
+	@$(MAKE) all
+	@valgrind --leak-check=full --show-leak-kinds=definite,indirect,possible --track-origins=yes ./minishell
+
 # Test the norminette in my .c files
 norm:
 	-@$(NORM) $(LIBFT_DIR)
@@ -225,14 +257,15 @@ norm:
 # Clean object files
 clean:
 	@$(MAKE) clean -s -C $(LIBFT_DIR)
-	@$(MAKE) clean -s -C $(READLINE_DIR)
+# 	@$(MAKE) clean -s -C $(READLINE_DIR)
+	@$(RM) $(ISOCLINE_DIR)/build
 	@$(RM) $(OBJ_DIR)
 	@$(PRINT) "${CLEAR}${RESET}${GREEN}»${RESET} [${PURPLE}${BOLD}${NAME}${RESET}]: Objects were cleaned ${GREEN}successfully${RESET}.\n${RESET}"
 
 # Full clean
 fclean: clean
 	@$(MAKE) fclean -s -C $(LIBFT_DIR)
-	@$(MAKE) distclean -s -C $(READLINE_DIR)
+# 	@$(MAKE) distclean -s -C $(READLINE_DIR)
 	@$(RM) $(NAME)
 	@$(PRINT) "${CLEAR}${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}${GREEN}»${RESET} [${PURPLE}${BOLD}${NAME}${RESET}]: Project cleaned ${GREEN}successfully${RESET}.${GREY}\n${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}"
 

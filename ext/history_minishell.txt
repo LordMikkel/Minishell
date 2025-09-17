@@ -1,0 +1,8 @@
+echo hola > test
+exit 1 >
+exit 1 > 2
+exit 5
+(())
+Mikel
+A=1
+echo $A

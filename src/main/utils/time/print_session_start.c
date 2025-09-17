@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_session_start.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 02:13:28 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/09/17 17:02:04 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/17 17:13:48 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	check_user_name_syntax(char *user_name, int *validation)
 
 static char	*get_user_name(char **user_name, int *validation)
 {
-	*user_name = readline("\033[1m\033[1;32mIntroduce your login: \033[0m");
+	*user_name = ic_readline("\033[1m\033[1;32mIntroduce your login: \033[0m");
 	printf("\n\n");
 	if (!*user_name) // Ctrl+D detectado
 	{
@@ -79,7 +79,7 @@ static char	*is_valid_user_name(void)
 			return (NULL);
 		if (validation == SUCCESS)
 			break ;
-		ft_printf_fd(STDOUT, MSG_INVALID_NAME);
+		free(user_name);
 	}
 	return (user_name);
 }
