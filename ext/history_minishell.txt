@@ -32,7 +32,6 @@ export b='hola Mundo'
 env hola
 env -i
 export c
-env
 pwd
 unset a
 unset a+
@@ -83,3 +82,30 @@ ear
 exit
 exit 12131a
 exit 12a
+exit s 2
+exit 1 4 55 
+exit 0 5 4 8
+cM
+echo $$$
+echo $$$USER
+export A=hola
+env
+export A+=" como" A+=" estas"
+export A+="como" A+="estas"
+export A+= " como"
+export A+=  como
+export A+="  como"
+export A+= "  como"
+export A+=" como"
+export A+=' '
+export A+="  "
+export A+= como
+export A+=&^%&$%^\x2334__
+A=@\x23@$$*&^^&*_315131
+export A+=' como'
+export "v=pepe"
+export "v=    pepe"
+export A=@@$$*&^^&*_315131
+A=@@$$*&^^&*_315131
+export v=pepe l
+lib/libft_plus/Makefile
