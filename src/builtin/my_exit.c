@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 23:55:15 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/17 17:50:21 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/17 18:02:47 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static int	check_exit(t_shell *data, t_token *token, int n_tokens)
 	i = 1;
 	n_args = counter_args(token, n_tokens);
 	if (n_args > 1)
-		exit_error(data, ERR_EXIT_TOO_MANY, EXIT_USE);
+		return (ERROR);
 	if (n_args == 1)
 	{
 		if (is_numeric(token[+i].value))
@@ -101,5 +101,7 @@ void	my_exit(t_shell *data, t_prompt *prompt, t_token *token)
 	int	status;
 
 	status = check_exit(data, token, prompt->n_tokens);
+	if (status == ERROR)
+		return (ft_printf_fd(STDOUT, ERR_EXIT_TOO_MANY), (void)0);
 	exit_succes(data, NULL, status);
 }

@@ -8,6 +8,29 @@ Minishell - Bash
   - https://github.com/rogerdevworld/minishell/blob/main/src/bonus/syntax/ft_lexer_2.c#L93
 
 ## MIKEL:
+- Mejorar logic caso -> minishell> A=@@$$*&^^&*_315131
+Alloc Tokens: 32
+Syntax Tokens: 7
+------------------------------------------------
+Token [0]: 'A=@@' (type: WORD)
+Token [1]: '' (type: NO_SPACE)
+Token [2]: '$$*' (type: EXPANSION)
+Token [3]: '&' (type: BACKGROUND)
+Token [4]: '^^' (type: WORD)
+Token [5]: '&' (type: BACKGROUND)
+Token [6]: '*_315131' (type: WILDCAR)
+------------------------------------------------
+Token [0]: 'A=@@$$*' (type: WORD)
+Token [1]: '&' (type: BACKGROUND)
+Token [2]: '^^' (type: WORD)
+Token [3]: '&' (type: BACKGROUND)
+Token [4]: '*_315131' (type: WILDCAR)
+------------------------------------------------
+Token [0]: 'A=@@$$*' (type: ASIGNATION)
+Token [1]: '&' (type: BACKGROUND)
+Token [2]: '^^' (type: WORD)
+Token [3]: '&' (type: BACKGROUND)
+Token [4]: '*_315131' (type: WILDCAR)
 - SHLVL actualizar
 - bash + argumento debería abrir ese archivo (solo el primero) y tratar de ejecutar los que haya dentro como input
 
