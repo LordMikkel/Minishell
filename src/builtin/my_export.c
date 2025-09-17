@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:22:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/16 00:00:54 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/17 20:13:13 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ static void	print_env_variables(t_var	*var)
 	{
 		if (var->type == ENV)
 			printf("declare -x %s=\"%s\"\n", var->key, var->value);
+		if (var->type == EXP)
+			printf("declare -x %s\n", var->key);
 		var = var->next;
 	}
 }

@@ -36,27 +36,16 @@ Token [4]: '*_315131' (type: WILDCAR)
 
 ## DAVID:
 - Arreglar `is_cmd` para que esto lo catalogue como cmd → Token [3]: '/usr/bin/ls' (type: WORD)
-- Errores sintáctico
-	`(echo) hi` → debería dar error syntax
-	`(echo hi && ((echo hi && (echo hi) && echo hi)))` → debería dar error syntax
-- Error en expansion echo "$1" en quotes permite hacer este tipo de expansiones que resultan en "" pero
-  nuestra expansion devueleToken [0]: 'echo' (type: BUILT_IN) Token [1]: '$1' (type: EXPANSION) ----> $1
 - Expansiones $, $?, $$, $!...
-- Actualizar el size de env cada vez que se setea con export
-- `my_assignation` builtin
 - `echo $a && a=1`
 - Invalid read → `echo $A`
-- Locales seteadas no dejan setear la misma variable a export → no debería ser así
-- No setea `export A=2 ls D=5` correctamente como lo hace bash
-- `echo "hola $NOEXISTE"` borra toda la string
 - Expansion ha de soportar los wildcards *
-- Refactorizar expansion para que incorpore `send_tokens_for_expansion`
 - Norminette
 - Comentarios
-- - export con espacios no sirve. por las comillas simpples, ya que lo pone como word en lugar de asignation
+- export con espacios no sirve. por las comillas simpples, ya que lo pone como word en lugar de asignation
 - CUando se hace export a, se actualiza en el export pero no en el env
 - Export con += no concatena
-- CAracteres invalidos para antes del "="
+- Caracteres invalidos para antes del "="
 - NO iterar expandir cuando no es EXPANSION token
 - Cuando es: "$USE" deja espacio. Cuando es: $USE no deja espacio
 
