@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:57:33 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/17 19:37:45 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/17 19:38:06 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	expansion(t_shell *data, t_token *token, t_env *env, int phase)
 	found = FALSE;
 	while (i < data->prompt.n_tokens)
 	{
-		if (token[i].type != EXPANSION)
+		if (token[i].type == EXPANSION)
 		{
 			aux_mem_alloc(data, &token[i], &key_to_find);
 			j = ft_count_char(token[i].value, '$');
