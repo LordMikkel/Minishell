@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 03:26:20 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/11 05:41:04 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/17 19:55:36 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ int	syntax_error(t_shell *data, const char *error, int exit_code, ...)
 {
 	va_list	args;
 
-	if (data->prompt.tokens)
-		clean_prompt(&data->prompt);
 	if (error)
 	{
 		va_start(args, exit_code);
 		ft_var_printf_fd(STDERR, error, args);
 		va_end(args);
 	}
+	if (data->prompt.tokens)
+		clean_prompt(&data->prompt);
 	data->last_exit_code = exit_code;
 	return (exit_code);
 }
