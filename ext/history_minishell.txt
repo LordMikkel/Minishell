@@ -86,8 +86,6 @@ exit s 2
 exit 1 4 55 
 exit 0 5 4 8
 cM
-echo $$$
-echo $$$USER
 export A=hola
 env
 export A+=" como" A+=" estas"
@@ -109,3 +107,10 @@ export A=@@$$*&^^&*_315131
 A=@@$$*&^^&*_315131
 export v=pepe l
 lib/libft_plus/Makefile
+echo hola "NADA" como estas?
+echo hola "$NADA" como estas?
+echo hola $NADA como estas?
+echo $$$
+echo $!$USER
+echo $NB$USER
+echo $$$USER
