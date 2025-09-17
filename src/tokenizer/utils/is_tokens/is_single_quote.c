@@ -6,16 +6,16 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:47 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/11 18:49:15 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/13 21:06:48 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/minishell.h"
 
 /*
-	Elimina todas las comillas simples de una palabra.
-	- Crea una nueva cadena sin los caracteres 'quote'.
-	- Libera la cadena original y devuelve la limpia.
+	Elimina todas las comillas especificadas ('quote') de la palabra.
+	Reserva una nueva cadena limpia, copia solo los caracteres válidos,
+	libera la original y devuelve la nueva.
 */
 
 static char	*cleanner_word(t_shell *data, char *word, int len, char quote)
@@ -88,7 +88,8 @@ int	ft_is_dead_s(const char *s, int *i, char quote, int *flag)
 	else if ((s[*i] == quote && s[*i + 1] != quote))
 	{
 		if (s[*i + 1] && (ft_isalpha(s[*i + 1]) || s[*i + 1] == '\\'
-				|| s[*i + 1] == '$' || s[*i + 1] == '\"' || s[*i + 1] == '/'))
+				|| s[*i + 1] == '$' || s[*i + 1] == '\"' || s[*i + 1] == '/'
+				|| s[*i + 1] == '?'))
 			*flag = TRUE;
 		return (1);
 	}

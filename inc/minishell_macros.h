@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_macros.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:23:16 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/17 12:22:12 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/17 17:09:23 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@
 /*                               Buffer Sizes                                 */
 /* ************************************************************************** */
 # define BUFFER_SIZE				1024
-# define INIT_TOKENS				2
+# define INIT_TOKENS				32
 # define PATH_MAX_SIZE				4096
 # define CMD_MAX_LEN				1024
 # define ARG_MAX_COUNT				1024
@@ -99,8 +99,15 @@
 /*                              Default Values                                */
 /* ************************************************************************** */
 # define DEFAULT_PATH				"/usr/bin:/bin:/usr/sbin:/sbin"
-# define DEFAULT_PROMPT				"minishell$ "
+# define DEFAULT_PROMPT				"\033[1;34mminishell\033[1;34m> \033[0m"
+# define DEFAULT_HISTORY			"./ext/history_minishell.txt"
 # define DEFAULT_HOME
+
+/* ************************************************************************** */
+/*                                   ARGS                                     */
+/* ************************************************************************** */
+# define NO_FILE					0
+# define ILIMITED					-1
 
 /* ************************************************************************** */
 /*                              Signal Handling                               */

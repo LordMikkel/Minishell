@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 15:39:12 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/12 16:51:29 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/14 21:04:41 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,17 @@ static int	before_is_cmd_word_redir(t_token *tokens, int i)
 			&& tokens[i - 2].type == NO_SPACE
 			&& tokens[i - 3].type == EXPANSION
 			&& is_redir_type(tokens[i - 4].type)))
-			return (0);
-	if (i >= 2 && tokens[i - 1].type == WORD
-			&& !is_redir_type(tokens[i - 2].type))
-			return (1);
+		return (0);
+	else if ((i >= 2 && tokens[i - 1].type == BACKGROUND
+			&& (tokens[i - 2].type == REDIR_OUTPUT
+				|| tokens[i - 2].type == REDIR_APPEND)))
+		return (1);
+	else if (i >= 2 && tokens[i - 1].type == WORD
+		&& !is_redir_type(tokens[i - 2].type))
+		return (1);
 	else if (i >= 2 && tokens[i - 1].type == EXPANSION
-			&& !is_redir_type(tokens[i - 2].type))
-			return (1);
+		&& !is_redir_type(tokens[i - 2].type))
+		return (1);
 	else if (i >= 1 && is_cmd_builtin_type(tokens[i - 1].type))
 		return (1);
 	else if (i >= 1 && is_redir_type(tokens[i - 1].type))
@@ -58,7 +62,7 @@ void	transform_cmd_to_word(t_shell *data, t_token *tokens)
 	i = 0;
 	while (i < data->prompt.n_tokens)
 	{
-		if (i == 0 || i >=1 && is_delimiter_type(tokens[i - 1].type))
+		if (i == 0 || i >= 1 && is_delimiter_type(tokens[i - 1].type))
 		{
 			if (tokens[i].type == WORD)
 				tokens[i].type = COMMAND;

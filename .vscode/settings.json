@@ -34,7 +34,12 @@
 		"string_view": "c",
 		"deque": "c",
 		"unordered_map": "c",
-		"initializer_list": "c"
+		"initializer_list": "c",
+		"random": "c",
+		"istream": "c",
+		"ostream": "c",
+		"functional": "c",
+		"utility": "c"
 	},
 
 	// Configuración C/C++
@@ -57,6 +62,7 @@
 			"context": "watch"
 		}
 	},
+	"debugVisualizer.useChromeKioskMode": true,
 
 	// Editor general
 	"editor.rulers": [80],

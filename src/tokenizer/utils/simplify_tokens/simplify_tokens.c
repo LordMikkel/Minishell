@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simplify_tokens.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 20:37:22 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/10 17:37:39 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/13 00:16:13 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void	simplify_tokens(t_shell *data, t_prompt *prompt, t_token *tokens)
 	int	range[2];
 
 	i = 0;
-	while (tokens[i].type)
+	while (i < prompt->n_tokens && tokens[i].type)
 	{
 		if (get_no_space_range(tokens, range, i))
 		{

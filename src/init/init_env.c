@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 01:02:53 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/11 23:04:08 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/17 01:24:45 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,5 @@ void	init_enviroment(t_shell *data, char **envp)
 		init_no_env(data);
 	else
 		init_env(data, envp);
+	data->env.envp = make_envp(data, &data->env, data->env.vars);
 }

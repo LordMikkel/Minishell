@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:10 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/17 16:38:11 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/17 17:13:59 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,8 @@ void	parse_tokens(t_shell *data, t_prompt *prompt, char *input)
 		is_word(data, prompt, input, &i);
 		is_hash(input, &i);
 	}
-	// printf("Alloc Tokens: %d\n", data->prompt.n_alloc_tokens);
-	// printf("Syntax Tokens: %d\n", data->prompt.n_tokens);
+	printf("Alloc Tokens: %d\n", data->prompt.n_alloc_tokens);
+	printf("Syntax Tokens: %d\n", data->prompt.n_tokens);
 }
 
 /*

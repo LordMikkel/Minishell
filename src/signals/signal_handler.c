@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:45:52 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/10 23:11:40 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/17 01:12:41 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,27 @@
 	consecuencia.
 */
 
+// void	signal_handler(int sig, siginfo_t *info, void *context)
+// {
+// 	if (sig == SIGINT)
+// 	{
+// 		rl_on_new_line();
+// 		rl_replace_line("", 0);
+// 		rl_redisplay();
+// 		g_signal_event = CLEAN;
+// 	}
+// 	else if (sig == SIGQUIT)
+// 	{
+// 		g_signal_event = CONTINUE;
+// 	}
+// 	return ;
+// }
+
 void	signal_handler(int sig, siginfo_t *info, void *context)
 {
 	if (sig == SIGINT)
 	{
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
+		ic_print("\n");
 		g_signal_event = CLEAN;
 	}
 	else if (sig == SIGQUIT)

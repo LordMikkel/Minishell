@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:47 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/11 18:49:04 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/14 18:29:25 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,15 @@
 
 /*
 	Elimina todas las comillas especificadas ('quote') de la palabra.
+	Teniendo en cuenta los casos especiales de slashes.
 	Reserva una nueva cadena limpia, copia solo los caracteres válidos,
 	libera la original y devuelve la nueva.
 */
 
 static char	*cleanner_word(t_shell *data, char *word, int len, char quote)
 {
-	int		j;
-	int		k;
 	char	*clean_word;
 
-	j = 0;
-	k = 0;
 	if (ft_strchr(word, quote))
 	{
 		clean_word = ft_calloc(len + 1, sizeof(char));
@@ -34,13 +31,7 @@ static char	*cleanner_word(t_shell *data, char *word, int len, char quote)
 			free(word);
 			exit_error(data, ERR_MALLOC, EXIT_FAILURE);
 		}
-		while (word[j])
-		{
-			if (word[j] != quote)
-				clean_word[k++] = word[j];
-			j++;
-		}
-		clean_word[k] = '\0';
+		clean_quote_until_slash_d(word, clean_word, quote);
 		free(word);
 		return (clean_word);
 	}
@@ -59,14 +50,22 @@ void	make_word_d(t_shell *data, t_prompt *promp, const char *s, int range[2])
 	char	*ptr;
 	char	*word;
 	int		token_id;
+	int		flag;
 
+	flag = FALSE;
 	word = ft_substr(s, range[0], range[1] - range[0]);
 	if (!word)
 		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
 	word = cleanner_word(data, word, range[1] - range[0], '\"');
+	word = cleanner_slash_quotes_d(data, word, range[1] - range[0], &flag);
 	ptr = ft_strchr(word, '$');
-	if (ptr && *(ptr + 1) && !ft_isspace(*(ptr + 1)) && *(ptr + 1) != '\"')
-		token_id = add_token(data, promp, word, EXPANSION);
+	if (ptr)
+	{
+		if (flag == TRUE)
+			token_id = add_token(data, promp, word, WORD);
+		else
+			token_id = add_token(data, promp, word, EXPANSION);
+	}
 	else
 		token_id = add_token(data, promp, word, WORD);
 	is_cmd(data, &data->prompt, &promp->tokens[token_id], word);
@@ -92,7 +91,8 @@ int	ft_is_dead_d(const char *s, int *i, char quote, int *flag)
 	else if ((s[*i] == quote && s[*i + 1] != quote))
 	{
 		if (s[*i + 1] && (ft_isalpha(s[*i + 1]) || s[*i + 1] == '\\'
-				|| s[*i + 1] == '$' || s[*i + 1] == '\'' || s[*i + 1] == '/'))
+				|| s[*i + 1] == '$' || s[*i + 1] == '\'' || s[*i + 1] == '/'
+				|| s[*i + 1] == '?'))
 			*flag = TRUE;
 		return (1);
 	}
