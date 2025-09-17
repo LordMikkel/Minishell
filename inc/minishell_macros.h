@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_macros.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:23:16 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/12 22:55:30 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/17 12:22:12 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,8 @@ Exec format error\n"
 # define ERR_SYNTAX_EOF		"minishell: syntax error: unexpected end of file\n"
 # define ERR_HEREDOC_EOF	"minishell: warning: here-document at line %d \
 delimited by end-of-file (wanted `%s')\n"
+# define ERR_DOUBLE_PARENT	"minishell: ((: %s: syntax error in expression \
+(error token is \"%s\")\n"
 
 //Variable Errors
 # define ERR_VAR_NOT_SET	"minishell: %s: parameter null or not set\n"
@@ -188,6 +190,8 @@ Duration: %d minutes and %d seconds ⏳\033[0m\n\n"
 \033[1;32m ────────── %s, Burning the midnight oil? 🔥 ──────────\033[0m\n\n"
 # define MSG_GOODBYE			"\
 \033[1m\033[1m\033[38;5;99m────────────── Goodbye %s! ──────────────\033[0m\n"
+# define MSG_GOODBYE_V2			"\
+\033[1m\033[1m\033[38;5;99m────────────── Goodbye! ──────────────\033[0m\n"
 # define MINISHELL				"\
 \033[1;34mminishell>\033[0m "
 

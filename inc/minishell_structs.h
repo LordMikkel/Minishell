@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_structs.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/12 22:39:26 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/16 20:57:48 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 typedef struct s_var	t_var;
 typedef struct s_env	t_env;
 typedef struct s_token	t_token;
-typedef struct s_token	t_node;
+typedef struct s_node	t_node;
 typedef struct s_extras	t_extras;
 
 typedef enum e_type
@@ -135,6 +135,7 @@ typedef struct s_shell
 	t_env		env;
 	t_extras	extra_features;
 	int			last_exit_code;
+	pid_t		shell_pid;
 }	t_shell;
 
 #endif

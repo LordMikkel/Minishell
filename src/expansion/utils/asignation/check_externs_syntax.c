@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_externs_syntax.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:30:59 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/12 19:34:41 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/16 17:47:46 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 static int	check_case_1(t_token *token)
 {
+	//importante manerjarlo en el arbol si es false o true
 	if (token[-1].type && token[+1].type)
 	{
 		if ((token[-1].type == AND || token[-1].type == OR
 				|| token[-1].type == ASIGNATION
 				|| (token[-1].type == BUILT_IN
-					&& ft_strcmp(token[-1].value, BUILTIN_EXPORT) == 0)) //importante manerjarlo en el arbol si es false o true
+					&& ft_strcmp(token[-1].value, BUILTIN_EXPORT) == 0))
 			&& (token[+1].type == AND || token[+1].type == OR
 				|| token[+1].type == ASIGNATION
 				|| token[+1].type == WORD
@@ -30,15 +31,16 @@ static int	check_case_1(t_token *token)
 	return (0); //comillas hace que no se tenga en cuenta "hola""var=hola"
 }
 
-static int	check_case_2(t_token *token)
+static int	check_case_2(t_shell *data, t_token *token)
 {
-	if (token[-1].type && !token[+1].type)
+	if (token->id > 0 && token->id <= data->prompt.n_tokens)
 	{
 		if (token[-1].type == AND
 			|| token[-1].type == OR
 			|| token[-1].type == ASIGNATION
-			|| ((token[-1].type == BUILT_IN || token[-1].type == WORD)
-				&& ft_strcmp(token[-1].value, BUILTIN_EXPORT) == 0))
+			|| token[-1].type == WORD
+			|| ((token[-1].type == BUILT_IN
+				&& ft_strcmp(token[-1].value, BUILTIN_EXPORT) == 0)))
 			return (1);
 	}
 	return (0); //if not, then it needs to remain as WORD
@@ -72,12 +74,12 @@ int	check_externs_syntax(t_shell *data, t_token *token)
 	result = 0;
 	validate = TRUE;
 	if (token->id >= 1 && token->id < data->prompt.n_tokens
-		&& (token[+1].type || token[-1].type))
+		&& (token[+1].type || token[-1].type) && token->type == ASIGNATION)
 	{
 		validate = check_case_1(token);
 		if (validate)
 			result = check_asignation_syntax(token);
-		validate = check_case_2(token);
+		validate = check_case_2(data, token);
 		if (validate)
 			result = check_asignation_syntax(token);
 		validate = check_case_3(token);
@@ -85,24 +87,10 @@ int	check_externs_syntax(t_shell *data, t_token *token)
 			result = check_asignation_syntax(token);
 	}
 	else
-		result = check_asignation_syntax(token); //en caso de que sea el primero y no haya ningun otro token
+		result = check_asignation_syntax(token);
 	if (result == TRUE && validate == IGNORE)
 		result = IGNORE;
+	//en caso de que sea el primero y no haya ningun otro token
 	return (result);
 }
-/*
-if (token->id > 0 && token->id < data->prompt.n_tokens)
-	{
-		if (check_case_1(token))
-			*result = check_asignation_syntax(token);
-		else if (check_case_2(token))
-			*result = check_asignation_syntax(token);
-		else if (check_case_3(token))
-			*result = check_asignation_syntax(token);
-	}
-	else
-		*result = check_asignation_syntax(token); //en caso de que sea
-		//el primero y no haya ningun otro token
-	if (check_case_3(token) == IGNORE)
-		*result = IGNORE;
-*/
+

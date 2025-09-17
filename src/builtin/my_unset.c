@@ -1,32 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unset.c                                            :+:      :+:    :+:   */
+/*   my_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 21:56:06 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/09/12 17:08:47 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/17 13:41:30 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
-static void aux_delete(t_var **node)
-{
-	if ((*node)->key)
-	{
-		free((*node)->key);
-		(*node)->key = NULL;
-	}
-	if ((*node)->value)
-	{
-		free((*node)->value);
-		(*node)->value = NULL;
-	}
-	free(*node);
-	*node = NULL;
-}
 
 /*
  * my_unset - Elimina variables de entorno según los tokens proporcionados.
@@ -46,45 +30,58 @@ static void aux_delete(t_var **node)
  * La memoria del nodo se libera mediante aux_delete().
 */
 
+static void aux_delete(t_var **node, t_env *env)
+{
+	if ((*node)->key)
+	{
+		free((*node)->key);
+		(*node)->key = NULL;
+	}
+	if ((*node)->value)
+	{
+		free((*node)->value);
+		(*node)->value = NULL;
+	}
+	free(*node);
+	*node = NULL;
+	env->size--;
+}
+
+static void delete_env_var(t_env *env, char *key)
+{
+	t_var	*node = env->vars;
+	t_var 	*next;
+
+	while (node)
+	{
+		if (ft_strcmp(node->key, key) == 0)
+		{
+			if (!node->prev)
+				env->vars = node->next;
+			else
+				node->prev->next = node->next;
+			if (node->next)
+				node->next->prev = node->prev;
+			next = node->next;
+			aux_delete(&node, env);
+			node = next;
+			continue;
+		}
+		node = node->next;
+	}
+}
+
 int my_unset(t_shell *data, t_env *env, t_token *tokens)
 {
-	t_var	*node_to_delete;
-	t_var	*next;
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 0;
 	while (i < data->prompt.n_alloc_tokens)
 	{
-		if (tokens[i].type != WORD && tokens[i].type != ASIGNATION)
-		{
-			i++;
-			continue ;
-		}
-		node_to_delete = env->vars;
-		while (node_to_delete)
-		{
-			if (ft_strcmp(node_to_delete->key, tokens[i].value) == 0)
-			{
-				if (!node_to_delete->prev)
-				{
-					env->vars = node_to_delete->next;
-					aux_delete(&node_to_delete);
-					return (0);
-				}
-				else
-					node_to_delete->prev->next = node_to_delete->next;
-				if (node_to_delete->next)
-					node_to_delete->next->prev = node_to_delete->prev;
-					next = node_to_delete->next;
-					aux_delete(&node_to_delete);
-					node_to_delete = next;
-					continue ;
-			}
-			node_to_delete = node_to_delete->next;
-		}
+		if (tokens[i].type == WORD || tokens[i].type == ASIGNATION)
+			delete_env_var(env, tokens[i].value);
 		i++;
 	}
 	return (0);
 }
+

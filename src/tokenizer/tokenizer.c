@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:10 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/12 21:41:25 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/16 00:15:49 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,8 @@ int	check_if_valid_tokens(t_shell *data, t_prompt *prompt, t_token *tokens)
 			return (SYNTAX_ERROR);
 		i++;
 	}
-	if (!check_parent_balance(data, prompt, tokens))
+	if (!check_parent_balance(data, prompt, tokens)
+		|| (!check_double_parent(data, tokens, prompt)))
 		return (SYNTAX_ERROR);
 	return (SUCCESS);
 }
@@ -149,7 +150,7 @@ int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 
 	print_tokens_debug(prompt);
 
-	send_tokens_for_expansion(data, prompt->tokens, FINAL_PHASE);
+	expansion(data, prompt->tokens, &data->env, FINAL_PHASE);
 	simplify_tokens(data, prompt, prompt->tokens);
 
 	print_tokens_debug(prompt);
@@ -158,7 +159,8 @@ int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 
 	print_tokens_debug(prompt);
 
-	send_tokens_for_asig(data, prompt->tokens, INITIAL_PHASE);
+
 	test_built_in(data, prompt->tokens, prompt->n_tokens);
+	send_tokens_for_asig(data, prompt->tokens, INITIAL_PHASE);
 	return (SUCCESS);
 }

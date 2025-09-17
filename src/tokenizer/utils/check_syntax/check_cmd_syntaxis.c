@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_cmd_syntaxis.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 22:39:55 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/08/20 17:01:41 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/16 17:44:06 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@
 	Devuelve SUCCESS si no hay conflicto de sintaxis.
 */
 
+static void aux_error(t_shell *data, t_token *token, char **error_msg, int i)
+{
+	*error_msg = ft_strdup(token[i].value);
+	if (!*error_msg)
+		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+}
+
 int	check_cmd_syntax(t_shell *data, t_prompt *prompt, t_token *token, int i)
 {
 	char	*error_message;
@@ -27,11 +34,16 @@ int	check_cmd_syntax(t_shell *data, t_prompt *prompt, t_token *token, int i)
 	{
 		if (i >= 1 && token[i - 1].type && token[i - 1].type == PAREN_CLOSE)
 		{
-			error_message = ft_strdup(token[i].value);
-			if (!error_message)
-			{
-				exit_error(data, ERR_MALLOC, EXIT_FAILURE);
-			}
+			aux_error(data, token, &error_message, i);
+			syntax_error(data, ERR_SYNTAX, EXIT_USE, error_message);
+			free (error_message);
+			return (SYNTAX_ERROR);
+		}
+		if (i >= 1 && token[i - 1].type && token[i + 1].type
+			&& token[i + 2].type && token[i - 1].type == PAREN_OPEN
+			&& token[i + 1].type == PAREN_CLOSE)
+		{
+			aux_error(data, token, &error_message, i);
 			syntax_error(data, ERR_SYNTAX, EXIT_USE, error_message);
 			free (error_message);
 			return (SYNTAX_ERROR);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:57:33 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/12 18:39:59 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/15 18:28:37 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,7 @@ static int	aux_mem_alloc(t_shell *data, t_token *token, char **key_to_find)
 	len = ft_strlen(token->value);
 	*key_to_find = ft_calloc(len + 1, sizeof(char));
 	if (!*key_to_find)
-	{
 		exit_error(data, ERR_MALLOC, EXIT_USE);
-		return (ERROR);
-	}
 	return (SUCCESS);
 }
 
@@ -84,16 +81,20 @@ int	expansion(t_shell *data, t_token *token, t_env *env, int phase)
 
 	i = 0;
 	found = FALSE;
-	if (aux_mem_alloc(data, token, &key_to_find) == ERROR)
-		return (ERROR);
-	j = ft_count_char(token->value, '$');
-	while (j > 0)
+	while (i < data->prompt.n_tokens)
 	{
-		found = extract_key(data, token, &key_to_find, phase);
-		if (found == ERROR)
-			return (ERROR);
-		j--;
+		aux_mem_alloc(data, &token[i], &key_to_find);
+		j = ft_count_char(token[i].value, '$');
+		while (j > 0)
+		{
+			found = extract_key(data, &token[i], &key_to_find, phase);
+			if (!found) //TAL VEZ VALGA LA PENA QUITAR ESTO
+				break ;
+			j--;
+		}
+		i++;
+		free (key_to_find);
+		key_to_find = NULL;
 	}
-	free (key_to_find);
 	return (found);
 }

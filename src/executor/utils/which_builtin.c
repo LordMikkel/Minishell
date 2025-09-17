@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   which_builtin.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:58:35 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/12 23:04:11 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/16 00:21:40 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 void	which_builtin(t_shell *data, t_token *tokens, t_token *token)
 {
+	if (token->type == ASIGNATION)
+		data->last_exit_code = asignation(data, token, LOCAL);
 	if (ft_strcmp(token->value, BUILTIN_ECHO) == 0)
-		data->last_exit_code = my_echo(tokens);
+		data->last_exit_code = my_echo(&data->prompt, tokens);
 	else if (ft_strcmp(token->value, BUILTIN_PWD) == 0)
 		data->last_exit_code = my_pwd(data);
 	else if (ft_strcmp(token->value, BUILTIN_EXPORT) == 0)

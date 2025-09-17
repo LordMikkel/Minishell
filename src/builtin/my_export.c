@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:22:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/12 22:58:25 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/16 00:00:54 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,7 @@
 static int	check_for_valid_args(t_token *tokens, int i)
 {
 	if (tokens[i].type == PIPE || tokens[i].type == AND
-		|| tokens[i].type == OR || tokens[i].type == PAREN_OPEN
-		|| ((tokens[i].type == WORD)
-			&& ft_strcmp(tokens[i].value, BUILTIN_EXPORT)
-			!= 0))
+		|| tokens[i].type == OR || tokens[i].type == PAREN_OPEN)
 		return (FALSE);
 	return (TRUE);
 }
