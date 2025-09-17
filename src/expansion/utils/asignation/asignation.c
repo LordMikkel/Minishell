@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 22:35:11 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/09/16 17:46:34 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/17 17:05:02 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static void	aux_key_asig(t_token *token, char **key, int *i)
 		(*key)[*i] = token->value[*i];
 		(*i)++;
 	}
-	//(*i)++;
 }
 
 static void	aux_value_asig(t_token *token, char **value, int *i)
@@ -86,30 +85,6 @@ static int verify_if_already_set(t_shell *data, char *key, char **value, int t)
 		var = var->next;
 	}
 	return (FALSE);
-}
-
-static int local_to_env(t_shell *d, t_env *env, char *key_to_find, char *value)
-{
-	t_var	*vars;
-
-	vars = env->vars;
-	while (vars)
-	{
-		if (ft_strcmp(vars->key, key_to_find) == 0)
-		{
-			if (vars->type == LOCAL)
-			{
-				vars->type = ENV;
-				free(vars->value);
-				vars->value = ft_strdup(value);
-				if (!vars->value)
-					exit_error(d, ERR_MALLOC, EXIT_FAILURE);
-				return (SUCCESS);
-			}
-		}
-		vars = vars->next;
-	}
-	return (SUCCESS);
 }
 
 int	asignation(t_shell *data, t_token *token, int type)
