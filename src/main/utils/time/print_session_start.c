@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 02:13:28 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/09/17 12:23:31 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/17 17:02:04 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ static char	*get_user_name(char **user_name, int *validation)
 	}
 	if (!**user_name) // Cadena vacía
 	{
-		ft_printf_fd(STDOUT, MSG_INVALID_NAME);
 		*validation = FAILURE;
 		return (*user_name);
 	}

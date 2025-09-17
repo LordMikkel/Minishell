@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/17 12:33:27 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/17 16:58:24 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ int		calculate_total_length(t_shell *data, char *str, char *key_to_find);
 int		copy_key(char *buffer, char **key_to_find);
 int		copy_value(t_shell *d, char **t_val, char *key_value, char *key_to_f);
 int		extract_key(t_shell *d, t_token *t, char **key_to_f, int phase);
-int		find_key_in_lst(t_shell *d, t_token *t, char *key_to_f);
+int		find_key_in_lst(t_shell *d, t_token *t, char **key_to_f);
 
 //ASIGNATION
 int		asignation(t_shell *data, t_token *token, int type);

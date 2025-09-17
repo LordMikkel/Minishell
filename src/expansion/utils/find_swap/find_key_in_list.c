@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:59 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/16 21:31:19 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/17 16:59:36 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	expand_symbol(t_shell *d, t_token *token, char **key_to_f, int sym_v
 		free (*key_to_f);
 		exit_error(d, ERR_MALLOC, EXIT_FAILURE);
 	}
-	copy_value(d, token, value_of_symbol_expansion, *key_to_f);
+	copy_value(d, &token->value, value_of_symbol_expansion, *key_to_f);
 }
 
 /*
@@ -33,7 +33,6 @@ static void	expand_symbol(t_shell *d, t_token *token, char **key_to_f, int sym_v
 	$! → PID del último proceso en segundo plano (hijo)
 	$? → Código de salida del último proceso ejecutado
 */
-
 
 static int	is_it_symbol(t_shell *data, t_token *token, char **key_to_find)
 {
@@ -70,7 +69,7 @@ static int	is_it_symbol(t_shell *data, t_token *token, char **key_to_find)
 	simbolo: $! - $$ - $?.
 */
 
-int	find_key_in_lst(t_shell *data, t_token *token, char *key_to_find)
+int	find_key_in_lst(t_shell *data, t_token *token, char **key_to_find)
 {
 	t_var	*var;
 	int		match_for_symbol;
@@ -78,10 +77,10 @@ int	find_key_in_lst(t_shell *data, t_token *token, char *key_to_find)
 	var = data->env.vars;
 	while (var != NULL)
 	{
-		if (ft_strcmp(var->key, key_to_find) == 0)
+		if (ft_strcmp(var->key, *key_to_find) == 0)
 		{
 			token->type = WORD;
-			copy_value(data, &token->value, var->value, key_to_find);
+			copy_value(data, &token->value, var->value, *key_to_find);
 			return (TRUE);
 		}
 		var = var->next;

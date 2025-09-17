@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:23:28 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/17 12:39:16 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/17 16:56:28 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 	válida).
 */
 
-static is_symbol(int c)
+static int	is_symbol(int c)
 {
 	if (c == '?' || c == '!' || c == '$')
 		return (1);
