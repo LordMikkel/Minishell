@@ -39,7 +39,8 @@
 		"istream": "c",
 		"ostream": "c",
 		"functional": "c",
-		"utility": "c"
+		"utility": "c",
+		"typeinfo": "c"
 	},
 
 	// Configuración C/C++

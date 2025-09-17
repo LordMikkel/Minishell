@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 02:13:28 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/09/17 17:13:48 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/17 22:23:11 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,13 +90,13 @@ void	print_session_start(t_shell *data, time_t start, char *name)
 
 	local = localtime(&start);
 	print_minishell_title();
-	name = is_valid_user_name();
-	if (!name)
-		exit_succes(data, MSG_GOODBYE_V2, EXIT_SUCCESS);
-	data->extra_features.user_name = ft_strdup(name);
-	if (!data->extra_features.user_name)
-		return (free(name), exit_error(data, ERR_MALLOC, EXIT_FAIL), (void)0);
-	print_time_of_day(start, data->extra_features.user_name);
+	// name = is_valid_user_name();
+	// if (!name)
+	// 	exit_succes(data, MSG_GOODBYE_V2, EXIT_SUCCESS);
+	// data->extra_features.user_name = ft_strdup(name);
+	// if (!data->extra_features.user_name)
+	// 	return (free(name), exit_error(data, ERR_MALLOC, EXIT_FAIL), (void)0);
+	// print_time_of_day(start, data->extra_features.user_name);
 	printf(MSG_TIME_START,
 		local->tm_hour, local->tm_min, local->tm_sec,
 		local->tm_mday, local->tm_mon + 1, local->tm_year + 1900);

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/17 17:08:46 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/17 23:18:09 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,10 @@ extern volatile sig_atomic_t	g_signal_event;
 /* ************************************************************************** */
 /*                             Initialization                                 */
 /* ************************************************************************** */
-void	init_data(t_shell *data, char **input, char **envp);
+void	init_minishell(t_shell *data, int argc, char **argv, char **envp);
+void	init_data(t_shell *data, char **envp);
 void	init_enviroment(t_shell *data, char **envp);
+void	init_arg(t_shell *data, int ac, char **av);
 void	init_ic_readline(void);
 
 /* ************************************************************************** */
@@ -181,6 +183,7 @@ int		send_tokens_for_asig(t_shell *data, t_token *tokens, int phase);
 //ENV
 void	path_null_no_env(t_shell *data, char **path);
 char	**make_envp(t_shell *data, t_env *env, t_var *vars);
+void	update_shlvl(t_var *vars);
 
 //UTILS
 char	*cleanner_slash_quotes_d(t_shell *data, char *word, int len, int *flag);
