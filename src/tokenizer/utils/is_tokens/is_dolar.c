@@ -78,6 +78,12 @@ static int	isn_exp(const char *str, int *i, int *flag)
 		*flag = TRUE;
 		return (1);
 	}
+	else if (str[*i - 1] == '$' && str[*i] == '$')
+	{
+		(*i)++;
+		*flag = TRUE;
+		return (1);
+	}
 	return (0);
 }
 
