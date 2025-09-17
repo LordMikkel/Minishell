@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/12 22:55:49 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/17 12:33:27 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ extern volatile sig_atomic_t	g_signal_event;
 /* ************************************************************************** */
 /*                                Minishell                                   */
 /* ************************************************************************** */
-int		steps_manager(t_shell *data, char *input);
 char	*recieve_input(char **input, t_shell *data);
 
 /* ************************************************************************** */
@@ -58,7 +57,7 @@ void	add_var(t_shell *data, char *key, char *value, int type);
 /* ************************************************************************** */
 int		tokenizer(t_shell *data, t_prompt *prompt, char *input);
 void	parse_tokens(t_shell *data, t_prompt *prompt, char *input);
-int		valid_tokens(t_shell *data, t_prompt *prompt, t_token *tokens);
+int		check_if_valid_tokens(t_shell *data, t_prompt *prompt, t_token *tokens);
 int		add_token(t_shell *data, t_prompt *prompt, char *value, int type);
 
 /* ************************************************************************** */
@@ -75,14 +74,13 @@ void	which_builtin(t_shell *data, t_token *tokens, t_token *token);
 /*                               Expansion                                    */
 /* ************************************************************************** */
 int		expansion(t_shell *data, t_token *token, t_env *env, int phase);
-int		send_tokens_for_expansion(t_shell *data, t_token *tokens, int phase);
 
 /* ************************************************************************** */
 /*                                buil_in                                     */
 /* ************************************************************************** */
 int		my_env(t_var *vars);
-int		my_echo(t_token *tokens);
 int		my_pwd(t_shell *data);
+int		my_echo(t_prompt *prompt, t_token *token);
 int		my_export(t_shell *data, t_token *tokens, t_env *env);
 int		my_unset(t_shell *data, t_env *env, t_token *tokens);
 void	my_exit(t_shell *data, t_token *tokens);
@@ -150,6 +148,7 @@ int		check_cmd_syntax(t_shell *d, t_prompt *p, t_token *t, int i);
 int		check_parent_balance(t_shell *data, t_prompt *prompt, t_token *tokens);
 int		check_double_balance(t_shell *d, t_prompt *p, t_token *t);
 int		check_single_balance(t_shell *d, t_prompt *p, t_token *t);
+int		check_double_parent(t_shell *data, t_token *tokens, t_prompt *prompt);
 
 //SIMPLIFY TOKENS
 void	simplify_tokens(t_shell *data, t_prompt *prompt, t_token *tokens);

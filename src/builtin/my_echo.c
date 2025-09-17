@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   my_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 01:23:24 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/12 20:05:32 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/16 00:20:17 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,18 +68,18 @@
 	avanzar al primer argumento real.
 */
 
-static void	handle_n_flag(t_token *tokens, int *new_line, int *i)
+static void	handle_n_flag(t_token *token, int *new_line, int n_tokens, int *i)
 {
 	int	j;
 
 	j = 0;
-	while (tokens[*i].type
-		&& tokens[*i].value[0] == '-' && tokens[*i].value[1] == 'n')
+	while (token->id + *i < n_tokens && token[*i].type
+		&& token[*i].value[0] == '-' && token[*i].value[1] == 'n')
 	{
 		j += 2;
-		while (tokens[*i].value[j] == 'n')
+		while (token[*i].value[j] == 'n')
 			j++;
-		if (tokens[*i].value[j] == '\0')
+		if (token[*i].value[j] == '\0')
 		{
 			*new_line = FALSE;
 			(*i)++;
@@ -94,22 +94,25 @@ static void	handle_n_flag(t_token *tokens, int *new_line, int *i)
 	una nueva línea a menos que se use '-n'.
 */
 
-int	my_echo(t_token *tokens)
+int	my_echo(t_prompt *prompt, t_token *token)
 {
 	int	i;
 	int	new_line;
 
 	i = 1;
 	new_line = TRUE;
-	handle_n_flag(tokens, &new_line, &i);
-	while (tokens[i].type)
+	handle_n_flag(token, &new_line, prompt->n_tokens, &i);
+	while (token->id + i < prompt->n_tokens
+		&& !is_delimiter_type(token[i].type))
 	{
-		printf("%s", tokens[i].value);
-		if (tokens[i + 1].type)
-			printf(" ");
+		ft_printf_fd(STDOUT, "%s", token[i].value);
+		if (token->id + i + 1 < prompt->n_tokens
+			&& !is_delimiter_type(token[i + 1].type))
+			ft_printf_fd(STDOUT, " ");
 		i++;
 	}
 	if (new_line)
-		printf("\n");
+		ft_printf_fd(STDOUT, "\n");
+	// fflush(stdout);
 	return (0);
 }

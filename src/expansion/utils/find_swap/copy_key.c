@@ -3,16 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   copy_key.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:23:28 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/12 18:36:40 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/17 12:39:16 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/minishell.h"
 
-int	copy_key(char *buffer, char **key_to_find)
+/*
+	str es token->val. Se hace un recorrido de str, ya que si asumimos
+	que siempre el '$' estará al inicio, no podriamos validar casos como:
+	Hello $USER. Es por esto que hay que recorrer el str, de modo que podamos
+	ignorar todos aquellos caracteres que estan antes del '$' y poder copiar
+	aquellos que estan depués del mismo (siemore y cuando sea una sintaxis
+	válida).
+*/
+
+static is_symbol(int c)
+{
+	if (c == '?' || c == '!' || c == '$')
+		return (1);
+	return (0);
+}
+
+int	copy_key(char *str, char **key_to_find)
 {
 	int	i;
 	int	j;
@@ -20,17 +36,17 @@ int	copy_key(char *buffer, char **key_to_find)
 
 	i = 0;
 	j = 0;
-	while (buffer[i] != '\0')
+	while (str[i] != '\0')
 	{
-		if (buffer[i] == '$')
+		if (str[i] == '$')
 		{
 			i++;
-			if (!ft_isalpha(buffer[i]))
+			if (!ft_isalpha(str[i]) && !is_symbol(str[i]))
 				continue ;
 			start = i;
-			while (ft_isalpha(buffer[start]) || (*key_to_find)[j] != '\0')
+			while (ft_isalpha(str[start]) || (*key_to_find)[j] != '\0')
 			{
-				(*key_to_find)[j++] = buffer[start];
+				(*key_to_find)[j++] = str[start];
 				start++;
 			}
 			(*key_to_find)[j] = '\0';

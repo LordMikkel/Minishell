@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_session_start.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 02:13:28 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/09/12 22:50:02 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/17 12:23:31 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	print_session_start(t_shell *data, time_t start, char *name)
 	print_minishell_title();
 	name = is_valid_user_name();
 	if (!name)
-		exit_succes(data, MSG_GOODBYE, EXIT_SUCCESS);
+		exit_succes(data, MSG_GOODBYE_V2, EXIT_SUCCESS);
 	data->extra_features.user_name = ft_strdup(name);
 	if (!data->extra_features.user_name)
 		return (free(name), exit_error(data, ERR_MALLOC, EXIT_FAIL), (void)0);

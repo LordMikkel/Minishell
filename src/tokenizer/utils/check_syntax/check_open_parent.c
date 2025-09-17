@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 22:40:41 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/09/02 19:46:41 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/15 16:52:41 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,13 @@ static int	is_valid_before_open(t_token *tokens, int i)
 int	check_open_parent(t_shell *data, t_prompt *prompt, t_token *tokens, int i)
 {
 	int	content_flag;
+	int	result;
 
 	content_flag = 0;
-	if (tokens[i].type == PAREN_OPEN)
-	{
+	if (tokens[i].type != PAREN_OPEN)
+		return (SUCCESS);
 		if (is_valid_before_open(tokens, i))
-		{
-			syntax_error(data, ERR_SYNTAX, EXIT_USE, "(");
-			return (SYNTAX_ERROR);
-		}
+			return (syntax_error(data, ERR_SYNTAX, EXIT_USE, "("));
 		while (i < prompt->n_tokens)
 		{
 			if (tokens[i].type != PAREN_OPEN && tokens[i].type != PAREN_CLOSE)
@@ -53,8 +51,6 @@ int	check_open_parent(t_shell *data, t_prompt *prompt, t_token *tokens, int i)
 			}
 			i++;
 		}
-		syntax_error(data, ERR_SYNTAX, EXIT_USE, "(");
-		return (SYNTAX_ERROR);
-	}
+		return (syntax_error(data, ERR_SYNTAX, EXIT_USE, "("));
 	return (SUCCESS);
 }
