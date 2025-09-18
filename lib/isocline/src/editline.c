@@ -6,6 +6,7 @@
 -----------------------------------------------------------------------------*/
 #include <stdio.h>
 #include <string.h>
+#include <signal.h>
 
 #include "common.h"
 #include "term.h"
@@ -1120,7 +1121,10 @@ static char* edit_line( ic_env_t* env, const char* prompt_text )
 //   }
   if ((c == KEY_CTRL_D && sbuf_len(eb.input) == 0) || c == KEY_CTRL_C || c == KEY_EVENT_STOP) {
     if (c == KEY_CTRL_C)
+    {
       res = ic_strdup("");
+      raise(SIGINT);
+    }
     else
       res = NULL;
   }

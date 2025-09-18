@@ -181,7 +181,6 @@ clear
 \x03\x03\x03\x03\x03\x03\x03\x03cd /home/mikel/documents/cursus/rank03/minishell && make
 \x03pkill -SIGINT minishell
 \x03\x03\x03\x03
-ls
 s
 lss
 sdsvsv
@@ -197,3 +196,4 @@ exit
 \x03\x03\x03\x03ls
 \x03\x03\x03\x03\x03
 \x03\x03\x03
+ls
