@@ -39,7 +39,12 @@
 		"istream": "c",
 		"ostream": "c",
 		"functional": "c",
-		"utility": "c"
+		"utility": "c",
+		"__availability": "c",
+		"__errc": "c",
+		"__hash_table": "c",
+		"__tuple": "c",
+		"ios": "c"
 	},
 
 	// Configuración C/C++

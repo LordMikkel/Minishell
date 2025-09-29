@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
+#    By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/09/17 19:27:27 by migarrid         ###   ########.fr        #
+#    Updated: 2025/09/27 17:13:21 by davdiaz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -122,6 +122,7 @@ SRCS =				main/main.c \
 					tokenizer/utils/is_tokens/is_type_I.c \
 					tokenizer/utils/is_tokens/is_type_II.c \
 					tokenizer/utils/is_tokens/utils_is_double_quote.c \
+					tokenizer/utils/check_syntax/is_it_quoted.c \
 					tokenizer/utils/check_syntax/check_redir_input.c \
 					tokenizer/utils/check_syntax/check_double_parent.c \
 					tokenizer/utils/check_syntax/check_redir_output.c \
@@ -142,6 +143,8 @@ SRCS =				main/main.c \
 					tokenizer/utils/trasnform_tokens/transform_cmd_to_word.c \
 					tokenizer/utils/trasnform_tokens/transform_word_to_asignation.c \
 					tokenizer/utils/trasnform_tokens/transform_invalid_asig_to_word.c \
+					tokenizer/utils/trasnform_tokens/transform_asig_to_asig_plus.c \
+					tokenizer/utils/trasnform_tokens/transform_asig_to_temp_asig.c \
 					expansion/expansion.c \
 					expansion/send_tokens_for_expansion.c \
 					expansion/utils/find_swap/copy_key.c \
@@ -149,13 +152,17 @@ SRCS =				main/main.c \
 					expansion/utils/find_swap/extract_key.c \
 					expansion/utils/find_swap/find_key_in_list.c \
 					expansion/utils/find_swap/calculate_total_len.c \
+					expansion/utils/find_swap/expand_empty_str.c \
 					expansion/utils/asignation/asignation.c \
+					expansion/utils/asignation/verify_if_already_set.c \
 					expansion/utils/asignation/is_it_asig.c \
 					expansion/utils/asignation/check_externs_syntax.c \
 					expansion/utils/asignation/check_asignation_syntax.c \
 					ast/ast_builder.c \
 					executor/executor.c \
+					executor/utils/eliminate_token.c \
 					executor/utils/which_builtin.c \
+					executor/utils/eliminate_temp_asig.c \
 					signals/init_signals.c \
 					signals/signal_handler.c \
 					builtin/my_env.c \
@@ -163,6 +170,7 @@ SRCS =				main/main.c \
 					builtin/my_export.c \
 					builtin/my_unset.c \
 					builtin/my_pwd.c \
+					builtin/my_cd.c \
 					builtin/my_exit.c \
 					exit/exit.c \
 					exit/error.c \
@@ -234,7 +242,7 @@ $(READLINE_DIR)/config.h:
 $(ISOCLINE_A):
 	@$(PRINT) "Compiling $(BLUE)isocline library$(DEFAULT)...\n"
 	@$(MKDIR) $(ISOCLINE_DIR)/build/release
-	@cd $(ISOCLINE_DIR)/build/release && $(CMAKE) ../.. > /dev/null 2>&1 && $(CMAKE) --build . > /dev/null 2>&1
+	@cd $(ISOCLINE_DIR)/build/release && $(CMAKE) ../.. && $(CMAKE) --build .
 
 # Test minishell rapidly
 test:

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   copy_value.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:22:59 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/17 19:34:20 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/27 16:12:17 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,12 @@ int	copy_value(t_shell *d, char **token_val, char *key_value, char *key_to_find)
 	}
 	*token_val = new_buffer;
 	new_buffer = ft_strchr(*token_val, '$');
-	if (!new_buffer || !ft_isalpha(*(new_buffer + 1)))
+	if (!new_buffer || !ft_isalpha(*(new_buffer + 1))
+		&& !is_symbol(*(new_buffer + 1)))
 		return (ERROR);
 	ft_memmove(new_buffer + value_len, new_buffer + key_len + 1,
 		ft_strlen(new_buffer + key_len + 1) + 1);
 	ft_memcpy(new_buffer, key_value, value_len);
+	(*token_val)[new_len] = '\0';
 	return (SUCCESS);
 }

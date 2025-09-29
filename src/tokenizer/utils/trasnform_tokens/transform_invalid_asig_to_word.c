@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   transform_invalid_asig_to_word.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 21:56:00 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/09/17 19:14:22 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/26 16:27:10 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/minishell.h"
+
+/*
+	Si es una asignación pero el token (i - 1) es un word, puede que esto
+	indique que la asinación esta mal catalogada, ya que se iteramos en el loop
+	hacia atras siempre y cuando haya un WORD, por ejemplo: cmd/built-in ls a=1
+	Veremos que cuando salgamos del loop, existe la posibilidad de que
+	nos encontraremos con un cmd o un built-in, de modo que efectivamente la
+	asignación no deberia ser ASIGNATION sino WORD. A menos de que el built-in
+	en cuestion sea export.
+*/
 
 static void	aux_if_word(t_prompt *prompt, t_token *tokens, int i)
 {
@@ -19,7 +29,8 @@ static void	aux_if_word(t_prompt *prompt, t_token *tokens, int i)
 	j = i - 1;
 	while (j >= 0 && j < prompt->n_tokens && tokens[j].type == WORD)
 		j--;
-	if (j >= 0 && tokens[j].type == COMMAND || tokens[j].type == BUILT_IN)
+	if (j >= 0 && tokens[j].type == COMMAND || (tokens[j].type == BUILT_IN
+		&& ft_strcmp(tokens[j].value, BUILTIN_EXPORT) != 0))
 		tokens[i].type = WORD;
 }
 
