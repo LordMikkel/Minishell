@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/17 17:08:46 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/28 02:36:16 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,10 @@ void	ast_built(t_shell *data, t_token *tokens);
 /* ************************************************************************** */
 /*                                Executor                                    */
 /* ************************************************************************** */
-void	execute_recursive(t_shell *data, t_node *ast_root, t_exec *executor);
+void	eliminate_temp_asig(t_prompt *prompt, t_token *tokens);
+void	eliminate_token(t_prompt *prompt, t_token *tokens, int index);
 void	which_builtin(t_shell *data, t_token *tokens, t_token *token);
+void	execute_recursive(t_shell *data, t_node *ast_root, t_exec *executor);
 
 /* ************************************************************************** */
 /*                                buil_in                                     */
@@ -78,9 +80,10 @@ void	which_builtin(t_shell *data, t_token *tokens, t_token *token);
 int		my_env(t_var *vars);
 int		my_pwd(t_shell *data);
 int		my_echo(t_prompt *prompt, t_token *tokens);
-int		my_export(t_shell *data, t_token *tokens, t_env *env);
 int		my_unset(t_shell *data, t_env *env, t_token *tokens);
+int		my_cd(t_shell *data, t_token *tokens, t_token *token);
 void	my_exit(t_shell *data, t_prompt *prompt, t_token *tokens);
+int		my_export(t_shell *data, t_token *token, t_token *tokens, t_env *env);
 
 /* ************************************************************************** */
 /*                                Signals                                     */
@@ -127,6 +130,7 @@ void	is_and(t_shell *data, t_prompt *prompt, const char *str, int *i);
 void	is_parenten(t_shell *data, t_prompt *prompt, const char *str, int *i);
 void	is_not_token(const char *str, int *i);
 void	is_hash(const char *str, int *i);
+int		is_symbol(int c);
 int		is_cmd_type(int type);
 int		is_quote_type(int type);
 int		is_redir_type(int type);
@@ -135,48 +139,55 @@ int		is_alloc_type(int type);
 int		is_between_quotes_type(int type);
 int		is_simplify_type(int type);
 int		is_cmd_builtin_type(int type);
+int		is_asignation_type(int type);
 
 //VALID TOKENS
-int		check_open_parent(t_shell *d, t_prompt *p, t_token *t, int i);
-int		check_close_parent(t_shell *d, t_prompt *p, t_token *t, int i);
-int		check_redir_input(t_shell *d, t_prompt *p, t_token *t, int i);
-int		check_redir_output(t_shell *d, t_prompt *p, t_token *t, int i);
-int		check_semicolon(t_shell *d, t_prompt *p, t_token *t, int i);
-int		check_background(t_shell *d, t_prompt *p, t_token *t, int i);
-int		check_pipe(t_shell *data, t_prompt *prompt, t_token *tokens, int i);
-int		check_or_and(t_shell *data, t_prompt *prompt, t_token *tokens, int i);
-int		check_cmd_syntax(t_shell *d, t_prompt *p, t_token *t, int i);
-int		check_parent_balance(t_shell *data, t_prompt *prompt, t_token *tokens);
+void	is_it_quoted(t_prompt *prompt, t_token *tokens);
 int		check_double_balance(t_shell *d, t_prompt *p, t_token *t);
 int		check_single_balance(t_shell *d, t_prompt *p, t_token *t);
+int		check_semicolon(t_shell *d, t_prompt *p, t_token *t, int i);
+int		check_background(t_shell *d, t_prompt *p, t_token *t, int i);
+int		check_cmd_syntax(t_shell *d, t_prompt *p, t_token *t, int i);
+int		check_open_parent(t_shell *d, t_prompt *p, t_token *t, int i);
+int		check_redir_input(t_shell *d, t_prompt *p, t_token *t, int i);
+int		check_close_parent(t_shell *d, t_prompt *p, t_token *t, int i);
+int		check_redir_output(t_shell *d, t_prompt *p, t_token *t, int i);
+int		check_pipe(t_shell *data, t_prompt *prompt, t_token *tokens, int i);
 int		check_double_parent(t_shell *data, t_token *tokens, t_prompt *prompt);
+int		check_or_and(t_shell *data, t_prompt *prompt, t_token *tokens, int i);
+int		check_parent_balance(t_shell *data, t_prompt *prompt, t_token *tokens);
+
 
 //SIMPLIFY TOKENS
+int		find_range_end(t_token *tokens, int no_space_position);
+int		find_range_start(t_token *tokens, int no_space_position);
+void	remove_quotes_tokens(t_prompt *prompt, t_token *tokens);
 void	simplify_tokens(t_shell *data, t_prompt *prompt, t_token *tokens);
 void	reorganize_tokens(t_prompt *p, t_token *tokens, int *range, char *res);
-int		find_range_start(t_token *tokens, int no_space_position);
-int		find_range_end(t_token *tokens, int no_space_position);
-void	remove_quotes_tokens(t_prompt *prompt, t_token *tokens);
 
 //TRANSFORM TOKENS
-void	transform_tokens_logic(t_shell *data, t_prompt *promp, t_token *tokens);
-void	transform_cmd_to_word(t_shell *data, t_token *tokens);
-void	transform_word_to_asignation(t_shell *data, t_token *tokens, int phase);
+void	transform_asig_to_asig_plus(t_prompt *pro, t_token *tokens);
+void	transform_asig_to_temp_asig(t_prompt *prompt, t_token *tokens);
+void	transform_cmd_to_word(t_shell *data, t_token *tokens, int phase);
 void	transform_invalid_asig_to_word(t_prompt *prompt, t_token *tokens);
+void	transform_word_to_asignation(t_shell *data, t_token *tokens, int phase);
+void	transform_tokens_logic(t_shell *data, t_prompt *promp, t_token *tokens);
 
 //EXPANSION
-int		calculate_total_length(t_shell *data, char *str, char *key_to_find);
 int		copy_key(char *buffer, char **key_to_find);
-int		copy_value(t_shell *d, char **t_val, char *key_value, char *key_to_f);
-int		extract_key(t_shell *d, t_token *t, char **key_to_f, int phase);
 int		find_key_in_lst(t_shell *d, t_token *t, char **key_to_f);
+int		extract_key(t_shell *d, t_token *t, char **key_to_f, int phase);
+int		calculate_total_length(t_shell *data, char *str, char *key_to_find);
+int		expand_empty_str(t_shell *data, t_token *token, char **key_to_find);
+int		copy_value(t_shell *d, char **t_val, char *key_value, char *key_to_f);
 
 //ASIGNATION
+int		check_asignation_syntax(t_token *token, int type);
 int		asignation(t_shell *data, t_token *token, int type);
-int		is_it_asig(t_shell *data, t_token *token, t_env *env, int type);
-int		check_asignation_syntax(t_token *token);
-int		check_externs_syntax(t_shell *data, t_token *token);
 int		send_tokens_for_asig(t_shell *data, t_token *tokens, int phase);
+int		is_it_asig(t_shell *data, t_token *token, t_env *env, int type);
+int		verify_if_already_set(t_shell *data, char *key, char **value, int t);
+int		check_externs_syntax(t_shell *d, t_token *tkens, t_token *token, int t);
 
 //ENV
 void	path_null_no_env(t_shell *data, char **path);
@@ -191,8 +202,8 @@ void	void_tokens_at_the_end(t_token *tokens, int n_alloc, int n_tokens);
 /* ************************************************************************** */
 /*                               extras - time                                */
 /* ************************************************************************** */
-void	print_session_start(t_shell *data, time_t start, char *user_name);
 void	print_session_end(time_t start, char *user_name);
 void	print_time_of_day(time_t start, char *user_name);
+void	print_session_start(t_shell *data, time_t start, char *user_name);
 
 #endif

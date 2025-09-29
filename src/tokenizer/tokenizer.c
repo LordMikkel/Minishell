@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:10 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/17 19:12:18 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/26 21:47:39 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@ char	*g_type_names[] = {
 	"LOCAL",
 	"ENV",
 	"DELETE",
+	"EXP",
+	"INDIFERENT",
+	"PLUS_ASIGNATION",
+	"TEMP_ASIGNATION"
 };
 
 static void	print_tokens_debug(t_prompt *prompt)
@@ -66,13 +70,9 @@ void	test_built_in(t_shell *data, t_token *tokens, int n_tokens)
 	i = 0;
 	while (i < n_tokens)
 	{
-		if (tokens[i].type != BUILT_IN)
-		{
-			i++;
-			continue ;
-		}
-		which_builtin(data, tokens, &tokens[i]);
-		i++;
+		if (tokens[i].type == BUILT_IN || is_asignation_type(tokens[i].type))
+			which_builtin(data, tokens, &tokens[i]);
+		i++;                  //ESTO HACE QUE SE MULTIPLIQUEN LOS RESULTADOS x2
 	}
 }
 
@@ -149,7 +149,7 @@ int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 		return (SYNTAX_ERROR);
 
 	print_tokens_debug(prompt);
-
+	is_it_quoted(prompt, prompt->tokens);
 	expansion(data, prompt->tokens, &data->env, FINAL_PHASE);
 	simplify_tokens(data, prompt, prompt->tokens);
 
@@ -159,7 +159,11 @@ int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 
 	print_tokens_debug(prompt);
 
+	print_tokens_debug(prompt);
+
 	test_built_in(data, prompt->tokens, prompt->n_tokens);
-	send_tokens_for_asig(data, prompt->tokens, FINAL_PHASE);
+	//send_tokens_for_asig(data, prompt->tokens, FINAL_PHASE);
+	eliminate_temp_asig(prompt, prompt->tokens);
+	print_tokens_debug(prompt);
 	return (SUCCESS);
 }
