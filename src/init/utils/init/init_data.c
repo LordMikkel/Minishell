@@ -6,11 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 23:17:43 by migarrid          #+#    #+#             */
-<<<<<<< HEAD:src/init/init_data.c
-/*   Updated: 2025/09/28 02:36:13 by davdiaz-         ###   ########.fr       */
-=======
-/*   Updated: 2025/09/17 23:17:40 by migarrid         ###   ########.fr       */
->>>>>>> origin/mikel:src/init/utils/init/init_data.c
+/*   Updated: 2025/09/30 20:50:30 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +42,13 @@ void	init_data(t_shell *data, char **envp)
 	data->prompt.tokens = NULL;
 	data->ast_root = NULL;
 	data->env.vars = NULL;
-	data->shell_pid = 4242;
+	data->shell_pid = getpid();
 	data->extra_features.session_start = time(NULL);
+	print_session_start(data, data->extra_features.session_start,
+		data->extra_features.user_name);
 	init_ic_readline();
 	init_enviroment(data, envp);
-<<<<<<< HEAD:src/init/init_data.c
 	data->home = getcwd(NULL, 0);
 	if (!data->home)
 		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
-	print_session_start(data, data->extra_features.session_start,
-		data->extra_features.user_name);
-=======
->>>>>>> origin/mikel:src/init/utils/init/init_data.c
 }

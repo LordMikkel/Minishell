@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 15:36:26 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/09/26 14:27:11 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/30 19:24:20 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ static int	assign_or_ignore_or_replace_value(t_var *var, char **value, int t)
 {
 	if (t == EXP && var->type == EXP)
 	{// si solo es una palabra sin ""="" -> hola
-		printf("Ignore\n\n");
+		//printf("Ignore\n\n");
 		return (IGNORE);
 	}
 	if (var->value && (t == LOCAL || t == ENV || t == TEMP_ASIGNATION))
 	{// si existe su valor y es local o env, solo hay que cambiarlo
-		printf("if t == LOCAL\n");
+		//printf("if t == LOCAL\n");
 		if (var->value)
 			free (var->value);
 		var->value = *value;
@@ -59,8 +59,8 @@ static void	handle_plus_assignation(t_shell *d, t_var *var, char **value, int t)
 
 	if (var->value && t == PLUS_ASIGNATION)
 	{//Si existe su valor y es PLUS_ASIGNATION entonces hay que sumarla
-		printf("if t == PLUS_ASIG\n");
-		printf("%s=%s\n\n", var->key, *value);
+		//printf("if t == PLUS_ASIG\n");
+		//printf("%s=%s\n\n", var->key, *value);
 		tmp = ft_strjoin(var->value, *value);
 		if (!tmp)
 		{
@@ -70,7 +70,7 @@ static void	handle_plus_assignation(t_shell *d, t_var *var, char **value, int t)
 		}
 		free (var->value);
 		var->value = tmp;
-		printf("var->value: %s\n\n", var->value);
+		//printf("var->value: %s\n\n", var->value);
 	}
 }
 
@@ -107,7 +107,7 @@ int	verify_if_already_set(t_shell *data, char *key, char **value, int t)
 	{
 		if (ft_strcmp(var->key, key) == 0)
 		{
-			printf("Found it-> %s=%s\n\n", key, *value);
+			//printf("Found it-> %s=%s\n\n", key, *value);
 			if (handle_existing_value(data, var, value, t) == IGNORE)
 				return (IGNORE);
 			update_variable_type(var, t);

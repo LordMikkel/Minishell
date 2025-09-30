@@ -6,11 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/09/28 02:36:13 by davdiaz-         ###   ########.fr       */
-=======
-/*   Updated: 2025/09/18 02:38:30 by migarrid         ###   ########.fr       */
->>>>>>> origin/mikel
+/*   Updated: 2025/09/30 19:09:38 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,13 +139,9 @@ typedef struct s_shell
 	t_node		*ast_root;
 	pid_t		shell_pid;
 	t_extras	extra_features;
-<<<<<<< HEAD
 	int			last_exit_code;
 	char		*home;
-=======
 	int			exit_code;
-	pid_t		shell_pid;
->>>>>>> origin/mikel
 }	t_shell;
 
 #endif

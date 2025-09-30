@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_shlvl.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 21:47:52 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/17 22:41:12 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/30 20:44:45 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	update_shlvl(t_var *vars)
 {
 	t_var			*var;
-	unsigned int	lvl;
+	long			lvl;
 
 	var = vars;
 	while (var)
@@ -27,6 +27,11 @@ void	update_shlvl(t_var *vars)
 			{
 				ft_printf_fd(STDERR, ERR_SHLVL_HIGH);
 				lvl = 1;
+			}
+			else if( lvl < 0)
+			{
+				ft_printf_fd(STDERR, ERR_SHLVL_LOW);
+				lvl = 0;
 			}
 			free(var->value);
 			var->value = ft_itoa(lvl);
