@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_cmd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 21:35:11 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/07 21:42:09 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/29 20:41:59 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,14 +89,18 @@ static int	find_bin(char **path_arr, char *path_slash, char *path, char *word)
 	- built_in: lista de comandos internos.
 	- Si coincide, marca token->type = BUILT_IN y aumenta prompt->n_cmds.
 	- Devuelve YES si es built-in, NO si no lo es.
+	- Usa ft_strmatch_cmp: Tranforma s1 para que haga match con s2 por si el
+	usuario hace: Ls - Echo - ECHO - LS - CD - cd - etc...
 */
 
-static int	is_built_in(t_prompt *prompt, t_token *token, char *str)
+static int	is_built_in(t_shell *d, t_prompt *prompt, t_token *token, char *str)
 {
 	char	*built_in[8];
+	int		flag_error;
 	int		i;
 
 	i = 0;
+	flag_error = 0;
 	built_in[0] = "cd";
 	built_in[1] = "echo";
 	built_in[2] = "export";
@@ -107,8 +111,10 @@ static int	is_built_in(t_prompt *prompt, t_token *token, char *str)
 	built_in[7] = NULL;
 	while (built_in[i])
 	{
-		if (ft_strcmp(built_in[i], str) == 0)
+		if (ft_strmatch_cmp(built_in[i], str, &flag_error) == 0)
 		{
+			if (flag_error == ERROR)
+				exit_error(d, ERR_MALLOC, EXIT_FAILURE);
 			token->type = BUILT_IN;
 			prompt->n_cmds++;
 			return (YES);
@@ -136,7 +142,7 @@ void	is_cmd(t_shell *data, t_prompt *prompt, t_token *token, char *str)
 
 	path_slash = NULL;
 	path = getenv("PATH");
-	if (is_built_in(prompt, token, str) == YES)
+	if (is_built_in(data, prompt, token, str) == YES)
 		return ;
 	if (!path)
 		path_null_no_env(data, &path);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
+#    By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/28 19:51:37 by migarrid          #+#    #+#              #
-#    Updated: 2025/09/16 21:15:10 by migarrid         ###   ########.fr        #
+#    Updated: 2025/09/29 19:56:26 by davdiaz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ SRCS =	libft/ft_isalpha.c \
 		libft/ft_strrchr.c \
 		libft/ft_strcmp.c \
 		libft/ft_strncmp.c \
+		libft/ft_strmatch_cmp.c \
 		libft/ft_memchr.c \
 		libft/ft_memcmp.c \
 		libft/ft_strnstr.c \
