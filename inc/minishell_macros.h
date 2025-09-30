@@ -6,7 +6,11 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:23:16 by migarrid          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/09/27 00:17:45 by davdiaz-         ###   ########.fr       */
+=======
+/*   Updated: 2025/09/18 02:42:28 by migarrid         ###   ########.fr       */
+>>>>>>> origin/mikel
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +44,7 @@
 # define IGNORE						2
 # define REPLACED					2
 # define VOID						0
+# define RECIVED_SIGNAL				0
 
 /* ************************************************************************** */
 /*                               Global Flag                                  */
@@ -64,7 +69,6 @@
 # define EXIT_CMD_NOT_EXECUTABLE	126
 # define EXIT_FATAL_SIGNAL			128
 # define EXIT_CTRL_C				130
-# define EXIT_CTRL_D				131
 
 /* ************************************************************************** */
 /*                              File Operations                               */
@@ -165,6 +169,8 @@ delimited by end-of-file (wanted `%s')\n"
 //Variable Errors
 # define ERR_VAR_NOT_SET	"minishell: %s: parameter null or not set\n"
 # define ERR_BAD_SUBST		"minishell: %s: bad substitution\n"
+# define ERR_SHLVL_HIGH		"minishell: warning: shell level (INT_MAX) \
+too high, resetting to 1\n"
 
 //Redirection Errors
 # define ERR_AMBIGUOUS_REDIR	"minishell: ambiguous redirect\n"

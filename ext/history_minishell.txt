@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var=1 ls a=21
 var=1 b=2 ls a=21
 var=hola ls a=1
@@ -197,3 +198,204 @@ cd ../minitalk
 cd ../..
 pwd
 cd ..
+=======
+echo $USER
+echo $$$USER$
+export $$USER=a
+export *
+echo '$USER'" $USER"
+export a='ls -l'
+export a=ls b=-l
+echo $a $b
+ls -l
+export a=echo
+$a $b
+echo -l
+$a
+export c=-n
+echo $c hola
+$a $c $d hola
+echo $asdfa adios
+exit 1 asfa
+exit 214783647
+2147483647
+exit 2147483647
+exit 
+exit -1
+sa
+exit 1 2 3
+exit a 213123123123123123123
+hola
+exit 123
+exit 12131
+ear
+exit 12131a
+exit 12a
+exit s 2
+exit 1 4 55 
+exit 0 5 4 8
+cM
+export A=hola
+export A+=" como" A+=" estas"
+export A+="como" A+="estas"
+export A+= " como"
+export A+=  como
+export A+="  como"
+export A+= "  como"
+export A+=" como"
+export A+=' '
+export A+="  "
+export A+= como
+export A+=&^%&$%^\x2334__
+A=@\x23@$$*&^^&*_315131
+export A+=' como'
+export "v=pepe"
+export "v=    pepe"
+export A=@@$$*&^^&*_315131
+A=@@$$*&^^&*_315131
+export v=pepe l
+lib/libft_plus/Makefile
+echo hola "NADA" como estas?
+echo hola "$NADA" como estas?
+echo hola $NADA como estas?
+echo $!$USER
+echo $NB$USER
+echo $$$USER
+hola 
+omo 
+echo -n hola
+vsv
+sbas
+bs
+betaha
+gsfsefg
+a
+eag
+esb
+eas
+ g
+e t
+t
+3w 
+t 
+ w
+az
+ gz
+e
+z s
+export A=1
+export A=1 B=2
+echo $A $B
+A=1
+AB=2
+echo $AB
+scsd
+ces
+vves
+bes
+be
+erebe
+unset A
+.
+echo A B C
+export A=1 B=2 C=3
+echo $A $B $C
+echo $vsdvsvd
+export a=3
+echo $a
+.vscode/launch.json
+ls > ''
+ls > 
+ls >
+ls <
+ls < &&
+ls < |
+ls < >
+ls < <
+ls > <
+ls > >
+ls > |
+ls > ""
+ls > &&
+ls > &
+echo $1
+export A=1 ls B=2
+echo "hola $A"
+echo "hola $sdvsddvd"
+echo "hola$sdvsddvd"
+echo hola & > ls
+ls > ls
+ls > &ls
+ls > & ls
+ls >& ls
+ls >&
+ls &
+avolcy
+expot p
+export p
+p = 2
+export =lol
+export pp+=op
+export pp=op
+export pp=op+
+unset pp+
+export pp=tttt
+export
+export test="$pp"
+export 
+$pp
+echo
+echo $
+echo $$
+echo $$$
+echo $$$$
+echo $$$$$$
+echo $$$$$$$
+echo $HOME
+echo $HOME'$HOME'USER'"'$USER'"'''"'$USER'"
+pwd
+mkdir tt
+cd tt
+ls *
+./minishell
+ENV
+env
+cd
+cds
+lsvs
+sdv
+seves
+Mikel
+\x03slsd
+\x03\x03\x03\x03\x03\x03\x03\x03\x03\x03
+\x03\x03\x03\x03\x03\x03\x03\x03\x03
+\x03\x03\x03cd /home/mikel/documents/cursus/rank03/minishell && make
+\x03pkill -SIGINT -f "./minishell"
+\x03\x03\x03\x03\x03\x03
+\x03ps aux | grep "./minishell" | grep -v grep
+\x03\x03\x03\x03\x03\x03\x03\x03\x03\x03\x03
+\x03\x03ls
+\x03ls
+clear
+\x03ps aux | grep "./minishell" | grep -v grep | head -1 | awk '{print $2}' | xargs kill -INT
+\x03\x03cd /home/mikel/documents/cursus/rank03/minishell && make
+\x03\x03\x03\x03\x03\x03\x03\x03cd /home/mikel/documents/cursus/rank03/minishell && make
+\x03pkill -SIGINT minishell
+\x03\x03\x03\x03
+lss
+sdsvsv
+\x03mikel
+exit
+\x03\x03\x03\x03\x03\x03\x03\x03
+\x03l
+\x03\x18\x03\x03\x03\x03\x03
+\x03sd
+\x03\x03\x03\x03\x03d
+\x03c
+\x03\x03\x03ls
+\x03\x03\x03\x03ls
+\x03\x03\x03\x03\x03
+\x03\x03\x03
+s
+ls
+>>>>>>> origin/mikel
