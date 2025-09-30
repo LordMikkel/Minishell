@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 23:55:15 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/17 18:02:47 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/17 21:58:19 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,6 @@ void	my_exit(t_shell *data, t_prompt *prompt, t_token *token)
 
 	status = check_exit(data, token, prompt->n_tokens);
 	if (status == ERROR)
-		return (ft_printf_fd(STDOUT, ERR_EXIT_TOO_MANY), (void)0);
+		return (ft_printf_fd(STDERR, ERR_EXIT_TOO_MANY), (void)0);
 	exit_succes(data, NULL, status);
 }

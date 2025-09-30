@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 22:34:34 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/09/24 15:26:36 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/30 21:20:06 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 
 static int	invalid_char(int c)
 {
-	if ((c >= 0 && c <= 31) || (c >= 33 && c <= 42) || (c >= 44 && c <= 47)
+	if ((c >= 0 && c <= 31) || (c >= 35 && c <= 42) || (c >= 44 && c <= 47)
 		|| (c >= 58 && c <= 64) || (c >= 91 && c <= 96)
 		|| (c >= 123 && c <= 126) || c > 127)
 		return (TRUE);
@@ -103,7 +103,6 @@ static int	check_invalid_char(t_token *token)
 	{
 		if (i == 0 && !ft_isalpha(token->value[i]) && token->value[i] != '_')
 			return (FALSE);
-
 		if (invalid_char(token->value[i]) && i + 1 < len
 			&& token->value[i + 1] != '=' && token->value[i] == '+')
 				return (FALSE);
