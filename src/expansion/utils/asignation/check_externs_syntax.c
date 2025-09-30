@@ -3,44 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   check_externs_syntax.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:30:59 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/17 19:17:40 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/26 14:19:49 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/minishell.h"
 
-static int	check_case_1(t_token *token)
+static int	check_case_1(t_token *tokens, t_token *token)
 {
-	//importante manerjarlo en el arbol si es false o true
-	if (token[-1].type && token[+1].type)
+	if (tokens[token->id - 1].type && tokens[token->id + 1].type)
 	{
-		if ((token[-1].type == AND || token[-1].type == OR
-				|| token[-1].type == ASIGNATION
-				|| (token[-1].type == BUILT_IN
-					&& ft_strcmp(token[-1].value, BUILTIN_EXPORT) == 0))
-			&& (token[+1].type == AND || token[+1].type == OR
-				|| token[+1].type == ASIGNATION
-				|| token[+1].type == WORD
-				|| (token[+1].type == BUILT_IN
-					&& ft_strcmp(token[+1].value, BUILTIN_EXPORT) == 0)))
+		if ((tokens[token->id - 1].type == AND
+			|| tokens[token->id - 1].type == OR
+			|| tokens[token->id - 1].type == ASIGNATION
+			|| tokens[token->id - 1].type == DOUBLE_QUOTE
+			|| tokens[token->id - 1].type == SINGLE_QUOTE
+			|| (tokens[token->id - 1].type == BUILT_IN
+				&& ft_strcmp(tokens[token->id - 1].value,
+					BUILTIN_EXPORT) == 0))
+			&& (tokens[token->id + 1].type == AND
+				|| tokens[token->id + 1].type == OR
+				|| tokens[token->id + 1].type == ASIGNATION
+				|| tokens[token->id + 1].type == DOUBLE_QUOTE
+				|| tokens[token->id + 1].type == SINGLE_QUOTE
+				|| tokens[token->id + 1].type == WORD
+				|| (tokens[token->id + 1].type == BUILT_IN
+					&& ft_strcmp(tokens[token->id + 1].value,
+						BUILTIN_EXPORT) == 0)))
 			return (1);
 	}
 	return (0); //comillas hace que no se tenga en cuenta "hola""var=hola"
 }
 
-static int	check_case_2(t_shell *data, t_token *token)
+static int	check_case_2(t_shell *data, t_token *tokens, t_token *token)
 {
 	if (token->id > 0 && token->id <= data->prompt.n_tokens)
 	{
-		if (token[-1].type == AND
-			|| token[-1].type == OR
-			|| token[-1].type == ASIGNATION
-			|| token[-1].type == WORD
-			|| ((token[-1].type == BUILT_IN
-					&& ft_strcmp(token[-1].value, BUILTIN_EXPORT) == 0)))
+		if (tokens[token->id - 1].type == AND
+			|| tokens[token->id - 1].type == OR
+			|| tokens[token->id - 1].type == DOUBLE_QUOTE
+			|| tokens[token->id - 1].type == SINGLE_QUOTE
+			|| tokens[token->id - 1].type == ASIGNATION
+			|| tokens[token->id - 1].type == WORD
+			|| ((tokens[token->id - 1].type == BUILT_IN
+				&& ft_strcmp(tokens[token->id - 1].value,
+					BUILTIN_EXPORT) == 0)))
 			return (1);
 	}
 	return (0); //if not, then it needs to remain as WORD
@@ -48,48 +58,68 @@ static int	check_case_2(t_shell *data, t_token *token)
 
 //Aqui solo va a entrar si es local,
 //porque si fuese por export, si existiria i - 1
-static int	check_case_3(t_token *token)
+/*static int	check_case_3(t_token *tokens, t_token *token)
 {
-	if (!token[-1].type && token[+1].type)
+	if (token->id == 0 && tokens[token->id + 1].type)
 	{
-		if (token[+1].type == AND || token[+1].type == OR
-			|| token[+1].type == ASIGNATION
-			|| (token[+1].type == BUILT_IN
-				&& ft_strcmp(token[+1].value, BUILTIN_EXPORT) == 0))
+		if (tokens[token->id + 1].type == AND
+			|| tokens[token->id + 1].type == OR
+			|| tokens[token->id + 1].type == DOUBLE_QUOTE
+			|| tokens[token->id + 1].type == SINGLE_QUOTE
+			|| (tokens[token->id + 1].type == ASIGNATION
+				&& verify_till_valid_token(tokens, token->id))
+			|| (tokens[token->id + 1].type == BUILT_IN
+				&& ft_strcmp(tokens[token->id + 1].value, BUILTIN_EXPORT) == 0))
 			return (1);
-		else if (token[+1].type == WORD
-			|| token[+1].type == COMMAND
-			|| (token[+1].type == BUILT_IN
-				&& ft_strcmp(token[+1].value, BUILTIN_EXPORT) != 0))
-			return (IGNORE); //Yep, that's right, it needs to ignore this token.
+		else if (tokens[token->id + 1].type == WORD
+			|| tokens[token->id + 1].type == COMMAND
+			|| (tokens[token->id + 1].type == ASIGNATION
+				&& !verify_till_valid_token(tokens, token->id))
+			|| (tokens[token->id + 1].type == BUILT_IN
+				&& ft_strcmp(tokens[token->id + 1].value, BUILTIN_EXPORT) != 0))
+			return (TEMP_ASIGNATION); //Yep, that's right, it needs to ignore this token.
+	}
+	return (0);
+}*/
+
+static int	check_case_3(t_token *tokens, t_token *token)
+{
+	if (token->id == 0 && tokens[token->id + 1].type)
+	{
+		if (tokens[token->id + 1].type == AND
+			|| tokens[token->id + 1].type == OR
+			|| tokens[token->id + 1].type == DOUBLE_QUOTE
+			|| tokens[token->id + 1].type == SINGLE_QUOTE
+			|| tokens[token->id + 1].type == ASIGNATION
+			|| (tokens[token->id + 1].type == BUILT_IN
+				&& ft_strcmp(tokens[token->id + 1].value, BUILTIN_EXPORT) == 0)
+			|| tokens[token->id + 1].type == WORD
+			|| tokens[token->id + 1].type == COMMAND
+			|| (tokens[token->id + 1].type == BUILT_IN
+				&& ft_strcmp(tokens[token->id + 1].value, BUILTIN_EXPORT) != 0))
+			return (1);
 	}
 	return (0);
 }
 
-int	check_externs_syntax(t_shell *data, t_token *token)
+int	check_externs_syntax(t_shell *d, t_token *tokens, t_token *token, int type)
 {
-	int	validate;
 	int	result;
 
-	result = 0;
-	validate = TRUE;
-	if (token->id >= 1 && token->id < data->prompt.n_tokens
-		&& (token[+1].type || token[-1].type) && token->type == ASIGNATION)
+	result = FALSE;
+	if (token->id >= 1 && token->id < d->prompt.n_tokens
+		&& (tokens[token->id + 1].type || tokens[token->id - 1].type)
+		&& (token->type == ASIGNATION || token->type == WORD))
 	{
-		validate = check_case_1(token);
-		if (validate)
-			result = check_asignation_syntax(token);
-		validate = check_case_2(data, token);
-		if (validate)
-			result = check_asignation_syntax(token);
-		validate = check_case_3(token);
-		if (validate)
-			result = check_asignation_syntax(token);
+		if (check_case_1(tokens, token))
+			result = check_asignation_syntax(token, type);
+		if (check_case_2(d, tokens, token))
+			result = check_asignation_syntax(token, type);
+		if (check_case_3(tokens, token))
+			result = check_asignation_syntax(token, type);
 	}
 	else
-		result = check_asignation_syntax(token);
-	if (result == TRUE && validate == IGNORE)
-		result = IGNORE;
+		result = check_asignation_syntax(token, type);
 	//en caso de que sea el primero y no haya ningun otro token
 	return (result);
 }

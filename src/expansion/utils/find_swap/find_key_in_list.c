@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_key_in_list.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:59 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/17 19:16:58 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/30 20:34:44 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static void	sym_expa(t_shell *d, t_token *token, char **key_to_f, int sym_value)
 		exit_error(d, ERR_MALLOC, EXIT_FAILURE);
 	}
 	copy_value(d, &token->value, value_of_symbol_expansion, *key_to_f);
+	if (value_of_symbol_expansion)
+		free (value_of_symbol_expansion);
 }
 
 /*
@@ -36,7 +38,7 @@ static void	sym_expa(t_shell *d, t_token *token, char **key_to_f, int sym_value)
 
 static int	is_it_symbol(t_shell *data, t_token *token, char **key_to_find)
 {
-	if (*key_to_find[0] == '!' && *key_to_find[1] == '\0')
+	if (key_to_find[0][0] == '!' && key_to_find[0][1] == '\0')
 	{
 		if (data->ast_root->pid)
 		{
@@ -46,15 +48,12 @@ static int	is_it_symbol(t_shell *data, t_token *token, char **key_to_find)
 		else
 			return (FALSE);
 	}
-	if (*key_to_find[0] == '?' && *key_to_find[1] == '\0')
+	else if (key_to_find[0][0] == '?' && key_to_find[0][1] == '\0')
 	{
-		if (data->last_exit_code)
-		{
-			sym_expa(data, token, key_to_find, data->shell_pid);
-			return (TRUE);
-		}
+		sym_expa(data, token, key_to_find, data->last_exit_code);
+		return (TRUE);
 	}
-	else if (*key_to_find[0] == '$' && *key_to_find[1] == '\0')
+	else if (key_to_find[0][0] == '$' && key_to_find[0][1] == '\0')
 	{
 		sym_expa(data, token, key_to_find, data->shell_pid);
 		return (TRUE);
@@ -67,6 +66,18 @@ static int	is_it_symbol(t_shell *data, t_token *token, char **key_to_find)
 	"copy_value" para reemplazar el $USER por su valor.
 	Si no encuentra ninguna coincidencia, intenta hacer un match con algún
 	simbolo: $! - $$ - $?.
+
+	Debe de ser != EXP ya que cuando la variable es de ese tipo no tiene value,
+	de modo que si se intentase expander su valor, daria como resultado
+	expander datos basura
+
+	No queremos expandir casos como var->type EXP porque no tiene ningun valor
+	a expandir, por lo que hay que procesarlo de otra manera en la phase 2.
+	Tampoco queremos expandir casos como TEMP_ASINATION ya que el padre no
+	puede tener acceso a esos tokens, ya que son unicamente para los hijos.
+	Es por esto, que aunque nuestra lista enlazada contiene todos los tipos
+	de variables, el padre solo es capaz de acceder a LOCAL y ENV, mientras que
+	puede expandir las mismas además de la ya descritas temp y exp (vacias)
 */
 
 int	find_key_in_lst(t_shell *data, t_token *token, char **key_to_find)
@@ -75,9 +86,13 @@ int	find_key_in_lst(t_shell *data, t_token *token, char **key_to_find)
 	int		match_for_symbol;
 
 	var = data->env.vars;
+	match_for_symbol = is_it_symbol(data, token, key_to_find);
+	if (match_for_symbol)
+		return (TRUE);
 	while (var != NULL)
 	{
-		if (ft_strcmp(var->key, *key_to_find) == 0)
+		if (ft_strcmp(var->key, *key_to_find) == 0 && var->type != EXP
+			&& var->type != TEMP_ASIGNATION)
 		{
 			token->type = WORD;
 			copy_value(data, &token->value, var->value, *key_to_find);
@@ -85,8 +100,5 @@ int	find_key_in_lst(t_shell *data, t_token *token, char **key_to_find)
 		}
 		var = var->next;
 	}
-	match_for_symbol = is_it_symbol(data, token, key_to_find);
-	if (match_for_symbol)
-		return (TRUE);
 	return (FALSE);
 }

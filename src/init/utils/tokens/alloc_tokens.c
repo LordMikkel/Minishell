@@ -6,11 +6,11 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 16:50:56 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/07 20:51:37 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/17 22:40:42 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../inc/minishell.h"
+#include "../../../../inc/minishell.h"
 
 /*
 	Inicializa la estructura de tokens para el prompt, reserva memoria

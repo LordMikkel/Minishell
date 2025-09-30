@@ -1,143 +1,23 @@
-echo hola > test
-exit 1 >
-exit 1 > 2
-exit 5
-(())
-echo $A
-mvelaqu
-echo -nnnnnnnn -n
-echo adios
-echo -n
-echo -n a
-echo holaa -n
-export a
-export a+=hola
-export a+=adios
-export a+=adios a+='como estas'
-export a+='hola mundo'
-export a=hola
-export a='HOla Munod'
-export b=adios
-export b=nada
-export b+=adios
-export b=hola
-export b='nada adios'
-export b='buenas'
-export b='adios mundo'
-export b='hola Mundo'
-env hola
-env -i
-export c
-unset a
-unset a+
-export holamUndo@
-export hola@=adios
-export +=esto
-export d+@%^%&%$^=a
-'Hola 'mundo"adjios''"nada
-echo 'Hola 'mundo"adjios''"nada
-echo "$USER"'$USER'"'$USER'"'"$USER"'
-echo '$USER $USER ' '' adios
-echo '$USER$USER' '' adios
-echo $ $ $
-echo $$ $$
-echo $$$a$
-echo $USER
-echo $$$USER$
-export $$USER=a
-export *
-clear
-echo '$USER'" $USER"
-export a='ls -l'
-export a=ls b=-l
-echo $a $b
-ls -l
-export a=echo
-$a $b
-echo -l
-$a
-export c=-n
-export
-echo $c hola
-$a $c $d hola
-echo $asdfa adios
-exit 1 asfa
-exit 214783647
-2147483647
-exit 2147483647
-exit 
-exit -1
-sa
-exit 1 2 3
-exit a 213123123123123123123
-hola
-exit 123
-exit 12131
-ear
-exit
-exit 12131a
-exit 12a
-exit s 2
-exit 1 4 55 
-exit 0 5 4 8
-cM
-export A=hola
-export A+=" como" A+=" estas"
-export A+="como" A+="estas"
-export A+= " como"
-export A+=  como
-export A+="  como"
-export A+= "  como"
-export A+=" como"
-export A+=' '
-export A+="  "
-export A+= como
-export A+=&^%&$%^\x2334__
-A=@\x23@$$*&^^&*_315131
-export A+=' como'
-export "v=pepe"
-export "v=    pepe"
-export A=@@$$*&^^&*_315131
-A=@@$$*&^^&*_315131
-export v=pepe l
-lib/libft_plus/Makefile
-echo hola "NADA" como estas?
-echo hola "$NADA" como estas?
-echo hola $NADA como estas?
-echo $$$
-echo $!$USER
-echo $NB$USER
-echo $$$USER
-hola 
-omo 
-echo -n hola
-vsv
 sbas
 bs
 betaha
 gsfsefg
-a
 eag
 esb
 eas
  g
 e t
 t
-3w 
-t 
+3w
+t
  w
 az
  gz
-e
 z s
-pwd
-export A=1
 export A=1 B=2
 echo $A $B
-A=1
 AB=2
 echo $AB
-ls
 scsd
 ces
 vves
@@ -148,14 +28,12 @@ unset A
 .
 echo A B C
 export A=1 B=2 C=3
-echo $A $B $C
 echo $vsdvsvd
 export a=3
 echo $a
-Mikel
 .vscode/launch.json
 ls > ''
-ls > 
+ls >
 ls >
 ls <
 ls < &&
@@ -168,13 +46,154 @@ ls > |
 ls > ""
 ls > &&
 ls > &
-ls > ls
-ls > & ls
-ls >&
-ls >& ls
 echo $1
 export A=1 ls B=2
-env
 echo "hola $A"
 echo "hola $sdvsddvd"
 echo "hola$sdvsddvd"
+echo hola & > ls
+ls > ls
+ls > &ls
+ls > & ls
+ls >& ls
+ls >&
+ls &
+avolcy
+expot p
+export p
+p = 2
+export =lol
+export pp+=op
+export pp=op
+export pp=op+
+unset pp+
+export pp=tttt
+export test="$pp"
+export
+$pp
+echo
+echo $$
+echo $$$
+echo $$$$
+echo $$$$$$
+echo $$$$$$$
+echo $HOME
+echo $HOME'$HOME'USER'"'$USER'"'''"'$USER'"
+mkdir tt
+cd tt
+ls *
+./minishell
+ENV
+cds
+lsvs
+sdv
+seves
+Mikel
+\x03slsd
+\x03\x03\x03\x03\x03\x03\x03\x03\x03\x03
+\x03\x03\x03\x03\x03\x03\x03\x03\x03
+\x03\x03\x03cd /home/mikel/documents/cursus/rank03/minishell && make
+\x03pkill -SIGINT -f "./minishell"
+\x03\x03\x03\x03\x03\x03
+\x03ps aux | grep "./minishell" | grep -v grep
+\x03\x03\x03\x03\x03\x03\x03\x03\x03\x03\x03
+\x03\x03ls
+\x03ls
+clear
+\x03ps aux | grep "./minishell" | grep -v grep | head -1 | awk '{print $2}' | xargs kill -INT
+\x03\x03cd /home/mikel/documents/cursus/rank03/minishell && make
+\x03\x03\x03\x03\x03\x03\x03\x03cd /home/mikel/documents/cursus/rank03/minishell && make
+\x03pkill -SIGINT minishell
+\x03\x03\x03\x03
+lss
+sdsvsv
+\x03mikel
+exit
+\x03\x03\x03\x03\x03\x03\x03\x03
+\x03l
+\x03\x18\x03\x03\x03\x03\x03
+\x03sd
+\x03\x03\x03\x03\x03d
+\x03c
+\x03\x03\x03ls
+\x03\x03\x03\x03ls
+\x03\x03\x03\x03\x03
+\x03\x03\x03
+s
+>>>>>>> origin/mikel
+cd
+export a
+var=hola ls
+A=1
+echo $A
+echo "$HOME $USER"
+echo "$HOME"$USER
+echo "$HOME" $USER
+echo "$HOME" ; "$USER"
+echo "$HOME" "$USER"
+echo $HOME $USER
+echo $USER $HOME
+a
+dvafdas asdg asdg asd
+asdasd= asd
+A=1 B=2 C=3
+a=1
+b=2 echo $b
+b=2 ls
+b=2
+b=2 bash
+echo $A $B $C
+export A+=1
+export A+=" $USER"
+export A=Hola
+echo "hola $USER donde vives $HOME y que tal sales $?"
+echo "hola $USER donde vives $HOME"
+echo $?
+export SHLVL=356383636436
+echo $!
+$?
+$$
+$!
+echo "hola $USER como estas? donde vives $HOME y como sales $?"
+echo "hola $USER "$?
+echo hola $USER $? $$
+echo hola $USER $?
+cd /src
+cd src/
+cd exit/exit.c
+cd exit/
+pwd
+cd ..
+cd src/exit
+/usr/bin/ls
+echo $
+echo $ $GOME
+echo $ $HOME
+echo $SHLVL
+ls
+sve
+e
+ce
+export A+=" como estas"
+export A=" Hola como estas = BIEN"
+export A=1
+A=2
+B=1
+export A=$USER d B=3 dfbd C=2
+export A=
+export A =1
+export
+export A=4 svds sds d B=3 dfbd C=2
+export A=$USER d B=$HOME dfbd C=$?
+export A=1 B=2 dfbd C=3
+export C=$?
+env
+export A=$USER sdsdbds sdsvsdvs = B=$HOME dfbd C=$?
+export A=$USER  = ?
+export A=1 =
+$USER
+echo $USER
+echo '$USER'
+echo "$USER"
+echo "hola $use como vas"
+echo hola $use como vas
