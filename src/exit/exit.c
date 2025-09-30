@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 21:42:44 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/17 17:53:37 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/17 23:36:14 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	exit_error(t_shell *data, const char *error, int exit_code, ...)
 		ft_var_printf_fd(STDERR, error, args);
 		va_end(args);
 	}
-	if ((exit_code == FAILURE || exit_code == EXIT_CMD_NOT_EXECUTABLE) && errno)
+	if ((exit_code == EXIT_FAIL) && errno)
 		ft_printf_fd(STDERR, ERRNO, strerror(errno));
 	if (data)
 		clean_all(data);
@@ -43,9 +43,9 @@ int	exit_error(t_shell *data, const char *error, int exit_code, ...)
 
 int	exit_succes(t_shell *data, char *msg, int exit_code)
 {
-	print_session_end(data->extra_features.session_start, NULL);
 	if (msg)
 	{
+		print_session_end(data->extra_features.session_start, NULL);
 		if (data->extra_features.user_name)
 			ft_printf_fd(STDOUT, msg, data->extra_features.user_name);
 		else

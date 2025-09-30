@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:22:59 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/27 16:12:17 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/30 20:34:32 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	copy_value(t_shell *d, char **token_val, char *key_value, char *key_to_find)
 	old_len = ft_strlen(*token_val);
 	key_len = ft_strlen(key_to_find);
 	value_len = ft_strlen(key_value);
-	new_len = old_len - key_len - 1 + value_len;
+	new_len = old_len - key_len + value_len;
 	new_buffer = ft_realloc(*token_val, old_len + 1, new_len + 1);
 	if (!new_buffer)
 	{
@@ -44,6 +44,7 @@ int	copy_value(t_shell *d, char **token_val, char *key_value, char *key_to_find)
 		exit_error(d, ERR_MALLOC, EXIT_FAILURE);
 	}
 	*token_val = new_buffer;
+	new_buffer[new_len] = '\0';
 	new_buffer = ft_strchr(*token_val, '$');
 	if (!new_buffer || !ft_isalpha(*(new_buffer + 1))
 		&& !is_symbol(*(new_buffer + 1)))

@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 22:35:11 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/09/25 18:10:28 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/30 19:23:58 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	aux_key_asig(t_token *token, char **key, int *i)
 		j++;
 	}
 	(*key)[j] = '\0';
-	printf("key: %s\n\n", *key);
+	//printf("key: %s\n\n", *key);
 }
 
 static void	aux_value_asig(t_token *token, char **value, int *i, int type)
@@ -75,7 +75,7 @@ static void	aux_value_asig(t_token *token, char **value, int *i, int type)
 		(*i)++;
 	}
 	(*value)[j] = '\0';
-	printf("value: %s\n\n", *value);
+	//printf("value: %s\n\n", *value);
 }
 
 /*static int	verify_if_already_set(t_shell *data, char *key, char **value, int t)

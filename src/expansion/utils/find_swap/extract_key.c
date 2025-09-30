@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:18:26 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/27 00:43:36 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/30 21:28:18 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	extract_key(t_shell *data, t_token *token, char **key_to_find, int phase)
 	found = find_key_in_lst(data, token, key_to_find);
 	if (found == ERROR)
 		return (ERROR);
+	if (found)
+		token->type = WORD;
 	if (!found && phase == FINAL_PHASE)
 	{
 		result = expand_empty_str(data, token, key_to_find);

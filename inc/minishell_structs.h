@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/28 02:36:13 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/30 19:09:38 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,7 @@ typedef struct s_shell
 	t_extras	extra_features;
 	int			last_exit_code;
 	char		*home;
+	int			exit_code;
 }	t_shell;
 
 #endif

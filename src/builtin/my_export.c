@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:22:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/27 00:35:20 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/30 21:14:51 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static int	asignation_type(t_shell *data, t_token *token, t_env *env)
 	else if (token->type == WORD)
 	{
 		if (check_asignation_syntax(token, EXP) == FALSE)
-			exit_error(data, ERR_EXPORT, EXIT_CMD_NOT_FOUND, token->value);
+			syntax_error(data, ERR_EXPORT, EXIT_CMD_NOT_FOUND, token->value);
 		else
 			asignation(data, token, EXP);
 	}

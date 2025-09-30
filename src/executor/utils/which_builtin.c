@@ -6,9 +6,10 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:58:35 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/29 20:35:39 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/01 00:28:36 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../../../inc/minishell.h"
 
@@ -28,10 +29,20 @@ static void	env_commands(t_shell *data, t_token *tokens, t_token *token)
 
 	flag_error = 0;
 	if (ft_strmatch_cmp(token->value, BUILTIN_EXPORT, &flag_error) == 0)
+	if (ft_strcmp(token->value, BUILTIN_ECHO) == 0)
+		data->exit_code = my_echo(&data->prompt, token);
+	else if (ft_strcmp(token->value, BUILTIN_PWD) == 0)
+		data->exit_code = my_pwd(data);
+	else if (ft_strcmp(token->value, BUILTIN_ECHO) == 0)
+		data->exit_code = my_echo(&data->prompt, token);
+	else if (ft_strcmp(token->value, BUILTIN_EXPORT) == 0)
 		data->last_exit_code = my_export(data, tokens, token, &data->env);
 	else if (ft_strmatch_cmp(token->value, BUILTIN_UNSET, &flag_error) == 0)
 		data->last_exit_code = my_unset(data, &data->env, tokens);
 	else if (ft_strmatch_cmp(token->value, BUILTIN_ENV, &flag_error) == 0)
+	else if (ft_strcmp(token->value, BUILTIN_UNSET) == 0)
+		data->exit_code = my_unset(data, &data->env, tokens);
+	else if (ft_strcmp(token->value, BUILTIN_ENV) == 0)
 		data->last_exit_code = my_env(data->env.vars);
 	if (flag_error == ERROR)
 		exit_error(data, ERR_MALLOC, EXIT_FAILURE);

@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 21:56:00 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/09/26 16:27:10 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/30 21:35:29 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	aux_if_word(t_prompt *prompt, t_token *tokens, int i)
 	while (j >= 0 && j < prompt->n_tokens && tokens[j].type == WORD)
 		j--;
 	if (j >= 0 && tokens[j].type == COMMAND || (tokens[j].type == BUILT_IN
-		&& ft_strcmp(tokens[j].value, BUILTIN_EXPORT) != 0))
+			&& ft_strcmp(tokens[j].value, BUILTIN_EXPORT) != 0))
 		tokens[i].type = WORD;
 }
 
