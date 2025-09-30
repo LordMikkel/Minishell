@@ -1,275 +1,7 @@
-<<<<<<< HEAD
-var=1 ls a=21
-var=1 b=2 ls a=21
-var=hola ls a=1
-var=hola b=2 ls a=1
-var=hello
-var+=" and bye bye"
-var+=1 a+=2 b+=3
-echo $var && echo $a && echo $b
-export var a b
-export c+=4 d+=5 e+=6 f+=7
-export t
-export t=1
-export v=1
-export b
-export b+=1
-export q
-export q+=1
-export b+=o b+="Hola mundo" b+=2
-export r
-var
-var+=1
-export ls export a=1
-echo $ls
-echo $export
-var=12 export p r=21
-unset p q
-q=12 export echo  e=21
-export w=21 export ls r=21
-export export export export export a+=1
-export export export export export t+=1
-export export export export export s=1
-a=!
-a+=Hola
-var=hola
-export var
-export a+=1
-a+=1 a+=v a=a
-unset a var
-var=21 export ls a=21
-var=21 ls a=21
-echo var=2
-echo var=1
-a=1 ls p=1
-a=1 b=2 ls
-|
-hola=! export 
-echo $z
-z=1 x=2 ls l=1
-var=a ls
-a=a b=b ls
-a=a b=b c=c ls
-a=a b=b c=c ls q=1
-ls && a=a b=b c=c ls q=1
-a+=1111
-a=david ls
-export var=1 david
-export var=1 david f=3 david
-export var=1 david f=3 david ls
-var=1 a=1 l=3 ls
-var=1 a=1 l=3 ls b=3
-var=1 a=2 ls
-var=1 a=2 b=3 ls
-ls && var=1 a=2 b=3 ls vaa=3
-var=hola l=a
-var=1 a=2 b=3 ls vaa=3
-var=1 a=2 b=333 ls vaa=3
-\xE2\x88\x82
-var=1 a=1 ls
-var=1 a=1 ls b=2
-var=1 ls
-var=1 ls a=1
-export var=2 export
-export var=1 ls vaa=2
-v=1 export hola
-a=1 b=2
-a=1 b=2 c=3
-var=1 export a=2 b=333 ls vaa=3
-var=1 b=1 ls a=1
-david var=1 b=1 a=1
-david var=1 b=1 ls a=1
-var=1 b=1 david ls a=1
-var=1 david ls a=1
-var=1 ls vaa=2
-ls && var=1 b=1 david ls a=1
-david var=1 ls vaa=2
-ls var=1
-a=222
-a+=3
-b=12
-b+=o
-export c+=1
-export c=1
-c+=1
-echo $c
-a=111
-b=1
-b+=1
-v+=22 v+=33
-echo $v
-f=21 g=32
-echo $f && echo $g
-export a+=1 b+=2 c+=3 d+=4
-export a+=1 b+=2 c+=3 d+=4 e=23
-unset a b c d e
-a=b ls c=2
-va=1
-var=1 export ls va=1
-var=1 export ls
-var=1 export export ls
-export a
-a=1
-export export
-eexport
-unset export
-unset ls
-unset export ls
-var=1 export ls a=1 b=1
-var=1 export ls a=1 
-var=1 export a=1 
-export a=1
-export va=!
-export export ls
-var=1 export a=1
-var=1 export a+=1
-var=1 export ls a=1
-export var=1 ls v=3
-var=1 echo "Hola mundo!"
-v=111 echo "Hola mundo!"
-b=111 echo "Hola mundo!"
-b+=111 echo "Hola mundo!"
-echo $b
-b+=111 echo "Hola mundo! y $b" 
-b+=111 echo "Hola mundo! y $b"
-var=1 echo hola
-unset var
-var=1 echo $var
-echo $l
-export l=1
-env
-l=1
-var=1 var+=2 echo $var
-echo $j
-j=1 j+=2 echo $j
-cafe=1 cafe+=1 && echo hola
-(echo $jesus)
-var=1 var+=2 echo hola
-var=1 var+=hola echo hola
-var=1 var+=hola echo $var
-q+=1
-echo $q
-export
-a+=o
-unset a
-echo $a
-a+=1
-echo "Hola$USER"
-echo "Hola $USER como vas"
-echo 'Hola $USE como vas'
-echo Hola $USE como vas
-"ls"
-"ls -l"
-echo "Hola $USE como vas"
-echo "Hola $USE como estas"
-echo Hola $USE como estas
-echo hello $use como estas?
-echo "$use" david
-echo $use
-echo "$USE"
-echo "Hola '$USER' como vas"
-echo $$
-echo 'Hola $USER como vas'
-var=1
-echo $var
-echo "$USER"
-(echo $cafe)
-xclear
-echo $? $sa
-echo $? $_sa_
-echo $? $1_sa_
-echo $? $-1_sa_
-echo $? $*+23-1_sa_
-echo $? $* +23-1_sa_
-&& echo $?
-!"echo $?
-echo $?
-var=1 echo la
-var=1 var+=1 echo la
-var=1 var+=1 ca+=1 re+=1 la=1 echo la
-var=1 var=1 ca=1 re=1 la=1 echo la
-l
-cd
-cd hola mundo
-cd ../minishell
-cd minishell/minishell pdf
-cd /minishell
-cd ../minitalk
-cd ../..
-pwd
-cd ..
-=======
-echo $USER
-echo $$$USER$
-export $$USER=a
-export *
-echo '$USER'" $USER"
-export a='ls -l'
-export a=ls b=-l
-echo $a $b
-ls -l
-export a=echo
-$a $b
-echo -l
-$a
-export c=-n
-echo $c hola
-$a $c $d hola
-echo $asdfa adios
-exit 1 asfa
-exit 214783647
-2147483647
-exit 2147483647
-exit 
-exit -1
-sa
-exit 1 2 3
-exit a 213123123123123123123
-hola
-exit 123
-exit 12131
-ear
-exit 12131a
-exit 12a
-exit s 2
-exit 1 4 55 
-exit 0 5 4 8
-cM
-export A=hola
-export A+=" como" A+=" estas"
-export A+="como" A+="estas"
-export A+= " como"
-export A+=  como
-export A+="  como"
-export A+= "  como"
-export A+=" como"
-export A+=' '
-export A+="  "
-export A+= como
-export A+=&^%&$%^\x2334__
-A=@\x23@$$*&^^&*_315131
-export A+=' como'
-export "v=pepe"
-export "v=    pepe"
-export A=@@$$*&^^&*_315131
-A=@@$$*&^^&*_315131
-export v=pepe l
-lib/libft_plus/Makefile
-echo hola "NADA" como estas?
-echo hola "$NADA" como estas?
-echo hola $NADA como estas?
-echo $!$USER
-echo $NB$USER
-echo $$$USER
-hola 
-omo 
-echo -n hola
-vsv
 sbas
 bs
 betaha
 gsfsefg
-a
 eag
 esb
 eas
@@ -281,12 +13,9 @@ t
  w
 az
  gz
-e
 z s
-export A=1
 export A=1 B=2
 echo $A $B
-A=1
 AB=2
 echo $AB
 scsd
@@ -299,7 +28,6 @@ unset A
 .
 echo A B C
 export A=1 B=2 C=3
-echo $A $B $C
 echo $vsdvsvd
 export a=3
 echo $a
@@ -340,12 +68,10 @@ export pp=op
 export pp=op+
 unset pp+
 export pp=tttt
-export
 export test="$pp"
 export 
 $pp
 echo
-echo $
 echo $$
 echo $$$
 echo $$$$
@@ -353,14 +79,11 @@ echo $$$$$$
 echo $$$$$$$
 echo $HOME
 echo $HOME'$HOME'USER'"'$USER'"'''"'$USER'"
-pwd
 mkdir tt
 cd tt
 ls *
 ./minishell
 ENV
-env
-cd
 cds
 lsvs
 sdv
@@ -397,5 +120,80 @@ exit
 \x03\x03\x03\x03\x03
 \x03\x03\x03
 s
-ls
 >>>>>>> origin/mikel
+cd
+export a
+var=hola ls
+A=1
+echo $A
+echo "$HOME $USER"
+echo "$HOME"$USER
+echo "$HOME" $USER
+echo "$HOME" ; "$USER"
+echo "$HOME" "$USER"
+echo $HOME $USER
+echo $USER $HOME
+a
+dvafdas asdg asdg asd
+asdasd= asd
+A=1 B=2 C=3
+a=1
+b=2 echo $b
+b=2 ls
+b=2
+b=2 bash
+echo $A $B $C
+export A+=1
+export A+=" $USER"
+export A=Hola
+echo "hola $USER donde vives $HOME y que tal sales $?"
+echo "hola $USER donde vives $HOME"
+echo $?
+export SHLVL=356383636436
+echo $!
+$?
+$$
+$!
+echo "hola $USER como estas? donde vives $HOME y como sales $?"
+echo "hola $USER "$?
+echo hola $USER $? $$
+echo hola $USER $?
+cd /src
+cd src/
+cd exit/exit.c
+cd exit/
+pwd
+cd ..
+cd src/exit
+/usr/bin/ls
+echo $
+echo $ $GOME
+echo $ $HOME
+echo $SHLVL
+ls
+sve
+e
+ce
+export A+=" como estas"
+export A=" Hola como estas = BIEN"
+export A=1
+A=2
+B=1
+export A=$USER d B=3 dfbd C=2
+export A=
+export A =1
+export
+export A=4 svds sds d B=3 dfbd C=2
+export A=$USER d B=$HOME dfbd C=$?
+export A=1 B=2 dfbd C=3
+export C=$?
+env
+export A=$USER sdsdbds sdsvsdvs = B=$HOME dfbd C=$?
+export A=$USER  = ?
+export A=1 = 
+$USER
+echo $USER
+echo '$USER'
+echo "$USER"
+echo "hola $use como vas"
+echo hola $use como vas

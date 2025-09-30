@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_signals.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/18 02:47:16 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/27 21:32:35 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/30 21:35:30 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int check_signals(t_shell *data)
+int	check_signals(t_shell *data)
 {
 	if (g_signal[0] == SIG_INTERACTIVE)
 	{

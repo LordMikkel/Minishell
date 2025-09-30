@@ -6,11 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:23:16 by migarrid          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/09/27 00:17:45 by davdiaz-         ###   ########.fr       */
-=======
-/*   Updated: 2025/09/18 02:42:28 by migarrid         ###   ########.fr       */
->>>>>>> origin/mikel
+/*   Updated: 2025/09/30 20:47:51 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,8 +165,10 @@ delimited by end-of-file (wanted `%s')\n"
 //Variable Errors
 # define ERR_VAR_NOT_SET	"minishell: %s: parameter null or not set\n"
 # define ERR_BAD_SUBST		"minishell: %s: bad substitution\n"
-# define ERR_SHLVL_HIGH		"minishell: warning: shell level (INT_MAX) \
-too high, resetting to 1\n"
+# define ERR_SHLVL_HIGH		"\033[1m\033[1;31mminishell: warning: shell level \
+(INT_MAX) too high, resetting to 1\033[0m\n"
+# define ERR_SHLVL_LOW		"\033[1m\033[1;31mminishell: warning: shell level \
+is negative resetting to 0\033[0m\n"
 
 //Redirection Errors
 # define ERR_AMBIGUOUS_REDIR	"minishell: ambiguous redirect\n"

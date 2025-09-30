@@ -6,11 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:59 by migarrid          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/09/27 15:58:49 by davdiaz-         ###   ########.fr       */
-=======
-/*   Updated: 2025/09/18 02:38:30 by migarrid         ###   ########.fr       */
->>>>>>> origin/mikel
+/*   Updated: 2025/09/30 20:34:44 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +23,8 @@ static void	sym_expa(t_shell *d, t_token *token, char **key_to_f, int sym_value)
 		exit_error(d, ERR_MALLOC, EXIT_FAILURE);
 	}
 	copy_value(d, &token->value, value_of_symbol_expansion, *key_to_f);
+	if (value_of_symbol_expansion)
+		free (value_of_symbol_expansion);
 }
 
 /*
@@ -52,16 +50,8 @@ static int	is_it_symbol(t_shell *data, t_token *token, char **key_to_find)
 	}
 	else if (key_to_find[0][0] == '?' && key_to_find[0][1] == '\0')
 	{
-<<<<<<< HEAD
 		sym_expa(data, token, key_to_find, data->last_exit_code);
 		return (TRUE);
-=======
-		if (data->exit_code)
-		{
-			sym_expa(data, token, key_to_find, data->shell_pid);
-			return (TRUE);
-		}
->>>>>>> origin/mikel
 	}
 	else if (key_to_find[0][0] == '$' && key_to_find[0][1] == '\0')
 	{

@@ -6,11 +6,7 @@
 #    By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2025/09/27 17:13:21 by davdiaz-         ###   ########.fr        #
-=======
-#    Updated: 2025/09/18 05:36:53 by migarrid         ###   ########.fr        #
->>>>>>> origin/mikel
+#    Updated: 2025/09/30 21:02:26 by davdiaz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -169,15 +165,10 @@ SRCS =				main/main.c \
 					executor/executor.c \
 					executor/utils/eliminate_token.c \
 					executor/utils/which_builtin.c \
-<<<<<<< HEAD
 					executor/utils/eliminate_temp_asig.c \
-					signals/init_signals.c \
-					signals/signal_handler.c \
-=======
 					signals/setup_signals.c \
 					signals/handler_signals.c \
 					signals/check_signals.c \
->>>>>>> origin/mikel
 					builtin/my_env.c \
 					builtin/my_echo.c \
 					builtin/my_export.c \
@@ -248,7 +239,8 @@ $(READLINE_DIR)/config.h:
 $(ISOCLINE_A):
 	@$(PRINT) "Compiling $(BLUE)isocline library$(DEFAULT)...\n"
 	@$(MKDIR) $(ISOCLINE_DIR)/build/release
-	@cd $(ISOCLINE_DIR)/build/release && $(CMAKE) ../.. && $(CMAKE) --build .
+	@cd $(ISOCLINE_DIR)/build/release && $(CMAKE) ../.. > /dev/null 2>&1 && $(CMAKE) --build . > /dev/null 2>&1
+#&& $(CMAKE) --build .
 
 # Test minishell rapidly
 test:
@@ -260,8 +252,8 @@ test:
 leaks:
 	@clear
 	@$(MAKE) all
-# 	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./minishell
-	@valgrind --leak-check=full --show-leak-kinds=definite,indirect,possible --track-origins=yes ./minishell
+	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./minishell
+#	@valgrind --leak-check=full --show-leak-kinds=definite,indirect,possible --track-origins=yes ./minishell
 
 # Test the norminette in my .c files
 norm:

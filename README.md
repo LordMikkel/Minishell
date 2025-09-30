@@ -9,19 +9,15 @@ Minishell - Bash
   - https://github.com/rogerdevworld/minishell/blob/main/src/bonus/syntax/ft_lexer_2.c#L93
 
 ## DAVID:
-- Arreglar `is_cmd` para que esto lo catalogue como cmd → Token [3]: '/usr/bin/ls' (type: WORD)
-- Expansiones $, $?, $$, $!...
 - `echo $a && a=1`
-- Invalid read → `echo $A`
+- invalid read `echo $SHLVL`
+- invalid read `token: =1`
+- invalid read y no asignacion correcta `export A=" Hola como estas = BIEN"`
+- Explota en `export A=1 =`
+- Memory leak `export A+=" como estas"`
 - Expansion ha de soportar los wildcards *
 - Norminette
 - Comentarios
-- export con espacios no sirve. por las comillas simpples, ya que lo pone como word en lugar de asignation
-- CUando se hace export a, se actualiza en el export pero no en el env
-- Export con += no concatena
-- Caracteres invalidos para antes del "="
-- NO iterar expandir cuando no es EXPANSION token
-- Cuando es: "$USE" deja espacio. Cuando es: $USE no deja espacio
 
 ## Errores:
 - En is_double_quote -> no se pueden hacer dos expansiones seguidas cuando hay `\` antes del `$` funciona para expansiones
