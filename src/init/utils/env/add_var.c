@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   add_var.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 01:05:00 by migarrid          #+#    #+#             */
+<<<<<<< HEAD:src/init/utils/add_var.c
 /*   Updated: 2025/09/18 23:10:37 by davdiaz-         ###   ########.fr       */
+=======
+/*   Updated: 2025/09/17 22:41:07 by migarrid         ###   ########.fr       */
+>>>>>>> origin/mikel:src/init/utils/env/add_var.c
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../inc/minishell.h"
+#include "../../../../inc/minishell.h"
 
 /*
 	Devuelve el último nodo de la lista de variables o NULL si está vacía.

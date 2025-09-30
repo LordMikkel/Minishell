@@ -6,7 +6,11 @@
 #    By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2025/09/27 17:13:21 by davdiaz-         ###   ########.fr        #
+=======
+#    Updated: 2025/09/18 05:36:53 by migarrid         ###   ########.fr        #
+>>>>>>> origin/mikel
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,17 +94,20 @@ CLEAR 				= \r\033[K
 #                               Source File                                    #
 # **************************************************************************** #
 SRCS =				main/main.c \
-					main/utils/recieve_input.c \
+					main/utils/receive_input.c \
 					main/utils/time/print_session_start.c \
 					main/utils/time/print_session_end.c \
 					main/utils/time/print_time_of_day.c \
-					init/init_data.c \
-					init/init_env.c \
-					init/init_readline.c \
-					init/utils/alloc_tokens.c \
-					init/utils/add_token.c \
-					init/utils/add_var.c \
-					init/utils/make_envp.c \
+					init/init_minishell.c \
+					init/utils/init/init_data.c \
+					init/utils/init/init_env.c \
+					init/utils/init/init_arg.c \
+					init/utils/init/init_readline.c \
+					init/utils/tokens/alloc_tokens.c \
+					init/utils/tokens/add_token.c \
+					init/utils/env/add_var.c \
+					init/utils/env/make_envp.c \
+					init/utils/env/update_shlvl.c \
 					tokenizer/tokenizer.c \
 					tokenizer/utils/is_tokens/is_and.c \
 					tokenizer/utils/is_tokens/is_dolar.c \
@@ -146,7 +153,7 @@ SRCS =				main/main.c \
 					tokenizer/utils/trasnform_tokens/transform_asig_to_asig_plus.c \
 					tokenizer/utils/trasnform_tokens/transform_asig_to_temp_asig.c \
 					expansion/expansion.c \
-					expansion/send_tokens_for_expansion.c \
+					expansion/send_tokens_for_asig.c \
 					expansion/utils/find_swap/copy_key.c \
 					expansion/utils/find_swap/copy_value.c \
 					expansion/utils/find_swap/extract_key.c \
@@ -162,9 +169,15 @@ SRCS =				main/main.c \
 					executor/executor.c \
 					executor/utils/eliminate_token.c \
 					executor/utils/which_builtin.c \
+<<<<<<< HEAD
 					executor/utils/eliminate_temp_asig.c \
 					signals/init_signals.c \
 					signals/signal_handler.c \
+=======
+					signals/setup_signals.c \
+					signals/handler_signals.c \
+					signals/check_signals.c \
+>>>>>>> origin/mikel
 					builtin/my_env.c \
 					builtin/my_echo.c \
 					builtin/my_export.c \
@@ -211,18 +224,11 @@ ${OBJ_DIR}/%.o: ${SRC_DIR}/%.c $(DEPS) $(LIBFT_A) | $(OBJ_DIR)
 #                              Targets                                         #
 # **************************************************************************** #
 
-# all: $(READLINE_A) $(ISOCLINE_A) $(LIBFT_A) $(NAME)
-
-# # Build executable
-# $(NAME): $(OBJS) $(LIBFT_A) $(READLINE_A) $(HISTORY_A) $(ISOCLINE_A)
-# 	@$(CC) $(WFLAGS) $(DFLAGS) $(SFLAGS) $(OFLAGS) $(OBJS) $(LIBFT_A) $(ISOCLINE_A) -I$(INC_DIR) $(LDLIBS) -o $(NAME)
-# 	@$(PRINT) "${CLEAR}${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}${GREEN}»${RESET} [${PURPLE}${BOLD}${NAME}${RESET}]: ${RED}${BOLD}${NAME} ${RESET}compiled ${GREEN}successfully${RESET}.${GREY}\n${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}"
-
-all: $(ISOCLINE_A) $(LIBFT_A) $(NAME)
+all: $(READLINE_A) $(ISOCLINE_A) $(LIBFT_A) $(NAME)
 
 # Build executable
-$(NAME): $(OBJS) $(LIBFT_A) $(ISOCLINE_A)
-	@$(CC) $(WFLAGS) $(DFLAGS) $(SFLAGS) $(OFLAGS) $(OBJS) $(LIBFT_A) $(ISOCLINE_A) -I$(INC_DIR) -o $(NAME)
+$(NAME): $(OBJS) $(LIBFT_A) $(READLINE_A) $(HISTORY_A) $(ISOCLINE_A)
+	@$(CC) $(WFLAGS) $(DFLAGS) $(SFLAGS) $(OFLAGS) $(OBJS) $(LIBFT_A) $(ISOCLINE_A) -I$(INC_DIR) $(LDLIBS) -o $(NAME)
 	@$(PRINT) "${CLEAR}${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}${GREEN}»${RESET} [${PURPLE}${BOLD}${NAME}${RESET}]: ${RED}${BOLD}${NAME} ${RESET}compiled ${GREEN}successfully${RESET}.${GREY}\n${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}"
 
 # Rebuild libft.a
@@ -254,8 +260,8 @@ test:
 leaks:
 	@clear
 	@$(MAKE) all
-	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./minishell
-#	@valgrind --leak-check=full --show-leak-kinds=definite,indirect,possible --track-origins=yes ./minishell
+# 	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./minishell
+	@valgrind --leak-check=full --show-leak-kinds=definite,indirect,possible --track-origins=yes ./minishell
 
 # Test the norminette in my .c files
 norm:
@@ -266,7 +272,7 @@ norm:
 # Clean object files
 clean:
 	@$(MAKE) clean -s -C $(LIBFT_DIR)
-# 	@$(MAKE) clean -s -C $(READLINE_DIR)
+	@$(MAKE) clean -s -C $(READLINE_DIR)
 	@$(RM) $(ISOCLINE_DIR)/build
 	@$(RM) $(OBJ_DIR)
 	@$(PRINT) "${CLEAR}${RESET}${GREEN}»${RESET} [${PURPLE}${BOLD}${NAME}${RESET}]: Objects were cleaned ${GREEN}successfully${RESET}.\n${RESET}"
@@ -274,7 +280,7 @@ clean:
 # Full clean
 fclean: clean
 	@$(MAKE) fclean -s -C $(LIBFT_DIR)
-# 	@$(MAKE) distclean -s -C $(READLINE_DIR)
+	@$(MAKE) distclean -s -C $(READLINE_DIR)
 	@$(RM) $(NAME)
 	@$(PRINT) "${CLEAR}${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}${GREEN}»${RESET} [${PURPLE}${BOLD}${NAME}${RESET}]: Project cleaned ${GREEN}successfully${RESET}.${GREY}\n${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}"
 

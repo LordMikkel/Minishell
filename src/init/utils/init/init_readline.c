@@ -6,11 +6,11 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 20:37:34 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/16 20:42:55 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/17 22:41:00 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../../../inc/minishell.h"
 
 /*
 	Inicializa la librería de readline interactiva (ic_readline)

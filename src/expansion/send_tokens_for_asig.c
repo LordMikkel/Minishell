@@ -3,10 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   send_tokens_for_expansion.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+<<<<<<< HEAD:src/expansion/send_tokens_for_expansion.c
 /*   Created: 2025/09/10 21:57:13 by migarrid          #+#    #+#             */
 /*   Updated: 2025/09/25 18:47:47 by davdiaz-         ###   ########.fr       */
+=======
+/*   Created: 2025/09/18 02:17:40 by migarrid          #+#    #+#             */
+/*   Updated: 2025/09/18 02:17:42 by migarrid         ###   ########.fr       */
+>>>>>>> origin/mikel:src/expansion/send_tokens_for_asig.c
 /*                                                                            */
 /* ************************************************************************** */
 
