@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   my_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:22:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/17 20:13:13 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/30 21:14:51 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-/**
+/*
  * Implementación de la función `export` en un shell personalizado.
  *
  * Propósito:
@@ -45,7 +45,7 @@
  * - Respeta el flujo lógico del AST y la semántica real del comando `export`.
  * - Permite extender fácilmente el comportamiento para soportar más casos
  *   (como `export -p` o variables sin valor).
- */
+*/
 
 static int	check_for_valid_args(t_token *tokens, int i)
 {
@@ -67,7 +67,35 @@ static void	print_env_variables(t_var	*var)
 	}
 }
 
-int	my_export(t_shell *data, t_token *tokens, t_env *env)
+static int	asignation_type(t_shell *data, t_token *token, t_env *env)
+{
+	if (token->type == ASIGNATION)
+		asignation(data, token, ENV);
+	else if (token->type == WORD)
+	{
+		if (check_asignation_syntax(token, EXP) == FALSE)
+			syntax_error(data, ERR_EXPORT, EXIT_CMD_NOT_FOUND, token->value);
+		else
+			asignation(data, token, EXP);
+	}
+	else if (token->type == PLUS_ASIGNATION)
+		asignation(data, token, PLUS_ASIGNATION);
+	return (SUCCESS);
+}
+
+/*
+	1. Si solo es export export, entonces deberia de exportarla. Sin embargo, si
+	fuese export a=1 export b=3 entonces solo deberia de exportar a y b no la
+	palabra.
+	**También pasa lo mismo con las locales. Si es a=1 export b=2 el export es
+	built-in
+
+	**2. this should be a error: e=1 hola r=4 as well as e=1 hola
+	**eliminate the token in check_externs when ignore so that the error appears
+
+	**3. Give the expansion bool if not already set up
+*/
+int	my_export(t_shell *data, t_token *tokens, t_token *token, t_env *env)
 {
 	t_var	*var;
 	int		i;
@@ -75,20 +103,20 @@ int	my_export(t_shell *data, t_token *tokens, t_env *env)
 	int		args_found;
 
 	var = env->vars;
-	i = tokens->id;
+	i = token->id + 1;
 	args_found = FALSE;
-	while (tokens[i].type)
+	while (i < data->prompt.n_tokens)
 	{
 		if (i > 0)
 			args_found = TRUE;
 		if (check_for_valid_args(tokens, i) == FALSE)
 			break ;
-		if (tokens[i].type == ASIGNATION)
-		{
-			result = is_it_asig(data, &tokens[i], env, ENV);
-			if (result == ERROR)
-				return (ERROR);
-		}
+		if ((is_asignation_type(tokens[i].type) || tokens[i].type == WORD)
+			&& tokens[i].type != BUILT_IN)
+			{
+				printf("token: %s\n\n", tokens[i].value);
+				result = asignation_type(data, &tokens[i], env);
+			}
 		i++;
 	}
 	if (!args_found)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_macros.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:23:16 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/17 17:49:14 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/30 20:47:51 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@
 # define NOT_FOUND					0
 # define SYNTAX_ERROR				0
 # define IGNORE						2
+# define REPLACED					2
 # define VOID						0
+# define RECIVED_SIGNAL				0
 
 /* ************************************************************************** */
 /*                               Global Flag                                  */
@@ -63,7 +65,6 @@
 # define EXIT_CMD_NOT_EXECUTABLE	126
 # define EXIT_FATAL_SIGNAL			128
 # define EXIT_CTRL_C				130
-# define EXIT_CTRL_D				131
 
 /* ************************************************************************** */
 /*                              File Operations                               */
@@ -164,6 +165,10 @@ delimited by end-of-file (wanted `%s')\n"
 //Variable Errors
 # define ERR_VAR_NOT_SET	"minishell: %s: parameter null or not set\n"
 # define ERR_BAD_SUBST		"minishell: %s: bad substitution\n"
+# define ERR_SHLVL_HIGH		"\033[1m\033[1;31mminishell: warning: shell level \
+(INT_MAX) too high, resetting to 1\033[0m\n"
+# define ERR_SHLVL_LOW		"\033[1m\033[1;31mminishell: warning: shell level \
+is negative resetting to 0\033[0m\n"
 
 //Redirection Errors
 # define ERR_AMBIGUOUS_REDIR	"minishell: ambiguous redirect\n"

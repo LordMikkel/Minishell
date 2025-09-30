@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:23:28 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/17 16:56:28 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/27 15:59:35 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,6 @@
 	aquellos que estan depués del mismo (siemore y cuando sea una sintaxis
 	válida).
 */
-
-static int	is_symbol(int c)
-{
-	if (c == '?' || c == '!' || c == '$')
-		return (1);
-	return (0);
-}
 
 int	copy_key(char *str, char **key_to_find)
 {
@@ -44,7 +37,7 @@ int	copy_key(char *str, char **key_to_find)
 			if (!ft_isalpha(str[i]) && !is_symbol(str[i]))
 				continue ;
 			start = i;
-			while (ft_isalpha(str[start]) || (*key_to_find)[j] != '\0')
+			while (ft_isalnum(str[start]) || is_symbol(str[start]))
 			{
 				(*key_to_find)[j++] = str[start];
 				start++;

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
+#    By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/09/17 19:27:27 by migarrid         ###   ########.fr        #
+#    Updated: 2025/09/30 21:02:26 by davdiaz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,17 +90,20 @@ CLEAR 				= \r\033[K
 #                               Source File                                    #
 # **************************************************************************** #
 SRCS =				main/main.c \
-					main/utils/recieve_input.c \
+					main/utils/receive_input.c \
 					main/utils/time/print_session_start.c \
 					main/utils/time/print_session_end.c \
 					main/utils/time/print_time_of_day.c \
-					init/init_data.c \
-					init/init_env.c \
-					init/init_readline.c \
-					init/utils/alloc_tokens.c \
-					init/utils/add_token.c \
-					init/utils/add_var.c \
-					init/utils/make_envp.c \
+					init/init_minishell.c \
+					init/utils/init/init_data.c \
+					init/utils/init/init_env.c \
+					init/utils/init/init_arg.c \
+					init/utils/init/init_readline.c \
+					init/utils/tokens/alloc_tokens.c \
+					init/utils/tokens/add_token.c \
+					init/utils/env/add_var.c \
+					init/utils/env/make_envp.c \
+					init/utils/env/update_shlvl.c \
 					tokenizer/tokenizer.c \
 					tokenizer/utils/is_tokens/is_and.c \
 					tokenizer/utils/is_tokens/is_dolar.c \
@@ -122,6 +125,7 @@ SRCS =				main/main.c \
 					tokenizer/utils/is_tokens/is_type_I.c \
 					tokenizer/utils/is_tokens/is_type_II.c \
 					tokenizer/utils/is_tokens/utils_is_double_quote.c \
+					tokenizer/utils/check_syntax/is_it_quoted.c \
 					tokenizer/utils/check_syntax/check_redir_input.c \
 					tokenizer/utils/check_syntax/check_double_parent.c \
 					tokenizer/utils/check_syntax/check_redir_output.c \
@@ -142,27 +146,35 @@ SRCS =				main/main.c \
 					tokenizer/utils/trasnform_tokens/transform_cmd_to_word.c \
 					tokenizer/utils/trasnform_tokens/transform_word_to_asignation.c \
 					tokenizer/utils/trasnform_tokens/transform_invalid_asig_to_word.c \
+					tokenizer/utils/trasnform_tokens/transform_asig_to_asig_plus.c \
+					tokenizer/utils/trasnform_tokens/transform_asig_to_temp_asig.c \
 					expansion/expansion.c \
-					expansion/send_tokens_for_expansion.c \
+					expansion/send_tokens_for_asig.c \
 					expansion/utils/find_swap/copy_key.c \
 					expansion/utils/find_swap/copy_value.c \
 					expansion/utils/find_swap/extract_key.c \
 					expansion/utils/find_swap/find_key_in_list.c \
 					expansion/utils/find_swap/calculate_total_len.c \
+					expansion/utils/find_swap/expand_empty_str.c \
 					expansion/utils/asignation/asignation.c \
+					expansion/utils/asignation/verify_if_already_set.c \
 					expansion/utils/asignation/is_it_asig.c \
 					expansion/utils/asignation/check_externs_syntax.c \
 					expansion/utils/asignation/check_asignation_syntax.c \
 					ast/ast_builder.c \
 					executor/executor.c \
+					executor/utils/eliminate_token.c \
 					executor/utils/which_builtin.c \
-					signals/init_signals.c \
-					signals/signal_handler.c \
+					executor/utils/eliminate_temp_asig.c \
+					signals/setup_signals.c \
+					signals/handler_signals.c \
+					signals/check_signals.c \
 					builtin/my_env.c \
 					builtin/my_echo.c \
 					builtin/my_export.c \
 					builtin/my_unset.c \
 					builtin/my_pwd.c \
+					builtin/my_cd.c \
 					builtin/my_exit.c \
 					exit/exit.c \
 					exit/error.c \
@@ -203,18 +215,11 @@ ${OBJ_DIR}/%.o: ${SRC_DIR}/%.c $(DEPS) $(LIBFT_A) | $(OBJ_DIR)
 #                              Targets                                         #
 # **************************************************************************** #
 
-# all: $(READLINE_A) $(ISOCLINE_A) $(LIBFT_A) $(NAME)
-
-# # Build executable
-# $(NAME): $(OBJS) $(LIBFT_A) $(READLINE_A) $(HISTORY_A) $(ISOCLINE_A)
-# 	@$(CC) $(WFLAGS) $(DFLAGS) $(SFLAGS) $(OFLAGS) $(OBJS) $(LIBFT_A) $(ISOCLINE_A) -I$(INC_DIR) $(LDLIBS) -o $(NAME)
-# 	@$(PRINT) "${CLEAR}${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}${GREEN}»${RESET} [${PURPLE}${BOLD}${NAME}${RESET}]: ${RED}${BOLD}${NAME} ${RESET}compiled ${GREEN}successfully${RESET}.${GREY}\n${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}"
-
-all: $(ISOCLINE_A) $(LIBFT_A) $(NAME)
+all: $(READLINE_A) $(ISOCLINE_A) $(LIBFT_A) $(NAME)
 
 # Build executable
-$(NAME): $(OBJS) $(LIBFT_A) $(ISOCLINE_A)
-	@$(CC) $(WFLAGS) $(DFLAGS) $(SFLAGS) $(OFLAGS) $(OBJS) $(LIBFT_A) $(ISOCLINE_A) -I$(INC_DIR) -o $(NAME)
+$(NAME): $(OBJS) $(LIBFT_A) $(READLINE_A) $(HISTORY_A) $(ISOCLINE_A)
+	@$(CC) $(WFLAGS) $(DFLAGS) $(SFLAGS) $(OFLAGS) $(OBJS) $(LIBFT_A) $(ISOCLINE_A) -I$(INC_DIR) $(LDLIBS) -o $(NAME)
 	@$(PRINT) "${CLEAR}${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}${GREEN}»${RESET} [${PURPLE}${BOLD}${NAME}${RESET}]: ${RED}${BOLD}${NAME} ${RESET}compiled ${GREEN}successfully${RESET}.${GREY}\n${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}"
 
 # Rebuild libft.a
@@ -235,6 +240,7 @@ $(ISOCLINE_A):
 	@$(PRINT) "Compiling $(BLUE)isocline library$(DEFAULT)...\n"
 	@$(MKDIR) $(ISOCLINE_DIR)/build/release
 	@cd $(ISOCLINE_DIR)/build/release && $(CMAKE) ../.. > /dev/null 2>&1 && $(CMAKE) --build . > /dev/null 2>&1
+#&& $(CMAKE) --build .
 
 # Test minishell rapidly
 test:
@@ -258,7 +264,7 @@ norm:
 # Clean object files
 clean:
 	@$(MAKE) clean -s -C $(LIBFT_DIR)
-# 	@$(MAKE) clean -s -C $(READLINE_DIR)
+	@$(MAKE) clean -s -C $(READLINE_DIR)
 	@$(RM) $(ISOCLINE_DIR)/build
 	@$(RM) $(OBJ_DIR)
 	@$(PRINT) "${CLEAR}${RESET}${GREEN}»${RESET} [${PURPLE}${BOLD}${NAME}${RESET}]: Objects were cleaned ${GREEN}successfully${RESET}.\n${RESET}"
@@ -266,7 +272,7 @@ clean:
 # Full clean
 fclean: clean
 	@$(MAKE) fclean -s -C $(LIBFT_DIR)
-# 	@$(MAKE) distclean -s -C $(READLINE_DIR)
+	@$(MAKE) distclean -s -C $(READLINE_DIR)
 	@$(RM) $(NAME)
 	@$(PRINT) "${CLEAR}${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}${GREEN}»${RESET} [${PURPLE}${BOLD}${NAME}${RESET}]: Project cleaned ${GREEN}successfully${RESET}.${GREY}\n${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}"
 

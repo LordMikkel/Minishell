@@ -6,11 +6,11 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 01:02:53 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/17 01:24:45 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/17 22:40:57 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../../../inc/minishell.h"
 
 /*
 	Asigna un PATH por defecto si no hay entorno.
@@ -75,6 +75,7 @@ static void	init_env(t_shell *data, char **envp)
 		add_var(data, key, value, ENV);
 		i++;
 	}
+	update_shlvl(data->env.vars);
 }
 
 /*

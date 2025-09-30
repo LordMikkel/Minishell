@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 22:33:47 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/09/11 03:38:08 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/09/24 17:37:43 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@
 	1. Sintaxis del token
 	2. ASIGNACIÓN.
 */
-/**
+/*
  * Sistema de análisis y ejecución de asignaciones en el shell.
  *
  * Este conjunto de funciones permite detectar, clasificar
@@ -96,11 +96,17 @@
  *     - Si no se ejecuta ninguna asignación,
  *       imprime las variables exportadas actuales.
  *
- * Este diseño modular permite separar claramente el análisis sintáctico,
- * la clasificación semántica y la ejecución, respetando el flujo
- * clásico de un shell: parseo → AST → ejecución.
- */
-
+ *  Si el type es EXP entonces se salta la verificación de su sintaxis y de su
+ *  entorno, ya que no interesa en este caso. Este caso solo ocurre cuando se
+ *  envia desde export como type EXP.
+ *  Este tipo en realidad puede ser cualquier palabra o letra suelta que vaya
+ *  después de export y que por consiguiente hay que agrgarla al env de export
+ *  pero no al env oficial
+ *  Este diseño modular permite separar claramente el análisis sintáctico,
+ *  la clasificación semántica y la ejecución, respetando el flujo
+ *  clásico de un shell: parseo → AST → ejecución.
+*/
+//Probably have to eliminate this one as it is no longer helpful
 int	is_it_asig(t_shell *data, t_token *token, t_env *env, int type)
 {
 	int	result;
@@ -108,9 +114,11 @@ int	is_it_asig(t_shell *data, t_token *token, t_env *env, int type)
 	result = FALSE;
 	if (token->type == ASIGNATION)
 	{
-		if (ft_strchr(token->value, '='))
-			result = check_externs_syntax(data, token);
+		//if (ft_strchr(token->value, '='))
+			//result = check_externs_syntax(data, token, INDIFERENT);
 	}
+	if (type == EXP)
+		result = check_asignation_syntax(token, type);
 	if (result == TRUE)
 		result = asignation(data, token, type);
 	return (result);

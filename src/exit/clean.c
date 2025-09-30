@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 21:47:38 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/17 19:23:19 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/30 20:27:17 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ void	clean_tokens(t_prompt *prompt)
 				|| prompt->tokens[i].type == REDIR_HEREDOC
 				|| prompt->tokens[i].type == REDIR_INPUT
 				|| prompt->tokens[i].type == REDIR_OUTPUT
-				|| prompt->tokens[i].type == EXPANSION))
+				|| prompt->tokens[i].type == EXPANSION
+				|| prompt->tokens[i].type == ASIGNATION
+				|| prompt->tokens[i].type == TEMP_ASIGNATION
+				|| prompt->tokens[i].type == PLUS_ASIGNATION))
 		{
 			free(prompt->tokens[i].value);
 			prompt->tokens[i].value = NULL;
@@ -112,4 +115,5 @@ void	clean_all(t_shell *data)
 	clean_prompt(&data->prompt);
 	clean_env(&data->env, data->env.vars);
 	clean_extras(&data->extra_features);
+	free (data->home);
 }

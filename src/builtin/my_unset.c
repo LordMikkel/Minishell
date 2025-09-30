@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 21:56:06 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/09/17 19:20:13 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/26 01:52:34 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	my_unset(t_shell *data, t_env *env, t_token *tokens)
 	int	i;
 
 	i = 0;
-	while (i < data->prompt.n_alloc_tokens)
+	while (i < data->prompt.n_tokens)
 	{
 		if (tokens[i].type == WORD || tokens[i].type == ASIGNATION)
 			delete_env_var(env, tokens[i].value);

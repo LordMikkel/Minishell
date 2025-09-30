@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_type_I.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 20:48:00 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/11 16:12:22 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/30 20:13:32 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,22 @@ int	is_alloc_type(int type)
 	if (type == WORD || type == BUILT_IN || type == COMMAND || type == WILDCAR
 		|| type == REDIR_APPEND || type == REDIR_HEREDOC
 		|| type == REDIR_INPUT || type == REDIR_OUTPUT
-		|| type == EXPANSION)
+		|| type == EXPANSION || type == ASIGNATION || type == TEMP_ASIGNATION)
+		return (1);
+	return (0);
+}
+
+int	is_asignation_type(int type)
+{
+	if (type == ASIGNATION || type == PLUS_ASIGNATION
+		|| type == TEMP_ASIGNATION)
+		return (1);
+	return (0);
+}
+
+int	is_symbol(int c)
+{
+	if (c == '?' || c == '!' || c == '$' || c == '_')
 		return (1);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:57:33 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/17 19:38:06 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/09/30 19:50:41 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ int	expansion(t_shell *data, t_token *token, t_env *env, int phase)
 				found = extract_key(data, &token[i], &key_to_find, phase);
 				j--;
 			}
-			i++;
 			free (key_to_find);
 			key_to_find = NULL;
 		}
