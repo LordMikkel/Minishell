@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/30 19:02:40 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/03 17:18:30 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int		add_token(t_shell *data, t_prompt *prompt, char *value, int type);
 /*                               Expansion                                    */
 /* ************************************************************************** */
 int		expansion(t_shell *data, t_token *token, t_env *env, int phase);
+int		asignation(t_shell *data, t_token *token, int type);
 
 /* ************************************************************************** */
 /*                                  AST                                       */
@@ -71,8 +72,6 @@ void	ast_built(t_shell *data, t_token *tokens);
 /* ************************************************************************** */
 /*                                Executor                                    */
 /* ************************************************************************** */
-void	eliminate_temp_asig(t_prompt *prompt, t_token *tokens);
-void	eliminate_token(t_prompt *prompt, t_token *tokens, int index);
 void	which_builtin(t_shell *data, t_token *tokens, t_token *token);
 void	execute_recursive(t_shell *data, t_node *ast_root, t_exec *executor);
 
@@ -165,7 +164,6 @@ int		check_double_parent(t_shell *data, t_token *tokens, t_prompt *prompt);
 int		check_or_and(t_shell *data, t_prompt *prompt, t_token *tokens, int i);
 int		check_parent_balance(t_shell *data, t_prompt *prompt, t_token *tokens);
 
-
 //SIMPLIFY TOKENS
 int		find_range_end(t_token *tokens, int no_space_position);
 int		find_range_start(t_token *tokens, int no_space_position);
@@ -190,8 +188,8 @@ int		expand_empty_str(t_shell *data, t_token *token, char **key_to_find);
 int		copy_value(t_shell *d, char **t_val, char *key_value, char *key_to_f);
 
 //ASIGNATION
+void	eliminate_temp_asig(t_prompt *prompt, t_token *tokens);
 int		check_asignation_syntax(t_token *token, int type);
-int		asignation(t_shell *data, t_token *token, int type);
 int		send_tokens_for_asig(t_shell *data, t_token *tokens, int phase);
 int		is_it_asig(t_shell *data, t_token *token, t_env *env, int type);
 int		verify_if_already_set(t_shell *data, char *key, char **value, int t);
@@ -207,6 +205,7 @@ char	*cleanner_slash_quotes_d(t_shell *data, char *word, int len, int *flag);
 char	*clean_slash_expan_d(t_shell *data, char *word, int len, char slash);
 void	clean_quote_until_slash_d(char *word, char *clean_word, char quote);
 void	void_tokens_at_the_end(t_token *tokens, int n_alloc, int n_tokens);
+void	eliminate_token(t_prompt *prompt, t_token *tokens, int index);
 
 /* ************************************************************************** */
 /*                               extras - time                                */

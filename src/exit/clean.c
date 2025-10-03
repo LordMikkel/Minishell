@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 21:47:38 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/30 20:27:17 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/03 20:18:11 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,7 @@ void	clean_tokens(t_prompt *prompt)
 	while (i < prompt->n_alloc_tokens)
 	{
 		if (prompt->tokens[i].value
-			&& (prompt->tokens[i].type == WORD
-				|| prompt->tokens[i].type == BUILT_IN
-				|| prompt->tokens[i].type == COMMAND
-				|| prompt->tokens[i].type == WILDCAR
-				|| prompt->tokens[i].type == REDIR_APPEND
-				|| prompt->tokens[i].type == REDIR_HEREDOC
-				|| prompt->tokens[i].type == REDIR_INPUT
-				|| prompt->tokens[i].type == REDIR_OUTPUT
-				|| prompt->tokens[i].type == EXPANSION
-				|| prompt->tokens[i].type == ASIGNATION
-				|| prompt->tokens[i].type == TEMP_ASIGNATION
-				|| prompt->tokens[i].type == PLUS_ASIGNATION))
+			&& (is_alloc_type(prompt->tokens[i].type)))
 		{
 			free(prompt->tokens[i].value);
 			prompt->tokens[i].value = NULL;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_single_balance.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 22:39:40 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/09/26 21:30:07 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/03 17:25:56 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	check_single_balance(t_shell *data, t_prompt *promp, t_token *tokens)
 {
 	int	i;
 	int	inside_quotes;
-
 
 	i = 0;
 	inside_quotes = FALSE;

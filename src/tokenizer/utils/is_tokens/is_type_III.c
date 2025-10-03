@@ -1,40 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_it_quoted.c                                     :+:      :+:    :+:   */
+/*   is_type_III.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/26 21:23:00 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/10/03 17:25:48 by migarrid         ###   ########.fr       */
+/*   Created: 2025/10/03 17:23:51 by migarrid          #+#    #+#             */
+/*   Updated: 2025/10/03 17:24:20 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/minishell.h"
 
-void	is_it_quoted(t_prompt *prompt, t_token *tokens)
+int	is_asignation_type(int type)
 {
-	int	i;
-	int	in_quotes_flag;
+	if (type == ASIGNATION || type == PLUS_ASIGNATION
+		|| type == TEMP_ASIGNATION)
+		return (1);
+	return (0);
+}
 
-	i = 0;
-	in_quotes_flag = FALSE;
-	while (i < prompt->n_tokens)
-	{
-		if (tokens[i].type == DOUBLE_QUOTE)
-		{
-			in_quotes_flag = !in_quotes_flag;
-			i++;
-			continue ;
-		}
-		else if (tokens[i].type == SINGLE_QUOTE)
-		{
-			in_quotes_flag = !in_quotes_flag;
-			i++;
-			continue ;
-		}
-		if (in_quotes_flag)
-			tokens[i].double_quoted = TRUE;
-		i++;
-	}
+int	is_symbol(int c)
+{
+	if (c == '?' || c == '!' || c == '$' || c == '_')
+		return (1);
+	return (0);
 }

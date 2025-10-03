@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_asignation_syntax.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 22:34:34 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/09/30 21:20:06 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/03 17:29:21 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static int	count_syntax(t_token *token)
 			text_after_equal++;
 		if (i > 0 && token->value[i + 1] != '\0' && ft_isspace(token->value[i])
 			&& token->value[i + 1] == '=')
-				return (FALSE);
+			return (FALSE);
 		i++;
 	}
 	if (!check_for_equal || !text_before_equal || !text_after_equal)
@@ -105,7 +105,7 @@ static int	check_invalid_char(t_token *token)
 			return (FALSE);
 		if (invalid_char(token->value[i]) && i + 1 < len
 			&& token->value[i + 1] != '=' && token->value[i] == '+')
-				return (FALSE);
+			return (FALSE);
 		i++;
 	}
 	return (SUCCESS);

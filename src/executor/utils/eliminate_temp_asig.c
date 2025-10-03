@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   eliminate_temp_asig.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 02:23:37 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/09/28 21:22:32 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/03 20:19:17 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,3 @@ void	eliminate_temp_asig(t_prompt *prompt, t_token *tokens)
 		i++;
 	}
 }
-

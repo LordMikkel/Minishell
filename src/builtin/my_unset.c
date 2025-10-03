@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 21:56:06 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/09/26 01:52:34 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/03 20:31:47 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,10 @@ static void	aux_delete(t_var **node, t_env *env)
 
 static void	delete_env_var(t_env *env, char *key)
 {
-	t_var	*node = env->vars;
+	t_var	*node;
 	t_var	*next;
 
+	node = env->vars;
 	while (node)
 	{
 		if (ft_strcmp(node->key, key) == 0)
