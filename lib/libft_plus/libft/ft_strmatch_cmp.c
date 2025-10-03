@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmatch_cmp.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 19:54:17 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/09/29 20:37:19 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/03 20:30:09 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	ft_compare_and_transform(char **temp, const char *s2)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while ((*temp)[i] != '\0' && s2[i] != '\0')
@@ -27,17 +27,16 @@ static void	ft_compare_and_transform(char **temp, const char *s2)
 	}
 }
 
-int	ft_strmatch_cmp(char *s1, const char *s2, int *error)
+int	ft_strmatch_cmp(char *s1, const char *s2)
 {
 	char	*temp;
 	int		result;
 
+	if (!s1 || !s2)
+		return (0);
 	temp = ft_strdup(s1);
 	if (!temp)
-	{
-		*error = -1;
 		return (-1);
-	}
 	ft_compare_and_transform(&temp, s2);
 	result = ft_strcmp(temp, s2);
 	free (temp);

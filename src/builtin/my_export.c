@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:22:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/30 21:14:51 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/03 20:31:15 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,10 +113,10 @@ int	my_export(t_shell *data, t_token *tokens, t_token *token, t_env *env)
 			break ;
 		if ((is_asignation_type(tokens[i].type) || tokens[i].type == WORD)
 			&& tokens[i].type != BUILT_IN)
-			{
-				printf("token: %s\n\n", tokens[i].value);
-				result = asignation_type(data, &tokens[i], env);
-			}
+		{
+			printf("token: %s\n\n", tokens[i].value);
+			result = asignation_type(data, &tokens[i], env);
+		}
 		i++;
 	}
 	if (!args_found)

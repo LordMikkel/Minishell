@@ -6,18 +6,18 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 22:46:42 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/17 23:42:18 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/03 17:27:06 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/minishell.h"
 
-static void open_error(t_shell *data, char *file)
+static void	open_error(t_shell *data, char *file)
 {
 	if (errno == ENOENT)
-			exit_error(data, ERR_NO_INPUT_FILE, EXIT_USE);
+		exit_error(data, ERR_NO_INPUT_FILE, EXIT_USE);
 	else if (errno == EACCES)
-			exit_error(data, ERR_PERM_DENIED, EXIT_CMD_NOT_EXECUTABLE, file);
+		exit_error(data, ERR_PERM_DENIED, EXIT_CMD_NOT_EXECUTABLE, file);
 	exit_error(data, ERR_NO_INPUT_FILE, EXIT_USE);
 }
 
@@ -26,7 +26,7 @@ void	init_arg(t_shell *data, int ac, char **av)
 	int		fd;
 	char	*line;
 
-	if (ac == 2)
+	if (ac >= 2)
 	{
 		fd = open(av[1], O_RDONLY);
 		if (fd < 0)

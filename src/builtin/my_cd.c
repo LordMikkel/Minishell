@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 17:12:22 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/09/28 21:27:26 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/03 20:30:43 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	count_args(t_token *tokens, int i, int n_tokens)
 static void	update_pwd(t_shell *data, char *cwd, char *key_to_find)
 {
 	t_var	*var;
-	int	flag_found;
+	int		flag_found;
 
 	flag_found = FALSE;
 	var = data->env.vars;
@@ -49,6 +49,7 @@ static void	update_pwd(t_shell *data, char *cwd, char *key_to_find)
 	if (!flag_found)
 		add_var(data, key_to_find, cwd, ENV);
 }
+
 //EN OBRAS...no esta listo
 int	my_cd(t_shell *data, t_token *tokens, t_token *token)
 {

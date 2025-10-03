@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:10 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/30 21:01:19 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/03 17:26:36 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	test_built_in(t_shell *data, t_token *tokens, int n_tokens)
 	{
 		if (tokens[i].type == BUILT_IN || is_asignation_type(tokens[i].type))
 			which_builtin(data, tokens, &tokens[i]);
-		i++;                  //ESTO HACE QUE SE MULTIPLIQUEN LOS RESULTADOS x2
+		i++; //ESTO HACE QUE SE MULTIPLIQUEN LOS RESULTADOS x2
 	}
 }
 

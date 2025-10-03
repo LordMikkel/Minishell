@@ -1,4 +1,3 @@
-sbas
 bs
 betaha
 gsfsefg
@@ -7,7 +6,6 @@ esb
 eas
  g
 e t
-t
 3w
 t
  w
@@ -33,7 +31,6 @@ export a=3
 echo $a
 .vscode/launch.json
 ls > ''
-ls >
 ls >
 ls <
 ls < &&
@@ -69,7 +66,6 @@ export pp=op+
 unset pp+
 export pp=tttt
 export test="$pp"
-export
 $pp
 echo
 echo $$
@@ -197,3 +193,7 @@ echo '$USER'
 echo "$USER"
 echo "hola $use como vas"
 echo hola $use como vas
+echo hola
+Echo hola
+ECHO hola
+EcHo hola

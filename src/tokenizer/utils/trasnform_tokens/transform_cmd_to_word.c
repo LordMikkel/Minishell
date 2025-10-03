@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   transform_cmd_to_word.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 15:39:12 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/26 13:45:38 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/03 17:19:36 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,12 @@ static void	check_again_more_tokens(t_shell *data, t_token *tokens, t_token *t)
 
 	i = t->id;
 	if (i >= 1 && (ft_strcmp(t->value, BUILTIN_EXPORT) == 0
-		|| ft_strcmp(t->value, BUILTIN_ECHO) == 0
-		|| ft_strcmp(t->value, BUILTIN_ENV) == 0
-		|| ft_strcmp(t->value, BUILTIN_EXIT) == 0
-		|| ft_strcmp(t->value, BUILTIN_UNSET) == 0
-		|| ft_strcmp(t->value, BUILTIN_CD) == 0
-		|| ft_strcmp(t->value, BUILTIN_PWD) == 0)
+			|| ft_strcmp(t->value, BUILTIN_ECHO) == 0
+			|| ft_strcmp(t->value, BUILTIN_ENV) == 0
+			|| ft_strcmp(t->value, BUILTIN_EXIT) == 0
+			|| ft_strcmp(t->value, BUILTIN_UNSET) == 0
+			|| ft_strcmp(t->value, BUILTIN_CD) == 0
+			|| ft_strcmp(t->value, BUILTIN_PWD) == 0)
 		&& tokens[i - 1].type == ASIGNATION
 		&& verify_till_valid_token(tokens, i))
 		t->type = BUILT_IN;
