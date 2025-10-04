@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 23:03:38 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/17 19:19:33 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/04 21:09:36 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	extract_bin_arg(t_shell *d, char **arg_extract, char *word, int len)
 		exit_error(d, ERR_MALLOC, EXIT_FAILURE);
 }
 
-char	**group_args_for_binary(t_shell *data, t_token *token)
+char	**get_args_for_binary(t_shell *data, t_token *token, int n_tokens)
 {
 	char	**args;
 	int		n_args;

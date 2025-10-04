@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ast_builder.c                                      :+:      :+:    :+:   */
+/*   parse_pipes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/09 16:36:48 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/04 21:06:22 by migarrid         ###   ########.fr       */
+/*   Created: 2025/10/04 20:21:21 by migarrid          #+#    #+#             */
+/*   Updated: 2025/10/04 21:35:05 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	ast_builder(t_shell *data, t_token *tokens, int n_tokens)
+t_node	*parse_pipes(t_token *tokens, int *i, int n_tokens)
 {
-	int	i;
+	t_node *central;
+	t_node *left;
+	t_node *right;
 
-	i = 0;
-	if (n_tokens == 0)
-		return;
-	data->ast_root = parse_sequence(tokens, &i, n_tokens);
-	if (!data->ast_root)
-		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+	right = NULL;
+	left = parse_redir(tokens, i, n_tokens);
+	if (!left)
+		return (NULL);
+	if (i < n_tokens && tokens[*i].type == PIPE)
+	{
+		right = parse_redir(tokens, i, n_tokens);
+		central = create_node(&tokens[*i], PIPE);
+		central->left = left;
+		central->right = right;
+		(*i)++;
+		return (central);
+	}
+	return (left);
 }
