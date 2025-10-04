@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 21:47:38 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/03 20:18:11 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/04 21:19:52 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,20 @@ void	clean_env(t_env *env, t_var *vars)
 }
 
 /*
+	Libera los nodos del AST de manera recursiva, yendo hasta el ultimo
+	left, luego hasta el ultimo right y ahi liberando cada uno hacia arriba.
+*/
+
+void	clean_ast(t_node *node)
+{
+	if (!node)
+		return;
+	clean_ast(node->left);
+	clean_ast(node->right);
+	free(node);
+}
+
+/*
 	Limpia todos los recursos del shell: historial, prompt y
 	variables de entorno asociadas a 'data'.
 */
@@ -96,6 +110,7 @@ void	clean_env(t_env *env, t_var *vars)
 // 	clear_history();
 // 	clean_prompt(&data->prompt);
 // 	clean_env(data->env.vars);
+//	clean_ast(data->ast_root);
 // 	clean_extras(&data->extra_features);
 // }
 
@@ -103,6 +118,7 @@ void	clean_all(t_shell *data)
 {
 	clean_prompt(&data->prompt);
 	clean_env(&data->env, data->env.vars);
+	clean_ast(data->ast_root);
 	clean_extras(&data->extra_features);
 	free (data->home);
 }

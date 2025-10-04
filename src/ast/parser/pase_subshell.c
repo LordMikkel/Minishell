@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ast_builder.c                                      :+:      :+:    :+:   */
+/*   pase_subshell.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/09 16:36:48 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/04 21:06:22 by migarrid         ###   ########.fr       */
+/*   Created: 2025/10/04 20:24:05 by migarrid          #+#    #+#             */
+/*   Updated: 2025/10/04 21:40:02 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	ast_builder(t_shell *data, t_token *tokens, int n_tokens)
+t_node	*parse_subshell(t_token *tokens, int *i, int n_tokens)
 {
-	int	i;
+	t_node *central;
+	t_node *left;
 
-	i = 0;
-	if (n_tokens == 0)
-		return;
-	data->ast_root = parse_sequence(tokens, &i, n_tokens);
-	if (!data->ast_root)
-		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+	if (i < n_tokens && tokens[*i].type == PAREN_OPEN)
+	{
+		central = create_node(&tokens[*i], SUBSHELL);
+		if (i < n_tokens)
+			(*i)++;
+		left = parse_sequence(tokens, i, n_tokens);
+		if (i < n_tokens)
+			(*i)++;
+		central->left = left;
+		return (central);
+	}
+	central = parse_cmd(tokens, i, n_tokens);
+	return (central);
 }

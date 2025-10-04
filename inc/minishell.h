@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/03 17:18:30 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/04 21:10:02 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,14 @@ int		asignation(t_shell *data, t_token *token, int type);
 /* ************************************************************************** */
 /*                                  AST                                       */
 /* ************************************************************************** */
-void	ast_built(t_shell *data, t_token *tokens);
+void	ast_builder(t_shell *data, t_token *tokens, int n_tokens);
+t_node	*create_node(t_token *token, t_type type);
+t_node	*parse_sequence(t_token *tokens, int *i, int n_tokens);
+t_node	*parse_and_or(t_token *tokens, int *i, int n_tokens);
+t_node	*parse_pipes(t_token *tokens, int *i, int n_tokens);
+t_node	*parse_redir(t_token *tokens, int *i, int n_tokens);
+t_node	*parse_subshell(t_token *tokens, int *i, int n_tokens);
+t_node	*parse_cmd(t_token *tokens, int *i, int n_tokens);
 
 /* ************************************************************************** */
 /*                                Executor                                    */
@@ -178,6 +185,9 @@ void	transform_cmd_to_word(t_shell *data, t_token *tokens, int phase);
 void	transform_invalid_asig_to_word(t_prompt *prompt, t_token *tokens);
 void	transform_word_to_asignation(t_shell *data, t_token *tokens, int phase);
 void	transform_tokens_logic(t_shell *data, t_prompt *promp, t_token *tokens);
+
+//AST
+char	**get_args_for_binary(t_shell *data, t_token *token, int n_tokens);
 
 //EXPANSION
 int		copy_key(char *buffer, char **key_to_find);
