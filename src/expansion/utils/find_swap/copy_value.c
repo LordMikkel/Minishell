@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:22:59 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/30 20:34:32 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/04 15:06:59 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	copy_value(t_shell *d, char **token_val, char *key_value, char *key_to_find)
 	key_len = ft_strlen(key_to_find);
 	value_len = ft_strlen(key_value);
 	new_len = old_len - key_len + value_len;
-	new_buffer = ft_realloc(*token_val, old_len + 1, new_len + 1);
+	new_buffer = ft_realloc(*token_val, old_len + 1, new_len + 10);
 	if (!new_buffer)
 	{
 		free (key_to_find);

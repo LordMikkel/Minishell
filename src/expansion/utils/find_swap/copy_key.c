@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:23:28 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/27 15:59:35 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/04 17:15:51 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ int	copy_key(char *str, char **key_to_find)
 	int	i;
 	int	j;
 	int	start;
+	int flag;
 
 	i = 0;
 	j = 0;
+	flag = FALSE;
 	while (str[i] != '\0')
 	{
 		if (str[i] == '$')
@@ -37,8 +39,13 @@ int	copy_key(char *str, char **key_to_find)
 			if (!ft_isalpha(str[i]) && !is_symbol(str[i]))
 				continue ;
 			start = i;
-			while (ft_isalnum(str[start]) || is_symbol(str[start]))
+			while ((ft_isalnum(str[start]) || is_symbol(str[start])) && flag == FALSE)
 			{
+				if (str[start] == '$')
+				{
+					flag = TRUE;
+					break ;
+				}
 				(*key_to_find)[j++] = str[start];
 				start++;
 			}

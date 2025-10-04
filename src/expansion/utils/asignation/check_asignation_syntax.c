@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 22:34:34 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/09/30 21:20:06 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/04 15:07:19 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,9 @@ static int	count_syntax(t_token *token)
 			text_before_equal++;
 		else if (check_for_equal > 0)
 			text_after_equal++;
-		if (i > 0 && token->value[i + 1] != '\0' && ft_isspace(token->value[i])
-			&& token->value[i + 1] == '=')
-				return (FALSE);
+	//	if (i > 0 && token->value[i + 1] != '\0' && ft_isspace(token->value[i])
+	//		&& token->value[i + 1] == '=')
+	//			return (FALSE);
 		i++;
 	}
 	if (!check_for_equal || !text_before_equal || !text_after_equal)
