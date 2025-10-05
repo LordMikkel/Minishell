@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/05 02:39:23 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/05 16:33:21 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,13 @@ int		asignation(t_shell *data, t_token *token, int type);
 /*                                  AST                                       */
 /* ************************************************************************** */
 void	ast_builder(t_shell *data, t_token *tokens, int n_tokens);
-t_node	*create_node(t_token *token, t_type type);
-t_node	*parse_sequence(t_token *tokens, int *i, int n_tokens);
-t_node	*parse_and_or(t_token *tokens, int *i, int n_tokens);
-t_node	*parse_pipes(t_token *tokens, int *i, int n_tokens);
-t_node	*parse_redir(t_token *tokens, int *i, int n_tokens);
-t_node	*parse_subshell(t_token *tokens, int *i, int n_tokens);
-t_node	*parse_cmd(t_token *tokens, int *i, int n_tokens);
+t_node	*create_node(t_shell *data, t_token *token, t_type type);
+t_node	*parse_sequence(t_shell *data, t_token *tokens, int *i, int n_tokens);
+t_node	*parse_and_or(t_shell *data, t_token *tokens, int *i, int n_tokens);
+t_node	*parse_pipes(t_shell *data, t_token *tokens, int *i, int n_tokens);
+t_node	*parse_redir(t_shell *data, t_token *tokens, int *i, int n_tokens);
+t_node	*parse_subshell(t_shell *data, t_token *tokens, int *i, int n_tokens);
+t_node	*parse_cmd(t_shell *data, t_token *tokens, int *i, int n_tokens);
 
 /* ************************************************************************** */
 /*                                Executor                                    */
