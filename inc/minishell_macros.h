@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_macros.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:23:16 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/30 20:47:51 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/03 17:14:46 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ delimited by end-of-file (wanted `%s')\n"
 # define ERR_SHLVL_HIGH		"\033[1m\033[1;31mminishell: warning: shell level \
 (INT_MAX) too high, resetting to 1\033[0m\n"
 # define ERR_SHLVL_LOW		"\033[1m\033[1;31mminishell: warning: shell level \
-is negative resetting to 0\033[0m\n"
+is negative resetting to 1\033[0m\n"
 
 //Redirection Errors
 # define ERR_AMBIGUOUS_REDIR	"minishell: ambiguous redirect\n"

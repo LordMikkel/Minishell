@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+         #
+#    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/09/30 21:02:26 by davdiaz-         ###   ########.fr        #
+#    Updated: 2025/10/05 02:11:51 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -124,6 +124,7 @@ SRCS =				main/main.c \
 					tokenizer/utils/is_tokens/is_cmdsubs.c \
 					tokenizer/utils/is_tokens/is_type_I.c \
 					tokenizer/utils/is_tokens/is_type_II.c \
+					tokenizer/utils/is_tokens/is_type_III.c \
 					tokenizer/utils/is_tokens/utils_is_double_quote.c \
 					tokenizer/utils/check_syntax/is_it_quoted.c \
 					tokenizer/utils/check_syntax/check_redir_input.c \
@@ -162,6 +163,14 @@ SRCS =				main/main.c \
 					expansion/utils/asignation/check_externs_syntax.c \
 					expansion/utils/asignation/check_asignation_syntax.c \
 					ast/ast_builder.c \
+					ast/parser/parse_sequence.c \
+					ast/parser/parse_and_or.c \
+					ast/parser/parse_pipes.c \
+					ast/parser/parse_redir.c \
+					ast/parser/parse_subshell.c \
+					ast/parser/parse_cmd.c \
+					ast/utils/create_node.c \
+					ast/utils/get_args_for_binary.c \
 					executor/executor.c \
 					executor/utils/eliminate_token.c \
 					executor/utils/which_builtin.c \
@@ -178,7 +187,8 @@ SRCS =				main/main.c \
 					builtin/my_exit.c \
 					exit/exit.c \
 					exit/error.c \
-					exit/clean.c
+					exit/clean_I.c \
+					exit/clean_II.c
 
 # **************************************************************************** #
 #                              Progress Bars                                   #

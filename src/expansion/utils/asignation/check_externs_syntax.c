@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_externs_syntax.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:30:59 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/26 14:19:49 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/03 17:28:54 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ static int	check_case_2(t_shell *data, t_token *tokens, t_token *token)
 			|| tokens[token->id - 1].type == ASIGNATION
 			|| tokens[token->id - 1].type == WORD
 			|| ((tokens[token->id - 1].type == BUILT_IN
-				&& ft_strcmp(tokens[token->id - 1].value,
-					BUILTIN_EXPORT) == 0)))
+					&& ft_strcmp(tokens[token->id - 1].value,
+						BUILTIN_EXPORT) == 0)))
 			return (1);
 	}
 	return (0); //if not, then it needs to remain as WORD
@@ -77,7 +77,8 @@ static int	check_case_2(t_shell *data, t_token *tokens, t_token *token)
 				&& !verify_till_valid_token(tokens, token->id))
 			|| (tokens[token->id + 1].type == BUILT_IN
 				&& ft_strcmp(tokens[token->id + 1].value, BUILTIN_EXPORT) != 0))
-			return (TEMP_ASIGNATION); //Yep, that's right, it needs to ignore this token.
+			return (TEMP_ASIGNATION); //Yep, that's right, it needs to
+			ignore this token.
 	}
 	return (0);
 }*/

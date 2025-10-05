@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/18 02:02:04 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/18 04:42:18 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/05 02:01:15 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	setup_signals_child(void)
 	signal(SIGQUIT, SIG_DFL);
 }
 
-void setup_signals_heredoc(void)
+void	setup_signals_heredoc(void)
 {
 	g_signal[0] = SIG_HEREDOC;
 	signal(SIGINT, handle_sigint_heredoc);

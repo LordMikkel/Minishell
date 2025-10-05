@@ -7,6 +7,7 @@ Minishell - Bash
 - Bash te abra línea para que completes el comando ver → Modificar balance de ' " ( || && |
   - https://github.com/rogerdevworld/minishell/blob/main/src/bonus/loop_processing.c
   - https://github.com/rogerdevworld/minishell/blob/main/src/bonus/syntax/ft_lexer_2.c#L93
+- Normalizar los comandos y builtins todos a minusculas para que siempre sean ejecutados.
 
 ## DAVID:
 - Hacer built-in CD

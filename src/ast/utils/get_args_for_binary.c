@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_args_for_binary.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 23:03:38 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/05 15:17:41 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/05 16:50:52 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	**group_args_for_binary(t_shell *data, t_token *token, int *index)
 		j++;
 		(*index)++;
 	}
-	while (index < data->prompt.n_tokens && is_arg_type(token[j].type))
+	while (*index < data->prompt.n_tokens && is_arg_type(token[j].type))
 	{
 		n_args++;
 		(*index)++;
