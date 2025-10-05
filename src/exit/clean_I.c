@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean.c                                            :+:      :+:    :+:   */
+/*   clean_I.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 21:47:38 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/04 21:19:52 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/05 02:38:48 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,6 @@ void	clean_prompt(t_prompt *prompt)
 }
 
 /*
-	Libera la memoria reservada para `user_name` en `t_extras`
-	y lo deja apuntando a NULL para evitar accesos inválidos.
-*/
-
-void	clean_extras(t_extras *extra_features)
-{
-	if (extra_features->user_name)
-		free(extra_features->user_name);
-	extra_features->user_name = NULL;
-}
-
-/*
 	Libera la lista enlazada de variables de entorno, incluyendo
 	'key' y 'value' de cada nodo.
 */
@@ -93,7 +81,7 @@ void	clean_env(t_env *env, t_var *vars)
 void	clean_ast(t_node *node)
 {
 	if (!node)
-		return;
+		return ;
 	clean_ast(node->left);
 	clean_ast(node->right);
 	free(node);
@@ -120,5 +108,5 @@ void	clean_all(t_shell *data)
 	clean_env(&data->env, data->env.vars);
 	clean_ast(data->ast_root);
 	clean_extras(&data->extra_features);
-	free (data->home);
+	free(data->home);
 }

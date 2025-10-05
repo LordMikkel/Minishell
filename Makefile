@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/10/04 21:06:05 by migarrid         ###   ########.fr        #
+#    Updated: 2025/10/05 02:11:51 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -163,14 +163,14 @@ SRCS =				main/main.c \
 					expansion/utils/asignation/check_externs_syntax.c \
 					expansion/utils/asignation/check_asignation_syntax.c \
 					ast/ast_builder.c \
-					parser/parse_sequence.c \
-					parser/parse_and_or.c \
-					parser/parse_pipes.c \
-					parser/parse_redir.c \
-					parser/parse_subshell.c \
-					parser/parse_cmd.c \
-					utils/create_node.c \
-					utils/get_args_for_binary.c \
+					ast/parser/parse_sequence.c \
+					ast/parser/parse_and_or.c \
+					ast/parser/parse_pipes.c \
+					ast/parser/parse_redir.c \
+					ast/parser/parse_subshell.c \
+					ast/parser/parse_cmd.c \
+					ast/utils/create_node.c \
+					ast/utils/get_args_for_binary.c \
 					executor/executor.c \
 					executor/utils/eliminate_token.c \
 					executor/utils/which_builtin.c \
@@ -187,7 +187,8 @@ SRCS =				main/main.c \
 					builtin/my_exit.c \
 					exit/exit.c \
 					exit/error.c \
-					exit/clean.c
+					exit/clean_I.c \
+					exit/clean_II.c
 
 # **************************************************************************** #
 #                              Progress Bars                                   #
