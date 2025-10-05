@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ast_builder.c                                      :+:      :+:    :+:   */
+/*   parse_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/09 16:36:48 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/05 16:38:44 by migarrid         ###   ########.fr       */
+/*   Created: 2025/10/04 20:29:52 by migarrid          #+#    #+#             */
+/*   Updated: 2025/10/05 16:37:10 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../../inc/minishell.h"
 
-void	ast_builder(t_shell *data, t_token *tokens, int n_tokens)
+t_node	*parse_cmd(t_shell *data, t_token *tokens, int *i, int n_tokens)
 {
-	int	i;
+	t_node	*left;
 
-	i = 0;
-	if (n_tokens == 0)
-		return ;
-	data->ast_root = parse_sequence(data, tokens, &i, n_tokens);
+	left = NULL;
+	if (*i < n_tokens && tokens[*i].type
+		&& (tokens[*i].type == COMMAND || tokens[*i].type == BUILT_IN))
+	{
+		left = create_node(data, &tokens[*i], tokens[*i].type);
+		(*i)++;
+		// left->args = get_args_for_binary(data, &tokens[*i], i);
+		return (left);
+	}
+	return (left);
 }

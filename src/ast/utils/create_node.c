@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ast_builder.c                                      :+:      :+:    :+:   */
+/*   create_node.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/09 16:36:48 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/05 16:38:44 by migarrid         ###   ########.fr       */
+/*   Created: 2025/10/04 20:41:39 by migarrid          #+#    #+#             */
+/*   Updated: 2025/10/05 16:34:47 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../../inc/minishell.h"
 
-void	ast_builder(t_shell *data, t_token *tokens, int n_tokens)
+t_node	*create_node(t_shell *data, t_token *token, t_type type)
 {
-	int	i;
+	t_node	*node;
 
-	i = 0;
-	if (n_tokens == 0)
-		return ;
-	data->ast_root = parse_sequence(data, tokens, &i, n_tokens);
+	node = ft_calloc(1, sizeof(t_node));
+	if (!node)
+		return (exit_error(data, ERR_MALLOC, EXIT_FAIL), NULL);
+	node->type = type;
+	node->token = token;
+	node->args = NULL;
+	node->left = NULL;
+	node->right = NULL;
+	node->pid = 0;
+	node->exit_code = 0;
+	node->executed = FALSE;
+	return (node);
 }

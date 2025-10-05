@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_asignation_syntax.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 22:34:34 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/10/04 15:07:19 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/05 16:44:42 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ static int	check_invalid_char(t_token *token)
 			return (FALSE);
 		if (invalid_char(token->value[i]) && i + 1 < len
 			&& token->value[i + 1] != '=' && token->value[i] == '+')
-				return (FALSE);
+			return (FALSE);
 		i++;
 	}
 	return (SUCCESS);

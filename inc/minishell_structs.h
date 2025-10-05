@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_structs.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/30 19:09:38 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/04 20:46:01 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ typedef enum e_type
 	EXP,
 	INDIFERENT,
 	PLUS_ASIGNATION,
-	TEMP_ASIGNATION
+	TEMP_ASIGNATION,
+	SUBSHELL,
 }	t_type;
 
 struct s_token
@@ -117,7 +118,8 @@ struct s_node
 {
 	int			id;
 	t_type		type;
-	t_token		token;
+	t_token		*token;
+	char		**args;
 	t_node		*left;
 	t_node		*right;
 	pid_t		pid;

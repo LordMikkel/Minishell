@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean.c                                            :+:      :+:    :+:   */
+/*   clean_I.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 21:47:38 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/30 20:27:17 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/05 02:38:48 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,7 @@ void	clean_tokens(t_prompt *prompt)
 	while (i < prompt->n_alloc_tokens)
 	{
 		if (prompt->tokens[i].value
-			&& (prompt->tokens[i].type == WORD
-				|| prompt->tokens[i].type == BUILT_IN
-				|| prompt->tokens[i].type == COMMAND
-				|| prompt->tokens[i].type == WILDCAR
-				|| prompt->tokens[i].type == REDIR_APPEND
-				|| prompt->tokens[i].type == REDIR_HEREDOC
-				|| prompt->tokens[i].type == REDIR_INPUT
-				|| prompt->tokens[i].type == REDIR_OUTPUT
-				|| prompt->tokens[i].type == EXPANSION
-				|| prompt->tokens[i].type == ASIGNATION
-				|| prompt->tokens[i].type == TEMP_ASIGNATION
-				|| prompt->tokens[i].type == PLUS_ASIGNATION))
+			&& (is_alloc_type(prompt->tokens[i].type)))
 		{
 			free(prompt->tokens[i].value);
 			prompt->tokens[i].value = NULL;
@@ -58,18 +47,6 @@ void	clean_prompt(t_prompt *prompt)
 		free(prompt->prompt);
 	clean_tokens(prompt);
 	*prompt = (t_prompt){0};
-}
-
-/*
-	Libera la memoria reservada para `user_name` en `t_extras`
-	y lo deja apuntando a NULL para evitar accesos inválidos.
-*/
-
-void	clean_extras(t_extras *extra_features)
-{
-	if (extra_features->user_name)
-		free(extra_features->user_name);
-	extra_features->user_name = NULL;
 }
 
 /*
@@ -97,6 +74,20 @@ void	clean_env(t_env *env, t_var *vars)
 }
 
 /*
+	Libera los nodos del AST de manera recursiva, yendo hasta el ultimo
+	left, luego hasta el ultimo right y ahi liberando cada uno hacia arriba.
+*/
+
+void	clean_ast(t_node *node)
+{
+	if (!node)
+		return ;
+	clean_ast(node->left);
+	clean_ast(node->right);
+	free(node);
+}
+
+/*
 	Limpia todos los recursos del shell: historial, prompt y
 	variables de entorno asociadas a 'data'.
 */
@@ -107,6 +98,7 @@ void	clean_env(t_env *env, t_var *vars)
 // 	clear_history();
 // 	clean_prompt(&data->prompt);
 // 	clean_env(data->env.vars);
+//	clean_ast(data->ast_root);
 // 	clean_extras(&data->extra_features);
 // }
 
@@ -114,6 +106,7 @@ void	clean_all(t_shell *data)
 {
 	clean_prompt(&data->prompt);
 	clean_env(&data->env, data->env.vars);
+	clean_ast(data->ast_root);
 	clean_extras(&data->extra_features);
-	free (data->home);
+	free(data->home);
 }
