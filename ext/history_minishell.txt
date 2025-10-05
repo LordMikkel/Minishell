@@ -1,15 +1,3 @@
-echo $$$
-echo $$$$
-echo $$$$$$
-echo $$$$$$$
-echo $HOME
-echo $HOME'$HOME'USER'"'$USER'"'''"'$USER'"
-mkdir tt
-cd tt
-ls *
-./minishell
-ENV
-cds
 lsvs
 seves
 Mikel
@@ -192,9 +180,20 @@ echo 1;
 ls && echo hola
 lsd
 cd
-ls
 csd
 sd
 g
 s
 cd 
+ls > test
+(echo hola) > ls | wc -c && echo como
+(echo hola) > ls | wc -c && echo como; echo estas
+(sdvfs)  | sldsf && > 1145 
+(ls) sd vsd | && - 
+(ls) > ls && cmd || ls > wc -l 
+ls
+cat | cat | cat
+(cat 'config' | grep "value" > result.txt) || echo "error" ; ps aux & wait && echo 456 >> "log.txt"
+(cat 'config' | grep "value" > result.txt)  || echo "error" ; ps aux & wait && echo 456 >> "log.txt" 
+(cat 'config' | grep "value" > result.txt) || echo "error" ; ps aux & wait && echo 456 >> "log.txt" 
+(cat 'config' | grep "value" > result.txt) || echo "error" ; ps aux & wait && echo 456 2>> "log.txt" ; \x23asfdfaafas
