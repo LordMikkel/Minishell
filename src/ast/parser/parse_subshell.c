@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_node.c                                      :+:      :+:    :+:   */
+/*   parse_subshell.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/04 20:41:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/04 20:47:41 by migarrid         ###   ########.fr       */
+/*   Created: 2025/10/04 20:24:05 by migarrid          #+#    #+#             */
+/*   Updated: 2025/10/05 02:11:42 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/minishell.h"
 
-t_node	*create_node(t_token *token, t_type type)
+t_node	*parse_subshell(t_token *tokens, int *i, int n_tokens)
 {
-	t_node	*node;
+	t_node	*central;
+	t_node	*left;
 
-	node = ft_calloc(1, sizeof(t_node));
-	if (!node)
-		return(NULL);
-	node->type = type;
-	node->token = token;
-	node->args = NULL;
-	node->left = NULL;
-	node->right = NULL;
-	node->pid = 0;
-	node->exit_code = 0;
-	node->executed = FALSE;
-	return (node);
+	if (*i < n_tokens && tokens[*i].type == PAREN_OPEN)
+	{
+		central = create_node(&tokens[*i], SUBSHELL);
+		if (*i < n_tokens)
+			(*i)++;
+		left = parse_sequence(tokens, i, n_tokens);
+		if (*i < n_tokens)
+			(*i)++;
+		central->left = left;
+		return (central);
+	}
+	central = parse_cmd(tokens, i, n_tokens);
+	return (central);
 }

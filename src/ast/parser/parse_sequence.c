@@ -6,23 +6,24 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 20:04:50 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/04 21:35:15 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/05 02:10:27 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../../inc/minishell.h"
 
 t_node	*parse_sequence(t_token *tokens, int *i, int n_tokens)
 {
-	t_node *central;
-	t_node *left;
-	t_node *right;
+	t_node	*central;
+	t_node	*left;
+	t_node	*right;
 
 	right = NULL;
 	left = parse_and_or(tokens, i, n_tokens);
 	if (!left)
 		return (NULL);
-	if (i < n_tokens && (tokens[*i].type == SEMICOLON || tokens[*i].type == BACKGROUND))
+	if (*i < n_tokens
+		&& (tokens[*i].type == SEMICOLON || tokens[*i].type == BACKGROUND))
 	{
 		right = parse_and_or(tokens, i, n_tokens);
 		central = create_node(&tokens[*i], tokens[*i].type);

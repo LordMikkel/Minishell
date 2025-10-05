@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/04 21:10:02 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/05 02:39:23 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,12 @@ int		check_signals(t_shell *data);
 /*                                 Clean                                      */
 /* ************************************************************************** */
 void	clean_all(t_shell *data);
+void	clean_ast(t_node *node);
 void	clean_prompt(t_prompt *prompt);
 void	clean_tokens(t_prompt *prompt);
+void	clean_env(t_env *env, t_var *vars);
+void	clean_extras(t_extras *extra_features);
+void	clean_cycle(t_shell *data, t_prompt *prompt, t_node *ast_root);
 
 /* ************************************************************************** */
 /*                                 Exits                                      */
