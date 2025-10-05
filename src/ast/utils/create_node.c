@@ -6,19 +6,19 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 20:41:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/05 02:11:11 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/05 16:34:47 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/minishell.h"
 
-t_node	*create_node(t_token *token, t_type type)
+t_node	*create_node(t_shell *data, t_token *token, t_type type)
 {
 	t_node	*node;
 
 	node = ft_calloc(1, sizeof(t_node));
 	if (!node)
-		return (NULL);
+		return (exit_error(data, ERR_MALLOC, EXIT_FAIL), NULL);
 	node->type = type;
 	node->token = token;
 	node->args = NULL;

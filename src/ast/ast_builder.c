@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:36:48 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/05 01:59:09 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/05 16:38:44 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,5 @@ void	ast_builder(t_shell *data, t_token *tokens, int n_tokens)
 	i = 0;
 	if (n_tokens == 0)
 		return ;
-	data->ast_root = parse_sequence(tokens, &i, n_tokens);
-	if (!data->ast_root)
-		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+	data->ast_root = parse_sequence(data, tokens, &i, n_tokens);
 }
