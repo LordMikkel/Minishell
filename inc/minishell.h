@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/07 19:24:51 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/07 19:31:40 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 /*                                 Globales                                   */
 /* ************************************************************************** */
 extern volatile sig_atomic_t	g_signal[2];
+extern const char				*g_type_names[];
 
 /* ************************************************************************** */
 /*                             Initialization                                 */
@@ -92,8 +93,6 @@ void	my_exit(t_shell *data, char **args);
 int		my_unset(t_shell *data, t_env *env, char **args);
 int		my_cd(t_shell *data, t_token *tokens, t_token *token);
 int		my_export(t_shell *data, t_token *tokens, t_env *env, t_node *node);
-
-
 
 /* ************************************************************************** */
 /*                                Signals                                     */
@@ -162,6 +161,7 @@ int		is_between_quotes_type(int type);
 int		is_simplify_type(int type);
 int		is_cmd_builtin_type(int type);
 int		is_asignation_type(int type);
+int		is_real_assignation_type(int type);
 
 //VALID TOKENS
 void	is_it_quoted(t_prompt *prompt, t_token *tokens);
@@ -224,6 +224,25 @@ int		check_externs_syntax(t_shell *d, t_token *tkens, t_token *token, int t);
 void	update_shlvl(t_var *vars);
 void	path_null_no_env(t_shell *data, char **path);
 char	**make_envp(t_shell *data, t_env *env, t_var *vars);
+
+//HIGHLIGHTHER
+void	highlighter(ic_highlight_env_t *henv, const char *input, void *args);
+int		double_string_hl(ic_highlight_env_t *henv, const char *s, size_t *i);
+int		single_string_hl(ic_highlight_env_t *henv, const char *s, size_t *i);
+int		and_hl(ic_highlight_env_t *henv, const char *s, size_t *i);
+int		or_hl(ic_highlight_env_t *henv, const char *s, size_t *i);
+int		pipe_hl(ic_highlight_env_t *henv, const char *s, size_t *i);
+int		pipe_hl(ic_highlight_env_t *henv, const char *s, size_t *i);
+int		redir_hl(ic_highlight_env_t *env, const char *s, size_t *i);
+int		separator_hl(ic_highlight_env_t *env, const char *s, size_t *i);
+int		paren_hl(ic_highlight_env_t *henv, const char *s, size_t *i);
+int		number_hl(ic_highlight_env_t *henv, const char *s, size_t *i);
+int		background_hl(ic_highlight_env_t *henv, const char *s, size_t *i);
+
+//DEBUG
+void	print_ast(t_node *root);
+void	print_tokens_debug(t_prompt *prompt);
+void	test_built_in(t_shell *data, t_token *tokens, int n_tokens);
 
 //UTILS
 char	*cleanner_slash_quotes_d(t_shell *data, char *word, int len, int *flag);

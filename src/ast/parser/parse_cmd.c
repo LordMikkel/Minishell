@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 20:29:52 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/07 19:22:34 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/07 19:31:37 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_node	*parse_cmd(t_shell *data, t_token *tokens, int *i, int n_tokens)
 		return (left);
 	if (*i < n_tokens && tokens[*i].type
 		&& (is_cmd_builtin_type(tokens[*i].type)
-		|| tokens[*i].type == ASIGNATION || tokens[*i].type == PLUS_ASIGNATION))
+			|| is_real_assignation_type(tokens[*i].type)))
 	{
 		left = create_node(data, &tokens[*i], tokens[*i].type);
 		if (is_asignation_type(tokens[*i].type))
