@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:30:59 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/07 18:15:20 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/07 19:30:53 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ static int	check_case_1(t_token *tokens, t_token *token, int n_tokens)
 		&& tokens[token->id - 1].type && tokens[token->id + 1].type)
 	{
 		if ((tokens[token->id - 1].type == AND
-			|| tokens[token->id - 1].type == OR
-			|| tokens[token->id - 1].type == ASIGNATION
-			|| tokens[token->id - 1].type == DOUBLE_QUOTE
-			|| tokens[token->id - 1].type == SINGLE_QUOTE
-			|| (tokens[token->id - 1].type == BUILT_IN
-				&& ft_strcmp(tokens[token->id - 1].value,
-					BUILTIN_EXPORT) == 0))
+				|| tokens[token->id - 1].type == OR
+				|| tokens[token->id - 1].type == ASIGNATION
+				|| tokens[token->id - 1].type == DOUBLE_QUOTE
+				|| tokens[token->id - 1].type == SINGLE_QUOTE
+				|| (tokens[token->id - 1].type == BUILT_IN
+					&& ft_strcmp(tokens[token->id - 1].value,
+						BUILTIN_EXPORT) == 0))
 			&& (tokens[token->id + 1].type == AND
 				|| tokens[token->id + 1].type == OR
 				|| tokens[token->id + 1].type == ASIGNATION

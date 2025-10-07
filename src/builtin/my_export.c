@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:22:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/07 18:09:51 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/07 19:30:41 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,16 +174,16 @@ int	my_export(t_shell *data, t_token *tokens, t_env *env, t_node *node)
 	while (node->arg_types[i])
 	{
 		if (check_for_valid_args(tokens, node->arg_types[i]) == FALSE)
-				break ;
+			break ;
 		if ((is_asignation_type(tokens[node->arg_types[i]].type)
-			|| tokens[node->arg_types[i]].type == WORD)
+				|| tokens[node->arg_types[i]].type == WORD)
 			&& tokens[node->arg_types[i]].type != BUILT_IN)
-			{
-				//printf("token: %s\n\n", tokens[i].value);
-				if (asignation_type(data, tokens,
-						node->arg_types[i], env) == EXIT_FAIL)
-					return (EXIT_FAIL);
-			}
+		{
+			//printf("token: %s\n\n", tokens[i].value);
+			if (asignation_type(data, tokens,
+					node->arg_types[i], env) == EXIT_FAIL)
+				return (EXIT_FAIL);
+		}
 		i++;
 	}
 	return (SUCCESS);

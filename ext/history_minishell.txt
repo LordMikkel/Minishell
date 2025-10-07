@@ -1,3 +1,12 @@
+ls > test
+(echo hola) > ls | wc -c && echo como
+(echo hola) > ls | wc -c && echo como; echo estas
+(sdvfs)  | sldsf && > 1145
+(ls) sd vsd | && -
+(ls) > ls && cmd || ls > wc -l
+cat | cat | cat
+(cat 'config' | grep "value" > result.txt)  || echo "error" ; ps aux & wait && echo 456 >> "log.txt"
+(cat 'config' | grep "value" > result.txt) || echo "error" ; ps aux & wait && echo 456 >> "log.txt"
 (cat 'config' | grep "value" > result.txt) || echo "error" ; ps aux & wait && echo 456 2>> "log.txt" ; \x23asfdfaafas
 skds
 asga  sdf | (sdsdgsdf)
@@ -159,7 +168,6 @@ LS
 LS  LS LS LS LS
 ECHO ecHo echO
 ECHO EcHo EchO
-ls
 cds
 csdc
 ls > file
@@ -170,6 +178,7 @@ var=hola && ls
 cd hola && echo hola && ls
 export var=hola var=1
 export var=hola && ls
+<<<<<<< HEAD
 export var=hola && ls | hola
 export ls=hola david hola
 export ls=hola david hola && ls > test
@@ -197,3 +206,22 @@ ls && true;
 ;
 true && > test
 true && test
+=======
+export A+=" como estas"
+export a=1 =
+l
+s
+dscsadva
+echo hola && echo estoy borracho
+ls
+slsd
+sses
+fe
+fes
+g
+lsv
+s s
+dv
+svsbsf bbsabsa
+echo hola 4> barriga
+>>>>>>> mikel

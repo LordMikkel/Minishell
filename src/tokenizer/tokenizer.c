@@ -6,66 +6,11 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:10 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/07 18:17:28 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/07 19:31:08 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
-char	*g_type_names[] = {
-	"START",
-	"WORD",
-	"GROUP",
-	"PIPE",
-	"REDIR_INPUT",
-	"REDIR_OUTPUT",
-	"REDIR_APPEND",
-	"REDIR_HEREDOC",
-	"COMMAND",
-	"SCAPE",
-	"BUILT_IN",
-	"SEMICOLON",
-	"SINGLE_QUOTE",
-	"DOUBLE_QUOTE",
-	"CMD_SUBSTITUTION",
-	"PAREN_OPEN",
-	"PAREN_CLOSE",
-	"WILDCAR",
-	"EXPANSION",
-	"ASIGNATION",
-	"BACKGROUND",
-	"AND",
-	"OR",
-	"EXPAN_VALUE",
-	"EXPAN_CMD",
-	"NO_SPACE",
-	"LOCAL",
-	"ENV",
-	"DELETE",
-	"EXP",
-	"INDIFERENT",
-	"PLUS_ASIGNATION",
-	"TEMP_ASIGNATION",
-	"FILENAME",
-	"SUBSHELL",
-	"SHELL"
-};
-
-static void	print_tokens_debug(t_prompt *prompt)
-{
-	int	i;
-
-	i = 0;
-	printf("------------------------------------------------\n");
-	while (i < prompt->n_tokens)
-	{
-		if (prompt->tokens[i].value)
-			printf("Token [%d]: '%s' (type: %s)\n", i, prompt->tokens[i].value,
-				g_type_names[prompt->tokens[i].type]);
-		i++;
-	}
-}
-
 
 /*
 	Recorre el string `input` y llama a las funciones `is_*` para
