@@ -1,43 +1,3 @@
-sdbsdb
-v
-ds
-sdv
-av
-dav
-va
-fd
-d
-f
-VAR+=value echo $VAR
-VAR=temp ls | grep file
-VAR1="hello" VAR2=$USER"world" echo $VAR1 $VAR2
-echo "hello"'world'"test"
-echo "line1\\nline2" 'don'\\''t escape'
-echo "$USER"'$H'"$PWD"
-echo "$USER"'$HOME'"$PWD"
-echo "$USER"'$HOME'"$sds""$PWD"
-echo"hello"world'test'
-cat <file1 >file2 2>&1 | grep pattern >>output
-exec 3<file 4>output && echo "test" >&3
-(echo hello; echo world) | (cat && echo done)
-(test -f file && echo exists) || (echo missing && exit 1)
-VAR=1 && VAR=2 || echo failed
-(VAR=local echo $VAR) && echo $VAR
-echo hello 2>&1 | cat
-echo hello &>file
-echo hello |& cat
-echo hello 3>file 4<input 5>>append
-A=" = equals = sign" echo $A
-VAR='value with spaces' echo $VAR
-A=1 B+=2 C="test" echo $A $B $C
-echo "start'middle"end'
-echo test 2>&1
-expoer A=1
-expoer A=1 =
-export A=1
-export A=1 =
-ls"
-ls" sdsfef
 ls" sdsfef egse
 ls)
 ls) asgeg g eg sg
@@ -68,7 +28,6 @@ skds
 asga  sdf | (sdsdgsdf)
 >>>>>>> mikel
 ECHO 1 | ECHO 2
-cd
 echo  echo 2
 echo && echo 2
 echo
@@ -117,16 +76,13 @@ echo a && (echo b | cat || echo c) && echo d e f
 \x16echo hello > file
 (echo hola) > ls
 (echo hola | wc -c | ls) > ls
-var=hola
 ls && va=as
 echo 1 > file 2 ls
-echo 1 > file
 echo 1 > file ls ls ls ls ls
 echo 1 > file ls ls
 echo 1 2 3
 echo 1 > file
 echo 1 >
-echo 1
 echo 1
 echo 1 > 2
 echo 1 > filename
@@ -161,7 +117,6 @@ echo hola > test adios
 (echo hola) > test hola ls
 echo hola > test como estas?
 echo hola com estas
-echo hola
 (echo hola) > test ls
 hola 1> adios
 echo hola > test como estas? america
@@ -200,7 +155,6 @@ cd  ls
 cd  cds
 scd
 sdcsfs
-ls
 1  2
 1 2 3
 1 2 3 4
@@ -237,3 +191,9 @@ cds
 csdc
 ls > file
 echo hola > file
+cd hola
+var=hola
+var=hola && ls
+cd hola && echo hola && ls
+export var=hola var=1
+export var=hola && ls

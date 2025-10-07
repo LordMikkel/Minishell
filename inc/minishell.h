@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/07 16:48:26 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/07 17:05:28 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ t_node	*parse_cmd(t_shell *data, t_token *tokens, int *i, int n_tokens);
 /* ************************************************************************** */
 /*                                Executor                                    */
 /* ************************************************************************** */
-void	which_builtin(t_shell *data, t_token *tokens, t_token *token);
+void	which_builtin(t_shell *data, t_token *token, t_node *node);
 void	execute_recursive(t_shell *data, t_node *ast_root, t_exec *executor);
 
 /* ************************************************************************** */

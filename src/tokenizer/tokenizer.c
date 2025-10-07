@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:10 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/07 16:50:36 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/07 17:07:32 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void	print_tokens_debug(t_prompt *prompt)
 	}
 }
 
-void	test_built_in(t_shell *data, t_token *tokens, int n_tokens)
+/*void	test_built_in(t_shell *data, t_token *tokens, int n_tokens)
 {
 	int	i;
 
@@ -77,7 +77,7 @@ void	test_built_in(t_shell *data, t_token *tokens, int n_tokens)
 			which_builtin(data, tokens, &tokens[i]);
 		i++; //ESTO HACE QUE SE MULTIPLIQUEN LOS RESULTADOS x2
 	}
-}
+}*/
 
 /*
 	Recorre el string `input` y llama a las funciones `is_*` para

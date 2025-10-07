@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 20:29:52 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/07 16:11:32 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/07 17:06:42 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_node	*parse_cmd(t_shell *data, t_token *tokens, int *i, int n_tokens)
 		left->redir = get_redirs(data, tokens, COMMAND, i);
 		left->args = get_args_for_binary(data, tokens, i);
 		//left->temp_asig = get_temp_asignations();
-		left->arg_types = get_arg_types(data, tokens, start, i);
+		left->arg_types = get_arg_types(data, tokens, start, *i);
 		return (left);
 	}
 	return (left);
