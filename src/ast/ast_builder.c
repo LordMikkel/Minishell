@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:36:48 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/07 17:09:49 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/07 17:18:10 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ static void	print_args(char **args)
 
 	if (!args || !args[0])
 		return;
-	printf(" [");
+	printf(" [Args ");
 	i = 0;
 	while (args[i])
 	{
@@ -106,7 +106,7 @@ static void	print_token_index(int *index)
 
 	if (!index || !index[0])
 		return;
-	printf(" [");
+	printf(" [tokens_index: ");
 	i = 0;
 	while (index[i])
 	{
