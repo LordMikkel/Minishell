@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:23:28 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/04 17:15:51 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/07 01:19:25 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ int	copy_key(char *str, char **key_to_find)
 			if (!ft_isalpha(str[i]) && !is_symbol(str[i]))
 				continue ;
 			start = i;
-			while ((ft_isalnum(str[start]) || is_symbol(str[start])) && flag == FALSE)
+			while ((ft_isalnum(str[start]) || is_symbol(str[start]))
+				&& flag == FALSE)
 			{
 				if (str[start] == '$')
 				{
