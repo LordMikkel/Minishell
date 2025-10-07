@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 sdbsdb
-=======
->>>>>>> mikel
 v
 ds
 sdv
