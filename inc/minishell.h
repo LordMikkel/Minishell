@@ -6,11 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/10/07 15:39:26 by davdiaz-         ###   ########.fr       */
-=======
-/*   Updated: 2025/10/06 19:56:21 by migarrid         ###   ########.fr       */
->>>>>>> mikel
+/*   Updated: 2025/10/07 16:30:43 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +84,10 @@ void	execute_recursive(t_shell *data, t_node *ast_root, t_exec *executor);
 /* ************************************************************************** */
 /*                                buil_in                                     */
 /* ************************************************************************** */
+int		my_pwd(void);
 int		my_env(t_var *vars);
-int		my_pwd(t_shell *data);
-int		my_echo(t_prompt *prompt, t_token *tokens);
-int		my_unset(t_shell *data, t_env *env, t_token *tokens);
+int		my_echo(char **args);
+int		my_unset(t_shell *data, t_env *env, char **args);
 int		my_cd(t_shell *data, t_token *tokens, t_token *token);
 void	my_exit(t_shell *data, t_prompt *prompt, t_token *tokens);
 int		my_export(t_shell *data, t_token *tokens, t_env *env, t_node *node);
