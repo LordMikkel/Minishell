@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_externs_syntax.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:30:59 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/06 19:26:15 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/07 16:41:35 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ static int	check_case_3(t_token *tokens, t_token *token, int n_tokens)
 			|| (tokens[token->id + 1].type == BUILT_IN
 				&& ft_strcmp(tokens[token->id + 1].value, BUILTIN_EXPORT) == 0)
 			|| tokens[token->id + 1].type == WORD
+			|| tokens[token->id + 1].type == REDIR_OUTPUT
 			|| tokens[token->id + 1].type == COMMAND
 			|| (tokens[token->id + 1].type == BUILT_IN
 				&& ft_strcmp(tokens[token->id + 1].value, BUILTIN_EXPORT) != 0))

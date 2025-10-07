@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-=======
-echo "hola como estas" > ls
-cs
-dv
->>>>>>> mikel
 sdbsdb
 v
 ds
@@ -80,7 +74,7 @@ echo && echo 2
 echo
 echo | echo 2
 echo 1 | echo 2 | echo 3
- /usr/bin/env /bin/sh /tmp/Microsoft-MIEngine-Cmd-yubvacq1.tzq 
+ /usr/bin/env /bin/sh /tmp/Microsoft-MIEngine-Cmd-yubvacq1.tzq
 echo 1 | echo 2
 echo 1  echo 2
 echo 1 || echo 2
@@ -126,13 +120,13 @@ echo a && (echo b | cat || echo c) && echo d e f
 var=hola
 ls && va=as
 echo 1 > file 2 ls
-echo 1 > file 
-echo 1 > file ls ls ls ls ls 
+echo 1 > file
+echo 1 > file ls ls ls ls ls
 echo 1 > file ls ls
 echo 1 2 3
 echo 1 > file
 echo 1 >
-echo 1 
+echo 1
 echo 1
 echo 1 > 2
 echo 1 > filename
@@ -157,7 +151,6 @@ cat | cat | cat | cat
 babasnbs
 old/
 (sds) || sds s
-<<<<<<< HEAD
 (echo hola) > test adios
 (echo hola) > test adios hola
 a
@@ -198,25 +191,24 @@ echo $USER && echo $use
 sl
 export a=1
 unset hola var a
-=======
 echo hola
 exit 1
 hola
 clear
-cd 
+cd
 cd  ls
 cd  cds
 scd
 sdcsfs
-ls 
+ls
 1  2
 1 2 3
 1 2 3 4
 1 2
 1 2 3 4  5
-1 2 3 4  5 46824 6426 46824 684 642 84  
+1 2 3 4  5 46824 6426 46824 684 642 84
 sabv asge gasg ash as h sh a sh  ah a hae h re h eh r ha h ae h a  h a h a eh ras  fv sdvsd f vs df  & &  ||  $
-sabv asge gasg ash as h sh a sh  ah a hae h re h eh r ha h ae h a  h a h a eh ras  fv sdvsd f vs df 
+sabv asge gasg ash as h sh a sh  ah a hae h re h eh r ha h ae h a  h a h a eh ras  fv sdvsd f vs df
 vasvjb aj as;lh sd s s d sd d d d  e  e w af a  ag  ag  e  s e gs   a  a s v s   e e gs vsef es f seg se ge s gs
 echo "hola como estas"
 echo "hola como estas $USER"
@@ -238,7 +230,6 @@ env
 sdcd
 ls
 LS
-LS  LS LS LS LS  
+LS  LS LS LS LS
 ECHO ecHo echO
 ECHO EcHo EchO
->>>>>>> mikel
