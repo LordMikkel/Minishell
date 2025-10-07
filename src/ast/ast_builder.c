@@ -6,11 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:36:48 by migarrid          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/10/06 20:47:39 by davdiaz-         ###   ########.fr       */
-=======
-/*   Updated: 2025/10/06 17:34:53 by migarrid         ###   ########.fr       */
->>>>>>> mikel
+/*   Updated: 2025/10/07 17:09:49 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +100,24 @@ static void	print_args(char **args)
 	printf("]");
 }
 
+static void	print_token_index(int *index)
+{
+	int	i;
+
+	if (!index || !index[0])
+		return;
+	printf(" [");
+	i = 0;
+	while (index[i])
+	{
+		printf("%d", index[i]);
+		if (index[i + 1])
+			printf(", ");
+		i++;
+	}
+	printf("]");
+}
+
 static void	print_redirs(t_redir *redirs)
 {
 	t_redir	*current;
@@ -149,6 +163,7 @@ static void	print_node_helper(t_node *node, int depth, int *is_last_array)
 
 	// Imprimir argumentos si existen
 	print_args(node->args);
+	print_token_index(node->arg_types);
 
 	// Imprimir redirecciones si existen
 	print_redirs(node->redir);
