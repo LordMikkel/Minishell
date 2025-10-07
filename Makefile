@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
+#    By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/10/05 22:00:14 by migarrid         ###   ########.fr        #
+#    Updated: 2025/10/07 02:22:32 by davdiaz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -167,12 +167,12 @@ SRCS =				main/main.c \
 					ast/parser/parse_sequence.c \
 					ast/parser/parse_and_or.c \
 					ast/parser/parse_pipes.c \
-					ast/parser/parse_redir.c \
 					ast/parser/parse_subshell.c \
 					ast/parser/parse_cmd.c \
 					ast/utils/create_node.c \
 					ast/utils/get_args_for_binary.c \
 					ast/utils/get_redirs.c \
+					ast/utils/get_arg_types.c \
 					executor/executor.c \
 					executor/utils/eliminate_token.c \
 					executor/utils/which_builtin.c \

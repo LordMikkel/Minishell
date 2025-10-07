@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:22:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/05 16:43:54 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/07 03:05:43 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@
  * - Permite extender fácilmente el comportamiento para soportar más casos
  *   (como `export -p` o variables sin valor).
 */
-
+/*
 static int	check_for_valid_args(t_token *tokens, int i)
 {
 	if (tokens[i].type == PIPE || tokens[i].type == AND
@@ -86,18 +86,6 @@ static int	asignation_type(t_shell *data, t_token *token, t_env *env)
 	return (SUCCESS);
 }
 
-/*
-	1. Si solo es export export, entonces deberia de exportarla. Sin embargo, si
-	fuese export a=1 export b=3 entonces solo deberia de exportar a y b no la
-	palabra.
-	**También pasa lo mismo con las locales. Si es a=1 export b=2 el export es
-	built-in
-
-	**2. this should be a error: e=1 hola r=4 as well as e=1 hola
-	**eliminate the token in check_externs when ignore so that the error appears
-
-	**3. Give the expansion bool if not already set up
-*/
 int	my_export(t_shell *data, t_token *tokens, t_token *token, t_env *env)
 {
 	t_var	*var;
@@ -127,4 +115,78 @@ int	my_export(t_shell *data, t_token *tokens, t_token *token, t_env *env)
 	if (!args_found)
 		print_env_variables(var);
 	return (result);
+}*/
+
+static int	check_for_valid_args(t_token *tokens, int index)
+{
+	if (tokens[index].type == PIPE || tokens[index].type == AND
+		|| tokens[index].type == OR || tokens[index].type == PAREN_OPEN)
+		return (FALSE);
+	return (TRUE);
+}
+
+static void	print_env_variables(t_var	*var)
+{
+	while (var)
+	{
+		if (var->type == ENV)
+			printf("declare -x %s=\"%s\"\n", var->key, var->value);
+		if (var->type == EXP)
+			printf("declare -x %s\n", var->key);
+		var = var->next;
+	}
+}
+
+static int	asignation_type(t_shell *data, char *arg, int i, t_env *env)
+{
+	t_token *tokens;
+
+	tokens = data->prompt.tokens;
+	if (tokens[i].type == ASIGNATION)
+		asignation(data, &tokens[i], arg, ENV);
+	else if (tokens[i].type == WORD)
+	{
+		if (check_asignation_syntax(arg, EXP) == FALSE)
+		{
+			ft_printf_fd(STDERR, ERR_EXPORT, arg);
+			return (EXIT_FAIL);
+		}
+		else
+			asignation(data, &tokens[i], arg, EXP);
+	}
+	else if (tokens[i].type == PLUS_ASIGNATION)
+		asignation(data, &tokens[i], arg, PLUS_ASIGNATION);
+	return (SUCCESS);
+}
+
+int	my_export(t_shell *data, t_token *tokens, t_env *env, t_node *node)
+{
+	t_var	*var;
+	int		i;
+	int		result;
+	int		args_found;
+
+	var = data->env.vars;
+	i = 0;
+	args_found = FALSE;
+	while (i < data->prompt.n_tokens)
+	{
+		if (i > 0)
+			args_found = TRUE;
+		if (check_for_valid_args(node->arg_types, node->arg_types[i]) == FALSE)
+			break ;
+		if ((is_asignation_type(tokens[node->arg_types[i]].type)
+			|| tokens[node->arg_types[i]].type == WORD)
+			&& tokens[node->arg_types[i]].type != BUILT_IN)
+			{
+				//printf("token: %s\n\n", tokens[i].value);
+				if (asignation_type(data, node->arg_types[i],
+					node->args[i], env) == EXIT_FAIL)
+					return (EXIT_FAIL);
+			}
+		i++;
+	}
+	if (!args_found)
+		print_env_variables(var);
+	return (SUCCESS);
 }

@@ -30,6 +30,12 @@ Minishell - Bash
   individuales pero la flag seteada evita las demas expansiones
 
 
+
+Entonces, ¿cuál es la regla?
+Paréntesis crean un subshell, y todo lo que está fuera de él (después del redireccionamiento) se trata como comandos independientes.
+
+Sin paréntesis, todo se analiza como parte del mismo comando, y los argumentos se agrupan hasta que aparece una redirección o un operador lógico (&&, ||, ;).
+
 ## ARQUITECTURA GENERAL
 
 ```

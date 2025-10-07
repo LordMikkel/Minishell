@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_args_for_binary.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 23:03:38 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/05 18:05:27 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/07 02:20:47 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
 	3. Se vuevlen a recorrer los tokens, esta vez haciendo un strlen sobre cada
 		uno para poder saber su len y poder crear el str en uno de los espacios
 		de **args
-	4. Se avanza index ya que esta funcion se llama desde la construccion del
-		arbol de modo que se tiene que omitir todos los args de cada cmd.
-
+	4. Se avanza index del arbol ya que esta función se llama desde la
+		construccion del arbol, de modo que omitimos todos los args de cada cmd
+		y redirs ya que ninguno de estos deberian contarse como un nodo.
 */
 
 static void	aux_alloc_mem(t_shell *data, char ***args, int n_args)
@@ -42,6 +42,23 @@ static void	extract_bin_arg(t_shell *d, char **arg_extract, char *word, int len)
 		exit_error(d, ERR_MALLOC, EXIT_FAILURE);
 }
 
+static void	arg_count(t_token *tokens, int n_tokens, int *i, int *n_args)
+{
+	while (*i < n_tokens)
+	{
+		if (is_delimiter_type(tokens[*i].type))
+			break ;
+		if (is_redir_type(tokens[*i].type))
+		{
+			while (*i < n_tokens && !is_arg_type(tokens[*i].type))
+				(*i)++;
+		}
+		if (is_arg_type(tokens[*i].type))
+			(*n_args)++;
+		(*i)++;
+	}
+}
+
 char	**get_args_for_binary(t_shell *data, t_token *tokens, int *i)
 {
 	char	**args;
@@ -53,16 +70,19 @@ char	**get_args_for_binary(t_shell *data, t_token *tokens, int *i)
 	k = 0;
 	j = *i;
 	n_args = 0;
-	while (*i < data->prompt.n_tokens && is_arg_type(tokens[*i].type))
-	{
-		n_args++;
-		(*i)++;
-	}
+	arg_count(tokens, data->prompt.n_tokens, i, &n_args);
 	if (n_args == 0)
 		return (NULL);
 	aux_alloc_mem(data, &args, n_args);
-	while (k < n_args && j < data->prompt.n_tokens && is_arg_type(tokens[j].type))
+	while (k < n_args && j < data->prompt.n_tokens)
 	{
+		if (is_delimiter_type(tokens[j].type))
+			break ;
+		if (is_redir_type(tokens[j].type) || tokens[j].type == FILENAME)
+		{
+			j++;
+			continue ;
+		}
 		arg_len = ft_strlen(tokens[j].value);
 		extract_bin_arg(data, &args[k], tokens[j].value, arg_len);
 		k++;

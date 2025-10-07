@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/05 22:38:52 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/07 03:05:02 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int		add_token(t_shell *data, t_prompt *prompt, char *value, int type);
 /*                               Expansion                                    */
 /* ************************************************************************** */
 int		expansion(t_shell *data, t_token *token, t_env *env, int phase);
-int		asignation(t_shell *data, t_token *token, int type);
+int		asignation(t_shell *data, t_token *token, char *arg, int type);
 
 /* ************************************************************************** */
 /*                                  AST                                       */
@@ -72,7 +72,6 @@ t_node	*create_node(t_shell *data, t_token *token, t_type type);
 t_node	*parse_sequence(t_shell *data, t_token *tokens, int *i, int n_tokens);
 t_node	*parse_and_or(t_shell *data, t_token *tokens, int *i, int n_tokens);
 t_node	*parse_pipes(t_shell *data, t_token *tokens, int *i, int n_tokens);
-t_node	*parse_redir(t_shell *data, t_token *tokens, int *i, int n_tokens);
 t_node	*parse_subshell(t_shell *data, t_token *tokens, int *i, int n_tokens);
 t_node	*parse_cmd(t_shell *data, t_token *tokens, int *i, int n_tokens);
 
@@ -91,7 +90,7 @@ int		my_echo(t_prompt *prompt, t_token *tokens);
 int		my_unset(t_shell *data, t_env *env, t_token *tokens);
 int		my_cd(t_shell *data, t_token *tokens, t_token *token);
 void	my_exit(t_shell *data, t_prompt *prompt, t_token *tokens);
-int		my_export(t_shell *data, t_token *token, t_token *tokens, t_env *env);
+int		my_export(t_shell *data, t_token *tokens, t_env *env, t_node *node);
 
 /* ************************************************************************** */
 /*                                Signals                                     */
@@ -196,6 +195,7 @@ void	transform_word_to_file(t_prompt *prompt, t_token *tokens);
 //AST
 char	**get_args_for_binary(t_shell *data, t_token *token, int *i);
 t_redir	*get_redirs(t_shell *data, t_token *tokens, int mode, int *i);
+int		*get_arg_types(t_shell *data, t_token *tokens, int i, int j);
 
 //EXPANSION
 int		copy_key(char *buffer, char **key_to_find);
@@ -206,17 +206,17 @@ int		expand_empty_str(t_shell *data, t_token *token, char **key_to_find);
 int		copy_value(t_shell *d, char **t_val, char *key_value, char *key_to_f);
 
 //ASIGNATION
-void	eliminate_temp_asig(t_prompt *prompt, t_token *tokens);
 int		check_asignation_syntax(t_token *token, int type);
+void	eliminate_temp_asig(t_prompt *prompt, t_token *tokens);
 int		send_tokens_for_asig(t_shell *data, t_token *tokens, int phase);
 int		is_it_asig(t_shell *data, t_token *token, t_env *env, int type);
 int		verify_if_already_set(t_shell *data, char *key, char **value, int t);
 int		check_externs_syntax(t_shell *d, t_token *tkens, t_token *token, int t);
 
 //ENV
+void	update_shlvl(t_var *vars);
 void	path_null_no_env(t_shell *data, char **path);
 char	**make_envp(t_shell *data, t_env *env, t_var *vars);
-void	update_shlvl(t_var *vars);
 
 //UTILS
 char	*cleanner_slash_quotes_d(t_shell *data, char *word, int len, int *flag);
