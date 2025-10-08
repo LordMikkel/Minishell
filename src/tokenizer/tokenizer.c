@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:10 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/08 01:27:12 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/08 15:41:16 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,6 @@ int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 		return (SYNTAX_ERROR);
 
 	// print_tokens_debug(prompt);
-
 
 	//send_tokens_for_asig(data, prompt->tokens, FINAL_PHASE);
 	//eliminate_temp_asig(prompt, prompt->tokens);

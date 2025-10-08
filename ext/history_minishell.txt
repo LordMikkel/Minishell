@@ -1,98 +1,10 @@
-echo 1 > filename
-echo 1 > filename 2 3
-echo a > file
-(echo A) > file
-(echo A) > file1 2> file2
-(echo A) > file1 9> file2
-(echo A) > file1 0> file2
-(echo A) > file1 &> file2
-\x16grep foo < input.txt
-echo Hello > out.txt
-(echo A; echo B) > out.txt | grep A >> result.txt
-grep foo < in.txt > out.txt 2> err.txt
-(echo hi; echo err >&2) &> all.txt
-echo a & > log
-echo `ls` > log
-echo a &> log
-echo &2
-(echo X; echo Y) > out.txt | (grep X > result.txt 2>> err.log)
-cat | cat | cat | cat
-babasnbs
-old/
-(sds) || sds s
-(echo hola) > test adios
-(echo hola) > test adios hola
-a
-(echo hola) > test adios hola mundo
-echo hola > test adios
-(echo hola) > test env
-(echo hola) > test hola env
-(echo hola) > test hola ls
-echo hola com estas
-(echo hola) > test ls
-hola 1> adios
-echo hola > test como estas? america
-echo hola > test como estas? america && ls
-var=hola | grep hola
-var=hola | grep hola && echo hola > test 1 2 3
-var=hola | grep hola && export lala
-var=hola | grep hola && (echo hola) > test 1 2 3
-(echo hola) > test como estas? america
-a=1 ls var=hola | grep hola && (echo hola) > test 1 2 3
-var=+hola | grep hola && (echo hola) > test 1 2 3
-var=1
-var=+1
-echo $var
-var+=1
-var+=hola | grep hola && (echo hola) > test 1 2 3
-var=a | ls
-export hola
-export hola var=1
-ls && var=1 && export hola var=1
-ls && var=1 && export hola var=3
-echo $USER
-echo $USER && ECHO $$
-echo $USER && echo $$
-echo $USER && echo $?
-echo $USER && echo $use
-sl
-export a=1
-unset hola var a
-echo hola
-exit 1
-hola
-clear
-cd
-cd  ls
-cd  cds
-scd
-sdcsfs
-1  2
-1 2 3
-1 2 3 4
-1 2
-1 2 3 4  5
-1 2 3 4  5 46824 6426 46824 684 642 84
-sabv asge gasg ash as h sh a sh  ah a hae h re h eh r ha h ae h a  h a h a eh ras  fv sdvsd f vs df  & &  ||  $
-sabv asge gasg ash as h sh a sh  ah a hae h re h eh r ha h ae h a  h a h a eh ras  fv sdvsd f vs df
-vasvjb aj as;lh sd s s d sd d d d  e  e w af a  ag  ag  e  s e gs   a  a s v s   e e gs vsef es f seg se ge s gs
-echo "hola como estas"
-echo "hola como estas $USER"
-echo "hola como estas" $USER
-echo "hola como estas"$USER
-echo "hola como estas "$USER
-echo "hola como estas "$USER' '$?
-A=1
-A=1 B=2 C=3
 echo $A  $b $
 A="hola"
 A+="hola"
 echo $A $B $C
 enc
 export A+="hola"
-env
 sdcd
-LS
 LS  LS LS LS LS
 ECHO ecHo echO
 ECHO EcHo EchO
@@ -135,10 +47,7 @@ ls && true;
 true && > test
 true && test
 =======
-export A+=" como estas"
 export a=1 =
-l
-s
 dscsadva
 echo hola && echo estoy borracho
 slsd
@@ -151,24 +60,18 @@ s s
 dv
 svsbsf bbsabsa
 echo hola 4> barriga
->>>>>>> mikel
-echo
 ls ls ls ls
 LS ls LS LS LS LS
 LS LS LS LS LS LS
 LS ls LS LS LS LS && RM rm RM RM RM RM RM RM
-ls
 A=1 echo $A
 echo $A
 ls LS LS LS LS
-> file
 ls ; echo
 || ls
 ;ls
-;  ls
 ; ls
 ls;
-EXPORT HOLA
 EXPORT HOLA > test
 EXPORT HOLA > test var=43
 export hola > test
@@ -177,23 +80,120 @@ ls hola && echo &
 export hola var+=adios > test
 export hola var+=adios > test &
 export hola var+=adios > test 
-export hola var+=adios & > test 
 export A B+=1 & > test 
-export W P+=1 > file &
 export A > file & 
 export A > file &
-(echo hola) > file &
-X=42; Y=hello; export Z+=world && echo "$X-$Y-$Z" > out.txt | grep hello >> log.txt & (A=1 B=2; echo $A $B | cat -e > inner.txt && export C=ok; D=fail; echo done >> inner.txt) ; sleep 1 & echo "background done" || echo "background failed"; E=$(cat < out.txt | tr a-z A-Z); echo "E=$E" >> result.txt & unset Y Z; F=123; export G+=456; echo $F:$G >> result.txt ; (H=test; echo $H && false || echo "subshell fail") & pwd > path.txt; echo "All done" >> summary.txt &
-(echo hola && ls || echo | ls)
-export Z+=world && echo "$X-$Y-$Z" > out.txt | grep hello >> log.txt & 
-Y=hello; export Z+=world && echo "$X-$Y-$Z" > out.txt | grep hello >> log.txt & 
-ls ; export Z+=world && echo "$X-$Y-$Z" > out.txt | grep hello >> log.txt & 
 echo "$USER-$HOME"
 echo "$SHLVL-$HOME"
 echo "$SHLVL.$HOME"
 echo "$SHLVL $HOME
 echo \\\\$SHLVL $HOME
 echo $SHLVL $HOME
-echo "$SHLVL $HOME"
 a=1 ; export Z+=world && echo "$X-$Y-$Z" > out.txt | grep hello >> log.txt & 
+export W P+=1 > file &
+echo "$SHLVL $HOME"
+export hola var+=adios & > test 
+(echo hola) > file &
 X=42; Y=hello; export Z+=world && echo "$X-$Y-$Z" > out.txt | grep hello >> log.txt & 
+ls ; export Z+=world && echo "$X-$Y-$Z" > out.txt | grep hello >> log.txt & 
+export Z+=world && echo "$X-$Y-$Z" > out.txt | grep hello >> log.txt & 
+Y=hello; export Z+=world && echo "$X-$Y-$Z" > out.txt | grep hello >> log.txt & 
+X=42; Y=hello; export Z+=world && echo "$X-$Y-$Z" > out.txt | grep hello >> log.txt & (A=1 B=2; echo $A $B | cat -e > inner.txt && export C=ok; D=fail; echo done >> inner.txt) ; sleep 1 & echo "background done" || echo "background failed"; E=$(cat < out.txt | tr a-z A-Z); echo "E=$E" >> result.txt & unset Y Z; F=123; export G+=456; echo $F:$G >> result.txt ; (H=test; echo $H && false || echo "subshell fail") & pwd > path.txt; echo "All done" >> summary.txt &
+> file
+(echo hola && ls || echo | ls)
+;  ls
+>>>>>>> mikel
+export A+=" como estas"
+EXPORT HOLA
+<< EOF ls  > file
+<< EOF ls > file
+<< EOF
+<< EOF > file
+<< EOF 1> file
+<< EOF 1> ls file
+ls\n
+(ls) 
+(ls) > 
+(ls)
+(ls) > ls
+ls && echo &
+ls &  && ech
+fsdf
+echo & || ls
+echo & && ls
+echo & | ls
+HOL
+/usr/bin/ls -a
+/usr/bin/ls -l
+/usr/bin/ls 
+/usr/bin/ls
+l
+ /usr/bin/env /bin/sh /tmp/Microsoft-MIEngine-Cmd-l2xc0wql.mwa 
+HOLA
+hola
+export hola
+env 
+env
+cat Makefile | grep minishell
+\n\n Your session ended. Duration: 0 minutes and 48 seconds \xE2\x8F\xB3\n\n99m\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80 Goodbye! \xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\n74;144;226mminishell> 74;144;226m
+LS HOLA
+export hola vs=1
+LS
+echo agsgasA
+ls export var=i
+export var=i
+var=i hola 
+export var=i ls
+export ls var=i ls
+export ls var=i ls var=2
+export ls var=i ls var=2 var
+export ls var=i ls var=2 var+2 var=2 export
+export ls var=i ls var=2 var+=2 var=2 export
+echo $var
+var=i && ls
+echo
+ls && ls
+ls -l && ls -la
+ls -l && ls -l
+ls -l && grep "test"
+du -h
+\nAlloc Tokens: 32\nSyntax Tokens: 0\n------------------------------------------------\n------------------------------------------------\n------------------------------------------------\n74;144;226mminishell> 74;144;226m
+\n\n Your session ended. Duration: 1 minutes and 52 seconds \xE2\x8F\xB3\n\n99m\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80 Goodbye! \xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\xE2\x94\x80\n74;144;226mminishell> 74;144;226m
+74;144;226mminishell> 74;144;226m
+grep
+grep 1
+vsabasbsa
+vasdv
+sdgsf
+sdgs
+sbsbs
+sdbsdb
+svdbsdsbsb
+vssagvas
+vbasbsabasf
+vassvas
+ls &
+sdvavasdvas  &
+vasvasv || ls
+export A=1 hola
+export A=1
+export sdfs
+ls -l
+export A=1 B=2
+cd
+sd
+vdsbavbas sa
+vasbasdbsasad
+ls | grep minishell
+du
+du -h | head -20
+cat | cat | cat
+clear
+sleep 10
+echo $?
+Cat | Cat
+Cat | Cat | cat | cat
+s
+d
+ddssv
+ls
