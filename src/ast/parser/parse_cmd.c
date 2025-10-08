@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 20:29:52 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/08 01:41:10 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/08 22:56:04 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static	t_node *special_cases(t_shell *d, t_token *tokens, int *i, int n_tokens)
 	else if (is_redir_type(tokens[*i].type))
 	{
 		left = create_true_node(d, COMMAND);
-		left->redir = get_redirs(d, tokens, COMMAND, i);
+		left->redir = get_redirs(d, tokens, i, COMMAND);
 		left->background = get_background(tokens, n_tokens, i);
 		return (left);
 	}
@@ -63,10 +63,7 @@ static void	get_information(t_shell *dat, t_token *tokens, int *i, t_node *left)
 	int		start;
 
 	start = *i;
-	safe_index_plus(i, dat->prompt.n_tokens);
-	if (*i == dat->prompt.n_tokens)
-		return ;
-	left->redir = get_redirs(dat, tokens, COMMAND, i);
+	left->redir = get_redirs(dat, tokens, i, COMMAND);
 	left->args = get_args_for_binary(dat, tokens, i);
 	left->arg_types = get_arg_types(dat, tokens, start, *i);
 	//left->temp_asig = get_temp_asignations();
