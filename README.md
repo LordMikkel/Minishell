@@ -20,6 +20,7 @@ Minishell - Bash
 - Expansion ha de soportar los wildcards *
 - Norminette
 - Comentarios
+- (v=1) var=2 bash: syntax error near unexpected token `var=2'
 
 ## Errores:
 - En is_double_quote -> no se pueden hacer dos expansiones seguidas cuando hay `\` antes del `$` funciona para expansiones
