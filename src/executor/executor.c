@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:36:57 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/08 20:30:44 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/09 03:24:52 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,10 @@ void	executor_recursive(t_shell *data, t_node *node, int mode)
 		exec_or(data, node, mode);
 	else if (node->type == PIPE)
 		exec_pipe(data, node, mode);
-	// else if (node->type == SUBSHELL)
-	// 	exec_subshell(data, node, mode);
-	// else if (node->type == BUILT_IN)
-	// 	exec_builin(data, node, data->env, mode);
+	else if (node->type == SUBSHELL)
+		exec_subshell(data, node, mode);
+	else if (node->type == BUILT_IN || is_asignation_type(node->token->type))
+		exec_builtin(data, node, mode);
 	else if (node->type == COMMAND)
 		exec_command(data, node, &data->env, mode);
-	// else if (node->type == ASIGNATION || node->type == PLUS_ASIGNATION)
-	// 	exec_assignation(data, node, data->env);
 }
