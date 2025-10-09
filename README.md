@@ -7,6 +7,7 @@ Minishell - Bash
 - Important:
 - HEREDOC
 - Todos los tipos de REDIRS
+- bugs de exit - pwd - env - echo
 
 - Secondary:
 - Bash te abra línea para que completes el comando ver → Modificar balance de ' " ( || && |
@@ -15,9 +16,12 @@ Minishell - Bash
 
 ## DAVID:
 - Important:
-- get_Arg_types funciona y sin leaks
-- get_temp_asig funciona y sin leaks -> con export y con cualquier otro comando
+- get_Arg_types debe funcionar correctamente y sin leaks
+- get_binary_Args debe funcionar correctamente y sin leaks
+- get_temp_asig debe funcionar correctamente y sin leaks -> con export y con cualquier otro comando
 - bugs de tempasignations bien catalogadas
+- bugs de export - unset
+- bugs de expansiones
 
 - Secondary:
 - Hacer built-in CD

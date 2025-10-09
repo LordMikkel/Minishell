@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 01:44:27 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/10/09 15:43:57 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/09 18:13:15 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,9 @@ static int	*alloc_arg_types(t_shell *dat, t_node *node, int start_i, int end_j)
 		tmp_counter = 0;
 		while (tmp_counter < len)//copiamos las temp_Asigs en el orden correcto (de la primera a la ultima)
 		{
-			arg_types[tmp_counter] = node->token[start_i - tmp_token_index - 1].id;
+			arg_types[tmp_counter] = node->token[start_i - tmp_token_index].id;
 			tmp_counter++;
+			tmp_token_index--;
 		}
 	}
 	else
@@ -88,21 +89,52 @@ static void	check_arg_index(int arg_index, int **arg_types)
 	}
 }
 
+get_only_asigs(t_shell *data, int *arg_types, int start_i, int end_j)
+{
+	t_token	*tokens;
+	int		arg_index;
+
+	tokens = data->prompt.tokens;
+	arg_index = 0;
+	while (start_i < data->prompt.n_tokens && start_i < end_j)
+	{
+		if (is_asignation_type(tokens[start_i].type))
+		{
+			arg_types[arg_index] = tokens[start_i].id;
+			arg_index++;
+		}
+		start_i++;
+	}
+}
+
+static int	get_correct_index(t_token *tokens, int start)
+{
+	while (start > 0)
+	{
+		if (is_delimiter_type(tokens[start].type))
+			break ;
+		start--;
+	}
+	return (start);
+}
+
 int	*get_arg_types(t_shell *data, t_node *node, int start_i, int end_j)
 {
-	t_token *tokens;
+	t_token	*tokens;
 	int		*arg_types;
 	int		arg_index;
 
 	arg_index = 0;
 	tokens = data->prompt.tokens;
 	arg_types = alloc_arg_types(data, node, start_i, end_j);
+	start_i += 1;
+	if (node->assig_tmp && ft_strcmp(tokens[start_i].value, BUILTIN_EXPORT) != 0)
+		start_i = get_correct_index(tokens, end_j);
 	if (ft_strcmp(tokens[start_i].value, BUILTIN_EXPORT) != 0)
 	{
-		free (arg_types);
-		return (NULL);
+		get_only_asigs(tokens, data->prompt.n_tokens, start_i, end_j);
+		return (arg_types);
 	}
-	start_i += 1;
 	while (start_i < data->prompt.n_tokens && start_i < end_j)
 	{
 		if (is_arg_type(tokens[start_i].type))

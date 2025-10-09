@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_ast_tree.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:51:53 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/08 23:07:05 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/09 17:21:49 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,23 @@ static void	print_args(char **args)
 	}
 	printf("]");
 }
+static void	print_temp(char **args)
+{
+	int	i;
+
+	if (!args || !args[0] || !args[1])
+		return;
+	printf(" [Temps: ");
+	i = 0;
+	while (args[i])
+	{
+		printf("%s", args[i]);
+		if (args[i + 1])
+			printf(", ");
+		i++;
+	}
+	printf("]");
+}
 
 static void	print_token_index(int *index)
 {
@@ -52,7 +69,7 @@ static void	print_token_index(int *index)
 	if (!index)
 		return;
 
-	printf(" [Index: ");
+	printf(" [token index: ");
 	i = 0;
 	while (index[i])
 	{
@@ -109,6 +126,7 @@ static void	print_node_helper(t_node *node, int depth, int *is_last_array)
 		printf("%s", g_type_names[node->type]);
 
 	// Imprimir argumentos si existen
+	print_temp(node->assig_tmp);
 	print_args(node->args);
 	print_token_index(node->arg_types);
 

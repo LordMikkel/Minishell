@@ -1,0 +1,13 @@
+ls
+var=1 export hola
+var=1 ls
+echo hola
+claer
+var=1 echo hola
+clear
+var=1 export va=1
+var=1 export va=1 hola
+unset
+va=1 ls -l
+ls -l
+echo hola && ls
