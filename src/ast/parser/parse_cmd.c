@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 20:29:52 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/08 22:56:04 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/09 03:20:30 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ static void	get_information(t_shell *dat, t_token *tokens, int *i, t_node *left)
 	int		start;
 
 	start = *i;
+	left->assig_tmp = get_temp_asignations(dat, tokens, *i);
 	left->redir = get_redirs(dat, tokens, i, COMMAND);
 	left->args = get_args_for_binary(dat, tokens, i);
-	left->arg_types = get_arg_types(dat, tokens, start, *i);
-	//left->temp_asig = get_temp_asignations();
+	left->arg_types = get_arg_types(dat, left, start, *i);
 	left->background = get_background(tokens, dat->prompt.n_tokens, i);
 }
 

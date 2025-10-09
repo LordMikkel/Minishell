@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/08 22:28:31 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/09 03:27:40 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ void 	exec_and(t_shell *data, t_node *node, int mode);
 void	exec_or(t_shell *data, t_node *node, int mode);
 void	exec_pipe(t_shell *data, t_node *node, int mode);
 void	exec_command(t_shell *data, t_node *node, t_env *env, int mode);
+void	exec_subshell(t_shell *data, t_node *node, int mode);
+void	exec_builtin(t_shell *data, t_node *node, int mode);
 
 /* ************************************************************************** */
 /*                                buil_in                                     */
@@ -205,7 +207,7 @@ void	transform_command_built_lowercase(t_prompt *prompt, t_token *tokens);
 
 //AST
 int		get_background(t_token *tokens, int n_tokens, int *i);
-int		*get_arg_types(t_shell *data, t_token *tokens, int i, int j);
+int		*get_arg_types(t_shell *data, t_node *node, int i, int j);
 char	**get_args_for_binary(t_shell *data, t_token *token, int *i);
 char	**get_temp_asignations(t_shell *data, t_token *tokens, int i);
 t_redir	*get_redirs(t_shell *data, t_token *tokens, int *i, int mode);

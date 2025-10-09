@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
+#    By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/10/08 20:28:30 by migarrid         ###   ########.fr        #
+#    Updated: 2025/10/09 03:32:30 by davdiaz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -187,9 +187,11 @@ SRCS =				main/main.c \
 					executor/exec/exec_or.c \
 					executor/exec/exec_pipe.c \
 					executor/exec/exec_command.c \
+					executor/exec/exec_subshell.c \
+					executor/exec/exec_builtin.c \
+					executor/utils/which_builtin.c \
 					executor/utils/get_path_cmd.c \
 					executor/utils/eliminate_token.c \
-					executor/utils/which_builtin.c \
 					executor/utils/eliminate_temp_asig.c \
 					signals/setup_signals.c \
 					signals/handler_signals.c \
