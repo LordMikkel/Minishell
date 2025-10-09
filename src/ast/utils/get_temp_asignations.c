@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 18:54:11 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/10/08 03:20:25 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/09 18:13:26 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,18 @@ static void	extract_bin_arg(t_shell *d, char **arg_extract, char *word, int len)
 		exit_error(d, ERR_MALLOC, EXIT_FAILURE);
 }
 
+
+static int	get_correct_index(t_token *tokens, int start)
+{
+	while (start > 0)
+	{
+		if (is_delimiter_type(tokens[start].type))
+			break ;
+		start--;
+	}
+	return (start);
+}
+
 char	**get_temp_asignations(t_shell *data, t_token *tokens, int i)
 {
 	char	**args;
@@ -38,16 +50,18 @@ char	**get_temp_asignations(t_shell *data, t_token *tokens, int i)
 	int		temp_len;
 	int		start;
 
-	start = i - 1;
+	start = i;
+	start = get_correct_index(tokens, i);
 	temp_count = 0;
-	while (start > 0 && tokens[start].type == TEMP_ASIGNATION)
+	while (is_asignation_type(tokens[start].type))
 	{
 		temp_count++;
-		start--;
+		start++;
 	}
-	if (temp_count == 0)
+	if (temp_count == 0 || start == 0)
 		return (NULL);
 	aux_alloc_mem(data, &args, temp_count);
+	start = get_correct_index(tokens, i);
 	while (start < i)
 	{
 		temp_len = ft_strlen(tokens[start].value);

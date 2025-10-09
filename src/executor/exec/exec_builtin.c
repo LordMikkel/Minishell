@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:23:12 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/09 16:06:39 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/09 16:51:28 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,26 @@
 	ejecución secuencial como en estructuras complejas.
 */
 
+static void	if_theres_temp_asig(t_shell *data, t_node *node)
+{
+	pid_t	pid;
+
+	if (node->assig_tmp)
+	{
+		printf("entra\n\n");
+		pid = fork();
+		if (pid == ERROR)
+			exit_error(data, ERR_FORK, FAIL);
+		if (pid == 0)
+		{
+			setup_signals_child();
+			which_builtin(data, node->token, node);
+			exit_succes(data, NULL, data->exit_code);
+		}
+		data->exit_code = 0;
+	}
+}
+
 void	exec_builtin(t_shell *data, t_node *node, int mode)
 {
 	pid_t	pid;
@@ -62,8 +82,9 @@ void	exec_builtin(t_shell *data, t_node *node, int mode)
 		data->exit_code = 0; //da 0 porque el fork en si fue exitoso
 		return ;
 	}
+	if_theres_temp_asig(data, node);//si tiene temp se tiene que hacer oco child process
 	which_builtin(data, node->token, node); //tanto si es child o parent entra aqui
 	if (mode == CHILD) // si era child de una subshell o pipe se sale con su exit_code
-		exit_error(data, NULL, data->exit_code);
+		exit_succes(data, NULL, data->exit_code);
 	return ;
 }
