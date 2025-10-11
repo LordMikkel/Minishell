@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:42:00 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/11 06:39:42 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/11 16:51:26 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*receive_input(char **input, t_shell *data)
 		*input = ft_strtrim(line, "\n");
 		free(line);
 	}
-	check_signals(data, NULL, NULL);
+	check_signals(data, NULL, NULL, NULL);
 	return (*input);
 }
 

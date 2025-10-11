@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 01:44:27 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/10/09 23:17:44 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/11 17:37:47 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,9 @@ int	*get_arg_types(t_shell *data, t_node *node, int start_i, int end_j)
 		{
 			arg_types[arg_index] = tokens[start_i].id;
 			arg_index++;
+			// Si se simplican los tokens ya no son el id... hay un caso que no
+			// funciona revisar --> 'ex'port A=1
+			// A=1 es id 5 pero index 1
 		}
 		start_i++;
 	}

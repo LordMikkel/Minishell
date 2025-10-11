@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/18 02:47:16 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/11 06:43:28 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/11 17:01:13 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
  * termina la ejecución del heredoc con código de Ctrl+C
  */
 
-int	check_signals(t_shell *data, char *line, int *pipe_fd)
+int	check_signals(t_shell *data, t_redir *redir, char *line, int *pipe_fd)
 {
 	if (g_signal[0] == SIG_INTERACTIVE)
 	{
@@ -37,10 +37,28 @@ int	check_signals(t_shell *data, char *line, int *pipe_fd)
 				close(pipe_fd[0]);
 			if (line)
 				free(line);
+			if (redir)
+				redir->signal = TRUE;
 			data->exit_code = EXIT_CTRL_C;
 			g_signal[1] = VOID;
 			return (RECIVED_SIGNAL);
 		}
 	}
 	return (VOID);
+}
+
+/*
+ * Verifica si se recibieron señales y actúa según el contexto:
+ * Funcion auxiliar que en el proceso del nodo comprueba la flag de señal
+ * evita la ejecucion del nodo por CTRL+C
+ */
+
+int	check_signal_node_heredoc(t_redir *redir)
+{
+	if (redir)
+	{
+		if (redir->signal == RECIVED_SIGNAL)
+			return (TRUE);
+	}
+	return (FALSE);
 }

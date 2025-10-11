@@ -4,19 +4,24 @@ Minishell - Bash
 🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
 🏁                                    RESULT                                    🏁
 🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
-             TOTAL TEST COUNT: 889  TESTS PASSED: 704  LEAKING: 0
-                     STD_OUT: 104  STD_ERR: 95  EXIT_CODE: 69
+             TOTAL TEST COUNT: 881  TESTS PASSED: 711  LEAKING: 0
+                     STD_OUT: 98  STD_ERR: 87  EXIT_CODE: 69
                          TOTAL FAILED AND PASSED CASES:
-                                     ❌ 268
-                                     ✅ 2399
+                                     ❌ 254
+                                     ✅ 2389
 
 ## POR HACER:
 
 ## MIKEL:
 - Important:
-- Heredoc
-- Todos los tipos de REDIRS
 - Actualizar ultimo comando env
+- env what
+- multilinea
+
+minishell> echo seg <> echo seg
+minishell: syntax error near unexpected token `>'
+minishell> echo <<< echo seegf
+minishell: syntax error near unexpected token `<'
 
 - Secondary:
 - Bash te abra línea para que completes el comando ver → Modificar balance de ' " ( || && |
@@ -24,19 +29,16 @@ Minishell - Bash
   - https://github.com/rogerdevworld/minishell/blob/main/src/bonus/syntax/ft_lexer_2.c#L93
 
 Que falta:
-- Expandir ~
-- Expandir el Heredoc
-- Revisar tokenizacion de $'$' o $"$"
-- revisar exit code 130 final de heredoc
-- revisar que al hacer ctrl+C ya no ejecute mas comandos heredoc
 - hacer redirecciones de subshells
-- arreglar crash de env -i ./minishell
 
 ## DAVID:
 - Important:
-- get_Arg_types funciona y sin leaks
+- get_arg_types funciona y sin leaks
 - get_temp_asig funciona y sin leaks -> con export y con cualquier otro comando
 - bugs de tempasignations bien catalogadas
+- Expandir ~
+- Expandir el Heredoc
+- revisar caso 'ex'port A=1 --> args_type
 
 - Secondary:
 - Hacer built-in CD
@@ -54,8 +56,6 @@ Que falta:
 ## Errores:
 - En is_double_quote -> no se pueden hacer dos expansiones seguidas cuando hay `\` antes del `$` funciona para expansiones
   individuales pero la flag seteada evita las demas expansiones
-
-
 
 Entonces, ¿cuál es la regla?
 Paréntesis crean un subshell, y todo lo que está fuera de él (después del redireccionamiento) se trata como comandos independientes.

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 21:35:11 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/08 15:49:41 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/11 17:14:51 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ static int	find_bin(char **path_arr, char *path_slash, char *path, char *word)
 	usuario hace: Ls - Echo - ECHO - LS - CD - cd - etc...
 */
 
-static int	is_built_in(t_shell *d, t_prompt *prompt, t_token *token, char *str)
+int	is_built_in_token(t_token *token, const char *value)
 {
 	char	*built_in[8];
 	int		i;
@@ -109,7 +109,7 @@ static int	is_built_in(t_shell *d, t_prompt *prompt, t_token *token, char *str)
 	built_in[7] = NULL;
 	while (built_in[i])
 	{
-		if (ft_strmatch_cmp(built_in[i], str) == 0)
+		if (ft_strmatch_cmp(built_in[i], value) == 0)
 		{
 			token->type = BUILT_IN;
 			return (YES);
@@ -136,11 +136,11 @@ void	is_cmd(t_shell *data, t_prompt *prompt, t_token *token, char *str)
 	int		validate;
 
 	path_slash = NULL;
-	path = getenv("PATH");
-	if (is_built_in(data, prompt, token, str) == YES)
-		return ;
+	path = get_var_value(data->env.vars, "PATH");
 	if (!path)
-		path_null_no_env(data, &path);
+		path = DEFAULT_PATH;
+	if (is_built_in_token(token, str) == YES)
+		return ;
 	path_arr = ft_split(path, ':');
 	if (!path_arr)
 		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
