@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 20:29:52 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/11 07:33:51 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/11 22:11:44 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	index_redir_input(int type, int *i, int n_tokens)
 	}
 }
 
+
 t_node	*special_cases(t_shell *data, t_token *tokens, int *i, int n_tokens)
 {
 	t_node	*left;
@@ -57,7 +58,10 @@ t_node	*special_cases(t_shell *data, t_token *tokens, int *i, int n_tokens)
 	{
 		(*i)++;
 	}
-	else if (n_tokens == 2 && is_redir_type(tokens[*i].type))
+	else if ((*i + 1 == n_tokens && is_redir_type(tokens[*i].type)) ||
+		(*i + 2 == n_tokens && is_redir_type(tokens[*i].type) ||
+		(*i + 2 < n_tokens && is_redir_type(tokens[*i].type)
+			&& !is_cmd_builtin_type(tokens[*i + 2].type))))
 	{
 		left = create_true_node(data, COMMAND);
 		left->redir = get_redirs(data, tokens, i, TRUE);
@@ -69,6 +73,7 @@ t_node	*special_cases(t_shell *data, t_token *tokens, int *i, int n_tokens)
 
 int	get_information(t_shell *data, t_token *tokens, int *i, t_node *left)
 {
+	int		flag;
 	int		start;
 
 	start = *i;
@@ -101,6 +106,8 @@ t_node	*parse_cmd(t_shell *data, t_token *tokens, int *i, int n_tokens)
 			return (left);
 		}
 		get_information(data, tokens, i, left);
+		if (left->redir && check_signal_node_heredoc(left->redir))
+			return (NULL);
 		return (left);
 	}
 	return (left);

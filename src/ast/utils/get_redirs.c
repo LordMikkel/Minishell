@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 20:59:47 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/11 07:34:14 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/11 17:03:22 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_redir	*add_redir(t_shell *data, t_redir *lst, t_token *token, char *filename)
 			redir->fd_redir = 1;
 	}
 	if (redir->type == REDIR_HEREDOC)
-		redir->fd_heredoc = get_heredoc(data, filename);
+		redir->fd_heredoc = get_heredoc(data, redir, filename);
 	if (!lst)
 		return (redir);
 	last = lstlast_redir(lst);

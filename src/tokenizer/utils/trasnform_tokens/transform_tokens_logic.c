@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 21:33:14 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/08 22:36:53 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/11 21:12:14 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@
 
 void	transform_tokens_logic(t_shell *data, t_prompt *prompt, t_token *tokens)
 {
-	//transform_command_built_lowercase(prompt, tokens);
+	transform_simplify_to_built_in(prompt, tokens);
 	transform_cmd_to_word(data, tokens, INITIAL_PHASE);
 	transform_word_to_asignation(data, tokens, INITIAL_PHASE);
 	transform_invalid_asig_to_word(prompt, tokens);

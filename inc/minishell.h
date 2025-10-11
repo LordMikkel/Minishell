@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/11 06:42:41 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/11 21:12:19 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,14 +103,13 @@ int		my_export(t_shell *data, t_token *tokens, t_env *env, t_node *node);
 /* ************************************************************************** */
 /*                                Signals                                     */
 /* ************************************************************************** */
-// int		init_signals(void);
-// void	signal_handler(int sig, siginfo_t *info, void *context);
 void	setup_signals_interactive(void);
 void	setup_signals_child(void);
 void	setup_signals_heredoc(void);
 void	handle_sigint_interative(int sig);
 void	handle_sigint_heredoc(int sig);
-int		check_signals(t_shell *data, char *line, int *pipe_fd);
+int     check_signal_node_heredoc(t_redir *redir);
+int		check_signals(t_shell *data, t_redir *redir, char *line, int *pipe_fd);
 
 /* ************************************************************************** */
 /*                                 Clean                                      */
@@ -171,6 +170,7 @@ int		is_asignation_type(int type);
 int		is_real_assignation_type(int type);
 int		is_redir_output_type(int type);
 int		is_redir_input_type(int type);
+int		is_built_in_token(t_token *token, const char *value);
 
 //VALID TOKENS
 void	is_it_quoted(t_prompt *prompt, t_token *tokens);
@@ -205,9 +205,10 @@ void	transform_word_to_asignation(t_shell *data, t_token *tokens, int phase);
 void	transform_tokens_logic(t_shell *data, t_prompt *promp, t_token *tokens);
 void	transform_word_to_file(t_prompt *prompt, t_token *tokens);
 void	transform_command_built_lowercase(t_prompt *prompt, t_token *tokens);
+void	transform_simplify_to_built_in(t_prompt *prompt, t_token *tokens);
 
 //AST
-int		get_heredoc(t_shell *data, char *delimiter);
+int		get_heredoc(t_shell *data, t_redir *redir, char *delimiter);
 int		get_background(t_token *tokens, int n_tokens, int *i);
 int		*get_arg_types(t_shell *data, t_node *node, int i, int j);
 char	**get_args_for_binary(t_shell *data, t_token *token, int *i);
@@ -240,6 +241,7 @@ int		check_externs_syntax(t_shell *d, t_token *tkens, t_token *token, int t);
 void	update_shlvl(t_var *vars);
 void	path_null_no_env(t_shell *data, char **path);
 char	**make_envp(t_shell *data, t_env *env, t_var *vars);
+char	*get_var_value(t_var *vars, const char *key);
 
 //HIGHLIGHTHER
 void	highlighter(ic_highlight_env_t *henv, const char *input, void *args);

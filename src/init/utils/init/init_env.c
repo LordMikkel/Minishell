@@ -6,21 +6,34 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 01:02:53 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/17 22:40:57 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/11 16:33:39 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/minishell.h"
 
 /*
-	Asigna un PATH por defecto si no hay entorno.
-*/
+ * Busca el valor de una variable en la lista de vars.
+ * Devuelve:
+ *	- value (char*) si se encuentra la variable
+ *	- NULL si no existe
+ */
 
-void	path_null_no_env(t_shell *data, char **path)
+char *get_var_value(t_var *vars, const char *key)
 {
-	*path = strdup("/usr/bin:/bin:/usr/local/bin");
-	if (!*path)
-		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+	t_var *current;
+
+	if (!vars || !key)
+		return NULL;
+
+	current = vars;
+	while (current)
+	{
+		if (current->key && strcmp(current->key, key) == 0)
+			return current->value;
+		current = current->next;
+	}
+	return NULL;
 }
 
 /*
@@ -32,18 +45,22 @@ static void	init_no_env(t_shell *data)
 {
 	char	**var;
 
-	var = ft_calloc(6, sizeof(char *));
+	var = ft_calloc(8, sizeof(char *));
 	var[0] = strdup("PWD");
 	var[1] = getcwd(NULL, 0);
 	var[2] = strdup("SHLVL");
 	var[3] = strdup("1");
 	var[4] = strdup("_");
 	var[5] = strdup("/usr/bin/env");
-	if (!var[0] || !var[1] || !var[2] || !var[3] || !var[4] || !var[5])
+	var[6] = strdup("PATH");
+	var[7] = strdup("/usr/local/bin:/usr/bin:/bin");
+	if (!var[0] || !var[1] || !var[2] || !var[3] || !var[4] || !var[5]
+		|| !var[6] || !var[7])
 		return (ft_free_str_array(var), (void)exit_error(data, ERR_MALLOC, 1));
 	add_var(data, var[0], var[1], ENV);
 	add_var(data, var[2], var[3], ENV);
 	add_var(data, var[4], var[5], ENV);
+	add_var(data, var[6], var[7], ENV);
 }
 
 /*
