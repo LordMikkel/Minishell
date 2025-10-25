@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 22:34:34 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/10/05 16:44:42 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/25 20:00:33 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,6 @@
 	bash-3.2$ echo $export=jaja=jiji
 	bash-3.2$ jaja=jiji=jaja=jiji
 */
-
-static int	invalid_char(int c)
-{
-	if ((c >= 0 && c <= 31) || (c >= 35 && c <= 42) || (c >= 44 && c <= 47)
-		|| (c >= 58 && c <= 64) || (c >= 91 && c <= 96)
-		|| (c >= 123 && c <= 126) || c > 127)
-		return (TRUE);
-	return (FALSE);
-}
 
 /*
 	Función para revisar la syntaxis de la asignación.
@@ -76,7 +67,7 @@ static int	count_syntax(t_token *token)
 	{
 		if (token->value[i] == '=')
 			check_for_equal++;
-		if (check_for_equal == 0)
+		else if (check_for_equal == 0)
 			text_before_equal++;
 		else if (check_for_equal > 0)
 			text_after_equal++;
@@ -93,19 +84,18 @@ static int	count_syntax(t_token *token)
 static int	check_invalid_char(t_token *token)
 {
 	int	i;
-	int	len;
 
-	i = 0;
-	len = 0;
-	while (token->value[len] != '=' && token->value[len] != '\0')
-		len++;
+	i = 1;
+	if (!ft_isalpha(token->value[0]) && token->value[0] != '_')
+		return (FALSE);
 	while (token->value[i] != '=' && token->value[i] != '\0')
 	{
-		if (i == 0 && !ft_isalpha(token->value[i]) && token->value[i] != '_')
+		if (!ft_isalnum(token->value[i]) && token->value[i] != '_')
+		{
+			if (token->value[i] == '+' && token->value[i + 1] == '=')
+				return (SUCCESS);
 			return (FALSE);
-		if (invalid_char(token->value[i]) && i + 1 < len
-			&& token->value[i + 1] != '=' && token->value[i] == '+')
-			return (FALSE);
+		}
 		i++;
 	}
 	return (SUCCESS);
@@ -126,12 +116,12 @@ static int	check_invalid_char_exp(t_token *token)
 {
 	int	i;
 
-	i = 0;
+	i = 1;
+	if (!ft_isalpha(token->value[0]) && token->value[0] != '_')
+		return (FALSE);
 	while (token->value[i] != '\0')
 	{
-		if (i == 0 && !ft_isalpha(token->value[i]) && token->value[i] != '_')
-			return (FALSE);
-		if (invalid_char(token->value[i]))
+		if (is_invalid_char(token->value[i]))
 			return (FALSE);
 		i++;
 	}

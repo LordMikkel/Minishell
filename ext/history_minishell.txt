@@ -1,61 +1,19 @@
-ls > > test
-ls | cat << stop | ls -la | cat << stop1 | ls | cat << stop2 | ls -la > > out | cat << stop3
-ls | cat << stop | ls -la | cat << stop1 | ls | cat << stop2 | ls -la > out | cat << stop3
-ls|cat Makefile|>> out|cd ..
-ls -a|cat Makefile|>> out|cd ..
-rm out
-ls |cat Makefile|>> out|cd ..
-pwd
-ic_set_prompt_marker("", ""); ic_enable_multiline(true);
-ic_set_prompt_marker("", "");
-lspwd
-ls pwd
- sd
-a sdvs sdvsvvsvsvsv \\n
-ls \\n ls
-echo a \\n echo b
-La clave es ic_set_tty_esc_delay(1, 1) - esto hace que Isocline procese la entrada m\xC3\xA1s r\xC3\xA1pidamente y sea menos probable que interprete un \\n como final de entrada durant
-La clave es ic_set_tty_esc_delay (1, 1) - esto hace que Isocline procese la entrada m\xC3\xA1s r\xC3\xA1pidamente y sea menos probable que interprete un \\n como final de entrada durante
-ps
-btop
-sleep
-sleep 10
-<< LM
-ld
-lasd
-==133853== Command: ./minishell
-sl
-sdl
-asd
-cleara
-cle
-lca
-asc
 cd
-echo hola < infle
-echo hola < infile
-echo hi >> infile | echo bye
-./infile
-touch infile
-export A=1
-echo 1
-echo hi < infile bye bye
-ls < infile
-ls 1 < infile 2 3
-echo 1 2 3
-echo < infile
-echo $?
-./nopermision
-./nopermission
-clear
-touch outfile
-sdssds
-echo hi >> outfile
+cd ..
+cd minishell/
+mkdir test
+mkdir tests
+cdtests/
+cd tests/
+ls | ls
+ls > outfile
 ls >> outfile
-echo
-echo hola
+PWD
 ls
-echo hola > test
+clear
+pwd
 $PWD
-./missing
-./missing.out
+echo hola > test
+echo hola
+ysd
+echo < infile hi

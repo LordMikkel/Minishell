@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/10/13 19:52:19 by migarrid         ###   ########.fr        #
+#    Updated: 2025/10/25 21:54:43 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,6 +89,7 @@ SRCS =				main/main.c \
 					init/utils/init/init_env.c \
 					init/utils/init/init_arg.c \
 					init/utils/init/init_readline.c \
+					init/utils/init/init_exec.c \
 					init/utils/tokens/alloc_tokens.c \
 					init/utils/tokens/add_token.c \
 					init/utils/env/add_var.c \
@@ -145,7 +146,7 @@ SRCS =				main/main.c \
 					tokenizer/utils/trasnform_tokens/transform_asig_to_temp_asig.c \
 					tokenizer/utils/trasnform_tokens/transform_word_to_file.c \
 					tokenizer/utils/trasnform_tokens/transform_command_builtin_lowercase.c \
-					tokenizer/utils/trasnform_tokens/transform_simplify_to_built_in.c \
+					tokenizer/utils/trasnform_tokens/transform_cmd_to_built_in.c \
 					expansion/expansion.c \
 					expansion/send_tokens_for_asig.c \
 					expansion/utils/find_swap/copy_key.c \
@@ -164,6 +165,7 @@ SRCS =				main/main.c \
 					ast/parser/parse_and_or.c \
 					ast/parser/parse_pipes.c \
 					ast/parser/parse_subshell.c \
+					ast/parser/parse_assignations.c \
 					ast/parser/parse_cmd.c \
 					ast/utils/create_node.c \
 					ast/utils/get_args_for_binary.c \
@@ -187,6 +189,7 @@ SRCS =				main/main.c \
 					executor/utils/eliminate_temp_asig.c \
 					executor/utils/apply_properties.c \
 					executor/utils/apply_redirs.c \
+					executor/utils/apply_temp_asig.c \
 					signals/setup_signals.c \
 					signals/handler_signals.c \
 					signals/check_signals.c \
@@ -199,11 +202,11 @@ SRCS =				main/main.c \
 					builtin/my_exit.c \
 					debug/print_ast_tree.c \
 					debug/print_tokens_debug.c \
-					debug/test_buil_in_debug.c \
 					exit/exit.c \
 					exit/error.c \
 					exit/clean_I.c \
-					exit/clean_II.c
+					exit/clean_II.c \
+					exit/clean_III.c
 
 # **************************************************************************** #
 #                              Progress Bars                                   #

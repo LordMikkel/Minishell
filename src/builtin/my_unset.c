@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 21:56:06 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/10/07 18:15:58 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/25 13:15:10 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@
  * @env: Puntero a la estructura que contiene las variables de entorno.
  * @tokens: Array de tokens que pueden representar claves a eliminar.
  *
- * Esta función recorre los tokens recibidos en el prompt y, por cada uno que
- * sea de tipo WORD o ASIGNATION, busca en la lista doblemente enlazada de
+ * Esta función recibe args que busca en la lista doblemente enlazada de
  * variables de entorno. Si encuentra una coincidencia con la clave del token,
  * elimina el nodo correspondiente, actualizando los punteros prev y next
  * para mantener la integridad de la lista.
@@ -55,7 +54,7 @@ static void	delete_env_var(t_env *env, char *key)
 	node = env->vars;
 	while (node)
 	{
-		if (ft_strcmp(node->key, key) == 0)
+		if (node->key && ft_strcmp(node->key, key) == 0)
 		{
 			if (!node->prev)
 				env->vars = node->next;
@@ -71,30 +70,101 @@ static void	delete_env_var(t_env *env, char *key)
 		node = node->next;
 	}
 }
+
 /*
-int	my_unset(t_shell *data, t_env *env, t_token *tokens)
+	El primer caracter tiene que ser letra/_, mientras que el resto puede ser
+	numeros y/o letras y _.
+*/
+
+static int	arg_syntax(char *arg)
 {
 	int	i;
 
-	i = 0;
-	while (i < data->prompt.n_tokens)
+	if (!ft_isalpha(arg[0]) && arg[0] != '_')
+		return (ERROR);
+	i = 1;
+	while (arg[i] != '\0')
 	{
-		if (tokens[i].type == WORD || tokens[i].type == ASIGNATION)
-			delete_env_var(env, tokens[i].value);
+		if (!ft_isalnum(arg[i]) && arg[i] != '_')
+			return (ERROR);
 		i++;
 	}
-	return (0);
-}*/
+	return (SUCCESS);
+}
 
 int	my_unset(t_shell *data, t_env *env, char **args)
 {
 	int	i;
+	int	exit_flag;
 
 	i = 0;
+	exit_flag = 0;
+	if (!args || !args[0])
+		return (0);
 	while (args[i] != NULL)
 	{
+		if (arg_syntax(args[i]) == ERROR)
+		{
+			ft_printf_fd(STDERR, ERR_UNSET, args[i]);
+			exit_flag = EXIT_FAIL;
+		}
 		delete_env_var(env, args[i]);
 		i++;
 	}
-	return (0);
+	return (exit_flag);
+}
+
+/*
+	Función para limpiar temp_asig. No creo que deba de discriminar entre los
+	tokens que ya se limpiaron en los child o no, ya que si fue de ese modo,
+	entonces simplemente no se encontrará la key en el env y seguira con el
+	siguiente token temp_asig hasta encontrar una key, la cual solo habrá
+	si fue ejecutado en el padre.
+
+	El primer loop elimina los tokens aunque en este punto no es de mucha
+	relevancia para ser honesto, pero creo que es importante seguir los
+	formalismos.
+
+	El segundo loop elimina las variables de los tokens TEMP de la lista
+	enlazada, lo cual es MUY importante para poder seguir un flujo limpio y
+	lógico que no afecte el shell padre/global
+*/
+
+void	my_clean_unset(t_shell *data, t_env *env, t_token *tokens, int *index)
+{
+	char	*char_to_find;
+	char	*ptr;
+	int		len;
+	int		i;
+
+	i = 0;
+	char_to_find = NULL;
+	if (!index || index[0] == -1)
+		return ;
+	while (index[i] != -1)
+	{
+		if (is_real_assignation_type(tokens[index[i]].type)
+			|| tokens[index[i]].type == WORD)
+		{
+			i++;
+			continue ;
+		}
+		//printf("It gets in the loop in my_clena_unset\n\n");
+		//printf("%s\n\n", tokens[index[i]].value);
+		ptr = ft_calloc(ft_strlen(tokens[index[i]].value) + 1, sizeof(char));
+		if (!ptr)
+			exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+		if (tokens[index[i]].type == TEMP_ASIGNATION)
+			char_to_find = ft_strchr(tokens[index[i]].value, '=');
+		else if (tokens[index[i]].type == TEMP_PLUS_ASIGNATION)
+			char_to_find = ft_strchr(tokens[index[i]].value, '+');
+		if (char_to_find)
+			len = char_to_find - tokens[index[i]].value;
+		ft_memcpy(ptr, tokens[index[i]].value, len);
+		delete_env_var(env, ptr);
+		free (ptr);
+		ptr = NULL;
+		char_to_find = NULL;
+		i++;
+	}
 }

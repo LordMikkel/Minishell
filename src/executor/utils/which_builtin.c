@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:58:35 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/07 19:19:44 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/25 19:38:40 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ static void	asignations(t_shell *data, t_token *token)
 		data->exit_code = asignation(data, token, LOCAL);
 	else if (token->type == PLUS_ASIGNATION)
 		data->exit_code = asignation(data, token, PLUS_ASIGNATION);
-	else if (token->type == TEMP_ASIGNATION)
-		data->exit_code = asignation(data, token, TEMP_ASIGNATION);
 }
 
 static void	env_commands(t_shell *d, t_token *token, t_node *node)
@@ -42,8 +40,8 @@ static void	basic_builtins(t_shell *data, t_token *token, t_node *node)
 		data->exit_code = my_pwd();
 	else if (ft_strcmp(token->value, BUILTIN_EXIT) == 0)
 		my_exit(data, node->args);
-	//else if (ft_strcmp(token->value, BUILTIN_CD) == 0)
-	//	data->exit_code = my_cd(data, tokens, token);
+	else if (ft_strcmp(token->value, BUILTIN_CD) == 0)
+		data->exit_code = my_cd(data, node->args);
 }
 
 void	which_builtin(t_shell *data, t_token *token, t_node *node)

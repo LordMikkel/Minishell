@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:23:20 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/09 23:23:12 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/25 21:59:14 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	handle_child(t_shell *data, t_node *node, int *pipefd, int side)
 		close(pipefd[0]);
 		dup2(pipefd[1], STDOUT_FILENO);
 		close(pipefd[1]);
-		executor_recursive(data, node, CHILD);
+		executor_recursive(data, node, &data->exec, CHILD);
 	}
 	if (side == RIGHT)
 	{
@@ -80,15 +80,16 @@ void	handle_child(t_shell *data, t_node *node, int *pipefd, int side)
 		close(pipefd[1]);
 		dup2(pipefd[0], STDIN_FILENO);
 		close(pipefd[0]);
-		executor_recursive(data, node, CHILD);
+		executor_recursive(data, node, &data->exec, CHILD);
 	}
 }
 
-void	exec_pipe(t_shell *data, t_node *node, int mode)
+void	exec_pipe(t_shell *data, t_node *node, t_exec *exec, int mode)
 {
 	int		pipefd[2];
 	pid_t	pid[2];
 
+	(void)exec;
 	if (pipe(pipefd) == ERROR)
 		exit_error(data, ERR_PIPE, EXIT_FAILURE);
 	pid[0] = fork();

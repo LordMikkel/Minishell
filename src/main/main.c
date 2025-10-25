@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:43 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/14 00:43:54 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/25 21:55:37 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char **argv, char **envp)
 		if (!tokenizer(&data, &data.prompt, input))
 			continue ;
 		ast_builder(&data, data.prompt.tokens, data.prompt.n_tokens);
-		executor_recursive(&data, data.ast_root, FATHER);
+		executor_recursive(&data, data.ast_root, &data.exec, FATHER);
 		clean_cycle(&data, &data.prompt, &data.ast_root);
 	}
 	exit_succes(&data, MSG_GOODBYE, data.exit_code);

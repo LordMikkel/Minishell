@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:23:12 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/25 16:40:35 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/25 21:33:13 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@
 	ejecución secuencial como en estructuras complejas.
 */
 
-void	exec_builtin(t_shell *data, t_node *node, t_env *env, int mode)
+void	exec_builtin(t_shell *data, t_node *node, t_exec *exec, int mode)
 {
 	pid_t	pid;
 
 	if (mode == FATHER)
-		expansion(data, data->prompt.tokens, env, FINAL_PHASE);
+		expansion(data, data->prompt.tokens, exec->env, FINAL_PHASE);
 	if (node->background) //si es por background
 	{
 		pid = fork();
@@ -57,7 +57,7 @@ void	exec_builtin(t_shell *data, t_node *node, t_env *env, int mode)
 		if (pid == 0)
 		{
 			setup_signals_child();
-			apply_properties(data, node, env, mode);
+			apply_properties(data, node, exec->env, mode);
 			which_builtin(data, node->token, node);
 			exit_succes(data, NULL, data->exit_code);
 		}
@@ -65,7 +65,7 @@ void	exec_builtin(t_shell *data, t_node *node, t_env *env, int mode)
 		data->exit_code = OK; //da 0 porque el fork en si fue exitoso
 		return ;
 	}
-	if (apply_properties(data, node, env, mode) == SUCCESS)
+	if (apply_properties(data, node, exec->env, mode) == SUCCESS)
 		which_builtin(data, node->token, node);
 	if (mode == CHILD) // si era child de un pipe se sale con su exit_code
 		exit_succes(data, NULL, data->exit_code);

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/13 19:57:09 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/25 21:59:55 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,15 @@ void	init_minishell(t_shell *data, int argc, char **argv, char **envp);
 void	init_data(t_shell *data, char **envp);
 void	init_enviroment(t_shell *data, char **envp);
 void	init_arg(t_shell *data, int ac, char **av);
+void	init_exec(t_exec *exec, t_env *env);
 void	init_ic_readline(void);
 
 /* ************************************************************************** */
 /*                               Tokenizer                                    */
 /* ************************************************************************** */
-int		tokenizer(t_shell *data, t_prompt *prompt, char *input);
 char	*receive_input(char **input, t_shell *data);
+int		tokenizer(t_shell *data, t_prompt *prompt, char *input);
 void	get_tokens(t_shell *data, t_prompt *prompt, char *input);
-int		check_if_valid_tokens(t_shell *data, t_prompt *prompt, t_token *tokens);
 int		add_token(t_shell *data, t_prompt *prompt, char *value, int type);
 
 /* ************************************************************************** */
@@ -74,19 +74,20 @@ t_node	*parse_sequence(t_shell *data, t_token *tokens, int *i, int n_tokens);
 t_node	*parse_and_or(t_shell *data, t_token *tokens, int *i, int n_tokens);
 t_node	*parse_pipes(t_shell *data, t_token *tokens, int *i, int n_tokens);
 t_node	*parse_subshell(t_shell *data, t_token *tokens, int *i, int n_tokens);
+t_node	*parse_assignations(t_shell *d, t_token *tokens, int *i, int n_tokens);
 t_node	*parse_cmd(t_shell *data, t_token *tokens, int *i, int n_tokens);
 
 /* ************************************************************************** */
 /*                                Executor                                    */
 /* ************************************************************************** */
-void	executor_recursive(t_shell *data, t_node *ast_root, int mode);
-void	exec_semicolon(t_shell *data, t_node *node, int mode);
-void	exec_and(t_shell *data, t_node *node, int mode);
-void	exec_or(t_shell *data, t_node *node, int mode);
-void	exec_pipe(t_shell *data, t_node *node, int mode);
-void	exec_subshell(t_shell *data, t_node *node, int mode);
-void	exec_builtin(t_shell *data, t_node *node, t_env *env, int mode);
-void	exec_command(t_shell *data, t_node *node, t_env *env, int mode);
+void	executor_recursive(t_shell *data, t_node *root, t_exec *exec, int mode);
+void	exec_semicolon(t_shell *data, t_node *node, t_exec *exec, int mode);
+void	exec_and(t_shell *data, t_node *node, t_exec *exec, int mode);
+void	exec_or(t_shell *data, t_node *node, t_exec *exec, int mode);
+void	exec_pipe(t_shell *data, t_node *node, t_exec *exec, int mode);
+void	exec_subshell(t_shell *data, t_node *node, t_exec *exec, int mode);
+void	exec_builtin(t_shell *data, t_node *node, t_exec *exec, int mode);
+void	exec_command(t_shell *data, t_node *node, t_exec *exec, int mode);
 
 /* ************************************************************************** */
 /*                                buil_in                                     */
@@ -96,7 +97,7 @@ int		my_env(t_var *vars);
 int		my_echo(char **args);
 void	my_exit(t_shell *data, char **args);
 int		my_unset(t_shell *data, t_env *env, char **args);
-int		my_cd(t_shell *data, t_token *tokens, t_token *token);
+int		my_cd(t_shell *data, char **args);
 int		my_export(t_shell *data, t_token *tokens, t_env *env, t_node *node);
 
 /* ************************************************************************** */
@@ -123,6 +124,10 @@ void	clean_redirs(t_redir **lst);
 void	clean_env(t_env *env, t_var *vars);
 void	clean_extras(t_extras *extra_features);
 void	clean_cycle(t_shell *data, t_prompt *prompt, t_node **ast_root);
+void	my_clean_unset(t_shell *data, t_env *env, t_token *tokens, int *index);
+void	clean_temp_variables(t_shell *d, t_env *e, t_token *t, t_node *node);
+void	restore_fd(t_exec *exec);
+void	clean_fd(t_exec *exec);
 
 /* ************************************************************************** */
 /*                                 Exits                                      */
@@ -170,7 +175,8 @@ int		is_asignation_type(int type);
 int		is_real_assignation_type(int type);
 int		is_redir_output_type(int type);
 int		is_redir_input_type(int type);
-int		is_built_in_token(t_token *token, const char *value);
+int		is_invalid_char(int c);
+int		is_built_in(t_token *token, char *str);
 
 //VALID TOKENS
 void	is_it_quoted(t_prompt *prompt, t_token *tokens);
@@ -197,15 +203,16 @@ void	simplify_tokens(t_shell *data, t_prompt *prompt, t_token *tokens);
 void	reorganize_tokens(t_prompt *p, t_token *tokens, int *range, char *res);
 
 //TRANSFORM TOKENS
+void	transform_word_to_file(t_prompt *prompt, t_token *tokens);
 void	transform_asig_to_asig_plus(t_prompt *pro, t_token *tokens);
-void	transform_asig_to_temp_asig(t_prompt *prompt, t_token *tokens);
 void	transform_cmd_to_word(t_shell *data, t_token *tokens, int phase);
 void	transform_invalid_asig_to_word(t_prompt *prompt, t_token *tokens);
 void	transform_word_to_asignation(t_shell *data, t_token *tokens, int phase);
 void	transform_tokens_logic(t_shell *data, t_prompt *promp, t_token *tokens);
 void	transform_word_to_file(t_prompt *prompt, t_token *tokens);
 void	transform_command_built_lowercase(t_prompt *prompt, t_token *tokens);
-void	transform_simplify_to_built_in(t_prompt *prompt, t_token *tokens);
+void	transform_asig_to_temp(t_shell *dat, t_prompt *prompt, t_token *tokens);
+void	transform_cmd_to_built_in(t_shell *d, t_prompt *p, t_token *tokens);
 
 //AST
 int		get_heredoc(t_shell *data, t_redir *redir, char *delimiter);
@@ -220,6 +227,7 @@ char	*get_path(t_shell *data, char *cmd, char **envp);
 void	which_builtin(t_shell *data, t_token *token, t_node *node);
 int		apply_properties(t_shell *data, t_node *node, t_env *env, int mode);
 int		apply_redirs(t_shell *data, t_node *node, int mode);
+void	apply_temp_asig(t_shell *da, t_token *tokens, t_node *node, t_env *env);
 
 //EXPANSION
 int		copy_key(char *buffer, char **key_to_find);
@@ -260,7 +268,6 @@ int		background_hl(ic_highlight_env_t *henv, const char *s, size_t *i);
 //DEBUG
 void	print_ast(t_node *root);
 void	print_tokens_debug(t_prompt *prompt);
-void	test_built_in(t_shell *data, t_token *tokens, int n_tokens);
 
 //UTILS
 char	*cleanner_slash_quotes_d(t_shell *data, char *word, int len, int *flag);
@@ -269,12 +276,15 @@ void	clean_quote_until_slash_d(char *word, char *clean_word, char quote);
 void	void_tokens_at_the_end(t_token *tokens, int n_alloc, int n_tokens);
 void	eliminate_token(t_prompt *prompt, t_token *tokens, int index);
 void	safe_index_plus(int *i, int n_tokens);
+void	normalize_token_to_lower(char *str);
 
 /* ************************************************************************** */
-/*                               extras - time                                */
+/*                                  extras                                    */
 /* ************************************************************************** */
 void	print_session_end(time_t start, char *user_name);
 void	print_time_of_day(time_t start, char *user_name);
 void	print_session_start(t_shell *data, time_t start, char *user_name);
+void	cmd_correction(t_shell *data, t_token *tokens, int n_tokens);
+void	expand_alias(t_shell *data, t_token *tokens, int i);
 
 #endif
