@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:22:59 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/04 15:06:59 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/16 18:51:34 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 	en los que str: Hello $ $USER. -> Se ignora el primer '$' de modo
 	que no se haga ninguna operación desde ese ptr en memoria.
 */
-
+/*
 int	copy_value(t_shell *d, char **token_val, char *key_value, char *key_to_find)
 {
 	char	*new_buffer;
@@ -36,7 +36,10 @@ int	copy_value(t_shell *d, char **token_val, char *key_value, char *key_to_find)
 	old_len = ft_strlen(*token_val);
 	key_len = ft_strlen(key_to_find);
 	value_len = ft_strlen(key_value);
-	new_len = old_len - key_len + value_len;
+	if (value_len != 0)
+		new_len = old_len - key_len + value_len;
+	else
+		new_len = old_len - key_len + 1;
 	new_buffer = ft_realloc(*token_val, old_len + 1, new_len + 10);
 	if (!new_buffer)
 	{
@@ -46,12 +49,77 @@ int	copy_value(t_shell *d, char **token_val, char *key_value, char *key_to_find)
 	*token_val = new_buffer;
 	new_buffer[new_len] = '\0';
 	new_buffer = ft_strchr(*token_val, '$');
-	if (!new_buffer || !ft_isalpha(*(new_buffer + 1))
+	if ((!new_buffer || !ft_isalpha(*(new_buffer + 1)))
 		&& !is_symbol(*(new_buffer + 1)))
 		return (ERROR);
-	ft_memmove(new_buffer + value_len, new_buffer + key_len + 1,
-		ft_strlen(new_buffer + key_len + 1) + 1);
-	ft_memcpy(new_buffer, key_value, value_len);
+	if (value_len != 0)
+	{
+		ft_memmove(new_buffer + value_len, new_buffer + key_len + 1,
+			ft_strlen(new_buffer + key_len + 1) + 1);
+		ft_memcpy(new_buffer, key_value, value_len);
+	}
+	else
+	{
+		ft_memmove(new_buffer, new_buffer + key_len + 1,
+			ft_strlen(new_buffer + key_len + 1) + 1);
+		ft_memcpy(new_buffer, key_value, 0);
+	}
+	(*token_val)[new_len] = '\0';
+	return (SUCCESS);
+}*/
+
+static int	validate_and_find_dollar(char *str, char **dollar_pos)
+{
+	*dollar_pos = ft_strchr(str, '$');
+	if (!*dollar_pos)
+		return (ERROR);
+	if (*(*dollar_pos + 1) == '\0')
+		return (ERROR);
+	if (!ft_isalpha(*(*dollar_pos + 1)) && !is_symbol(*(*dollar_pos + 1)))
+		return (ERROR);
+	return (SUCCESS);
+}
+
+static char	*realloc_token(t_shell *d, char **token_val, char *key_to_find, int new_len)
+{
+	char	*new_buffer;
+	int		old_len;
+
+	old_len = ft_strlen(*token_val);
+	new_buffer = ft_realloc(*token_val, old_len + 1, new_len + 1);
+	if (!new_buffer)
+	{
+		free(key_to_find);
+		exit_error(d, ERR_MALLOC, EXIT_FAILURE);
+	}
+	new_buffer[new_len + 1] = '\0';
+	printf("new_buffer: %s\n\n", new_buffer);
+	*token_val = new_buffer;
+	return (new_buffer);
+}
+
+int	copy_value(t_shell *d, char **token_val, char *key_value, char *key_to_find)
+{
+	char	*dollar_pos;
+	int		new_len;
+	int		key_len;
+	int		value_len;
+
+	key_len = ft_strlen(key_to_find);
+	value_len = ft_strlen(key_value);
+	new_len = ft_strlen(*token_val) - key_len + value_len;
+	realloc_token(d, token_val, key_to_find, new_len);
+	if (validate_and_find_dollar(*token_val, &dollar_pos) == ERROR)
+		return (ERROR);
+	if (value_len > 0)
+	{
+		ft_memmove(dollar_pos + value_len, dollar_pos + key_len + 1,
+			ft_strlen(dollar_pos + key_len + 1) + 1);
+		ft_memcpy(dollar_pos, key_value, value_len);
+	}
+	else
+		ft_memmove(dollar_pos, dollar_pos + key_len,
+			ft_strlen(dollar_pos + key_len) + 1);
 	(*token_val)[new_len] = '\0';
 	return (SUCCESS);
 }

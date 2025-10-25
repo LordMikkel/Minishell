@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_macros.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:23:16 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/08 22:02:21 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/23 19:09:29 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@
 # define BUILTIN_UNSET				"unset"
 # define BUILTIN_ENV				"env"
 # define BUILTIN_EXIT				"exit"
+# define BUILTIN_ALIAS				"alias"
+# define BUILTIN_UNALIAS			"unalias"
 
 /* ************************************************************************** */
 /*                              Default Values                                */
@@ -141,6 +143,7 @@
 # define ERR_PERM_DENIED	"minishell: %s: Permission denied\n"
 # define ERR_IS_DIR			"minishell: %s: Is a directory\n"
 # define ERR_NOT_DIR		"minishell: %s: Not a directory\n"
+# define ERR_HOME_NOT_SET	"minishell: HOME not set\n"
 
 //Command Errors
 # define ERR_CMD_NOT_FOUND	"minishell: %s: command not found\n"
@@ -158,6 +161,8 @@ Exec format error\n"
 # define ERR_EXIT_TOO_MANY	"minishell: exit: too many arguments\n"
 # define ERR_ENV		"minishell: env: invalid option\n"
 # define ERR_PWD		"minishell: pwd: error retrieving current directory\n"
+# define ERR_BUILTIN_ALIAS		"minishell: alias: `%s': not a valid alias\n"
+# define ERR_BUILTIN_UNALIAS	"minishell: unalias: `%s': not a valid alias\n"
 
 //Syntax Errors
 # define ERR_SYNTAX		"minishell: syntax error near unexpected token `%s'\n"

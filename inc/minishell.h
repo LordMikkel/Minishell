@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/09 03:27:40 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/17 22:53:45 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ void	init_ic_readline(void);
 /* ************************************************************************** */
 /*                               Tokenizer                                    */
 /* ************************************************************************** */
-int		tokenizer(t_shell *data, t_prompt *prompt, char *input);
 char	*receive_input(char **input, t_shell *data);
+int		tokenizer(t_shell *data, t_prompt *prompt, char *input);
 void	parse_tokens(t_shell *data, t_prompt *prompt, char *input);
-int		check_if_valid_tokens(t_shell *data, t_prompt *prompt, t_token *tokens);
 int		add_token(t_shell *data, t_prompt *prompt, char *value, int type);
+int		check_if_valid_tokens_init(t_shell *d, t_prompt *prom, t_token *tokens);
 
 /* ************************************************************************** */
 /*                               Expansion                                    */
@@ -75,6 +75,7 @@ t_node	*parse_sequence(t_shell *data, t_token *tokens, int *i, int n_tokens);
 t_node	*parse_and_or(t_shell *data, t_token *tokens, int *i, int n_tokens);
 t_node	*parse_pipes(t_shell *data, t_token *tokens, int *i, int n_tokens);
 t_node	*parse_subshell(t_shell *data, t_token *tokens, int *i, int n_tokens);
+t_node	*parse_assignations(t_shell *d, t_token *tokens, int *i, int n_tokens);
 t_node	*parse_cmd(t_shell *data, t_token *tokens, int *i, int n_tokens);
 
 /* ************************************************************************** */
@@ -124,6 +125,7 @@ void	clean_redirs(t_redir **lst);
 void	clean_env(t_env *env, t_var *vars);
 void	clean_extras(t_extras *extra_features);
 void	clean_cycle(t_shell *data, t_prompt *prompt, t_node *ast_root);
+void	my_clean_unset(t_shell *data, t_env *env, t_token *tokens, int *index);
 
 /* ************************************************************************** */
 /*                                 Exits                                      */
@@ -169,6 +171,8 @@ int		is_simplify_type(int type);
 int		is_cmd_builtin_type(int type);
 int		is_asignation_type(int type);
 int		is_real_assignation_type(int type);
+int		is_invalid_char(int c);
+int		is_built_in(t_shell *d, t_prompt *prompt, t_token *token, char *str);
 
 //VALID TOKENS
 void	is_it_quoted(t_prompt *prompt, t_token *tokens);
@@ -196,14 +200,15 @@ void	simplify_tokens(t_shell *data, t_prompt *prompt, t_token *tokens);
 void	reorganize_tokens(t_prompt *p, t_token *tokens, int *range, char *res);
 
 //TRANSFORM TOKENS
+void	transform_word_to_file(t_prompt *prompt, t_token *tokens);
 void	transform_asig_to_asig_plus(t_prompt *pro, t_token *tokens);
-void	transform_asig_to_temp_asig(t_prompt *prompt, t_token *tokens);
 void	transform_cmd_to_word(t_shell *data, t_token *tokens, int phase);
 void	transform_invalid_asig_to_word(t_prompt *prompt, t_token *tokens);
+void	transform_command_built_lowercase(t_prompt *prompt, t_token *tokens);
 void	transform_word_to_asignation(t_shell *data, t_token *tokens, int phase);
 void	transform_tokens_logic(t_shell *data, t_prompt *promp, t_token *tokens);
-void	transform_word_to_file(t_prompt *prompt, t_token *tokens);
-void	transform_command_built_lowercase(t_prompt *prompt, t_token *tokens);
+void	transform_asig_to_temp(t_shell *dat, t_prompt *prompt, t_token *tokens);
+void	transform_cmd_to_built_in(t_shell *d, t_prompt *prompt, t_token *tokens);
 
 //AST
 int		get_background(t_token *tokens, int n_tokens, int *i);
@@ -215,6 +220,8 @@ t_redir	*get_redirs(t_shell *data, t_token *tokens, int *i, int mode);
 //EXECUTOR
 char	*get_path(t_shell *data, char *cmd, char **envp);
 void	which_builtin(t_shell *data, t_token *token, t_node *node);
+int		apply_properties(t_shell *data, t_node *node, t_env *env, int mode);
+void	apply_temp_asig(t_shell *da, t_token *tokens, t_node *node, t_env *env);
 
 //EXPANSION
 int		copy_key(char *buffer, char **key_to_find);
@@ -263,6 +270,7 @@ void	clean_quote_until_slash_d(char *word, char *clean_word, char quote);
 void	void_tokens_at_the_end(t_token *tokens, int n_alloc, int n_tokens);
 void	eliminate_token(t_prompt *prompt, t_token *tokens, int index);
 void	safe_index_plus(int *i, int n_tokens);
+void	normalize_str_to_lower(char *str);
 
 /* ************************************************************************** */
 /*                               extras - time                                */

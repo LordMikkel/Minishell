@@ -6,7 +6,7 @@
 #    By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/10/09 03:32:30 by davdiaz-         ###   ########.fr        #
+#    Updated: 2025/10/15 17:40:58 by davdiaz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -155,6 +155,7 @@ SRCS =				main/main.c \
 					tokenizer/utils/trasnform_tokens/transform_asig_to_temp_asig.c \
 					tokenizer/utils/trasnform_tokens/transform_word_to_file.c \
 					tokenizer/utils/trasnform_tokens/transform_command_builtin_lowercase.c \
+					tokenizer/utils/trasnform_tokens/transform_cmd_to_built_in.c \
 					expansion/expansion.c \
 					expansion/send_tokens_for_asig.c \
 					expansion/utils/find_swap/copy_key.c \
@@ -173,6 +174,7 @@ SRCS =				main/main.c \
 					ast/parser/parse_and_or.c \
 					ast/parser/parse_pipes.c \
 					ast/parser/parse_subshell.c \
+					ast/parser/parse_assignations.c \
 					ast/parser/parse_cmd.c \
 					ast/utils/create_node.c \
 					ast/utils/get_args_for_binary.c \
@@ -193,6 +195,8 @@ SRCS =				main/main.c \
 					executor/utils/get_path_cmd.c \
 					executor/utils/eliminate_token.c \
 					executor/utils/eliminate_temp_asig.c \
+					executor/utils/apply_properties.c \
+					executor/utils/apply_temp_asig.c \
 					signals/setup_signals.c \
 					signals/handler_signals.c \
 					signals/check_signals.c \

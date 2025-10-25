@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:51:53 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/09 17:21:49 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/25 13:15:31 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,36 @@ static void	print_indent(int depth, int *is_last_array)
 	}
 }
 
+static void	print_temp_asig(char **args)
+{
+	int	i;
+
+	if (!args || !args[0])
+	{
+		printf("\n\nnada que printear en temp\n\n");
+		return;
+	}
+	printf(" [Temp Asig: ");
+	i = 0;
+	while (args[i])
+	{
+		printf("%s", args[i]);
+		if (args[i + 1])
+			printf(", ");
+		i++;
+	}
+	printf("]");
+}
+
 static void	print_args(char **args)
 {
 	int	i;
 
-	if (!args || !args[0] || !args[1])
+	if (!args || !args[0])
+	{
+		printf("\n\nnnada que printear en args\n\n");
 		return;
+	}
 	printf(" [Args: ");
 	i = 0;
 	while (args[i])
@@ -67,14 +91,17 @@ static void	print_token_index(int *index)
 	int	i;
 
 	if (!index)
+	{
+		printf("\n\nnada que printear en index\n\n");
 		return;
+	}
 
 	printf(" [token index: ");
 	i = 0;
-	while (index[i])
+	while (index[i] != -1)
 	{
 		printf("%d", index[i]);
-		if (index[i + 1] != 0)
+		if (index[i + 1] != -1)
 			printf(", ");
 		i++;
 	}
@@ -88,7 +115,10 @@ static void	print_redirs(t_redir *redirs)
 	int		first;
 
 	if (!redirs)
+	{
+		printf("\n\nnada que printear en redir\n\n");
 		return ;
+	}
 	printf(" {");
 	current = redirs;
 	first = 1;
@@ -126,7 +156,7 @@ static void	print_node_helper(t_node *node, int depth, int *is_last_array)
 		printf("%s", g_type_names[node->type]);
 
 	// Imprimir argumentos si existen
-	print_temp(node->assig_tmp);
+	print_temp_asig(node->assig_tmp);
 	print_args(node->args);
 	print_token_index(node->arg_types);
 

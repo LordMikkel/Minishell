@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 20:39:26 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/10/07 19:31:30 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/15 15:58:41 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,29 +54,64 @@ static int	verify_till_valid_token(t_prompt *prompt, t_token *tokens, int i)
 	{
 		if (is_delimiter_type(tokens[i].type))
 			return (SUCCESS);
-		if (tokens[i].type == WORD)
+		if (tokens[i].type == WORD || is_cmd_builtin_type(tokens[i].type))
 			return (FALSE);
 		i++;
 	}
 	return (SUCCESS);
 }
 
-static int	check_if_temp_asig(t_prompt *prompt, t_token *tokens, t_token *token)
+/*
+	Si lo primero que nos encontramos es un cmd o built-in entonces logicamente
+	estamos hablando un contexto TEMPORAL. Si es un delimitador o un WORD
+	entonces debe ser parte de un ASIGNATION comun y corriente
+*/
+
+static int	verify_till_valid_token_case_2(t_prompt *p, t_token *tokens, int i)
 {
-	if (token->id < prompt->n_tokens)
+	while (i < p->n_tokens && tokens[i].type)
 	{
-		if ((tokens[token->id + 1].type == WORD
-				&& verify_till_valid_token(prompt, tokens, token->id))
-			|| tokens[token->id + 1].type == COMMAND
+		if (is_delimiter_type(tokens[i].type) || tokens[i].type == WORD)
+			return (SUCCESS);
+		else if (is_cmd_builtin_type(tokens[i].type))
+			return (FALSE);
+		i++;
+	}
+	return (SUCCESS);
+}
+
+static int	check_if_temp_asig(t_prompt *promp, t_token *tokens, t_token *token)
+{
+	if (token->id < promp->n_tokens)
+	{
+		if ((//tokens[token->id + 1].type == WORD
+				//&& verify_till_valid_token(promp, tokens, token->id))
+			is_cmd_builtin_type(tokens[token->id + 1].type)
 			|| (is_asignation_type(tokens[token->id + 1].type)
-				&& !verify_till_valid_token(prompt, tokens, token->id))
-			|| tokens[token->id + 1].type == BUILT_IN)
+				&& !verify_till_valid_token(promp, tokens, token->id))
+			|| tokens[token->id + 1].type == BUILT_IN))
+			return (SUCCESS);
+		else if (tokens[token->id + 1].type == PAREN_OPEN)
 			return (SUCCESS);
 	}
 	return (FALSE);
 }
 
-void	transform_asig_to_temp_asig(t_prompt *prompt, t_token *tokens)
+static int	check_if_temp_plus(t_prompt *promp, t_token *tokens, t_token *token)
+{
+	if (token->id < promp->n_tokens && (token->id + 1) < promp->n_tokens
+		&& token->id > 0)
+		{
+			if (tokens[token->id - 1].type == TEMP_ASIGNATION
+				|| tokens[token->id + 1].type == TEMP_ASIGNATION)
+				return (SUCCESS);
+			else if (!verify_till_valid_token_case_2(promp, tokens, token->id))
+				return (SUCCESS);
+		}
+		return (FALSE);
+}
+
+void	transform_asig_to_temp(t_shell *data, t_prompt *prompt, t_token *tokens)
 {
 	int	i;
 
@@ -87,6 +122,16 @@ void	transform_asig_to_temp_asig(t_prompt *prompt, t_token *tokens)
 		{
 			if (check_if_temp_asig(prompt, tokens, &tokens[i]))
 				tokens[i].type = TEMP_ASIGNATION;
+		}
+		i++;
+	}
+	i = 0;
+	while (i < prompt->n_tokens)
+	{
+		if (tokens[i].type == PLUS_ASIGNATION)
+		{
+			if (check_if_temp_plus(prompt, tokens, &tokens[i]))
+				tokens[i].type = TEMP_PLUS_ASIGNATION;
 		}
 		i++;
 	}

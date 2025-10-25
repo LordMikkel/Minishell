@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 20:29:52 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/09 17:32:06 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/25 13:14:11 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,12 @@ static	t_node *special_cases(t_shell *d, t_token *tokens, int *i, int n_tokens)
 
 	if (*i == n_tokens)
 		return (NULL);
-	if (tokens[*i].type == TEMP_ASIGNATION)
+	while ((*i) < n_tokens && tokens[*i].type == TEMP_ASIGNATION
+		|| tokens[*i].type == TEMP_PLUS_ASIGNATION)
 	{
 		(*i)++;
 	}
-	else if (is_redir_type(tokens[*i].type))
+	if (is_redir_type(tokens[*i].type))
 	{
 		left = create_true_node(d, COMMAND);
 		left->redir = get_redirs(d, tokens, i, COMMAND);
@@ -60,9 +61,10 @@ static	t_node *special_cases(t_shell *d, t_token *tokens, int *i, int n_tokens)
 
 static void	get_information(t_shell *dat, t_token *tokens, int *i, t_node *left)
 {
-	int		start;
+	int	start;
 
 	start = *i;
+	expansion(dat, tokens, &dat->env, FINAL_PHASE);
 	left->assig_tmp = get_temp_asignations(dat, tokens, *i);
 	left->redir = get_redirs(dat, tokens, i, COMMAND);
 	left->args = get_args_for_binary(dat, tokens, i);
@@ -82,6 +84,7 @@ t_node	*parse_cmd(t_shell *data, t_token *tokens, int *i, int n_tokens)
 		&& (is_cmd_builtin_type(tokens[*i].type)
 			|| is_real_assignation_type(tokens[*i].type)))
 	{
+		expand_alias(data, tokens, *i); //verificar si el cmd es un alias o no
 		left = create_node(data, &tokens[*i], tokens[*i].type);
 		if (is_asignation_type(tokens[*i].type))
 		{

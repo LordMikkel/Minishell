@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_cmd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 21:35:11 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/08 15:49:41 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/23 12:49:16 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,9 @@ static int	find_bin(char **path_arr, char *path_slash, char *path, char *word)
 	usuario hace: Ls - Echo - ECHO - LS - CD - cd - etc...
 */
 
-static int	is_built_in(t_shell *d, t_prompt *prompt, t_token *token, char *str)
+int	is_built_in(t_shell *d, t_prompt *prompt, t_token *token, char *str)
 {
-	char	*built_in[8];
+	char	*built_in[10];
 	int		i;
 
 	i = 0;
@@ -106,12 +106,15 @@ static int	is_built_in(t_shell *d, t_prompt *prompt, t_token *token, char *str)
 	built_in[4] = "env";
 	built_in[5] = "exit";
 	built_in[6] = "pwd";
-	built_in[7] = NULL;
+	built_in[7] = "alias";
+	built_in[8] = "unalias";
+	built_in[9] = NULL;
 	while (built_in[i])
 	{
 		if (ft_strmatch_cmp(built_in[i], str) == 0)
 		{
-			token->type = BUILT_IN;
+			if (token)
+				token->type = BUILT_IN;
 			return (YES);
 		}
 		i++;

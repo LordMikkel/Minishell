@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 01:53:47 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/07 19:58:10 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/15 12:25:47 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,17 @@ void	clean_extras(t_extras *extra_features)
 	if (extra_features->user_name)
 		free(extra_features->user_name);
 	extra_features->user_name = NULL;
+}
+
+/*
+	Elimina las variables `TEMP_ASIGNATION` del ciclo. Elimina solo los que se
+	ejecuten/afecten en el shell padre/global, ya que los que se ejecuten
+	en child procesess se borraran solos.
+*/
+
+void	clean_temp_variables(t_shell *data, t_env *env, t_token *tokens, t_node *node)
+{
+	my_clean_unset(data, env, tokens, node->arg_types);
 }
 
 /*
