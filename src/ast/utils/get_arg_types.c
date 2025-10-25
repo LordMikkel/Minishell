@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 01:44:27 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/10/09 18:13:15 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/25 13:14:07 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 
 	Si arg_index no se movio es porque no hay args o no son validos
 */
-
+/*
 static void	create_dinamic_arr(t_shell *data, int **arg_types, int i, int j)
 {
 	*arg_types = ft_calloc((j - i), sizeof(int));
@@ -135,6 +135,117 @@ int	*get_arg_types(t_shell *data, t_node *node, int start_i, int end_j)
 		get_only_asigs(tokens, data->prompt.n_tokens, start_i, end_j);
 		return (arg_types);
 	}
+	while (start_i < data->prompt.n_tokens && start_i < end_j)
+	{
+		if (is_arg_type(tokens[start_i].type))
+		{
+			arg_types[arg_index] = tokens[start_i].id;
+			arg_index++;
+		}
+		start_i++;
+	}
+	check_arg_index(arg_index, &arg_types);
+	return (arg_types);
+}*/
+
+static void	create_dinamic_arr(t_shell *data, int **arg_types, int i, int j)
+{
+	*arg_types = (int *)malloc((j - i) * sizeof(int));
+	if (!*arg_types)
+		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+	ft_memset(*arg_types, -1, (j - i) * sizeof(int));
+}
+
+static int	*alloc_arg_types(t_shell *dat, t_node *node, int start_i, int end_j)
+{
+	int	*arg_types;
+	int	tmp_counter;
+	int	tmp_token_index;
+	int	len;
+
+	tmp_counter = 0;
+	if (node->assig_tmp)
+	{
+		while (node->assig_tmp[tmp_counter])
+			tmp_counter++;
+		create_dinamic_arr(dat, &arg_types, start_i, (end_j + tmp_counter));
+		len = tmp_counter;
+		printf("%d", tmp_counter);
+		tmp_token_index = tmp_counter;
+		tmp_counter = 0;
+		while (tmp_counter < len)//copiamos las temp_Asigs en el orden correcto (de la primera a la ultima)
+		{
+			arg_types[tmp_counter] = dat->prompt.tokens[start_i - tmp_token_index].id;
+			//printf("token que se copia: %d\n\n", arg_types[tmp_counter]);
+			tmp_counter++;
+			tmp_token_index--;
+		}
+	}
+	else
+		create_dinamic_arr(dat, &arg_types, start_i, end_j);
+	return (arg_types);
+}
+
+static void	check_arg_index(int arg_index, int **arg_types)
+{
+	if (arg_index == 0)
+	{
+		//printf("zero\n\n");
+		free (*arg_types);
+		*arg_types = NULL;
+	}
+}
+
+/*
+	ignoro los tokens temp porque ya estan en el arr.
+	Es muy importane la distinción entre malloc y calloc asi como el porque
+	usar memset a -1.
+
+	ft_calloc utiliza internamente memset o bzero y malloc, con lo cual son dos
+	llamadas extra a otras funciones (3 en total), mientras que si llamo
+	directamente a malloc aqui, solo es una llamada a una función.
+
+	Utilizo memset ya que al utilizat calloc, el loop sigue contando porque
+	en muchos casos 0 sera una posicoón valida, con lo cual estará incorrecto.
+
+	De modo que si tengo var=1 ls -> [0, 0, 0 ...] o los 0 que sean.
+	El punto es que todo eso es valido porque todas hacen parte de var=1
+
+	En cambio, si utilizo memset a -1, puedo distiguir facilmente entre lo
+	existente en el arr y lo que no existe aún, debido a que -1 ni siquiera
+	es un index válido para un token.
+*/
+
+static int	find_correct_index(t_token *tokens, int *arg_types)
+{
+	int	i;
+
+	i = 0;
+	while (arg_types[i] != -1 && is_asignation_type(tokens[arg_types[i]].type))
+		i++;
+	return (i);
+}
+
+int	*get_arg_types(t_shell *data, t_node *node, int start_i, int end_j)
+{
+	t_token *tokens;
+	int		*arg_types;
+	int		arg_index;
+
+	tokens = data->prompt.tokens;
+	//printf("get_arg_types: %s\n\n", data->prompt.tokens[start_i].value);
+	arg_types = alloc_arg_types(data, node, start_i, end_j);
+	if (ft_strcmp(tokens[start_i].value, BUILTIN_EXPORT) != 0 && node->assig_tmp == NULL)
+	{
+		free (arg_types);
+		return (NULL);
+	}
+	if (ft_strcmp(tokens[start_i].value, BUILTIN_EXPORT) != 0 && tokens[start_i + 1].type)
+		return (arg_types);
+	if (start_i + 1 < data->prompt.n_tokens)
+		start_i += 1;
+	//printf("TOKENS:  %s\n\n", data->prompt.tokens[start_i].value);
+	arg_index = find_correct_index(data->prompt.tokens, arg_types);
 	while (start_i < data->prompt.n_tokens && start_i < end_j)
 	{
 		if (is_arg_type(tokens[start_i].type))

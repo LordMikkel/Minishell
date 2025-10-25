@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_key_in_list.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:59 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/07 18:15:39 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/16 16:16:41 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,13 @@ int	find_key_in_lst(t_shell *data, t_token *token, char **key_to_find)
 		return (TRUE);
 	while (var != NULL)
 	{
+		printf("key_to_find: %s\n\n", *key_to_find);
+		printf("var->key: %s\n\n", var->key);
+		printf("var->value: %s\n\n", var->value);
 		if (ft_strcmp(var->key, *key_to_find) == 0 && var->type != EXP
 			&& var->type != TEMP_ASIGNATION)
 		{
+			printf("FOUND key to expand");
 			token->type = WORD;
 			copy_value(data, &token->value, var->value, *key_to_find);
 			return (TRUE);

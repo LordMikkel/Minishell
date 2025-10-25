@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:10 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/09 16:52:44 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/25 13:16:06 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,9 @@ int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 
 	// print_tokens_debug(prompt);
 
-	// is_it_quoted(prompt, prompt->tokens); // Se puede hacer mas eficiente
+	is_it_quoted(prompt, prompt->tokens); // Se puede hacer mas eficiente
 
-	expansion(data, prompt->tokens, &data->env, FINAL_PHASE);
+	expansion(data, prompt->tokens, &data->env, INITIAL_PHASE);
 	simplify_tokens(data, prompt, prompt->tokens);
 
 	// print_tokens_debug(prompt);
@@ -114,10 +114,8 @@ int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 		return (SYNTAX_ERROR);
 
 	// print_tokens_debug(prompt);
-
-	//send_tokens_for_asig(data, prompt->tokens, FINAL_PHASE);
 	//eliminate_temp_asig(prompt, prompt->tokens);
-
+	cmd_correction(data, prompt->tokens, prompt->n_tokens);
 	print_tokens_debug(prompt);
 	return (SUCCESS);
 }

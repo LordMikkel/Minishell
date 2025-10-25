@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   which_builtin.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:58:35 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/07 19:19:44 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/16 12:41:30 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ static void	asignations(t_shell *data, t_token *token)
 		data->exit_code = asignation(data, token, LOCAL);
 	else if (token->type == PLUS_ASIGNATION)
 		data->exit_code = asignation(data, token, PLUS_ASIGNATION);
-	else if (token->type == TEMP_ASIGNATION)
-		data->exit_code = asignation(data, token, TEMP_ASIGNATION);
 }
 
 static void	env_commands(t_shell *d, t_token *token, t_node *node)

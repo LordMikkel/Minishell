@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:22:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/09 00:50:28 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/17 21:55:58 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,18 +141,21 @@ static void	print_env_variables(t_env	*env)
 	}
 }
 
+/*
+	El caso edge supongo que sería que el hijo haga el export del temp_asig
+	y que luego se llame por el padre a export, al nunca eliminar
+*/
+
 static int	asignation_type(t_shell *data, t_token *tokens, int i, t_env *env)
 {
 	if (tokens[i].type == ASIGNATION)
-		asignation(data, &tokens[i], ENV);
-	else if (tokens[i].type == TEMP_ASIGNATION)
 		asignation(data, &tokens[i], ENV);
 	else if (tokens[i].type == WORD)
 	{
 		if (check_asignation_syntax(&tokens[i], EXP) == FALSE)
 		{
-			ft_printf_fd(STDERR, ERR_EXPORT, &tokens[i]);
-			return (EXIT_FAIL);
+			ft_printf_fd(STDERR, ERR_EXPORT, tokens[i].value);
+			return (ERROR);
 		}
 		else
 			asignation(data, &tokens[i], EXP);
@@ -162,29 +165,38 @@ static int	asignation_type(t_shell *data, t_token *tokens, int i, t_env *env)
 	return (SUCCESS);
 }
 
+/*
+	Auqnue se estan tratando las TEMMP_ASIGNATIONS como ASIGNATIONS, no hay
+	riesgo de que se registre en el padre, ya que siempre se llamará a export
+	con los arg_types correctos. Esto asegura que queden registrados solo en
+	hijos cuando se llamen desde un fork (ya que nunca se llamará a export
+	para)
+*/
+
 int	my_export(t_shell *data, t_token *tokens, t_env *env, t_node *node)
 {
-	int		i;
+	int	i;
+	int	exit_flag;
 
-	i = 0;
+	exit_flag = 0;
 	if (!node->arg_types)
 	{
 		print_env_variables(&data->env);
 		return (SUCCESS);
 	}
-	while (node->arg_types[i])
+	i = 0;
+	while (node->arg_types[i] != -1)
 	{
 		if (check_for_valid_args(tokens, node->arg_types[i]) == FALSE)
 			break ;
 		if ((is_asignation_type(tokens[node->arg_types[i]].type)
-				|| tokens[node->arg_types[i]].type == WORD)
+			|| tokens[node->arg_types[i]].type == WORD || tokens[node->arg_types[i]].type == TEMP_PLUS_ASIGNATION)
 			&& tokens[node->arg_types[i]].type != BUILT_IN)
 		{
-			if (asignation_type(data, tokens,
-					node->arg_types[i], env) == EXIT_FAIL)
-				return (EXIT_FAIL);
+			if (asignation_type(data, tokens, node->arg_types[i], env) == ERROR)
+				exit_flag = EXIT_FAIL;
 		}
 		i++;
 	}
-	return (SUCCESS);
+	return (exit_flag);
 }

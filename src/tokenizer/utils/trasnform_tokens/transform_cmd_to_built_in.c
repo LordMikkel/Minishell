@@ -1,38 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   transform_command_builtin_lowercase.c              :+:      :+:    :+:   */
+/*   transform_cmd_to_built_in.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/06 19:40:49 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/17 22:57:02 by davdiaz-         ###   ########.fr       */
+/*   Created: 2025/10/15 17:36:08 by davdiaz-          #+#    #+#             */
+/*   Updated: 2025/10/21 13:01:58 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/minishell.h"
 
-void	normalize_token_to_lower(char *str)
-{
-	int	i;
+/*
+	En casos edge como 'expo'rt - 'e'cho - c'd' - etc...
+	Estos built-ins quedan catalogaods como COMMAND, lo cual esta mal.
+	Esta función verifica si ese es el caso y los transforma a BUILT_IN
+*/
 
-	i = 0;
-	while (str[i])
-	{
-		str[i] = ft_tolower(str[i]);
-		i++;
-	}
-}
-
-void	transform_command_built_lowercase(t_prompt *prompt, t_token *tokens)
+void	transform_cmd_to_built_in(t_shell *d, t_prompt *prompt, t_token *tokens)
 {
 	int	i;
 
 	i = 0;
 	while (i < prompt->n_tokens)
 	{
-		if (is_cmd_builtin_type(tokens[i].type))
-			normalize_token_to_lower(tokens[i].value);
+		if (tokens[i].type == COMMAND)
+		{
+			if (is_built_in(d, prompt, &tokens[i], tokens[i].value))
+				tokens[i].type == BUILT_IN;
+		}
 		i++;
 	}
 }

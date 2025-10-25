@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_empty_str.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/18 11:57:46 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/10/07 18:11:54 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/14 22:58:49 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ static void	ignore_words(t_shell *data, t_token *token, char **str, int len)
 
 int	expand_empty_str(t_shell *data, t_token *token, char **key_to_find)
 {
-	int		key_len;
-	int		token_len;
+	int	key_len;
+	int	token_len;
 
 	key_len = ft_strlen(*key_to_find) + 1; //+ 1 por el '$' que no se copio
 	token_len = ft_strlen(token->value); //si su len es igual es porque

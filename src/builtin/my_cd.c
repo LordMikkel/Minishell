@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   my_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 17:12:22 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/10/08 15:55:15 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/25 13:05:52 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-static int	count_args(t_token *tokens, int i, int n_tokens)
+static int	has_one_arg(char **args)
 {
-	int	count;
+	int	i;
 
-	count = 0;
-	while (i < n_tokens && tokens[i].type == WORD)
-	{
+	i = 0;
+	while (args[i] != NULL)
 		i++;
-		count++;
-	}
-	return (count);
+	if (i == 1)
+		return (TRUE);
+	ft_printf_fd(STDERR, ERR_CD_TOO_MANY);
+	return (FALSE);
 }
 
 static void	update_pwd(t_shell *data, char *cwd, char *key_to_find)
@@ -51,73 +51,95 @@ static void	update_pwd(t_shell *data, char *cwd, char *key_to_find)
 }
 
 //EN OBRAS...no esta listo
-int	my_cd(t_shell *data, t_token *tokens, t_token *token)
+
+static char	*find_home_value_in_env(t_env *env)
+{
+	t_var	*var;
+
+	var = env->vars;
+	while (var)
+	{
+		if (ft_strcmp(var->key, "HOME") == 0)
+		{
+			if (var->value)
+				return (var->value);
+		}
+		var = var->next;
+	}
+	return (NULL);
+}
+
+static int	find_home(t_shell *data)
+{
+	char	*ptr;
+	int		result;
+	struct	stat info;
+
+	result = 0; 	//obtener el home y su valor para sabe si existe primero, si no se da por malo. Luego se hace stat para saber si el usuario lo cambio a un enlace o un archivo, es decir, ya no es valido.
+	ptr = find_home_value_in_env(&data->env); //Se busca en el env primero. si no se encuentra se da error directamente
+	if (!ptr)
+	{
+		ft_printf_fd(STDERR, ERR_HOME_NOT_SET); //O EL ERROR QUE SEA MEJOR
+		return (EXIT_FAILURE); //ERROR?
+	}
+	result = figure_out_information(ptr);
+	return (result);
+}
+
+static int	figure_out_information(char *ptr)
+{
+	struct	stat info;
+
+	if (stat(ptr, &info) == ERROR) //STAT?
+	{
+		ft_printf_fd(STDERR, ERR_FILE_NOT_FOUND);
+		return (EXIT_FAILURE);
+	}
+	if (!S_ISDIR(info.st_mode)) //S_ISDIR debe ser para saber si es un directorio o no. Seguramente ahi entra stat y el struct
+	{
+		ft_printf_fd(STDERR, ERR_NOT_DIR);
+		return (ENOTDIR);
+	}
+	if (access(ptr, R_OK) == ERROR) //Para saber si se puede leer o no. Si se tiene permiso o no
+	{
+		ft_printf_fd(STDERR, ERR_PERM_DENIED);
+		return (EACCES);
+	}
+	if (chdir(ptr) == ERROR) //Para cambiar de directorio
+	{
+		perror("minishell: chdir: ");
+		return (EXIT_FAILURE);
+	}
+	return (SUCCESS);
+}
+
+int	my_cd(t_shell *data, char **args)
 {
 	char	new_cwd[PATH_MAX];
 	char	cwd[PATH_MAX];
-	int		i;
-	int		args_found;
-	struct	stat info;
+	int		result;
 
-	i = token->id;
-	args_found = FALSE;
-	if (!getcwd(cwd, sizeof(cwd)))
+	if (!args || !*args)
 	{
-		ft_printf_fd(STDOUT, "un error por aquiii");
-		return (EXIT_USE);
+		result = find_home(data);
+		return (result); //Se retorna int codigo que haya sido
 	}
-	if (tokens[i].type == BUILT_IN)
-		i++;
-	args_found = count_args(tokens, i, data->prompt.n_tokens);
-	// if (!args_found)
-	// {
-	// 	data->home = getenv("HOME");
-	// 	if (!data->home || chdir(data->home) == -1)
-	// 	{
-	// 		ft_printf_fd(STDOUT, ERR_CD_NO_HOME);
-	// 		return (EXIT_USE);
-	// 	}
-	// 	return (SUCCESS);
-	// }
-	if (args_found > 1)
+	if (!getcwd(cwd, sizeof(cwd))) // get "current_working_directory". Puede fallar con error 0. Esto puede ser para obtener el OLDPWD
 	{
-		ft_printf_fd(STDOUT, ERR_CD_TOO_MANY);
-		return (EXIT_USE);
+		perror("minishell: cd: ");
+		return (EXIT_FAILURE);
 	}
-	//if (tokens[i].value[0] == '-')
-	///	if ()
-	//}
-	if (stat(tokens[i].value, &info) == ERROR)
+	if (!has_one_arg(args))
+		return (EXIT_FAILURE);
+	result = figure_out_information(*args);
+	if (result != SUCCESS)
+		return (result);
+	if (!getcwd(new_cwd, sizeof(new_cwd)))
 	{
-		ft_printf_fd(STDOUT, ERR_FILE_NOT_FOUND);
-		return (EXIT_USE);
+		perror("minishell: cd: ");
+		return (EXIT_FAILURE);
 	}
-	if (!S_ISDIR(info.st_mode))
-	{
-		ft_printf_fd(STDOUT, ERR_NOT_DIR);
-		return (ENOTDIR);
-	}
-	if (access(tokens[i].value, R_OK) == ERROR)
-	{
-		ft_printf_fd(STDOUT, ERR_PERM_DENIED);
-		return (EACCES);
-	}
-	if (chdir(tokens[i].value) == -1)
-	{
-		perror("minishell: chdir: ");
-		return (EXIT_USE);
-	}
-	if (getcwd(new_cwd, sizeof(new_cwd)))
-	{
-		update_pwd(data, new_cwd, "PWD");
-		update_pwd(data, cwd, "OLDPWD");
-	}
-	return (SUCCESS);
-	//falla con /MINISHELL
-	//cd ../../../
-	//Sacar home desde env propio no volver a buscarlo porque puede dar errores.
-	//cd 42 desde el home
-	//falla en escenarios random. Tal vez sea como lo escribi
-	//falla desde el home casi siempre
-	//averiguar si puedo sacar el home de envp
+	update_pwd(data, cwd, "OLDPWD");
+	update_pwd(data, new_cwd, "PWD");
+	return (0);
 }

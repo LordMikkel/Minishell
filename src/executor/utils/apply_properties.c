@@ -1,38 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   apply_properties.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/09 13:38:05 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/20 00:15:42 by davdiaz-         ###   ########.fr       */
+/*   Created: 2025/10/15 17:02:23 by davdiaz-          #+#    #+#             */
+/*   Updated: 2025/10/15 19:37:16 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft_plus.h"
+#include "../../../inc/minishell.h"
 
-char	*ft_strdup(const char *s)
+int	apply_properties(t_shell *data, t_node *node, t_env *env, int mode)
 {
-	size_t	len;
-	char	*new_str;
-
-	len = ft_strlen(s);
-	new_str = (char *)malloc(len + 1);
-	if (!new_str)
-		return (NULL);
-	ft_memcpy(new_str, s, len + 1);
-	return (new_str);
-}
-/*#include <stdio.h>
-
-int	main(int ac, char **av)
-{
-	if (ac == 2)
+	if (node->assig_tmp)
 	{
-		printf("Original: %s\n", av[1]);
-		printf("Copied: %s\n", ft_strdup(av[1]));
-		return (0);
+		printf("IT HAS ASSIG_TEMP\n\n");
+		apply_temp_asig(data, data->prompt.tokens, node, env);
 	}
-	return (1);
-}*/
+	//if (node->redir);
+	//	if (!apply_redirs(data, node, mode))
+	//		return (FAILURE);
+	return (SUCCESS);
+}

@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:23:12 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/09 16:51:28 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/25 13:15:50 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	exec_builtin(t_shell *data, t_node *node, int mode)
 {
 	pid_t	pid;
 
+	printf("exec_built_in\n\n");
 	if (node->background)//si es por background
 	{
 		pid = fork();
@@ -74,7 +75,7 @@ void	exec_builtin(t_shell *data, t_node *node, int mode)
 			exit_error(data, ERR_FORK, FAIL);
 		if (pid == 0)
 		{
-			setup_signals_child();
+			apply_properties(data, node, &data->env, mode);
 			which_builtin(data, node->token, node);
 			exit_succes(data, NULL, data->exit_code);
 		}
@@ -82,9 +83,20 @@ void	exec_builtin(t_shell *data, t_node *node, int mode)
 		data->exit_code = 0; //da 0 porque el fork en si fue exitoso
 		return ;
 	}
-	if_theres_temp_asig(data, node);//si tiene temp se tiene que hacer oco child process
+	apply_properties(data, node, &data->env, mode);
 	which_builtin(data, node->token, node); //tanto si es child o parent entra aqui
 	if (mode == CHILD) // si era child de una subshell o pipe se sale con su exit_code
 		exit_succes(data, NULL, data->exit_code);
+	/*t_var	*var;
+
+	var = data->env.vars;
+	printf("Commands env: \n\n");
+	while (var)
+	{
+		printf("%s=%s\n", var->key, var->value);
+		var = var->next;
+	}
+	printf("End of list\n\n");*/
+	my_clean_unset(data, &data->env, data->prompt.tokens, node->arg_types);
 	return ;
 }

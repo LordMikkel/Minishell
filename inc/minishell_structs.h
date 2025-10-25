@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_structs.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/08 18:59:10 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/17 22:02:53 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_token	t_token;
 typedef struct s_redir	t_redir;
 typedef struct s_node	t_node;
 typedef struct s_extras	t_extras;
+typedef struct s_cmd	t_cmd;
 
 typedef enum e_type
 {
@@ -60,6 +61,7 @@ typedef enum e_type
 	FILENAME,
 	SUBSHELL,
 	SHELL,
+	TEMP_PLUS_ASIGNATION,
 }	t_type;
 
 struct s_token
@@ -134,12 +136,24 @@ struct s_node
 	bool		fake;
 	bool		background;
 	bool		executed;
+	bool		mode;
+};
+
+struct s_cmd
+{
+	char	*value;
+	char 	*alias;
+	bool	active;
+	t_cmd	*prev;
+	t_cmd	*next;
 };
 
 typedef struct s_extras
 {
-	char	*user_name;
-	time_t	session_start;
+	char		*user_name;
+	time_t		session_start;
+	t_cmd		*cmd;
+	int			n_built_ins;
 }	t_extras;
 
 typedef struct s_shell

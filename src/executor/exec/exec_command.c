@@ -6,7 +6,11 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:23:14 by migarrid          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/10/09 16:13:43 by davdiaz-         ###   ########.fr       */
+=======
+/*   Updated: 2025/10/15 19:13:12 by davdiaz-         ###   ########.fr       */
+>>>>>>> 84a04a6 (Subo avances, mejoras y extras en cuanto a built_ins, asignations, casos edge, arg_types, ast, etc...)
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +46,6 @@
 	tiene, se imprime el PID y se omite el wait.
 */
 
-void	apply_properties(t_shell *data, t_node *node, t_env *env)
-{
-	if (node->assig_tmp)
-		my_export(data, data->prompt.tokens, env, node);
-	// if (node->redir);
-	// 	apply_redirs();
-}
-
 void	wait_cmd_background(t_shell *data, t_node *node, pid_t pid)
 {
 	int status;
@@ -75,7 +71,17 @@ void	execute_cmd_from_child(t_shell *data, t_node *node, t_env *env)
 {
 	char	*path;
 
-	apply_properties(data, node, env);
+	apply_properties(data, node, env, CHILD);
+	t_var	*var;
+
+	var = data->env.vars;
+	/*printf("En el hijo\n\n");
+	while (var)
+	{
+		printf("%s=%s\n", var->key, var->value);
+		fflush(stdout);
+		var = var->next;
+	}*/
 	path = get_path(data, node->token->value, env->envp);
 	execve(path, node->args, env->envp);
 	free(path);
@@ -95,7 +101,17 @@ void	execute_cmd_from_father(t_shell *data, t_node *node, t_env *env)
 	if (pid == 0)
 	{
 		setup_signals_child();
-		apply_properties(data, node, env);
+		apply_properties(data, node, env, FATHER);
+		t_var	*var;
+
+		var = data->env.vars;
+		/*printf("En el padre\n\n");
+		while (var)
+		{
+			printf("%s=%s\n", var->key, var->value);
+			fflush(stdout);
+			var = var->next;
+		}*/
 		path = get_path(data, node->token->value, env->envp);
 		execve(path, node->args, env->envp);
 		free(path);
@@ -111,4 +127,5 @@ void	exec_command(t_shell *data, t_node *node, t_env *env, int mode)
 		execute_cmd_from_child(data, node, env);
 	if (mode == FATHER)
 		execute_cmd_from_father(data, node, env);
+	my_clean_unset(data, env, data->prompt.tokens, node->arg_types);
 }
