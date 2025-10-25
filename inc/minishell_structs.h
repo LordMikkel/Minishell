@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/25 16:43:55 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/25 21:38:14 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_token	t_token;
 typedef struct s_redir	t_redir;
 typedef struct s_node	t_node;
 typedef struct s_extras	t_extras;
+typedef struct s_cmd	t_cmd;
 
 typedef enum e_type
 {
@@ -61,6 +62,7 @@ typedef enum e_type
 	DELIMITER,
 	SUBSHELL,
 	SHELL,
+	TEMP_PLUS_ASIGNATION,
 }	t_type;
 
 struct s_token
@@ -105,11 +107,8 @@ typedef struct s_env
 
 typedef struct s_exec
 {
-	int			mode;
 	int			original_stdin;
-	int			last_stdin;
 	int			original_stdout;
-	int			last_sdtin;
 	t_env		*env;
 }	t_exec;
 
@@ -140,19 +139,31 @@ struct s_node
 	bool		fake;
 	bool		background;
 	bool		executed;
+	bool		mode;
+};
+
+struct s_cmd
+{
+	char	*value;
+	char 	*alias;
+	bool	active;
+	t_cmd	*prev;
+	t_cmd	*next;
 };
 
 typedef struct s_extras
 {
-	char	*user_name;
-	time_t	session_start;
+	char		*user_name;
+	time_t		session_start;
+	t_cmd		*cmd;
+	int			n_built_ins;
 }	t_extras;
 
 typedef struct s_shell
 {
 	t_env		env;
 	t_prompt	prompt;
-	t_exec		executor;
+	t_exec		exec;
 	t_node		*ast_root;
 	pid_t		shell_pid;
 	t_extras	extra_features;

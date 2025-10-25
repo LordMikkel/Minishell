@@ -32,10 +32,12 @@ bash error = ( No such file or directory)
 - Important:
 - get_arg_types funciona y sin leaks
 - get_temp_asig funciona y sin leaks -> con export y con cualquier otro comando
-- bugs de tempasignations bien catalogadas
 - Expandir ~
 - Expandir el Heredoc
-- revisar caso 'ex'port A=1 --> args_type
+- get_temp_asig debe funcionar correctamente y sin leaks -> con export y con cualquier otro comando
+- bugs de tempasignations bien catalogadas
+- bugs de export - unset
+- bugs de expansiones
 
 - Secondary:
 - Hacer built-in CD

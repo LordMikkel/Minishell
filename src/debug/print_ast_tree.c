@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:51:53 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/11 04:58:25 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/25 20:33:00 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,54 @@ static void	print_indent(int depth, int *is_last_array)
 	}
 }
 
+static void	print_temp_asig(char **args)
+{
+	int	i;
+
+	if (!args || !args[0])
+	{
+		printf(" (No temp)");
+		return;
+	}
+	printf(" [Temp Asig: ");
+	i = 0;
+	while (args[i])
+	{
+		printf("%s", args[i]);
+		if (args[i + 1])
+			printf(", ");
+		i++;
+	}
+	printf("]");
+}
+
 static void	print_args(char **args)
 {
 	int	i;
 
-	if (!args || !args[0] || !args[1])
-		return ;
+	if (!args || !args[0])
+	{
+		printf(" (No args)");
+		return;
+	}
 	printf(" [Args: ");
+	i = 0;
+	while (args[i])
+	{
+		printf("%s", args[i]);
+		if (args[i + 1])
+			printf(", ");
+		i++;
+	}
+	printf("]");
+}
+static void	print_temp(char **args)
+{
+	int	i;
+
+	if (!args || !args[0] || !args[1])
+		return;
+	printf(" [Temps: ");
 	i = 0;
 	while (args[i])
 	{
@@ -50,13 +91,17 @@ static void	print_token_index(int *index)
 	int	i;
 
 	if (!index)
-		return ;
-	printf(" [Index: ");
+	{
+		printf(" (No index)");
+		return;
+	}
+
+	printf(" [token index: ");
 	i = 0;
-	while (index[i])
+	while (index[i] != -1)
 	{
 		printf("%d", index[i]);
-		if (index[i + 1] != 0)
+		if (index[i + 1] != -1)
 			printf(", ");
 		i++;
 	}
@@ -69,7 +114,10 @@ static void	print_redirs(t_redir *redirs)
 	int		first;
 
 	if (!redirs)
+	{
+		printf(" (No redir)");
 		return ;
+	}
 	printf(" {");
 	current = redirs;
 	first = 1;
@@ -109,6 +157,7 @@ static void	print_node_helper(t_node *node, int depth, int *is_last_array)
 	// Imprimir argumentos si existen
 	print_args(node->args);
 	print_token_index(node->arg_types);
+	print_temp_asig(node->assig_tmp);
 
 	if (node->background)
 		printf(" <Background> ");

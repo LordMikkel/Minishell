@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:50:14 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/11 03:14:26 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/25 18:50:49 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ const char	*g_type_names[] = {
 	"FILENAME",
 	"DELIMITER",
 	"SUBSHELL",
-	"SHELL"
+	"SHELL",
+	"TEMP_PLUS_ASIGNATION,"
 };
 
 void	print_tokens_debug(t_prompt *prompt)

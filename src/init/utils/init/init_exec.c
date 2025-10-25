@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_buil_in_debug.c                               :+:      :+:    :+:   */
+/*   init_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/07 17:51:03 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/07 17:59:31 by migarrid         ###   ########.fr       */
+/*   Created: 2025/10/25 21:27:37 by migarrid          #+#    #+#             */
+/*   Updated: 2025/10/25 21:37:34 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../../../inc/minishell.h"
 
-void	test_built_in(t_shell *data, t_token *tokens, int n_tokens)
+void	init_exec(t_exec *exec, t_env *env)
 {
-	int	i;
-
-	i = 0;
-	while (i < n_tokens)
-	{
-		if (tokens[i].type == BUILT_IN || is_asignation_type(tokens[i].type))
-			which_builtin(data, tokens, data->ast_root);
-		i++;
-	}
+	exec->original_stdin = dup(STDIN_FILENO);
+	exec->original_stdout = dup (STDOUT_FILENO);
+	exec->env = env;
 }

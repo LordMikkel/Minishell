@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   transform_simplify_to_built_in.c                   :+:      :+:    :+:   */
+/*   transform_cmd_to_built_in.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/11 17:08:25 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/25 16:33:38 by migarrid         ###   ########.fr       */
+/*   Created: 2025/10/15 17:36:08 by davdiaz-          #+#    #+#             */
+/*   Updated: 2025/10/25 19:09:58 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/minishell.h"
 
-void	transform_simplify_to_built_in(t_prompt *prompt, t_token *tokens)
+/*
+	En casos edge como 'expo'rt - 'e'cho - c'd' - etc...
+	Estos built-ins quedan catalogaods como COMMAND, lo cual esta mal.
+	Esta función verifica si ese es el caso y los transforma a BUILT_IN
+*/
+
+void	transform_cmd_to_built_in(t_shell *d, t_prompt *prompt, t_token *tokens)
 {
 	int	i;
 
@@ -20,7 +26,10 @@ void	transform_simplify_to_built_in(t_prompt *prompt, t_token *tokens)
 	while (i < prompt->n_tokens)
 	{
 		if (tokens[i].type == COMMAND)
-			is_built_in_token(&tokens[i], tokens[i].value);
+		{
+			if (is_built_in(&tokens[i], tokens[i].value))
+				tokens[i].type = BUILT_IN;
+		}
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:23:14 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/25 17:57:36 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/25 22:00:30 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,11 @@ void	execute_cmd_from_father(t_shell *data, t_node *node, t_env *env)
 	wait_cmd_background(data, node, pid);//padre checkea
 }
 
-void	exec_command(t_shell *data, t_node *node, t_env *env, int mode)
+void	exec_command(t_shell *data, t_node *node, t_exec *exec, int mode)
 {
 	if (mode == CHILD)
-		execute_cmd_from_child(data, node, env);
+		execute_cmd_from_child(data, node, exec->env);
 	if (mode == FATHER)
-		execute_cmd_from_father(data, node, env);
+		execute_cmd_from_father(data, node, exec->env);
+	clean_temp_variables(data, exec->env, data->prompt.tokens, node);
 }

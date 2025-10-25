@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simplify_tokens.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 20:37:22 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/06 19:11:02 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/15 16:50:40 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ static int	is_possible_simplify(t_token *tokens, int *range)
 	{
 		if (tokens[i].type == NO_SPACE)
 			has_no_space = 1;
-		if (tokens[i].type == EXPANSION)
-			return (0);
+		//if (tokens[i].type == EXPANSION)
+		//	return (0);
 		i++;
 	}
 	return (has_no_space);

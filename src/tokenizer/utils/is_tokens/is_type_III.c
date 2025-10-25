@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:23:51 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/11 03:54:59 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/25 19:00:50 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
  * Determina si el tipo es una asignación de variable:
  * incluye asignaciones normales, con += y temporales
- */
+*/
 
 int	is_asignation_type(int type)
 {
@@ -25,11 +25,10 @@ int	is_asignation_type(int type)
 	return (0);
 }
 
-
 /*
  * Comprueba si el tipo puede ser argumento de comando:
  * palabras simples o asignaciones de variables
- */
+*/
 
 int	is_arg_type(int type)
 {
@@ -42,7 +41,8 @@ int	is_arg_type(int type)
 /*
  * Comprueba si el tipo es assignaciones reales:
  * aplicadas en el proceso del padre.
- */
+*/
+
 int	is_real_assignation_type(int type)
 {
 	if (type == ASIGNATION || type == PLUS_ASIGNATION)
@@ -73,3 +73,4 @@ int	is_redir_input_type(int type)
 		return (1);
 	return (0);
 }
+

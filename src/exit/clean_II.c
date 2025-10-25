@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 01:53:47 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/25 16:51:21 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/25 21:51:36 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,13 @@ void	clean_extras(t_extras *extra_features)
 	*extra_features = (t_extras){0};
 }
 
+void	restore_fd(t_exec *exec)
+{
+	dup2(exec->original_stdin, STDIN_FILENO);
+	dup2(exec->original_stdout, STDOUT_FILENO);
+}
+
+
 /*
 	Libera la memoria reservada para `prompt` y los nodos del `ast`
 	tiene que llamarse en cada ciclo del minishell.
@@ -94,6 +101,7 @@ void	clean_extras(t_extras *extra_features)
 
 void	clean_cycle(t_shell *data, t_prompt *prompt, t_node **ast_root)
 {
+	restore_fd(&data->exec);
 	clean_prompt(prompt);
 	clean_ast(*ast_root);
 	*ast_root = NULL;
