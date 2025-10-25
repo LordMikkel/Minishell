@@ -6,11 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:23:14 by migarrid          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/10/09 16:13:43 by davdiaz-         ###   ########.fr       */
-=======
-/*   Updated: 2025/10/15 19:13:12 by davdiaz-         ###   ########.fr       */
->>>>>>> 84a04a6 (Subo avances, mejoras y extras en cuanto a built_ins, asignations, casos edge, arg_types, ast, etc...)
+/*   Updated: 2025/10/25 17:26:49 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

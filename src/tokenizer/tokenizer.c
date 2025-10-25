@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:10 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/25 13:16:06 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/25 18:09:24 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 		return (SYNTAX_ERROR);
 
 	// print_tokens_debug(prompt);
-
 	is_it_quoted(prompt, prompt->tokens); // Se puede hacer mas eficiente
 
 	expansion(data, prompt->tokens, &data->env, INITIAL_PHASE);

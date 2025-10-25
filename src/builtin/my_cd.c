@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 17:12:22 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/10/25 13:05:52 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/25 18:01:09 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,23 +69,6 @@ static char	*find_home_value_in_env(t_env *env)
 	return (NULL);
 }
 
-static int	find_home(t_shell *data)
-{
-	char	*ptr;
-	int		result;
-	struct	stat info;
-
-	result = 0; 	//obtener el home y su valor para sabe si existe primero, si no se da por malo. Luego se hace stat para saber si el usuario lo cambio a un enlace o un archivo, es decir, ya no es valido.
-	ptr = find_home_value_in_env(&data->env); //Se busca en el env primero. si no se encuentra se da error directamente
-	if (!ptr)
-	{
-		ft_printf_fd(STDERR, ERR_HOME_NOT_SET); //O EL ERROR QUE SEA MEJOR
-		return (EXIT_FAILURE); //ERROR?
-	}
-	result = figure_out_information(ptr);
-	return (result);
-}
-
 static int	figure_out_information(char *ptr)
 {
 	struct	stat info;
@@ -112,6 +95,25 @@ static int	figure_out_information(char *ptr)
 	}
 	return (SUCCESS);
 }
+
+static int	find_home(t_shell *data)
+{
+	char	*ptr;
+	int		result;
+	struct	stat info;
+
+	result = 0; 	//obtener el home y su valor para sabe si existe primero, si no se da por malo. Luego se hace stat para saber si el usuario lo cambio a un enlace o un archivo, es decir, ya no es valido.
+	ptr = find_home_value_in_env(&data->env); //Se busca en el env primero. si no se encuentra se da error directamente
+	if (!ptr)
+	{
+		ft_printf_fd(STDERR, ERR_HOME_NOT_SET); //O EL ERROR QUE SEA MEJOR
+		return (EXIT_FAILURE); //ERROR?
+	}
+	result = figure_out_information(ptr);
+	return (result);
+}
+
+
 
 int	my_cd(t_shell *data, char **args)
 {

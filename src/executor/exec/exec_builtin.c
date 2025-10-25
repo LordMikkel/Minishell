@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:23:12 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/25 13:15:50 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/25 17:46:13 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@
 	ejecución secuencial como en estructuras complejas.
 */
 
-static void	if_theres_temp_asig(t_shell *data, t_node *node)
+/*static void	if_theres_temp_asig(t_shell *data, t_node *node)
 {
 	pid_t	pid;
 
@@ -61,7 +61,7 @@ static void	if_theres_temp_asig(t_shell *data, t_node *node)
 		}
 		data->exit_code = 0;
 	}
-}
+}*/
 
 void	exec_builtin(t_shell *data, t_node *node, int mode)
 {

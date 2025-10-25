@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 01:05:00 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/19 16:49:01 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/25 18:11:29 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	*lstlast_var(void *data, char type)
 	t_var	*lst;
 	t_cmd	*cmd_lst;
 
+	if (!data)
+		return (NULL);
 	if (type == 'v')//t_var
 	{
 		t_var *lst = (t_var *)data;
@@ -43,8 +45,9 @@ void	*lstlast_var(void *data, char type)
 		while (cmd_lst->next != NULL)
 			cmd_lst = cmd_lst->next;
 		return (void *)cmd_lst;
-	return (lst);
+
 	}
+	return (NULL);
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 17:36:08 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/10/21 13:01:58 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/25 17:57:32 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	transform_cmd_to_built_in(t_shell *d, t_prompt *prompt, t_token *tokens)
 		if (tokens[i].type == COMMAND)
 		{
 			if (is_built_in(d, prompt, &tokens[i], tokens[i].value))
-				tokens[i].type == BUILT_IN;
+				tokens[i].type = BUILT_IN;
 		}
 		i++;
 	}
