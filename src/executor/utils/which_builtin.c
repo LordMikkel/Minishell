@@ -6,11 +6,20 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:58:35 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/16 12:41:30 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/25 18:23:26 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/minishell.h"
+
+
+static void	extras(t_shell *data, t_token *token, t_node *node)
+{
+	if (ft_strcmp(token->value, BUILTIN_ALIAS) == 0)
+		data->exit_code = my_alias(data, data->extra_features.cmd, node->args);
+	else if (ft_strcmp(token->value, BUILTIN_UNALIAS) == 0)
+		data->exit_code = my_unalias(data, data->extra_features.cmd, node->args);
+}
 
 static void	asignations(t_shell *data, t_token *token)
 {
@@ -40,8 +49,8 @@ static void	basic_builtins(t_shell *data, t_token *token, t_node *node)
 		data->exit_code = my_pwd();
 	else if (ft_strcmp(token->value, BUILTIN_EXIT) == 0)
 		my_exit(data, node->args);
-	//else if (ft_strcmp(token->value, BUILTIN_CD) == 0)
-	//	data->exit_code = my_cd(data, tokens, token);
+	else if (ft_strcmp(token->value, BUILTIN_CD) == 0)
+		data->exit_code = my_cd(data, node->args);
 }
 
 void	which_builtin(t_shell *data, t_token *token, t_node *node)
@@ -49,4 +58,5 @@ void	which_builtin(t_shell *data, t_token *token, t_node *node)
 	asignations(data, token);
 	env_commands(data, token, node);
 	basic_builtins(data, token, node);
+	extras(data, token, node);
 }

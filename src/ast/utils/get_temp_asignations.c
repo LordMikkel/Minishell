@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 18:54:11 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/10/25 13:14:56 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/25 18:15:05 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	extract_bin_arg(t_shell *d, char **arg_extract, char *word, int len)
 
 static int	get_correct_index(t_token *tokens, int start)
 {
-	while (start < 0)
+	while (start <= 0)
 	{
 		start++;
 		return (start);

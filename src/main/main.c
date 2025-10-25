@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:43 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/15 19:13:27 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/25 18:10:10 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,6 @@ int	main(int argc, char **argv, char **envp)
 		ast_builder(&data, data.prompt.tokens, data.prompt.n_tokens);
 		executor_recursive(&data, data.ast_root, FATHER);
 		clean_cycle(&data, &data.prompt, data.ast_root);
-		/*t_var	*var;
-		var = data.env.vars;
-		printf("\n\nFINAL ENV: \n\n");
-		while (var)
-		{
-			printf("%s=%s\n", var->key, var->value);
-			var = var->next;
-		}*/
 	}
 	exit_succes(&data, MSG_GOODBYE, EXIT_SUCCESS);
 	return (0);

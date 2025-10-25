@@ -6,7 +6,7 @@
 #    By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/10/15 17:40:58 by davdiaz-         ###   ########.fr        #
+#    Updated: 2025/10/25 18:24:08 by davdiaz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,6 +95,7 @@ SRCS =				main/main.c \
 					main/utils/time/print_session_end.c \
 					main/utils/time/print_time_of_day.c \
 					init/init_minishell.c \
+					init/utils/cmd_structure/add_node_rule.c \
 					init/utils/init/init_data.c \
 					init/utils/init/init_env.c \
 					init/utils/init/init_arg.c \
@@ -156,6 +157,7 @@ SRCS =				main/main.c \
 					tokenizer/utils/trasnform_tokens/transform_word_to_file.c \
 					tokenizer/utils/trasnform_tokens/transform_command_builtin_lowercase.c \
 					tokenizer/utils/trasnform_tokens/transform_cmd_to_built_in.c \
+					tokenizer/utils/cmd_sugestion/cmd_correction.c \
 					expansion/expansion.c \
 					expansion/send_tokens_for_asig.c \
 					expansion/utils/find_swap/copy_key.c \
@@ -183,6 +185,7 @@ SRCS =				main/main.c \
 					ast/utils/get_temp_asignations.c \
 					ast/utils/get_background.c \
 					ast/utils/safe_index_plus.c \
+					ast/utils/expand_alias.c \
 					executor/executor.c \
 					executor/exec/exec_semicolon.c \
 					executor/exec/exec_and.c \
@@ -207,9 +210,11 @@ SRCS =				main/main.c \
 					builtin/my_pwd.c \
 					builtin/my_cd.c \
 					builtin/my_exit.c \
+					builtin/my_unalias.c \
+					builtin/my_alias/my_alias_part_1.c \
+					builtin/my_alias/my_alias_part_2.c \
 					debug/print_ast_tree.c \
 					debug/print_tokens_debug.c \
-					debug/test_buil_in_debug.c \
 					exit/exit.c \
 					exit/error.c \
 					exit/clean_I.c \

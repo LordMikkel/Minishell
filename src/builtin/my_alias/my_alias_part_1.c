@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 20:48:38 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/10/23 12:46:01 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/25 18:28:27 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@
 int	check_arg_syntax(char *arg, const char *built_in_err)
 {
 	int	i;
+	int	len;
 
 	i = 0;
-	if (ft_strlen(arg) < 1)
+	len = ft_strlen(arg);
+	if (len < 1)
 		return (FALSE);
 	while (arg[i] != '\0')
 	{
@@ -75,8 +77,8 @@ int	process_pair_of_args(t_shell *d, t_cmd *cmd, char *cmd_arg, char *alias_arg)
 			free (cmd_value_copy);
 		exit_error(d, ERR_MALLOC, EXIT_FAILURE);
 	}
-	normalize_str_to_lower(cmd_value_copy);
-	normalize_str_to_lower(alias_arg_copy);
+	normalize_token_to_lower(cmd_value_copy);
+	normalize_token_to_lower(alias_arg_copy);
 	result = find_cmd(d, cmd, cmd_value_copy, alias_arg_copy);
 	if (result == ERROR)
 		return (ERROR);

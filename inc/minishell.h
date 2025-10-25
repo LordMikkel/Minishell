@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/17 22:53:45 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/25 18:25:51 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,11 @@ void	exec_builtin(t_shell *data, t_node *node, int mode);
 int		my_pwd(void);
 int		my_env(t_var *vars);
 int		my_echo(char **args);
+int		my_cd(t_shell *data, char **args);
 void	my_exit(t_shell *data, char **args);
+int		my_alias(t_shell *data, t_cmd *cmd, char **args);
 int		my_unset(t_shell *data, t_env *env, char **args);
-int		my_cd(t_shell *data, t_token *tokens, t_token *token);
+int		my_unalias(t_shell *data, t_cmd	*cmd, char **args);
 int		my_export(t_shell *data, t_token *tokens, t_env *env, t_node *node);
 
 /* ************************************************************************** */
@@ -211,11 +213,13 @@ void	transform_asig_to_temp(t_shell *dat, t_prompt *prompt, t_token *tokens);
 void	transform_cmd_to_built_in(t_shell *d, t_prompt *prompt, t_token *tokens);
 
 //AST
+void	expand_alias(t_shell *data, t_token *tokens, int i);
 int		get_background(t_token *tokens, int n_tokens, int *i);
 int		*get_arg_types(t_shell *data, t_node *node, int i, int j);
 char	**get_args_for_binary(t_shell *data, t_token *token, int *i);
 char	**get_temp_asignations(t_shell *data, t_token *tokens, int i);
 t_redir	*get_redirs(t_shell *data, t_token *tokens, int *i, int mode);
+
 
 //EXECUTOR
 char	*get_path(t_shell *data, char *cmd, char **envp);
@@ -241,6 +245,7 @@ int		check_externs_syntax(t_shell *d, t_token *tkens, t_token *token, int t);
 
 //ENV
 void	update_shlvl(t_var *vars);
+void	*lstlast_var(void *data, char type);
 void	path_null_no_env(t_shell *data, char **path);
 char	**make_envp(t_shell *data, t_env *env, t_var *vars);
 
@@ -261,7 +266,7 @@ int		background_hl(ic_highlight_env_t *henv, const char *s, size_t *i);
 //DEBUG
 void	print_ast(t_node *root);
 void	print_tokens_debug(t_prompt *prompt);
-void	test_built_in(t_shell *data, t_token *tokens, int n_tokens);
+//void	test_built_in(t_shell *data, t_token *tokens, int n_tokens);
 
 //UTILS
 char	*cleanner_slash_quotes_d(t_shell *data, char *word, int len, int *flag);
@@ -269,8 +274,13 @@ char	*clean_slash_expan_d(t_shell *data, char *word, int len, char slash);
 void	clean_quote_until_slash_d(char *word, char *clean_word, char quote);
 void	void_tokens_at_the_end(t_token *tokens, int n_alloc, int n_tokens);
 void	eliminate_token(t_prompt *prompt, t_token *tokens, int index);
+void	cmd_correction(t_shell *data, t_token *tokens, int n_tokens);
 void	safe_index_plus(int *i, int n_tokens);
-void	normalize_str_to_lower(char *str);
+void	normalize_token_to_lower(char *str);
+
+//BUILD_IN
+int		find_cmd(t_shell *data, t_cmd *cmd, char *to_find, char *alias);
+int		check_arg_syntax(char *arg, const char *built_in_err);
 
 /* ************************************************************************** */
 /*                               extras - time                                */
@@ -278,5 +288,6 @@ void	normalize_str_to_lower(char *str);
 void	print_session_end(time_t start, char *user_name);
 void	print_time_of_day(time_t start, char *user_name);
 void	print_session_start(t_shell *data, time_t start, char *user_name);
+void	add_node_rule(t_shell *data, char *value, char *alias, int state);
 
 #endif

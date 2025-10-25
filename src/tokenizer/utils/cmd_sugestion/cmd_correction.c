@@ -6,31 +6,19 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 20:48:00 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/10/23 12:58:02 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/25 18:00:51 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/minishell.h"
 
-static void	ask_confirmation(t_shell *data, t_token *token, char *built_in)
+static int	is_yes_or_no(const char *str)
 {
-	char	*ptr;
-
-	while (1)
-	{
-		printf("Did you mean %s? y/n\n", built_in);
-		ptr = ic_readline("\033[1;34->\033[1;34m> \033[0m");//desde aqui hasta el else de readline puede ser una sola funcion que se llame sola
-		if (!ptr)
-			exit_error(data, ERR_MALLOC, EXIT_FAILURE);
-		check_signals(data);
-		if (parse_answer(data, token, ptr, built_in) != ERROR)
-		{
-			free (ptr);
-			return ;
-		}
-		//Si es ERROR se vuelve a repetir la pregunta
-		free (ptr);
-	}
+	if (ft_strcmp(str, "y") == 0 || ft_strcmp(str, "yes") == 0)
+		return (YES);
+	else if (ft_strcmp(str, "n") == 0 || ft_strcmp(str, "no") == 0)
+		return (NO);
+	return (ERROR);
 }
 
 static	int	parse_answer(t_shell *d, t_token *token, char *str, char *built_in)
@@ -51,13 +39,25 @@ static	int	parse_answer(t_shell *d, t_token *token, char *str, char *built_in)
 	return (ERROR); //El usuario introduce cualquier otro valor distinto a yes/no
 }
 
-static int	is_yes_or_no(const char *str)
+static void	ask_confirmation(t_shell *data, t_token *token, char *built_in)
 {
-	if (ft_strcmp(str, "y") == 0 || ft_strcmp(str, "yes") == 0)
-		return (YES);
-	else if (ft_strcmp(str, "n") == 0 || ft_strcmp(str, "no") == 0)
-		return (NO);
-	return (ERROR);
+	char	*ptr;
+
+	while (1)
+	{
+		printf("Did you mean %s? y/n\n", built_in);
+		ptr = ic_readline("\033[1;34->\033[1;34m> \033[0m");//desde aqui hasta el else de readline puede ser una sola funcion que se llame sola
+		if (!ptr)
+			exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+		check_signals(data);
+		if (parse_answer(data, token, ptr, built_in) != ERROR)
+		{
+			free (ptr);
+			return ;
+		}
+		//Si es ERROR se vuelve a repetir la pregunta
+		free (ptr);
+	}
 }
 
 /*

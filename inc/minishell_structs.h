@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/17 22:02:53 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/25 18:24:57 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ struct s_cmd
 {
 	char	*value;
 	char 	*alias;
-	bool	active;
+	int		active;
 	t_cmd	*prev;
 	t_cmd	*next;
 };
