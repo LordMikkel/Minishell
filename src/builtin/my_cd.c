@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 17:12:22 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/10/25 22:29:41 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/27 20:36:01 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static char	*find_home_value_in_env(t_env *env)
 	{
 		if (ft_strcmp(var->key, "HOME") == 0)
 		{
-			if (var->value)
+			if (var->value && var->value[0] != '\0')
 				return (var->value);
 		}
 		var = var->next;
@@ -83,7 +83,7 @@ static int	figure_out_information(char *ptr)
 		ft_printf_fd(STDERR, ERR_NOT_DIR);
 		return (ENOTDIR);
 	}
-	if (access(ptr, R_OK) == ERROR) //Para saber si se puede leer o no. Si se tiene permiso o no
+	if (access(ptr, X_OK) == ERROR) //Para saber si se puede leer o no. Si se tiene permiso o no
 	{
 		ft_printf_fd(STDERR, ERR_PERM_DENIED);
 		return (EACCES);
@@ -98,9 +98,10 @@ static int	figure_out_information(char *ptr)
 
 static int	find_home(t_shell *data)
 {
+	char	new_cwd[PATH_MAX];
+	char	cwd[PATH_MAX];
 	char	*ptr;
 	int		result;
-	struct	stat info;
 
 	result = 0; 	//obtener el home y su valor para sabe si existe primero, si no se da por malo. Luego se hace stat para saber si el usuario lo cambio a un enlace o un archivo, es decir, ya no es valido.
 	ptr = find_home_value_in_env(&data->env); //Se busca en el env primero. si no se encuentra se da error directamente
@@ -110,7 +111,16 @@ static int	find_home(t_shell *data)
 		return (EXIT_FAILURE); //ERROR?
 	}
 	result = figure_out_information(ptr);
-	return (result);
+	if (result != SUCCESS)
+		return (result);
+	if (!getcwd(new_cwd, sizeof(new_cwd)))
+	{
+		perror("minishell: cd");
+		return (EXIT_FAILURE);
+	}
+	update_pwd(data, cwd, "OLDPWD");
+	update_pwd(data, new_cwd, "PWD");
+	return (SUCCESS);
 }
 
 int	my_cd(t_shell *data, char **args)

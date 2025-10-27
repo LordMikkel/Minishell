@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_args_for_binary.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 23:03:38 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/25 18:48:55 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/27 18:03:14 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	arg_count(t_token *tokens, int n_tokens, int *i, int *n_args)
 				(*i)++;
 			}
 		}
-		if (is_arg_type(tokens[*i].type) || tokens[*i].type == COMMAND)
+		if (is_arg_type(tokens[*i].type) || tokens[*i].type == COMMAND || tokens[*i].type == NO_SPACE)
 			(*n_args)++;
 		if (is_delimiter_type(tokens[*i].type))
 			break ;

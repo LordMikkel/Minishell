@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:23:28 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/16 16:08:34 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/27 12:47:32 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,3 +57,5 @@ int	copy_key(char *str, char **key_to_find)
 	}
 	return (FAILURE);
 }
+
+

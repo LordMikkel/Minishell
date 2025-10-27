@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   which_builtin.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:58:35 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/25 22:32:34 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/27 16:34:20 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,5 @@ void	which_builtin(t_shell *data, t_token *token, t_node *node)
 	asignations(data, token);
 	env_commands(data, token, node);
 	basic_builtins(data, token, node);
-	extras(data, token, node);
+	//extras(data, token, node);
 }
