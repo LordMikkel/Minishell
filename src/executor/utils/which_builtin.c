@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:58:35 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/25 22:32:34 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/27 16:15:55 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	env_commands(t_shell *d, t_token *token, t_node *node)
 	else if (ft_strcmp(token->value, BUILTIN_UNSET) == 0)
 		d->exit_code = my_unset(d, &d->env, node->args);
 	else if (ft_strcmp(token->value, BUILTIN_ENV) == 0)
-		d->exit_code = my_env(d->env.vars);
+		d->exit_code = my_env(d->env.vars, node->args);
 	else if (ft_strcmp(token->value, BUILTIN_UNSET) == 0)
 		d->exit_code = my_unset(d, &d->env, node->args);
 }
