@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:10 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/25 22:30:54 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/27 21:17:30 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,20 @@ void	get_tokens(t_shell *data, t_prompt *prompt, char *input)
 	// printf("Syntax Tokens: %d\n", data->prompt.n_tokens);
 }
 
+int	check_if_valid_tokens_end(t_shell *data, t_prompt *prompt, t_token *tokens)
+{
+	int	i;
+
+	i = 0;
+	while (i < prompt->n_tokens)
+	{
+		if (!check_cmd_externs(data, prompt, tokens, i))
+			return (SYNTAX_ERROR);
+		i++;
+	}
+	return (SUCCESS);
+}
+
 /*
 	Revisa cada token del input y valida operadores como '|', '(', ')',
 	'&&' y '||'. Comprueba que estén correctamente colocados y emparejados.
@@ -77,20 +91,6 @@ int	check_if_valid_tokens_init(t_shell *data, t_prompt *prompt, t_token *tokens)
 	return (SUCCESS);
 }
 
-int	check_if_valid_tokens_end(t_shell *data, t_prompt *prompt, t_token *tokens)
-{
-	int	i;
-
-	i = 0;
-	while (i < prompt->n_tokens)
-	{
-		if (!check_cmd_externs(data, prompt, tokens, i))
-			return (SYNTAX_ERROR);
-		i++;
-	}
-	return (SUCCESS);
-}
-
 int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 {
 	allocate_tokens(data, prompt, input);
@@ -99,7 +99,6 @@ int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 		return (SYNTAX_ERROR);
 
 	// print_tokens_debug(prompt);
-	is_it_quoted(prompt, prompt->tokens); // Se puede hacer mas eficiente
 
 	expansion(data, prompt->tokens, &data->env, FINAL_PHASE);
 	simplify_tokens(data, prompt, prompt->tokens);
@@ -112,8 +111,6 @@ int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 
 	if (!check_if_valid_tokens_end(data, prompt, prompt->tokens))
 		return (SYNTAX_ERROR);
-
-	// print_tokens_debug(prompt);
 
 	//cmd_correction(data, prompt->tokens, prompt->n_tokens);
 

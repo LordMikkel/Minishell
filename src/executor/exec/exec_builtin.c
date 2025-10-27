@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:23:12 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/25 22:32:30 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/27 18:14:54 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	exec_builtin(t_shell *data, t_node *node, t_exec *exec, int mode)
 		if (pid == 0)
 		{
 			setup_signals_child();
-			apply_properties(data, node, exec->env, mode);
+			apply_properties(data, node, exec->env, CHILD);
 			which_builtin(data, node->token, node);
 			exit_succes(data, NULL, data->exit_code);
 		}
