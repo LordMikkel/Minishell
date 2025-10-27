@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/25 22:29:14 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/27 16:22:32 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,7 +238,6 @@ void	apply_temp_asig(t_shell *da, t_token *tokens, t_node *node, t_env *env);
 int		copy_key(char *buffer, char **key_to_find);
 int		find_key_in_lst(t_shell *d, t_token *t, char **key_to_f);
 int		extract_key(t_shell *d, t_token *t, char **key_to_f, int phase);
-int		calculate_total_length(t_shell *data, char *str, char *key_to_find);
 int		expand_empty_str(t_shell *data, t_token *token, char **key_to_find);
 int		copy_value(t_shell *d, char **t_val, char *key_value, char *key_to_f);
 

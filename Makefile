@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
+#    By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/10/25 22:33:55 by migarrid         ###   ########.fr        #
+#    Updated: 2025/10/27 16:22:19 by davdiaz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -155,7 +155,6 @@ SRCS =				main/main.c \
 					expansion/utils/find_swap/copy_value.c \
 					expansion/utils/find_swap/extract_key.c \
 					expansion/utils/find_swap/find_key_in_list.c \
-					expansion/utils/find_swap/calculate_total_len.c \
 					expansion/utils/find_swap/expand_empty_str.c \
 					expansion/utils/asignation/asignation.c \
 					expansion/utils/asignation/verify_if_already_set.c \

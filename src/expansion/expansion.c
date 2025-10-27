@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:57:33 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/30 19:50:41 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/27 21:17:35 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,9 @@ static int	aux_mem_alloc(t_shell *data, t_token *token, char **key_to_find)
 int	expansion(t_shell *data, t_token *token, t_env *env, int phase)
 {
 	char	*key_to_find;
-	int		i;
-	int		j;
+	int		number_of_dollars;
 	int		found;
+	int		i;
 
 	i = 0;
 	found = FALSE;
@@ -86,11 +86,11 @@ int	expansion(t_shell *data, t_token *token, t_env *env, int phase)
 		if (token[i].type == EXPANSION)
 		{
 			aux_mem_alloc(data, &token[i], &key_to_find);
-			j = ft_count_char(token[i].value, '$');
-			while (j > 0)
+			number_of_dollars = ft_count_char(token[i].value, '$');
+			while (number_of_dollars > 0)
 			{
 				found = extract_key(data, &token[i], &key_to_find, phase);
-				j--;
+				number_of_dollars--;
 			}
 			free (key_to_find);
 			key_to_find = NULL;
@@ -99,3 +99,5 @@ int	expansion(t_shell *data, t_token *token, t_env *env, int phase)
 	}
 	return (found);
 }
+
+//En empty str esta borrando todo hasta el punto "$USE.txt" VS "$USER.txt"

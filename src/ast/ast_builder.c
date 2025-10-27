@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ast_builder.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/27 16:36:02 by davdiaz-          #+#    #+#             */
+/*   Updated: 2025/10/27 16:36:14 by davdiaz-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/minishell.h"
 
 /*
@@ -63,5 +75,5 @@ void	ast_builder(t_shell *data, t_token *tokens, int n_tokens)
 		return ;
 	// print_tokens_debug(&data->prompt);
 	data->ast_root = parse_sequence(data, tokens, &i, n_tokens);
-	// print_ast(data->ast_root);
+	print_ast(data->ast_root);
 }

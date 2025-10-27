@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_temp_asignations.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 18:54:11 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/10/25 22:29:26 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/27 09:10:18 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	aux_alloc_mem(t_shell *data, char ***args, int n_args)
 		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
 }
 
-static void	extract_bin_arg(t_shell *d, char **arg_extract, char *word, int len)
+static void	extract_bin_arg(t_shell *d, char **arg_extract, char *word)
 {
 	*arg_extract = ft_strdup(word);
 	if (!*arg_extract)
@@ -40,15 +40,16 @@ static void	extract_bin_arg(t_shell *d, char **arg_extract, char *word, int len)
 	var=hola ls -> start--; -> start == -1
 */
 
-static int	get_correct_index(t_token *tokens, int start)
+static int	get_correct_index(t_token *tokens, int n_tokens, int start)
 {
-	while (start <= 0)
+	if (start >= 1 && is_asignation_type(tokens[start - 1].type))
 	{
-		start++;
-		return (start);
+		start--; //quedar en la temp_asig
+		while (is_asignation_type(tokens[start].type) && start >= 0) //iterar sobre las temp_asig
+			start--;
+		if (start < 0 || !is_asignation_type(tokens[start].type))//sumar un indice si es que no se esta en 0
+			start++;
 	}
-	while (!is_asignation_type(tokens[start].type))
-		start++;
 	return (start);
 }
 
@@ -56,33 +57,29 @@ char	**get_temp_asignations(t_shell *data, t_token *tokens, int i)
 {
 	char	**args;
 	int		temp_count;
-	int		temp_len;
 	int		start;
 
-	start = i;
-	start = get_correct_index(tokens, i);
+	start = get_correct_index(tokens, data->prompt.n_tokens, i);
+	if (start == i)
+		return (NULL);//No hay temp_asig
 	temp_count = 0;
-	//printf("%d\n\n", start);
-	while (start >= 0 && tokens[start].type == TEMP_ASIGNATION
-		|| tokens[start].type == TEMP_PLUS_ASIGNATION)
+	while (start < i && (tokens[start].type == TEMP_ASIGNATION
+		|| tokens[start].type == TEMP_PLUS_ASIGNATION))
 	{
 		temp_count++;
 		start++;
 	}
-	if (temp_count == 0 || start == 0)
+	if (temp_count == 0)
 		return (NULL);
 	aux_alloc_mem(data, &args, temp_count);
-	if (start < 0 || (start == 0 && !is_asignation_type(tokens[start].type)) || (start > 0 && !is_asignation_type(tokens[start].type)))
-		start = get_correct_index(tokens, start);
-	//printf("token acutal: %s\n\n", tokens[start].value);
+	start = i - temp_count;
 	temp_count = 0;
 	while (start < i)
 	{
-		temp_len = ft_strlen(tokens[start].value);
-		extract_bin_arg(data, &args[temp_count], tokens[start].value, temp_len);
-		//printf("Temp[%d]: %s\n\n", start, args[start]);
+		extract_bin_arg(data, &args[temp_count], tokens[start].value);
 		start++;
 		temp_count++;
 	}
 	return (args);
 }
+

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_arg_types.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 01:44:27 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/10/25 18:48:46 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/27 09:12:08 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,7 +228,7 @@ static int	find_correct_index(t_token *tokens, int *arg_types)
 
 int	*get_arg_types(t_shell *data, t_node *node, int start_i, int end_j)
 {
-	t_token *tokens;
+	t_token	*tokens;
 	int		*arg_types;
 	int		arg_index;
 
