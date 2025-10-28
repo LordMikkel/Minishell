@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 21:56:06 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/10/27 20:41:17 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/28 10:38:44 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ int	my_unset(t_shell *data, t_env *env, char **args)
 		delete_env_var(env, args[i]);
 		i++;
 	}
-	make_envp(data, env, env->vars);
 	return (exit_flag);
 }
 

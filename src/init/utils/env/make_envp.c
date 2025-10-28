@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_envp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 20:43:35 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/17 22:41:10 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/28 10:45:27 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	**make_envp(t_shell *data, t_env *env, t_var *vars)
 	envp = ft_calloc(env->size + 1, sizeof(char *));
 	if (!envp)
 		return (exit_error(data, ERR_MALLOC, EXIT_FAIL), NULL);
-	while (i < env->size)
+	while (vars)
 	{
 		if (vars->type == ENV)
 		{

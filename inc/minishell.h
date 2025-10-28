@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/27 16:22:32 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/28 10:34:21 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -281,6 +281,7 @@ void	clean_quote_until_slash_d(char *word, char *clean_word, char quote);
 void	void_tokens_at_the_end(t_token *tokens, int n_alloc, int n_tokens);
 void	eliminate_token(t_prompt *prompt, t_token *tokens, int index);
 void	cmd_correction(t_shell *data, t_token *tokens, int n_tokens);
+void	update_envp(t_shell *data);
 void	safe_index_plus(int *i, int n_tokens);
 void	normalize_token_to_lower(char *str);
 

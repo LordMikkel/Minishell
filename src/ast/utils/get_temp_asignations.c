@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 18:54:11 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/10/27 09:10:18 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/27 21:37:33 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ char	**get_temp_asignations(t_shell *data, t_token *tokens, int i)
 	int		temp_count;
 	int		start;
 
+	if (i == 0)
+		return (NULL);
 	start = get_correct_index(tokens, data->prompt.n_tokens, i);
 	if (start == i)
 		return (NULL);//No hay temp_asig
