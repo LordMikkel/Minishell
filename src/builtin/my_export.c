@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:22:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/27 20:41:01 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/28 10:38:39 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,7 @@ static int	asignation_type(t_shell *data, t_token *tokens, int i, t_env *env)
 	}
 	else if (tokens[i].type == PLUS_ASIGNATION)
 		asignation(data, &tokens[i], PLUS_ASIGNATION);
-	return (OK);
+	return (SUCCESS);
 }
 
 /*
@@ -198,6 +198,5 @@ int	my_export(t_shell *data, t_token *tokens, t_env *env, t_node *node)
 		}
 		i++;
 	}
-	make_envp(data, env, env->vars);
 	return (exit_flag);
 }

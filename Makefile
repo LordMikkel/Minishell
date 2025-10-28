@@ -6,7 +6,7 @@
 #    By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/10/27 16:22:19 by davdiaz-         ###   ########.fr        #
+#    Updated: 2025/10/28 10:13:10 by davdiaz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -192,6 +192,7 @@ SRCS =				main/main.c \
 					executor/utils/apply_properties.c \
 					executor/utils/apply_redirs.c \
 					executor/utils/apply_temp_asig.c \
+					executor/utils/update_envp.c \
 					signals/setup_signals.c \
 					signals/handler_signals.c \
 					signals/check_signals.c \
