@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 16:42:21 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/10/28 17:17:05 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/28 17:40:15 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,6 @@ void	exec_subshell(t_shell *data, t_node *node, t_exec *exec, int mode)
 		data->exit_code = WEXITSTATUS(status);
 	else if (WIFSIGNALED(status))
 		data->exit_code = 128 + WTERMSIG(status);
+	if (mode == CHILD)
+		exit_succes(data, NULL, data->exit_code);
 }

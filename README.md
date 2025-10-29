@@ -2,7 +2,16 @@
 Minishell - Bash
 
 🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
-🏁                                    RESULT                                    🏁
+🏁                                     BONUS                                                       🏁
+🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
+             TOTAL TEST COUNT: 881  TESTS PASSED: 742  LEAKING: 0
+                     STD_OUT: 89  STD_ERR: 54  EXIT_CODE: 85
+                         TOTAL FAILED AND PASSED CASES:
+                                     ❌ 228
+                                     ✅ 2415
+
+🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
+🏁                                   MANDATORY                                                     🏁
 🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
              TOTAL TEST COUNT: 881  TESTS PASSED: 742  LEAKING: 0
                      STD_OUT: 90  STD_ERR: 53  EXIT_CODE: 83
@@ -13,7 +22,7 @@ Minishell - Bash
 ## POR HACER:
 
 ## MIKEL:
--
+- cd
 - Secondary:
 - Bash te abra línea para que completes el comando ver → Modificar balance de ' " ( || && |
   - https://github.com/rogerdevworld/minishell/blob/main/src/bonus/loop_processing.c
@@ -21,6 +30,12 @@ Minishell - Bash
 
 ## DAVID:
 - Important:
+- Export
+- Unset
+- Variables
+- Wildcars
+- Expansiones
+
 - get_arg_types funciona y sin leaks
 - get_temp_asig funciona y sin leaks -> con export y con cualquier otro comando
 - Expandir ~
@@ -31,21 +46,16 @@ Minishell - Bash
 - bugs de expansiones
 
 - Secondary:
-- Hacer built-in CD
 - `echo $a && a=1`
-- invalid read `echo $SHLVL`
-- invalid read `token: =1`
-- invalid read y no asignacion correcta `export A=" Hola como estas = BIEN"`
-- Explota en `export A=1 =`
-- Memory leak `export A+=" como estas"`
+- leaks en `export USER+=@@@`
 - Expansion ha de soportar los wildcards *
 - Norminette
 - Comentarios
-- (v=1) var=2 bash: syntax error near unexpected token `var=2'
 
 ## Errores:
 - En is_double_quote -> no se pueden hacer dos expansiones seguidas cuando hay `\` antes del `$` funciona para expansiones
   individuales pero la flag seteada evita las demas expansiones
+- Deberia rehacerse todo la tokenizacion y expansion para que se consiga que cada token solo tenga una sola funcion argumento, operador(varios), Filename o heredoc comando o builtin, solo esas funciones. Nada de tokens de expansion deben marcarse antes con un bool pero no como un tipo y asi todo sera mas sencillo de gestionar.
 
 Entonces, ¿cuál es la regla?
 Paréntesis crean un subshell, y todo lo que está fuera de él (después del redireccionamiento) se trata como comandos independientes.

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_args_for_binary.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 23:03:38 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/27 21:41:32 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/10/28 20:19:10 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,8 @@ char	**get_args_for_binary(t_shell *data, t_token *tokens, int *i)
 	{
 		if (is_delimiter_type(tokens[j].type))
 			break ;
-		if (is_redir_type(tokens[j].type) || tokens[j].type == FILENAME)
+		if (is_redir_type(tokens[j].type)
+			|| tokens[j].type == FILENAME || tokens[j].type == DELIMITER)
 		{
 			j++;
 			continue ;
