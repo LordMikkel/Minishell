@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:10 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/28 16:00:02 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/10/28 19:44:56 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,7 @@ int	check_if_valid_tokens_init(t_shell *data, t_prompt *prompt, t_token *tokens)
 			return (SYNTAX_ERROR);
 		i++;
 	}
-	if (!check_parent_balance(data, prompt, tokens)
-		|| (!check_double_parent(data, tokens, prompt)))
+	if (!check_parent_balance(data, prompt, tokens))
 		return (SYNTAX_ERROR);
 	return (SUCCESS);
 }
