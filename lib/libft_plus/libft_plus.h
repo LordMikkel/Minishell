@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 16:10:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/31 17:05:44 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/02 21:39:16 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ char	*ft_substr(const char *s, unsigned int start, size_t len);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	*ft_strmapi(const char *s, char (*f)(unsigned int, char));
 char	*ft_capitalize(char *str);
+void	ft_free_multi(int counter, ...);
 
 // ------------ Bonus (Listas enlazadas) ------------
 typedef struct s_list

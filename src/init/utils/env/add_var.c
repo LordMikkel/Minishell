@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 01:05:00 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/31 16:38:00 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/02 21:52:38 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,41 @@ void	add_var(t_shell *data, char *key, char *value, int type)
 	Crea una nueva variable de entorno con 'key' y 'value' y la añade
 	al final de la lista de variables del shell. Ademas reconstruye el
 	char **envp necesario para execve
+*/
+
+void	add_var_and_envp_alloc(t_shell *data, char *key, char *value, int type)
+{
+	t_var	*new_var;
+	t_var	*last_var;
+
+	new_var = ft_calloc(1, sizeof(t_var));
+	if (!new_var)
+		return ((void)exit_error(data, ERR_MALLOC, EXIT_FAIL));
+	new_var->key = ft_strdup(key);
+	if (!new_var->key)
+		return (free(new_var), (void)exit_error(data, ERR_MALLOC, EXIT_FAIL));
+	new_var->value = ft_strdup(value);
+	if (!new_var->value)
+	{
+		ft_free_multi(2, new_var->key, new_var);
+		return ((void)exit_error(data, ERR_MALLOC, 1));
+	}
+	new_var->type = type;
+	last_var = lstlast_var(data->env.vars, 'v');
+	if (!last_var)
+		data->env.vars = new_var;
+	else
+	{
+		last_var->next = new_var;
+		new_var->prev = last_var;
+	}
+	return (data->env.size++, update_envp(data));
+}
+
+/*
+	Crea una nueva variable de entorno con 'key' y 'value' y la añade
+	al final de la lista de variables del shell de manera
+	dinamica en el heap. Ademas reconstruye el char **envp necesario para execve
 */
 
 void	add_var_and_envp(t_shell *data, char *key, char *value, int type)

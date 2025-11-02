@@ -13,16 +13,17 @@ Minishell - Bash
 🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
 🏁                                    MANDATORY                                                    🏁
 🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
-             TOTAL TEST COUNT: 883  TESTS PASSED: 798  LEAKING: 0
-                     STD_OUT: 55  STD_ERR: 42  EXIT_CODE: 36
+             TOTAL TEST COUNT: 884  TESTS PASSED: 801  LEAKING: 0
+                     STD_OUT: 52  STD_ERR: 42  EXIT_CODE: 35
                          TOTAL FAILED AND PASSED CASES:
-                                     ❌ 133
-                                     ✅ 2516
+                                     ❌ 129
+                                     ✅ 2523
 
 ## POR HACER:
 
 ## MIKEL:
-- cd
+- cd cuando borras la carpeta
+- que siempre se imprima el pwd de donde estes.
 
 ## DAVID:
 - Important:
@@ -52,12 +53,7 @@ Minishell - Bash
 ## Errores:
 - En is_double_quote -> no se pueden hacer dos expansiones seguidas cuando hay `\` antes del `$` funciona para expansiones
   individuales pero la flag seteada evita las demas expansiones
-- Deberia rehacerse todo la tokenizacion y expansion para que se consiga que cada token solo tenga una sola funcion argumento, operador(varios), Filename o heredoc comando o builtin, solo esas funciones. Nada de tokens de expansion deben marcarse antes con un bool pero no como un tipo y asi todo sera mas sencillo de gestionar.
-
-Entonces, ¿cuál es la regla?
-Paréntesis crean un subshell, y todo lo que está fuera de él (después del redireccionamiento) se trata como comandos independientes.
-
-Sin paréntesis, todo se analiza como parte del mismo comando, y los argumentos se agrupan hasta que aparece una redirección o un operador lógico (&&, ||, ;).
+- Deberia rehacerse todo la tokenizacion y expansion para que se consiga que cada token solo tenga una sola funcion argumento, operador(varios), Filename, heredoc comando o builtin, solo esas funciones. Nada de tokens de expansion deben marcarse antes con un bool pero no como un tipo y asi todo sera mas sencillo de gestionar.
 
 ## ARQUITECTURA GENERAL
 

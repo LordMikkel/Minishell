@@ -1,49 +1,3 @@
-timeout 1 grep "hola" < /dev/urandom | head -n 1
-timeout 1 cat /dev/urandom | wc -l
-timeout 1 grep "PATRON" /dev/urandom
-grep hola < /dev/urandom | wc -l
-head -c 100 /dev/urandom | base64 | wc -c
-head -c 50 /dev/urandom | hexdump | head -n 5
-head -c 1000 /dev/urandom | strings | head -n 5
-head -c 1000 /dev/urandom | cat | cat | base64 | head -n 10 | wc -l
-(head -c 100 /dev/urandom | base64 > /tmp/combo && cat /tmp/combo | wc -c) || echo "failed"
-(echo 1) & (echo 2) & (echo 3) & (echo 4) & (echo 5) & wait
-(echo 1) & ;  (echo 2) & ; (echo 3) & ; (echo 4) & ; (echo 5) & ; wait
-(echo 1); (echo 2); (echo 3); (echo 4); (echo 5)
-(echo 1) & ; (echo 2) & ; (echo 3) & ; (echo 4) & ; (echo 5) & ; wait
-|echo|
-export TEST=
-(ls) ls
-> test
-cleaer
-ls &
-echo $!
-echo $
- /usr/bin/env /bin/sh /tmp/Microsoft-MIEngine-Cmd-o1sytxmn.gkn 
-echo $$
-echo $$$
-echo $$$$
-echo $$$$$
-echo hola
-|| ls
-ls ()
-ls (
-(
-echo "hola
-como estas"
-ls "
-src"
-hola"
-echo "hola como estas"
-echo && ("
-echo && (" " )
-echo && )
-||
-()
-ls ("
-ls (" ) " )
-&&
-ls; &&
 ls; ||
 ls ||
  /usr/bin/env /bin/sh /tmp/Microsoft-MIEngine-Cmd-4aiwi00u.qak 
@@ -83,7 +37,6 @@ sdsdsf
 cleara
 cat 
 cleare
-clar
 vat
 cta
 ./minishell_tester/
@@ -98,16 +51,11 @@ cd /////
 cd /home/mikel/documents/cursus/rank03/minishell/
 cd "cmds/"
 echo $\x23
-cd /
-./min
 ./minishell
 unset path
-make
 echo &
 env
 df
-d
-f
 unset HOME
 unset PATH
 cd /bin
@@ -132,7 +80,6 @@ export A=HOLA
 echo $A
 scds
 dvs
-s
 dc
 cat
 cat | cat
@@ -153,15 +100,8 @@ cd ../../
 cd -
 cd ""
 cd 45
-export PATH=" "
 echo asd
-asd
-/bin/rm -f out
-ls|cat Makefile|>> out|cd ..
-echo $?
 cd -tmp
-pwd
-cd ..
 env --
 env 
 echo --
@@ -173,27 +113,87 @@ bash
 > $HOME
 >> $HOME
 cd $NOEXISTE
-ls
 export T=E E=c S=h L=o
 $T$E$S$L -nn
 $T$E$S$L hola
-export T="-n test1 -n test 2"
-clear
 export T="echo segfault | grep segfault"
 $T
-export T=-"n                    "
-echo $T
 export --TEST=123
 export -TEST=100
 export TES\x23T=123
 unset TES-T
 unset ============
 unset "="
-export X="  A  B  "
 /bin/echo "1"$X'2'
 export USER=
 export PATH=""
 export PATH=$HOME
-echo $PATH
 > $NOEXISTE.file
 export $VAR=file
+export X="  A  B  "
+/bin/echo "1"$X2?
+fe
+wf
+f
+stop
+dw
+stop1
+dwasd
+stop2
+cat Makefile | ls > out
+cat out
+mkdir miki
+cd miki
+rm miki
+rm -rf miki
+ls 
+ls | grep miki
+clcear
+clar
+cd tes
+cleaar
+noexiste
+./min
+rm -rf ../tes/
+se
+r
+rf
+e
+sl
+ss
+cs
+sd
+rm -rf test
+ls inc/
+ds
+make
+cd tets
+cd /
+d
+s
+c
+mkdir tes
+cd tes/
+ls
+unset PWD
+cd ,,
+export PATH=" "
+echo $PATH
+echo 1
+export T="-n test1 -n test 2"
+echo $T
+export T=-"n                    "
+echo $T | cat -e
+ls|cat Makefile|>> out|cd ..
+/bin/rm -f out
+asd
+rm -rf ../test
+cd test/
+clear
+mkdir test
+cd test
+rm -rf ../test/
+pwd 2> file
+pwd
+cd ..
+echo $?
