@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 01:17:17 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/01 20:23:35 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/02 19:06:49 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,20 @@
 	- Si falla, muestra el error.
 */
 
-int	my_pwd(void)
+int	my_pwd(t_var *vars)
 {
 	char	*pwd;
 
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
 	{
-		ft_printf_fd(STDOUT, ERR_PWD);
-		return (EXIT_FAILURE);
+		pwd = get_var_value(vars, "PWD");
+		if (!pwd)
+			return (ft_printf_fd(STDERR, ERR_PWD), EXIT_FAILURE);
+		ft_printf_fd(STDOUT, "%s\n", pwd);
+		return (0);
 	}
-	printf("%s\n", pwd);
+	ft_printf_fd(STDOUT, "%s\n", pwd);
 	free(pwd);
 	return (0);
 }

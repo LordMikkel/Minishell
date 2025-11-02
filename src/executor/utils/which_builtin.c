@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:58:35 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/31 17:07:58 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/02 14:16:11 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	basic_builtins(t_shell *data, t_token *token, t_node *node)
 	if (ft_strcmp(token->value, BUILTIN_ECHO) == 0)
 		data->exit_code = my_echo(node->args);
 	else if (ft_strcmp(token->value, BUILTIN_PWD) == 0)
-		data->exit_code = my_pwd();
+		data->exit_code = my_pwd(data->env.vars);
 	else if (ft_strcmp(token->value, BUILTIN_EXIT) == 0)
 		my_exit(data, node->args);
 	else if (ft_strcmp(token->value, BUILTIN_CD) == 0)
