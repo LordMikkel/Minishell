@@ -1,199 +1,199 @@
-touch " "
-echo 
-echo ~/documents
-cd 123
-\x1C\x1C\x1C\x1C\x1C
-\x1C\x1C\x1C
-dsd
-''
-""
-\x1C
-sdsdsf
-cat 
-vat
-cta
-./minishell_tester/
-./minishell_tester/test
-./minishell_tester/tester
-cd minishell_tester/
-cd .
-env | grep $USER
-grep
-cd /////
-/bin/ls
-cd /home/mikel/documents/cursus/rank03/minishell/
-cd "cmds/"
-echo $\x23
-./minishell
-unset path
-echo &
-env
-df
-unset PATH
-cd /bin
-ps
-cd /notsuchdir
-cd "
-hola
-como 
-estas?
-echo " hola como  estas?    "
-echo "     s              a b i a s q u e
-echo "
-echo " s a b i a s   "
-que cool
-c;ear
-fasdfsagasgasbgv as sf g
- vsv
-echo $HOLA
-var=HOLA
-echo $VAR
-export A=HOLA
-echo $A
-scds
-dvs
-dc
-cat
-cat | cat
-(cat)
-cd ./sd
-cd .sdfs
-cd ./sddfs
-cd ./dsde
-cd minishell/
-cd "doesntexist" 2>/dev/null
-cd "doesntexist"
-cd 64526
-cd 286
-cd +
-cd sdc scd
-cd ls
-cd ../../
-cd -
-cd ""
-cd 45
-echo asd
-cd -tmp
-env --
-env 
-echo --
-echo -- ls
-exit --
-cd --
-;
-bash
-> $HOME
->> $HOME
-cd $NOEXISTE
-export T=E E=c S=h L=o
-$T$E$S$L -nn
-$T$E$S$L hola
-export T="echo segfault | grep segfault"
-$T
-export --TEST=123
-export -TEST=100
-export TES\x23T=123
-unset TES-T
-unset ============
-unset "="
-/bin/echo "1"$X'2'
-export USER=
-export PATH=""
-export PATH=$HOME
-> $NOEXISTE.file
-export $VAR=file
-export X="  A  B  "
-/bin/echo "1"$X2?
-fe
-wf
-f
-stop
-dw
-stop1
-dwasd
-stop2
-cat Makefile | ls > out
-cat out
-mkdir miki
-cd miki
-rm miki
-rm -rf miki
-ls 
-ls | grep miki
-clcear
-clar
-cd tes
-cleaar
-noexiste
-./min
-rm -rf ../tes/
-se
-r
-rf
-e
-sl
-ss
-cs
-rm -rf test
-ls inc/
-ds
-cd tets
-cd /
-d
-c
-mkdir tes
-cd tes/
-cd ,,
-export PATH=" "
-echo $PATH
-echo 1
-export T="-n test1 -n test 2"
-echo $T
-export T=-"n                    "
-echo $T | cat -e
-ls|cat Makefile|>> out|cd ..
-/bin/rm -f out
-asd
-rm -rf ../test
-cd test/
-mkdir test
-cd test
-rm -rf ../test/
-pwd 2> file
-pwd
-echo $?
-\xDD\xA7
-unset HOME
-las
-cleare
-ls lib/
-D
-lc
-cleara
-sdl
-s
-l
-celar
-unset PWD
-export USER=Mikel
-export USER+="   "
-export USER=MIKEL
-export USER=mikel
-export HOME = /
-export HOME=/
-export HOME=/home
-unset PWD=hola
-exporrt PWD=hola
-export PWD=hola
-export PWD+="XXXX"
-sd
-echo hola*como estas
-make
-/bin/echo $USER =intergalaktikus miaf*szomez
-norminette
-clear
-cd ext
-ls
-cat history_minishell.txt
+cd test2
+unset pwd
+rm -rf ../../../test
 cd ..
-export USER=Ainara-Linda
+cursus/rank03/minishell/
+cd cursus/rank03/minishell/
+mikel
+Mike;
+unset SHLVL
+export A=1
+export B=2
+export C=3
+unset PWD
+Mikel
+sleep &
+sleep 10 &
+clcasc
+ad
+open Minishell.pdf
+norminette
+norminette lib
+norminette src/
+cat Makefile
+ls src/
+cd lib/libft_plus/
+cd libft
+norminette .
+/usr/bin/ls
+which echo
+/usr/bin/echo "A"
+echo "A"
+echo "\\"a\\""
+/usr/bin/echo "\\"A\\""
+/usr/bin/echo '$HOME'
+echo '$HOME"
+echo '$HOME" /usr/bin/echo '$HOME' /usr/bin/echo '$HOME' echo '$HOME"
+echo '$HOME" /usr/bin/echo'
+echo '$HOME'
+/usr/bin/echo "$HOME"
+echo "$HOME"
+echo "a" > a
+ls <
+< ls 
+echo << a
+ss
+sssssss
+echo << a > test
+sgdgdpodf
+dfhfdhd
+hh
+df
+cat test
+echo "a" >> a
+cat a
+cat | ls
+cat | cat | ls
+echo "$HOME""$PATH"
+echo "$HOME"''"$PATH"
+echo "$HOME"'$PATH'"$PATH"
+echo ""$HOME"'$PATH'"$PATH""
+echo "$H"$HOME"'$PATH'"$PATH""
+echo "$ HO"$HOME"'$PATH'"$PATH""
+echo "$ HO"$HOME"'$|PATH'"$PATH""
+echo "$|"
+echo "$?"
+echo "$."
+echo "$$"
+echo "$1"
+echo "$<"
+echo "<<$$<"
+echo "<<$PATH$<"
+echo "<<$PATH$<|||"
+echo "<<$PATH$<|'|'|"
+echo "<<$PATH$<|'|'|$HOME$HOME"
+echo "<<$PATH$<|'|'|$HOM$HOME"
+cd ../../..
+\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1Ccat
+cat
+yes
+echo -n a
+echo -n "a"
+echo -n"a"
+echo -nnnnnnn "a"
+echo -nsdfnnnnnn "a"
+echo xd -n "a"
+cd ~
+cd /
+cd ./
+cd ""
+cd testdir/
+pwd
+cd .
+mkdir testdir
+rm -rf testdir/
+exit 2
+exit oisghoi
+exit 46454
+exit -2
+exit 44 55
+export A=a
+export A=b
+export A=
+export A=""
+export A=''
+export A=' '
+export 6=d
+export =d
+export }=d
+export ""=d
+export " "=d
+export B=d
+unset
+unset A
+export A=g
+unset B
+export
+unset 7=
+echo "/home/migarrid/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/migarrid/.bin"
+/usr/bin/echo
+wc
+which wc
+export PATH="/home/migarrid/bin:/usr/local/sbin:/usr\xE2\x86\x90"
+/home/migarrid/bin:/usr/local/sbin:/usr\xE2\x86\x90
+export PATH=""/home/migarrid/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/migarrid/.bin"
+export PATH=""/home/migarrid/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/migarrid/.bin" "
+/usr/bin/env
+export PATH="/home/migarrid/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/migarrid/.bin"
+echo
+which ls
+unset PATH
+echo $PATH
+echo '$PATH'
+echo '$PATH"$HOME"'
+cd -
+export K=k P=l
+export K=k P=l 8=d
+export K=k P=l 8=d L=l
+echo << j
+\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C
+echo << j | echo << l
+\x1C\x1C\x1C
+ls -X | echo "a"
+\x1C
+\x1Cls
+echo "a" | ls -X
+ls -X
+ls -W
+echo "a" | ls -W
+ls -W | echo $?
+echo $?
+export A=1 && echo $A
+ASDAF || LS
+CLEAR
+LS
+ECHO HOLA
+EchO ho;a
+EchO hola
+> 1 | < 2 | > 3
+> 1 | > 2 | > 3
+ls | > 1 | > 2 | > 3
+ls  > 1 > 2 > 3
+cat 1 2 3
+cat 1
+cat 2
+cat 3
+grep "hola" < /dev/urandom
+ls && > 4
+> 5 && ls
+(export USER=Nada)
+export USER=Insa
+(echo subshell) > 1
+(export [=1) 2> 1
+(ls && echo hola) && echo chao
+echo bienvenido ; (ls && echo hola) && echo chao
+export A+="error"
+insa
+cd
+export SHLVL=99999999999999999
+echo $HOME.h
+<< $HOME
+<< $HOME cat
+svd
+sdv
+/home/mikel
+ $HOME
+/home
+cat << $HOME
+ls
+sd
+$HOME
+/home/migarrid
+<< $USER cat
+celar
+./min
+./minishell
+env
+$PWD
+bash
+clear

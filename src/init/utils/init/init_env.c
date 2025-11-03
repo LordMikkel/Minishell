@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 01:02:53 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/03 01:48:55 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/03 23:02:50 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ static void	init_no_env(t_shell *data)
 	add_var(data, var[0], var[1], ENV);
 	add_var(data, var[2], var[3], ENV);
 	add_var(data, var[4], var[5], ENV);
+	free(var);
 }
 
 /*
