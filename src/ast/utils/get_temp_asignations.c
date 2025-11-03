@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 18:54:11 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/10/30 01:48:26 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/03 23:10:42 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	get_correct_index(t_token *tokens, int n_tokens, int start)
 	if (start >= 1 && is_asignation_type(tokens[start - 1].type))
 	{
 		start--; //quedar en la temp_asig
-		while (is_asignation_type(tokens[start].type) && start >= 0) //iterar sobre las temp_asig
+		while (start >= 0 && is_asignation_type(tokens[start].type)) //iterar sobre las temp_asig (MIKEL: orden de las condiciones evitan segfault)
 			start--;
 		if (start < 0 && (start < n_tokens || !is_asignation_type(tokens[start].type))) //sumar un indice si es que no se esta en 0
 			start++;
