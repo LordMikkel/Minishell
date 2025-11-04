@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:42:00 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/03 22:37:12 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/04 17:07:39 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static char	*read_until_balanced(t_shell *data, char *initial_line)
 	return (free(initial_line), full_line);
 }
 
-int	terminal_readline(t_shell *data, t_prompt *prompt, t_var *vars, char *line)
+void	terminal_readline(t_shell *data, t_var *vars, char *line)
 {
 	char	*pwd[2];
 	char	*user;
@@ -92,11 +92,11 @@ int	terminal_readline(t_shell *data, t_prompt *prompt, t_var *vars, char *line)
 	pwd[0] = get_var_value(vars, "PWD");
 	user = get_var_value(vars, "USER");
 	gethostname(host, HOST_NAME_MAX + 1);
-	if (home && pwd[0] && user && host)
+	if (home && pwd[0] && user)
 	{
 		pwd[1] = pwd[0] + ft_strlen(home);
-		display_shell = ft_strjoin_multi
-			(9, FUSER, user, "@", host, FRESET, FPATH, "~", pwd[1], FEND);
+		display_shell = ft_strjoin_multi(9, FUSER, user, "@",
+			ft_strcut(host, '.'), FRESET, FPATH, "~", pwd[1], FEND);
 		if (!display_shell)
 			exit_error(data, ERR_MALLOC, EXIT_FAILURE);
 		line = ic_readline(display_shell);
@@ -104,9 +104,9 @@ int	terminal_readline(t_shell *data, t_prompt *prompt, t_var *vars, char *line)
 	}
 	else
 		line = ic_readline(DEFAULT_PROMPT);
-	prompt->input = read_until_balanced(data, line);
-	if (prompt->input)
-		ic_history_add(prompt->input);
+	data->prompt.input = read_until_balanced(data, line);
+	if (data->prompt.input)
+		ic_history_add(data->prompt.input);
 }
 
 /*
@@ -121,9 +121,10 @@ char	*receive_input(t_shell *data, t_prompt *prompt)
 
 	line = NULL;
 	if (isatty(fileno(stdin)))
-		terminal_readline(data, &data->prompt, data->env.vars, line);
+		terminal_readline(data, data->env.vars, line);
 	else
 	{
+		// ft_printf_fd(STDERR, ERR_STDIN); // se debe entregar asi para la eval
 		line = get_next_line(fileno(stdin));
 		if (!line)
 			return (NULL);

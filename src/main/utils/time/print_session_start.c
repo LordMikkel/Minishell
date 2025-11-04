@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 02:13:28 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/03 01:38:31 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/04 20:56:30 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	check_user_name_syntax(char *name, int *validation)
 
 static char	*get_user_name(char **name, int *validation)
 {
-	*name = ic_readline("\033[1m\033[1;32mIntroduce your login: \033[0m");
+	*name = ic_readline(ENTRY_USER);
 	printf("\n\n");
 	if (!*name)
 	{

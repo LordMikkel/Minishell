@@ -1,199 +1,199 @@
-mikel
-Mike;
-unset SHLVL
-export A=1
-export B=2
-export C=3
-unset PWD
-Mikel
-sleep &
-sleep 10 &
-clcasc
-ad
-open Minishell.pdf
-norminette
-norminette lib
-norminette src/
-cat Makefile
-ls src/
-cd lib/libft_plus/
-cd libft
-norminette .
-/usr/bin/ls
-which echo
-/usr/bin/echo "A"
-echo "A"
-echo "\\"a\\""
-/usr/bin/echo "\\"A\\""
-/usr/bin/echo '$HOME'
-echo '$HOME"
-echo '$HOME" /usr/bin/echo '$HOME' /usr/bin/echo '$HOME' echo '$HOME"
-echo '$HOME" /usr/bin/echo'
-echo '$HOME'
-/usr/bin/echo "$HOME"
-echo "$HOME"
-echo "a" > a
-ls <
-< ls 
-echo << a
-ss
-sssssss
-echo << a > test
-sgdgdpodf
-dfhfdhd
-hh
-df
-cat test
-echo "a" >> a
-cat a
-cat | ls
-cat | cat | ls
-echo "$HOME""$PATH"
-echo "$HOME"''"$PATH"
-echo "$HOME"'$PATH'"$PATH"
-echo ""$HOME"'$PATH'"$PATH""
-echo "$H"$HOME"'$PATH'"$PATH""
-echo "$ HO"$HOME"'$PATH'"$PATH""
-echo "$ HO"$HOME"'$|PATH'"$PATH""
-echo "$|"
-echo "$?"
-echo "$."
-echo "$$"
-echo "$1"
-echo "$<"
-echo "<<$$<"
-echo "<<$PATH$<"
-echo "<<$PATH$<|||"
-echo "<<$PATH$<|'|'|"
-echo "<<$PATH$<|'|'|$HOME$HOME"
-echo "<<$PATH$<|'|'|$HOM$HOME"
-cd ../../..
-\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1Ccat
-cat
-yes
-echo -n a
-echo -n "a"
-echo -n"a"
-echo -nnnnnnn "a"
-echo -nsdfnnnnnn "a"
-echo xd -n "a"
-cd ~
-cd /
-cd ./
-cd ""
-cd testdir/
-pwd
-cd .
-mkdir testdir
-rm -rf testdir/
-exit 2
-exit oisghoi
-exit 46454
-exit -2
-exit 44 55
-export A=a
-export A=b
-export A=
-export A=""
-export A=''
-export A=' '
-export 6=d
-export =d
-export }=d
-export ""=d
-export " "=d
-export B=d
-unset
-unset A
-export A=g
-unset B
+echo < infile
+echo < infile hola
+echo hola < infile como estas?
+cd minishell_tester/
+cd ..
+ls >> ./outfile
+ls >> outfile1 >> outfile2
+echo <"./test_files/infile" <missing <"./test_files/infile"
+echo <"infile" <missing <"infile"
+ls <missing
+echo <missing
+>| echo wtf
+exit ""
+exit something somethingv2
+exit A 2 3
+exit cd ..
+exit A 1
+exit 1 2 3
+>| file wtf
+>| file wtf hola
+>| file wtf hola como estas
+()>| file wtf hola como estas
+(echo hola) >| file wtf hola como estas
+(ls) > file cmd
+infile
+ls infile
+cat < file infile
+echo < file hola
+> ">" cmd
+rm -rf ">"
+echo $/"$/"
+ls | cat << stop | ls -la | cat << stop1 | ls | cat << stop2 | ls -la > > out | cat << stop3
+ls|cat Makefile|>> out|cd ..
+/bin/rm -f out
+asd
+echo $"42$"
+echo \\$
+echo \\$USER
+"."
+ls .
+echo .
+.
+"\x23"
+env && ls
+env s
+env | grep "_
+/bin/env | grep "_="
+(echo hola)
+(echo)
+((echo 1) | (echo 2) | (echo 3 | (echo 4)))
+(echo 1 | echo 2) | (exit 2)
+(echo 1 && echo 2) | (grep 1 && grep 2)
+echo > file
+ls > file
+echo hola > file
+ls >> file
+echo < file
+env | grep "_="
+echo $h "$h" | cat -e
+echo "$h" | cat -e
+echo test $h "$h" | cat -e
+echo "hello $USE" | cat -e
+echo "hola $H como estas" | cat -e
+<<<<<<< HEAD
+export=Hello World
+export hello world
+export Hello david
 export
-unset 7=
-echo "/home/migarrid/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/migarrid/.bin"
-/usr/bin/echo
-wc
-which wc
-export PATH="/home/migarrid/bin:/usr/local/sbin:/usr\xE2\x86\x90"
-/home/migarrid/bin:/usr/local/sbin:/usr\xE2\x86\x90
-export PATH=""/home/migarrid/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/migarrid/.bin"
-export PATH=""/home/migarrid/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/migarrid/.bin" "
-/usr/bin/env
-export PATH="/home/migarrid/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/migarrid/.bin"
-echo
-which ls
-unset PATH
-echo $PATH
-echo '$PATH'
-echo '$PATH"$HOME"'
-cd -
-export K=k P=l
-export K=k P=l 8=d
-export K=k P=l 8=d L=l
-echo << j
-\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C\x1C
-echo << j | echo << l
-\x1C\x1C\x1C
-ls -X | echo "a"
-\x1C
-\x1Cls
-echo "a" | ls -X
-ls -X
-ls -W
-echo "a" | ls -W
-ls -W | echo $?
-echo $?
-export A=1 && echo $A
-ASDAF || LS
-CLEAR
-LS
-ECHO HOLA
-EchO ho;a
-EchO hola
-> 1 | < 2 | > 3
-> 1 | > 2 | > 3
-ls | > 1 | > 2 | > 3
-ls  > 1 > 2 > 3
-cat 1 2 3
-cat 1
-cat 2
-cat 3
-grep "hola" < /dev/urandom
-ls && > 4
-> 5 && ls
-(export USER=Nada)
-export USER=Insa
-(echo subshell) > 1
-(export [=1) 2> 1
-(ls && echo hola) && echo chao
-echo bienvenido ; (ls && echo hola) && echo chao
-export A+="error"
-insa
-cd
-export SHLVL=99999999999999999
-echo $HOME.h
-<< $HOME
-<< $HOME cat
-svd
-sdv
-/home/mikel
- $HOME
-/home
-cat << $HOME
-sd
-$HOME
-/home/migarrid
-<< $USER cat
-celar
-env
-$PWD
-<< LM cat
-\x16\x16\x16
-./min
+export var=1
+export hola
+export a
+unset a
+=======
+echo test"$h" | cat -e
+>>>>>>> mikel
+echo "$USER.txt"
+echo "$USE.txt"
+>>>>>>> bd88b8461bf801d7326754aa1c691558f078c1c5
+var=1 var+=2 ls
+var=1 var+=2 ls && echo $var
+var=1 var+=2 ls && env
+(var=1 var+=2 ls && env)
 ./minishell
-bash
-ls
+exit
+ech hola
+export 123var123=hola
+expot 123var123=hola
+eca
+eca hola
+yes
+echa hola
+(ech hola && ls)
+echo $?
+echo hello''$USE.txt
+echo hello $USE.txt
+echo"".txt
+""
+"   "
+"  "
+''
+' '
+echa
+ech
+echa
+" "
+ec
+cp
+epor
+expor
+b
+m\xC3\xA7
+m
+cp expor pws
+cp expor pws && pwa
+q
+w
+e
+r
+t
+u
+i
+echo""$USE.txt
+echo Hello $USE.txt
+echo Hello$USE.txt
+echo $USE.txt" "hola
+echo $USE.txt""hola
+echo "hola"""como estas
+ech+
+echo" ".txt
+echo" "$USE.txthola
+echo" "txt
+echo test$h "$h"
+echo hola $USE como estas
+echo "hola $USER como estas"
+echo "hola $USE como estas"
+echo test$h "$h" | cat -e
+hola
+d
+eport
+pw
+pwe
+a
+echo hola
+ex
+c
+echo $USE
+echo $USE hola
+echo "hello $USE"
+echo "hello $USE como vas"?
+echo hello $USE como vas?
+echo "Hello $USER.txt"
+echo $USER" "hello" ".txt
+echo $USE" "hello" ".txt
+echo "Hello $USE.txt"
+cler
+echo" "$USE.txt
+echo $var
+va=1 && echo $va && ls && grep "pdf"
+va=1 && echo $va && ls && grep "Makefile"
+la
+unset var
+echo $USE.txt
+va=1 && echo $va && ls && pwd
+var=1 && echo $var
+vas=1 echo hola && echo $vas
+~
+echo ~
+echo $USER ~
+echo $USER~
+lear
+pwd
+cd 123
+l
+clea
 make
-(sleep 10)
-sleep
-sleep 10
+echo $$
+cd $PWD hi
+cd $PWD
+echo $USER
+ls *file
+ls *file*
+ls *md
+ls *.md
+var=1 echo hola && echo $var
+echo "Hola $USER, tu home es $HOME"
+echo $HOME
+echo "Ruta: $PATH/bin"
+export BASE_DIR=$HOME/projects
+export BASE_DIR=$HOME
+env
+cd $BASE_DIR && ls
+cd $NO_exist
+cd $no_exist
+cd $noexist
+ls
 clear
+echo *pdf
+echo
+ls *pdf

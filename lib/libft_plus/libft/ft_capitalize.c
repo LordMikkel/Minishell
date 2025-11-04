@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:47:15 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/31 17:05:59 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/04 16:47:51 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*ft_capitalize(char *str)
 {
 	size_t	i;
-	int	 	start;
+	int		start;
 
 	if (!str)
 		return (NULL);
