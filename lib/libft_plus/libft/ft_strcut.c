@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_multi.c                                    :+:      :+:    :+:   */
+/*   ft_strcut.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/02 21:25:13 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/04 16:47:58 by migarrid         ###   ########.fr       */
+/*   Created: 2025/11/04 16:58:49 by migarrid          #+#    #+#             */
+/*   Updated: 2025/11/04 17:09:52 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft_plus.h"
 
-void	ft_free_multi(int counter, ...)
+char	*ft_strcut(char *str, int c)
 {
-	int		i;
-	va_list	args;
-	void	**pointer_address;
+	char	*chr;
 
-	if (counter <= 0)
-		return ;
-	i = 0;
-	va_start(args, counter);
-	while (i < counter)
-	{
-		pointer_address = va_arg(args, void **);
-		if (pointer_address != NULL && *pointer_address != NULL)
-		{
-			free(*pointer_address);
-			*pointer_address = NULL;
-		}
-		i++;
-	}
-	va_end(args);
+	if (!str || !*str)
+		return (NULL);
+	chr = ft_strchr(str, c);
+	if (chr)
+		*chr = '\0';
+	return (str);
 }

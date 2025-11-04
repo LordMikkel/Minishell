@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/28 19:51:37 by migarrid          #+#    #+#              #
-#    Updated: 2025/11/02 21:39:46 by migarrid         ###   ########.fr        #
+#    Updated: 2025/11/04 17:07:04 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,6 +71,7 @@ SRCS =	libft/ft_isalpha.c \
 		libft/ft_strjoin_multi.c \
 		libft/ft_strtrim.c \
 		libft/ft_strfilter_c.c\
+		libft/ft_strcut.c \
 		libft/ft_split.c \
 		libft/ft_itoa.c \
 		libft/ft_strmapi.c \
