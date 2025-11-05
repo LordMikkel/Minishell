@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:16:45 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/29 18:10:31 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/05 23:21:19 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ int	check_semicolon(t_shell *data, t_prompt *prompt, t_token *tokens, int i)
 				|| tokens[i - 1].type == WILDCAR
 				|| tokens[i - 1].type == DOUBLE_QUOTE
 				|| tokens[i - 1].type == SINGLE_QUOTE
-				|| tokens[i - 1].type == PAREN_CLOSE))
+				|| tokens[i - 1].type == PAREN_CLOSE
+				|| tokens[i - 1].type == DELIMITER
+				|| tokens[i - 1].type == FILENAME
+				|| is_asignation_type(tokens[i - 1].type)))
 		{
 			syntax_error(data, ERR_SYNTAX, EXIT_USE, tokens[i - 1].value);
 			return (SYNTAX_ERROR);

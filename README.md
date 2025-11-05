@@ -4,26 +4,24 @@ Minishell - Bash
 🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
 🏁                                     BONUS                                                       🏁
 🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
-             TOTAL TEST COUNT: 65  TESTS PASSED: 43  LEAKING: 0
-                     STD_OUT: 20  STD_ERR: 14  EXIT_CODE: 7
+             TOTAL TEST COUNT: 65  TESTS PASSED: 44  LEAKING: 0
+                     STD_OUT: 19  STD_ERR: 12  EXIT_CODE: 6
                          TOTAL FAILED AND PASSED CASES:
-                                     ❌ 41
-                                     ✅ 154
+                                     ❌ 37
+                                     ✅ 158
 
 🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
 🏁                                    MANDATORY                                                    🏁
 🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
-             TOTAL TEST COUNT: 885  TESTS PASSED: 801  LEAKING: 0
-                     STD_OUT: 52  STD_ERR: 43  EXIT_CODE: 35
+             TOTAL TEST COUNT: 883  TESTS PASSED: 802  LEAKING: 0
+                     STD_OUT: 51  STD_ERR: 41  EXIT_CODE: 35
                          TOTAL FAILED AND PASSED CASES:
-                                     ❌ 130
-                                     ✅ 2525
+                                     ❌ 127
+                                     ✅ 2522
 
 ## POR HACER:
 
 ## MIKEL:
-- cd cuando borras la carpeta
-- que siempre se imprima el pwd de donde estes.
 
 ## DAVID:
 - Important:
@@ -75,10 +73,17 @@ Direct leak of 10 byte(s) in 1 object(s) allocated from:
 SUMMARY: AddressSanitizer: 10 byte(s) leaked in 1 allocation(s).
 
 ## Errores:
-- En is_double_quote -> no se pueden hacer dos expansiones seguidas cuando hay `\` antes del `$` funciona para expansiones
-  individuales pero la flag seteada evita las demas expansiones
-- Al expandir una variable que tenga () deberia volverse a tokenizar
+- En is_double_quote -> no se pueden hacer dos expansiones seguidas cuando hay `\` antes del `$` funciona para expansiones individuales pero la flag seteada evita las demas expansiones
+- export no acepta todas las posibilidades de entrada por la menera en la que tokenizamos, tampoco export esta remplazando su variable de la misma manera porque a veces una variabel la entraga en varios argumentos.
+- Al expandir una variable que tenga () deberia volverse a tokenizar, sucede que cuando tenemos una subshell en una variable y la expande no ha pasado por su proceso de tokenizacion y no es capaz de realizar el comando.
 - Deberia rehacerse todo la tokenizacion y expansion para que se consiga que cada token solo tenga una sola funcion argumento, operador(varios), Filename, heredoc comando o builtin, solo esas funciones. Nada de tokens de expansion deben marcarse antes con un bool pero no como un tipo y asi todo sera mas sencillo de gestionar.
+- tokenizamos los saltos de linea como ";" cuando bash depende del contexto lo hace de otra manera, en archivos si en linea de comando no
+- funciones prohibidas que usamos:
+localtime
+difftime
+mkdir
+gethostname
+getpid
 
 ## ARQUITECTURA GENERAL
 
