@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:10 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/05 00:18:59 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/05 23:21:40 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	get_tokens(t_shell *data, t_prompt *prompt, char *input)
 	'&&' y '||'. Comprueba que estén correctamente colocados y emparejados.
 */
 
-int	check_if_valid_tokens_init(t_shell *data, t_prompt *prompt, t_token *tokens)
+int	check_if_valid_tokens(t_shell *data, t_prompt *prompt, t_token *tokens)
 {
 	int	i;
 
@@ -67,7 +67,8 @@ int	check_if_valid_tokens_init(t_shell *data, t_prompt *prompt, t_token *tokens)
 			|| (!check_single_balance(data, prompt, tokens))
 			|| (!check_background(data, prompt, tokens, i))
 			|| (!check_semicolon(data, prompt, tokens, i))
-			|| (!check_cmd_syntax(data, prompt, tokens, i)))
+			|| (!check_cmd_syntax(data, prompt, tokens, i))
+			|| (!check_cmd_externs(data, prompt, tokens, i)))
 			return (SYNTAX_ERROR);
 		i++;
 	}
@@ -76,25 +77,11 @@ int	check_if_valid_tokens_init(t_shell *data, t_prompt *prompt, t_token *tokens)
 	return (SUCCESS);
 }
 
-int	check_if_valid_tokens_end(t_shell *data, t_prompt *prompt, t_token *tokens)
-{
-	int	i;
-
-	i = 0;
-	while (i < prompt->n_tokens)
-	{
-		if (!check_cmd_externs(data, prompt, tokens, i))
-			return (SYNTAX_ERROR);
-		i++;
-	}
-	return (SUCCESS);
-}
-
 int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 {
 	allocate_tokens(data, prompt);
 	get_tokens(data, prompt, input);
-	if (!check_if_valid_tokens_init(data, prompt, prompt->tokens))
+	if (!check_if_valid_tokens(data, prompt, prompt->tokens))
 		return (SYNTAX_ERROR);
 
 	// print_tokens_debug(prompt);
@@ -108,7 +95,7 @@ int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 
 	// print_tokens_debug(prompt);
 
-	if (!check_if_valid_tokens_end(data, prompt, prompt->tokens))
+	if (!check_if_valid_tokens(data, prompt, prompt->tokens))
 		return (SYNTAX_ERROR);
 
 	// print_tokens_debug(prompt);

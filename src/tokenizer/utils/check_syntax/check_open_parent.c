@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 22:40:41 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/10/29 18:10:45 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/05 22:26:03 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ static int	is_valid_before_open(t_token *tokens, int i)
 		return (FALSE);
 	type = tokens[i - 1].type;
 	if (type == PAREN_CLOSE || type == COMMAND || type == WORD
-		|| type == BUILT_IN || type == EXPANSION)
+		|| type == BUILT_IN || type == EXPANSION || is_redir_type(type)
+		|| is_asignation_type(type))
 		return (TRUE);
 	return (FALSE);
 }
