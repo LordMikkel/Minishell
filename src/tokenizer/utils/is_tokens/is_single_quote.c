@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:47 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/29 18:09:14 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/06 03:35:16 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int	is_special_word_s(t_shell *data, t_prompt *prompt, const char *str, int *i)
 	int		start_end[2];
 
 	flag = FALSE;
-	if (*i + 1 < (int)ft_strlen(str) && ft_strchr(str + *i, '\''))
+	if (*i + 1 <= (int)ft_strlen(str) && ft_strchr(str + *i, '\''))
 	{
 		start_end[0] = *i;
 		while (str[*i] != '\0' && !ft_is_dead_s(str, i, '\'', &flag))

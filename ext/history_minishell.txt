@@ -1,31 +1,3 @@
-u
-i
-echo""$USE.txt
-echo Hello $USE.txt
-echo Hello$USE.txt
-echo $USE.txt" "hola
-echo $USE.txt""hola
-echo "hola"""como estas
-ech+
-echo" ".txt
-echo" "$USE.txthola
-echo" "txt
-echo test$h "$h"
-echo hola $USE como estas
-echo "hola $USER como estas"
-echo "hola $USE como estas"
-echo test$h "$h" | cat -e
-hola
-eport
-pw
-pwe
-a
-echo hola
-ex
-c
-echo $USE
-echo $USE hola
-echo "hello $USE"
 echo "hello $USE como vas"?
 echo hello $USE como vas?
 echo "Hello $USER.txt"
@@ -75,7 +47,6 @@ echo
 ls *pdf
 stop
 STOP
-celar
 $PWD
 export CMD=(ls)
 export CMD="(ls)"
@@ -129,7 +100,6 @@ env | grep PATH
 clar
 cear
 cls
-<< ""
 grep hola < /dev/random | wc -l
 \\"
 ls ; ls
@@ -162,9 +132,6 @@ env | grep USER
 export $USER=" "
 /bin/echo $USER
 export USER=" "
-export mini_test=" "
-/bin/echo $mini_test
-env | grep mini_test
 \x1C\x1C\x1C\x1Cclear
 ls\nls
 ls\nlsclear
@@ -188,12 +155,45 @@ sdvs
 d
 \x1C
 cat
-sleep 10
 \x1C\x1C\x1C
-""
 cleare
-echo $?
 (sleep 10)
 cat 
 ls
+sleep 10
+echo "hola"" ""como''""' '""estas
+echo "hola"" ""como''""' '""estas ' "
+echo "hola"" ""como"''""' '""estas
+ls ''
+''
+""
+<< ""
+export A=""
+exit ""
+exit sd
+celar
+ls | "" | ls | ""
+export test=
+export test=""
+baash
+export -TEST=123
+bash
+/bin/echo $HOME
+unset $HOME
+unset $""
+export mini_test=" "
+/bin/echo $mini_test
+env | grep mini_test
 clear
+export TES$?T=123
+export TEST=
+echo 1
+echo $PATH
+echo $?
+export PATH=" "
+echo $PATH | /bin/cat -e
+export tmp_test="/bin/echo 42"
+export tmp_test="ls"
+export tmp_test="ls a"
+export tmp_test="/bin/ls"
+$tmp_test
