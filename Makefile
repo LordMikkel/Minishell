@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/11/06 16:56:44 by migarrid         ###   ########.fr        #
+#    Updated: 2025/11/06 22:39:55 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,7 +80,8 @@ CLEAR 				= \r\033[K
 #                               Source File                                    #
 # **************************************************************************** #
 SRCS =				main/main.c \
-					main/utils/receive_input.c \
+					main/utils/input/receive_input.c \
+					main/utils/input/read_until_balanced.c \
 					main/utils/time/print_session_start.c \
 					main/utils/time/print_session_end.c \
 					main/utils/time/print_time_of_day.c \

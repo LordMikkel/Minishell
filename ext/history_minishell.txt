@@ -1,48 +1,5 @@
-ls *pdf
-stop
-STOP
-$PWD
-export CMD=(ls)
-export CMD="(ls)"
-export CMD=ls
-$CMD
-env 
-export PATH=/home/mikel/.vscode-server/bin/7d842fb85a0275a4a8e4d7e040d2625abbf7f084/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.2/bin:/mnt/c/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.2/libnvvp:/mnt/c/Program Files (x86)/Common Files/Intel/Shared Libraries/redist/intel64/compiler:/mnt/c/Program Files (x86)/Common Files/Intel/Shared Libraries/redist/intel64_win/compiler:/mnt/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/iCLS/:/mnt/c/Program Files/Intel/Intel(R) Management Engine Components/iCLS/:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/DAL:/mnt/c/Program Files/Intel/Intel(R) Management Engine Components/DAL:/mnt/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/IPT:/mnt/c/Program Files/Intel/Intel(R) Management Engine Components/IPT:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files (x86)/QuickTime/QTSystem/:/mnt/c/Program Files/NVIDIA Corporation/Nsight Compute 2020.3.1/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/WezTerm:/mnt/c/Users/mikel/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/mikel/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/mikel/.lmstudio/bin:/mnt/c/Users/mikel/AppData/Local/Microsoft/WindowsApps:/home/mikel/.local/bin:/home/mikel/.bin:/home/mikel/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/home/mikel/.bin
-export PATH=/home/mikel/.vscode-server/bin/7d842fb85a0275a4a8e4d7e040d2625abbf7f084/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.2/bin:/mnt/c/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.2/libnvvp:/mnt/c/Program Files (x86)/Common Files/Intel/Shared Libraries/redist/intel64/compiler:/mnt/c/Program Files (x86)/Common Files/Intel/Shared Libraries/redist/intel64_win/compiler:/mnt/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/iCLS/:/mnt/c/Program Files/Intel/Intel(R) Management Engine Components/iCLS/:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/DAL:/mnt/c/Program Files/Intel/Intel(R) Management Engine Components/DAL:/mnt/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/IPT:/mnt/c/Program Files/Intel/Intel(R) Management Engine Components/IPT:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files (x86)/QuickTime/QTSystem/:/mnt/c/Program Files/NVIDIA Corporation/Nsight Compute 2020.3.1/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/WezTerm:/mnt/c/Users/mikel/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/mikel/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/mikel/.lmstudio/bin:/mnt/c/Users/mikel/AppData/Local/Microsoft/WindowsApps:/home/mikel/.local/bin:/home/mikel/.bin:/home/mikel/.vsc
-export PATH=/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-export PATH=/bin
-export PATH=/bin/
-echo -n sd
-echo -n lala
-<< STOP
-\x1C\x1C\x1C\x1C\x1C\x1C\x1C
-\x1C\x1C\x1C\x1C\x1Cls
-\x1C\x1Cclear
-\x1Cls
-<< STOp
-sdl
-ls ||   
-ld
-unset PATH
-export PATH="/home/migarrid/Documents/cursus/minishell"
-ls ||
-ls || ""
-ls | ""
-ls | 
-<<'
-<<' '
-<< '   '
-<< '    '
-claer
-<< ' ls    '
-<<
-<< LS
-((ls) && ls)
-ds
-LM
 << '
 << ' '
-ls && 
 ls &&  ""
 (> ls)
 (a=1)
@@ -52,7 +9,6 @@ cls
 grep hola < /dev/random | wc -l
 \\"
 ls ; ls
-ls && ls
 echo '\\h'
 echo '\\\\'h'
 echo '\\\\'h'  '
@@ -96,15 +52,12 @@ a a a a a a a a a a a a a  a a a a a a a a a a a
 ls ls
 sas
 acsa acas
-sds
 sdvcs
 vsdvsd
 sdvs
-d
 \x1C
 cat
 \x1C\x1C\x1C
-cleare
 (sleep 10)
 cat 
 sleep 10
@@ -141,7 +94,6 @@ export tmp_test="ls"
 export tmp_test="ls a"
 export tmp_test="/bin/ls"
 $tmp_test
-sd
 /bin/
 where /../bin/ls
 a=1
@@ -160,7 +112,6 @@ echo $var
 export 
 (echo a && exit 1) && (echo b && exit 1) || (echo c && exit 0)(echo a && exit 1) && (echo b && exit 1) || (echo c && exit 0)
 ls &&        ls
-ls &&
 ls && ""
 /bin
 ./minishell
@@ -176,7 +127,6 @@ unseth PATh
 unseth PATH
 where is /bin/
 where is /../bin/
-ls |
 a="'"
 echo $a
 export a=1 b=2 c=3
@@ -194,6 +144,56 @@ exit 999999999999999999999999999999999999999999999999999999999999999999999999999
 exit 9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
 celar
 exit 99999999999999999999999999999999999999999999
-clear
-ls
+dc
+cleare
+matriz
+matrix
+xmatriz
+btop
+ncdu ~
+fernanda
+lsls
+cd minishell/
+pwd
+cd ..
+cloc Makefile
+ncdu
+cmatriz
+cmatrix
+cmd
+make leaks
+\xC0Z\xA9\x04
+sds
+cs
+sdc
+d
+va
+ev
+v 
 cd /
+(ls && echo hola | echo "
+nada"
+(ls && echo hola | echo " nada" )
+(ls && echo hola | echo " nada" ) ||
+(ls && echo hola | echo " nada" ) || ls
+ls |
+ls | ls
+ls && ls
+ls &&  s
+echo '"
+echo '" " '
+clear
+lls
+ls ||
+ls
+ls || ls
+ls &&
+sd
+ls &&  sd
+()
+ls &&  ()
+ls && 
+echo "
+hola"
+wc -l
+ls &&  ( echo " hola" | wc -l )
