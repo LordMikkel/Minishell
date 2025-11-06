@@ -672,7 +672,7 @@ static bool tty_init_raw(tty_t* tty)
   // control: allow 8-bit
   tty->raw_ios.c_cflag |= CS8;
   // local: no echo, no line-by-line (canonical), no extended input processing, no signals for ^z,^c
-  tty->raw_ios.c_lflag &= ~(unsigned long)(ECHO | ICANON | IEXTEN);
+  tty->raw_ios.c_lflag &= ~(unsigned long)(ECHO | ICANON | IEXTEN | ISIG);
   // 1 byte at a time, no delay
   tty->raw_ios.c_cc[VTIME] = 0;
   tty->raw_ios.c_cc[VMIN] = 1;
