@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/05 00:24:08 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/06 22:45:46 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,9 @@ void	init_ic_readline(void);
 /* ************************************************************************** */
 /*                               Tokenizer                                    */
 /* ************************************************************************** */
-char	*receive_input(t_shell *data, t_prompt *prompt);
 int		tokenizer(t_shell *data, t_prompt *prompt, char *input);
+char	*receive_input(t_shell *data, t_prompt *prompt);
+char	*read_until_balanced(t_shell *data, char *initial_line);
 void	get_tokens(t_shell *data, t_prompt *prompt, char *input);
 int		add_token(t_shell *data, t_prompt *prompt, char *value, int type);
 
@@ -149,6 +150,7 @@ int		syntax_error(t_shell *data, const char *error, int exit_code, ...);
 
 // BALANCE
 int		get_or_and_balance(t_prompt *prompt, t_token *tokens);
+int		get_pipe_balance(t_prompt *prompt, t_token *tokens);
 int		get_single_quotes_balance(t_prompt *prompt, t_token *tokens);
 int		get_double_quotes_balance(t_prompt *prompt, t_token *tokens);
 int		get_paren_balance(t_prompt *prompt, t_token *tokens);

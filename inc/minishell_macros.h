@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:23:16 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/06 17:10:00 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/06 22:48:35 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,11 @@
 # define BALANCE					0
 # define UNBALANCE					-1
 # define NONE						0
-# define CMD_BALANCE				1
-# define QUOTE_BALANCE				1
-# define PAREN_BALANCE				1
-# define GLOBAL_BALANCE				3
+# define AND_OR_BALAN				1
+# define PIPE_BALAN					1
+# define QUOTE_BALAN				1
+# define PAREN_BALAN				1
+# define GLOBAL_BALANCE				4
 # define CANT_CONTINUE				-1
 # define KEEP_TRYING				1
 
