@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:23:16 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/06 22:48:35 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/08 16:54:56 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,7 @@ Exec format error\n"
 # define ERR_EXPORT			"minishell: export: `%s': not a valid identifier\n"
 # define ERR_UNSET			"minishell: unset: `%s': not a valid identifier\n"
 # define ERR_EXIT_NUMERIC	"minishell: exit: %s: numeric argument required\n"
-# define ERR_MAX_INT		"minishell: exit: %s: interger argument required\n"
+# define ERR_LIMIT_LONG		"minishell: exit: %s: long argument required\n"
 # define ERR_EXIT_TOO_MANY	"minishell: exit: too many arguments\n"
 # define ERR_ENV		"minishell: env: does not accept arguments\n"
 # define ERR_PWD		"minishell: pwd: error retrieving current directory\n"

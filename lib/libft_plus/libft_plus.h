@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 16:10:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/04 17:07:08 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/08 16:07:22 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int		ft_tolower(int c);
 int		ft_atoi(const char *nptr);
 long	ft_atol(const char *nptr);
 bool	ft_atoi_range(const char *nptr);
+bool	ft_atol_range(const char *nptr);
 long	ft_strtol(const char *nptr, int base);
 float	ft_strtof(const char *nptr);
 float	ft_square(float x);
