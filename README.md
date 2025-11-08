@@ -4,20 +4,20 @@ Minishell - Bash
 🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
 🏁                                     BONUS                                                       🏁
 🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
-             TOTAL TEST COUNT: 65  TESTS PASSED: 44  LEAKING: 0
+             TOTAL TEST COUNT: 68  TESTS PASSED: 47  LEAKING: 0
                      STD_OUT: 19  STD_ERR: 12  EXIT_CODE: 6
                          TOTAL FAILED AND PASSED CASES:
                                      ❌ 37
-                                     ✅ 158
+                                     ✅ 167
 
 🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
 🏁                                    MANDATORY                                                    🏁
 🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
-            TOTAL TEST COUNT: 894  TESTS PASSED: 813  LEAKING: 0
-                     STD_OUT: 49  STD_ERR: 42  EXIT_CODE: 37
+             TOTAL TEST COUNT: 894  TESTS PASSED: 813  LEAKING: 0
+                     STD_OUT: 50  STD_ERR: 42  EXIT_CODE: 37
                          TOTAL FAILED AND PASSED CASES:
-                                     ❌ 128
-                                     ✅ 2554
+                                     ❌ 129
+                                     ✅ 2553
 
 ## POR HACER:
 
