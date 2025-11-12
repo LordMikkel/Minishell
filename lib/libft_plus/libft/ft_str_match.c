@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_or.c                                            :+:      :+:    :+:   */
+/*   ft_str_match.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/11 19:43:54 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/10 12:01:32 by davdiaz-         ###   ########.fr       */
+/*   Created: 2025/11/03 14:30:13 by davdiaz-          #+#    #+#             */
+/*   Updated: 2025/11/12 22:09:25 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../inc/minishell.h"
+#include "../libft_plus.h"
 
-/*
-	Detecta el operador lógico '||' y añade un token de tipo OR.
-	Avanza el índice para no volver a procesar el token.
-*/
-
-void	is_or(t_shell *data, t_prompt *prompt, const char *str, int *i)
+char	*ft_str_match(char *str, char *word_to_find)
 {
-	if (!ft_strncmp(str + *i, "||", 2))
+	int	i;
+	int	j;
+
+	i = 0;
+	if (!*word_to_find)
+		return (NULL);
+	while (str[i] != '\0')
 	{
-		add_token(data, prompt, "||", OR);
-		(*i)++;
-		(*i)++;
+		j = 0;
+		while (word_to_find[j] && str[i + j] == word_to_find[j])
+			j++;
+		if (word_to_find[j] == '\0')
+			return ((char *)&str[i]);
+		i++;
 	}
+	return (NULL);
 }

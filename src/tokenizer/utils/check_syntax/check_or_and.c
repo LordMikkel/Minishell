@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 22:39:47 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/09/02 19:45:48 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/04 13:37:00 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 	command not found: cmd && cmd success;      cmd && word fails;
 	word && cmd fails and success;  word && word fails;
 	syntax error near unexpected token `&&':    nothing && nothing fails;
-	nothing && cmd fails;*/
+	nothing && cmd fails;
+*/
 
 int	check_or_and(t_shell *data, t_prompt *prompt, t_token *tokens, int i)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   adjust_range_tokens.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 19:57:07 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/12 22:48:16 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/12 18:23:12 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

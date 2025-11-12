@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 01:02:53 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/27 18:26:55 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/12 19:14:27 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,22 @@
  * Devuelve:
  *	- value (char*) si se encuentra la variable
  *	- NULL si no existe
- */
+*/
 
 char *get_var_value(t_var *vars, const char *key)
 {
 	t_var *current;
 
 	if (!vars || !key)
-		return NULL;
-
+		return (NULL);
 	current = vars;
 	while (current)
 	{
 		if (current->key && ft_strcmp(current->key, key) == 0)
-			return current->value;
+			return (current->value);
 		current = current->next;
 	}
-	return NULL;
+	return (NULL);
 }
 
 /*

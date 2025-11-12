@@ -6,7 +6,7 @@
 #    By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/10/31 16:43:02 by davdiaz-         ###   ########.fr        #
+#    Updated: 2025/11/10 12:25:05 by davdiaz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ CC					= cc
 #WFLAGS				= -Wall -Wextra -Werror
 DFLAGS				= -g
 #OFLAGS				= -Ofast -march=native -flto
-#SFLAGS				= -fsanitize=address,leak
+##SFLAGS				= -fsanitize=address,leak
 DEPFLAGS			= -MMD -MP
 
 # **************************************************************************** #
@@ -91,6 +91,7 @@ SRCS =				main/main.c \
 					init/utils/init/init_arg.c \
 					init/utils/init/init_readline.c \
 					init/utils/init/init_exec.c \
+					init/utils/init/init_builtins.c \
 					init/utils/tokens/alloc_tokens.c \
 					init/utils/tokens/add_token.c \
 					init/utils/env/add_var.c \
@@ -148,9 +149,11 @@ SRCS =				main/main.c \
 					tokenizer/utils/trasnform_tokens/transform_asig_to_asig_plus.c \
 					tokenizer/utils/trasnform_tokens/transform_asig_to_temp_asig.c \
 					tokenizer/utils/trasnform_tokens/transform_word_to_file.c \
+					tokenizer/utils/trasnform_tokens/transform_word_to_wildcard.c \
 					tokenizer/utils/trasnform_tokens/transform_command_builtin_lowercase.c \
 					tokenizer/utils/trasnform_tokens/transform_cmd_to_built_in.c \
 					tokenizer/utils/cmd_sugestion/cmd_correction.c \
+					tokenizer/utils/cmd_sugestion/cmd_correction_utils.c \
 					expansion/expansion.c \
 					expansion/send_tokens_for_asig.c \
 					expansion/utils/find_swap/copy_key.c \
@@ -159,6 +162,7 @@ SRCS =				main/main.c \
 					expansion/utils/find_swap/find_key_in_list.c \
 					expansion/utils/find_swap/expand_empty_str.c \
 					expansion/utils/find_swap/is_it_symbol.c \
+					expansion/utils/find_swap/find_tilde_value.c \
 					expansion/utils/find_swap/wildcards/process_wildcards.c \
 					expansion/utils/find_swap/wildcards/count_matches.c \
 					expansion/utils/find_swap/wildcards/find_matches.c \

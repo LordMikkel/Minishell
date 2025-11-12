@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/31 21:34:10 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/07 18:20:45 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,7 @@ static int	ft_bash_w(const char *str, int *i, int *flag)
 
 	c = str[*i];
 	if (c == '<' || c == '>' || c == '&' || c == '|'
-		|| c == '(' || c == ')' || c == '#'
-		|| c == '*' || c == '`' || c == ';')
+		|| c == '(' || c == ')' || c == '#' || c == '`' || c == ';')
 		return (1);
 	if (str[*i] == '\\' && str[*i + 1] != '\0')
 	{
@@ -98,6 +97,7 @@ static int	ft_bash_w(const char *str, int *i, int *flag)
 	- Limpia '\' con cleanner_slash.
 	- Crea token WORD y detecta si requiere NO_SPACE antes del siguiente token.
 */
+
 void	is_word(t_shell *data, t_prompt *prompt, const char *str, int *i)
 {
 	int		flag;

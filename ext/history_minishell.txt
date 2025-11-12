@@ -1,199 +1,199 @@
-echo < infile
-echo < infile hola
-echo hola < infile como estas?
-cd minishell_tester/
+echo ~ hola
+echo ~+ hola
+~ko
+echo "hello ~ adios"
+echo "hello ~+ adios"
+~ hola
+~+ hola
+~+ && ls
+/Users/DAVID:
+/Users/DAVID
+ls && ~
+/root
+lkn
+unset HOME
+cl
 cd ..
-ls >> ./outfile
-ls >> outfile1 >> outfile2
-echo <"./test_files/infile" <missing <"./test_files/infile"
-echo <"infile" <missing <"infile"
-ls <missing
-echo <missing
->| echo wtf
-exit ""
-exit something somethingv2
-exit A 2 3
-exit cd ..
-exit A 1
-exit 1 2 3
->| file wtf
->| file wtf hola
->| file wtf hola como estas
-()>| file wtf hola como estas
-(echo hola) >| file wtf hola como estas
-(ls) > file cmd
-infile
-ls infile
-cat < file infile
-echo < file hola
-> ">" cmd
-rm -rf ">"
-echo $/"$/"
-ls | cat << stop | ls -la | cat << stop1 | ls | cat << stop2 | ls -la > > out | cat << stop3
-ls|cat Makefile|>> out|cd ..
-/bin/rm -f out
-asd
-echo $"42$"
-echo \\$
-echo \\$USER
-"."
-ls .
-echo .
-.
-"\x23"
-env && ls
-env s
-env | grep "_
-/bin/env | grep "_="
-(echo hola)
-(echo)
-((echo 1) | (echo 2) | (echo 3 | (echo 4)))
-(echo 1 | echo 2) | (exit 2)
-(echo 1 && echo 2) | (grep 1 && grep 2)
-echo > file
-ls > file
-echo hola > file
-ls >> file
-echo < file
-env | grep "_="
-echo $h "$h" | cat -e
-echo "$h" | cat -e
-echo test $h "$h" | cat -e
-echo "hello $USE" | cat -e
-echo "hola $H como estas" | cat -e
-<<<<<<< HEAD
-export=Hello World
-export hello world
-export Hello david
-export
-export var=1
-export hola
-export a
-unset a
-=======
-echo test"$h" | cat -e
->>>>>>> mikel
-echo "$USER.txt"
-echo "$USE.txt"
->>>>>>> bd88b8461bf801d7326754aa1c691558f078c1c5
-var=1 var+=2 ls
-var=1 var+=2 ls && echo $var
-var=1 var+=2 ls && env
-(var=1 var+=2 ls && env)
-./minishell
-exit
-ech hola
-export 123var123=hola
-expot 123var123=hola
-eca
-eca hola
-yes
-echa hola
-(ech hola && ls)
-echo $?
-echo hello''$USE.txt
-echo hello $USE.txt
-echo"".txt
-""
-"   "
-"  "
-''
-' '
-echa 
-ech
-echa
-" "
-ec
-cp
-epor
-expor
-b
-m\xC3\xA7
-m
-cp expor pws
-cp expor pws && pwa
-q
-w
-e
-r
-t
-u
-i
-echo""$USE.txt
-echo Hello $USE.txt
-echo Hello$USE.txt
-echo $USE.txt" "hola
-echo $USE.txt""hola
-echo "hola"""como estas
-ech+
-echo" ".txt
-echo" "$USE.txthola
-echo" "txt
-echo test$h "$h"
-echo hola $USE como estas
-echo "hola $USER como estas"
-echo "hola $USE como estas"
-echo test$h "$h" | cat -e
-hola
-d
-eport
-pw
-pwe
-a
-echo hola
-ex
-c
-echo $USE
-echo $USE hola
-echo "hello $USE"
-echo "hello $USE como vas"?
-echo hello $USE como vas?
-echo "Hello $USER.txt"
-echo $USER" "hello" ".txt
-echo $USE" "hello" ".txt
-echo "Hello $USE.txt"
-cler
-echo" "$USE.txt
-echo $var
-va=1 && echo $va && ls && grep "pdf"
-va=1 && echo $va && ls && grep "Makefile"
-la
-unset var
-echo $USE.txt
-va=1 && echo $va && ls && pwd
-var=1 && echo $var
-vas=1 echo hola && echo $vas
-~
-echo ~
-echo $USER ~
-echo $USER~
-lear
-pwd
-cd 123
-l
-clea
-make
-echo $$
-cd $PWD hi
-cd $PWD
-echo $USER
-ls *file
-ls *file*
-ls *md
-ls *.md
-var=1 echo hola && echo $var
-echo "Hola $USER, tu home es $HOME"
-echo $HOME
-echo "Ruta: $PATH/bin"
-export BASE_DIR=$HOME/projects
-export BASE_DIR=$HOME
-env
-cd $BASE_DIR && ls
-cd $NO_exist
-cd $no_exist
-cd $noexist
-ls
-clear
+cd $HOME
+echo *mini*
+echo *shell hola
+echo *pdf hola
+echo *pdf hola como estas manito
+echo *pdf hola como estas *file manito
+echo *pdf hola como estas
+ls mini*
+unset PWD
 echo *pdf
-echo
+echo *tmp*
+cd tmp_out_bash
+ls tmp_err_bash
+lear
+ls *.pdf
 ls *pdf
+ls *t
+ls*
+lshola*
+echo $PWD
+ls t*
+echo */home/david/42/minishell
+ls */home/david/42/minishell
+ls *$PWD
+ls**
+clea
+claer
+dlear
+echo *
+echo *$PWD && echo hola
+echo hola &&echo adios
+ls $USER
+var=1 && ls $var
+ls $PW
+ls *$PW
+ls * || echo hola
+ls * | grep "tmp"
+ls
+echo $USER && ls *
+* || *
+* hola
+var=1 * hola
+ls *lllplp
+ls tmp*
+ls *tmp
+ls *tmp*
+export var=tmp*
+ls *
+echo * hola que tal
+ls tmp* && echo $USER
+echo * && echo hola que tal
+ls *tmp && echo $USER
+ls *tmp && echo $USE
+* | ls
+cat "$HOME"
+echo $USER.txt
+echo *tmp
+echo *$PW
+echo *$USE
+echo $EXT
+ls * && echo $USER
+echo *$USER$EXT
+cat *$USER | grep "error"
+echo *$USER > result.txt
+echo *$USER && echo $EXT
+cat $HOME/*.txt
+* | *
+export va=*$USER
+unset va
+echo hola && echo * && ls && pwd && echo $USER
+vas=1 echo hola && echo $vas
+echo ~
+echo ~ como estas
+echo '~ como estas'
+echo ~+ como estas
+echo ~+' a'
+echo hola' a'"como estas"
+echo $USER' '"como estas"
+echo ~' '"como estas"
+echo ~+' '"como estas"
+echo ~+' a'"como estas"
+echo "'~' como estas"
+echo ~+ ' a'
+echo ~+"como estas"
+echo "~ como estas"
+echo ~+'a '"como estas"
+echo tmp*
+vas=1 echo $USER && ls $vas && var=21
+vas=1 echo $USER && echo $vas
+vas=1 echo $USER && var=1 echo $vas && echo $vas $var
+vas=1 echo $USER && ls | ls $vas
+vas=1 echo $USER && ls $vas
+echo $USERborrar$USER$USER
+cler
+*$pw
+echo *$pw
+echo *$hola
+echo *$USER
+*$PWD && ls
+cleaar
+ls && *$P
+*tmp
+*$PWD
+*$P
+echo *$pw && ls
+tmp*
+*$pw && ls
+ls *$pw && ls
+ls *$pw && ls && ls *$pw && echo hola
+vas=1 vas+=2 echo $USER && ls $vas
+echo $USER
+echo
+echo "$USER"
+cat "$HOME"/*.txt
+echo "'$USER'"
+echo '$USER'
+ECHO HOLA
+ecg
+echo $USER" A B C"$USER
+echo $USER"A  $  C"$USERmak
+$
+$ && ls
+echo $ && ls
+echo '$ a b' && ls
+echo "$ a b" && ls
+echo $USER"A  $  C"$USER
+echo $USER" A  $  C "$USER
+echo $USER"   A   $  C    "$USER
+export a
+a=1
+unset a
+nev
+export b
+export "a"
+echo $!
+$$
+echo $$
+echo $?
+export $$USER
+~
+~+
+echo ~+
+echo "~+"
+echo *~+
+echo ~+*
+echo '~+'
+unset PWD SHLVL PATH
+unset PATH SHLVL PWD
+env
+pwd
+echo $asda
+a
+d
+c
+e
+exiwt
+exir
+echo "a $ b"
+~+'a '"como estas"
+*
+echo *$pwd
+echo *$PWD
+a=file
+echo *$file
+echo *$a
+echo make *
+var=1 echo hola && echo $var
+va=1 vas=3 vas+=3 echo hola && echo $va $vas
+export "$$USER"
+secho $USER"A   $   C"$USER
+CLEAR
+echo $USER"A   $   C"$USER
+echo $USER" A   $   C "$USER
+export a="hola   pi"
+export
+echo $a
+clear
+mkdir -p /tmp/testdir/real
+ln -s /tmp/testdir/real /tmp/testdir/link
+cd /tmp/testdir/link
+mkdir -p /tmp/real/dir
+ln -s /tmp/real /tmp/link
+cd /tmp/link/dir

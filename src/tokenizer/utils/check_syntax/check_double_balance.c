@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 22:40:25 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/09/02 19:52:35 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/11 11:44:15 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	check_double_balance(t_shell *data, t_prompt *promp, t_token *tokens)
 	}
 	if (inside_quotes == TRUE) // Si terminamos dentro de comillas, hay error
 	{
+		printf("error en double_quote\n\n");
 		syntax_error(data, ERR_SYNTAX, EXIT_USE, "\"");
 		return (SYNTAX_ERROR);
 	}

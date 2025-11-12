@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:23:16 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/28 14:22:52 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/04 15:54:10 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@
 # define FALSE						0
 # define SUCCESS					1
 # define FAILURE					0
+# define BEGINING					0
+# define MIDDLE						1
+# define END						2
+# define ALL						3
+# define DOLLAR						2
+# define TILDE						3
 
 /* ************************************************************************** */
 /*                              Return Values                                 */

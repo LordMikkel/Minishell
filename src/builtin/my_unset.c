@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 21:56:06 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/10/28 11:22:20 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/11 20:16:18 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ void	my_clean_unset(t_shell *data, t_env *env, t_token *tokens, int *index)
 
 	i = 0;
 	char_to_find = NULL;
+	ptr = NULL;
+	len = 0;
 	if (!index || index[0] == -1)
 		return ;
 	while (index[i] != -1)
@@ -108,7 +110,7 @@ void	my_clean_unset(t_shell *data, t_env *env, t_token *tokens, int *index)
 			continue ;
 		}
 		//printf("It gets in the loop in my_clena_unset\n\n");
-		//printf("%s\n\n", tokens[index[i]].value);
+		//printf("my_clean_unset: %s\n\n", tokens[index[i]].value);
 		ptr = ft_calloc(ft_strlen(tokens[index[i]].value) + 1, sizeof(char));
 		if (!ptr)
 			exit_error(data, ERR_MALLOC, EXIT_FAILURE);
@@ -119,6 +121,7 @@ void	my_clean_unset(t_shell *data, t_env *env, t_token *tokens, int *index)
 		if (char_to_find)
 			len = char_to_find - tokens[index[i]].value;
 		ft_memcpy(ptr, tokens[index[i]].value, len);
+		//printf("my_clean_unset ptr: %s\n\n", ptr);
 		delete_var(env, ptr);
 		free (ptr);
 		ptr = NULL;

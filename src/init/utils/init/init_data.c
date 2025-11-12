@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 23:17:43 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/27 17:28:37 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/03 10:56:04 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
  * Inicializa la estructura principal del shell: establece valores
  * por defecto, configura el entorno, imprime la sesión y prepara
  * readline para la entrada interactiva
- */
+*/
 
 void	init_data(t_shell *data, char **envp)
 {
@@ -27,5 +27,6 @@ void	init_data(t_shell *data, char **envp)
 	// 	data->extra_features.user_name);
 	init_ic_readline();
 	init_enviroment(data, envp);
+	init_builtins(data);
 	init_exec(&data->exec, &data->env);
 }

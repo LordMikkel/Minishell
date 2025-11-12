@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:36:57 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/25 21:31:08 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/12 13:34:50 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ void	executor_recursive(t_shell *data, t_node *node, t_exec *exec, int mode)
 		exec_subshell(data, node, exec, mode);
 	else if (node->type == BUILT_IN || is_asignation_type(node->token->type))
 		exec_builtin(data, node, exec, mode);
-	else if (node->type == COMMAND)
+	else if (node->type == COMMAND || node->type == WILDCARD)
 		exec_command(data, node, exec, mode);
 }

@@ -6,63 +6,11 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 20:48:00 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/10/29 20:21:18 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/03 11:28:01 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/minishell.h"
-
-static int	is_yes_or_no(const char *str)
-{
-	if (ft_strcmp(str, "y") == 0 || ft_strcmp(str, "yes") == 0)
-		return (YES);
-	else if (ft_strcmp(str, "n") == 0 || ft_strcmp(str, "no") == 0)
-		return (NO);
-	return (ERROR);
-}
-
-static	int	parse_answer(t_shell *d, t_token *token, char *str, char *built_in)
-{
-	int	result;
-	result = is_yes_or_no(str);
-	if (result == YES)
-	{
-		free (token->value);
-		token->value = ft_strdup(built_in);
-		if (!token->value)
-			exit_error(d, ERR_MALLOC, EXIT_FAILURE);
-		return (SUCCESS);
-	}
-	else if (result == FALSE)
-		return (FALSE);
-	return (ERROR); //El usuario introduce cualquier otro valor distinto a yes/no
-}
-
-static int	ask_confirmation(t_shell *data, t_token *token, char *built_in)
-{
-	char	*ptr;
-
-	while (1)
-	{
-		printf("\033[1;32mDid you mean %s? y/n\033[0m\n", built_in);
-		ptr = ic_readline("\033[1;32m->\033[0m");//desde aqui hasta el else de readline puede ser una sola funcion que se llame sola
-		if (!ptr)
-			exit_error(data, NULL, EXIT_FATAL_SIGNAL);
-		if (check_signals(data, NULL, NULL, NULL))
-		{
-			free (ptr);
-			return (FAILURE);
-		}
-		if (parse_answer(data, token, ptr, built_in) != ERROR)
-		{
-			free (ptr);
-			return (SUCCESS);
-		}
-		//Si es ERROR se vuelve a repetir la pregunta
-		free (ptr);
-	}
-	return (SUCCESS);
-}
 
 /*
  * Heurística para detectar comandos mal escritos con una diferencia
@@ -83,7 +31,8 @@ static int	ask_confirmation(t_shell *data, t_token *token, char *built_in)
  * Ejemplos:
  * - Inserción: "echop" vs "echo" -> (s1[j + 1] == '\0' && s2[i] == '\0')
  * - Eliminación: "eho" vs "echo" -> s1[j] == '\0' && s2[i + 1] == '\0'
- * - Reemplazo: "exho" vs "echo" -> j + 1 == len_1 && i == len_2) || (i + 1 == len_2 && j == len_1)
+ * - Reemplazo: "exho" vs "echo" -> j + 1 == len_1 && i == len_2) ||
+ * 	(i + 1 == len_2 && j == len_1)
  * transposición
 */
 
@@ -146,40 +95,43 @@ static int	is_valid_value(char *str)
 	return (TRUE);
 }
 
+
+int	process_token(t_shell *data, t_token *tokens, char **builtins, int i)
+{
+	int	result;
+	int	j;
+
+	j = 0;
+	result = FALSE;
+	while (j < data->builtins->len)
+	{
+		if (is_valid_value(tokens[i].value)
+			&& find_match(tokens[i].value, builtins[j])) //si solo hay un caracter diferente
+		{ //mayor que 1 porque el el built_in mas corto es cd y es de 1
+			result = ask_confirmation(data, &tokens[i], builtins[j]);
+			return (result);//Solo corrige el el primero que encuentra mal escrito en lugar de intnetar corregir todos ya que sería fastidioso para el usuario
+		}
+		j++;
+	}
+	return (IGNORE);
+}
+
 int	cmd_correction(t_shell *data, t_token *tokens, int n_tokens)
 {
-	char	*built_in[10];
+	char	**builtins;
 	int		result;
 	int		i;
-	int		j;
 
 	i = 0;
-	built_in[0] = "cd";
-	built_in[1] = "echo";
-	built_in[2] = "export";
-	built_in[3] = "unset";
-	built_in[4] = "env";
-	built_in[5] = "exit";
-	built_in[6] = "pwd";
-	built_in[7] = "alias";
-	built_in[8] = "unalias";
-	built_in[9] = NULL;
+	builtins = data->builtins->builtins_selection;
 	result = SUCCESS;
 	while (i < n_tokens)
 	{
 		if (tokens[i].type == COMMAND)
 		{
-			j = 0;
-			while (j < 9)
-			{
-				if (is_valid_value(tokens[i].value)
-					&& find_match(tokens[i].value, built_in[j])) //si solo hay un caracter diferente
-				{ //mayor que 1 porque el el built_in mas corto es cd y es de 1
-					result = ask_confirmation(data, &tokens[i], built_in[j]);
-					break ;//Solo corrige el el primero que encuentra mal escrito en lugar de intnetar corregir todos ya que sería fastidioso para el usuario
-				}
-				j++;
-			}
+			result = process_token(data, tokens, builtins, i);
+			if (result != IGNORE)
+				break ;
 		}
 		i++;
 	}

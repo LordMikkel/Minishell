@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:23:14 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/28 18:26:08 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:56:57 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,13 @@ void	execute_cmd_from_father(t_shell *data, t_node *node, t_env *env)
 
 void	exec_command(t_shell *data, t_node *node, t_exec *exec, int mode)
 {
+
 	if (mode == CHILD)
 		execute_cmd_from_child(data, node, exec->env);
 	if (mode == FATHER)
+	{
+		expansion_final_process(data, node);
 		execute_cmd_from_father(data, node, exec->env);
+	}
 	clean_temp_variables(data, exec->env, data->prompt.tokens, node);
 }

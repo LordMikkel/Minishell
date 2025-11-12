@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:57:33 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/31 23:17:12 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/10 17:58:51 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static int	aux_mem_alloc(t_shell *data, t_token *token, char **key_to_find)
 	int	len;
 
 	len = ft_strlen(token->value);
-	*key_to_find = ft_calloc(len + 1, sizeof(char));
+	*key_to_find = ft_calloc((len * 2) + 1, sizeof(char));
 	if (!*key_to_find)
 		exit_error(data, ERR_MALLOC, EXIT_USE);
 	return (SUCCESS);
@@ -79,7 +79,7 @@ static int	get_symbol_to_expand_count(char *str, int type)
 	if (type == '$')
 	{
 		number_of_symbols = ft_count_char(str, '$');
-		//number_of_symbols += ft_count_char(str, '~');
+		number_of_symbols += ft_count_char(str, '~');
 	}
 	else if (type == '*')
 		number_of_symbols = ft_count_char(str, '*');
@@ -95,7 +95,7 @@ int	expansion(t_shell *data, t_token *tokens, int i, int phase)
 	found = FALSE;
 	while (i < data->prompt.n_tokens)
 	{
-		if (phase == FINAL_PHASE && is_delimiter_type(tokens[i].type))
+		if (phase == FINAL_PHASE && is_delimiter_type(tokens[i].type)) //si se encuentra un delimitador se acaba para no afectar otros nodos
 			return (SUCCESS);
 		if (tokens[i].type == EXPANSION)
 		{
@@ -108,29 +108,38 @@ int	expansion(t_shell *data, t_token *tokens, int i, int phase)
 			}
 			free (key_to_find);
 			key_to_find = NULL;
+			if (found == ERROR)
+				return (found);
 		}
 		i++;
 	}
 	return (found);
 }
 
-int	expand_wildcards(t_shell *data, t_prompt *prompt, t_token *tokens)
+int	expand_wildcards(t_shell *dat, t_prompt *prompt, t_token *tokens, int phase)
 {
 	int	i;
-	int	nbr_of_wildcards;
 
 	i = 0;
-	nbr_of_wildcards = 0;
 	while (i < prompt->n_tokens)
 	{
 		if (tokens[i].type == WILDCARD)
 		{
-			nbr_of_wildcards = get_symbol_to_expand_count(tokens[i].value, '*');
-			while (nbr_of_wildcards > 0)
+			if (phase == FINAL_PHASE && is_delimiter_type(tokens[i].type))
+				return (SUCCESS);
+			if (((i + 1) < prompt->n_tokens) && (tokens[i + 1].type == NO_SPACE)) //hay una expansion que no se proceso porque aun no existe su valor
 			{
-				process_wildcard(data, &tokens[i]);
-				nbr_of_wildcards--;
+				i++;
+				continue ;
 			}
+			if (!process_wildcard(dat, &tokens[i]))
+			{
+				i++;
+				continue ;
+			}
+			tokens = prompt->tokens;
+			if (phase == FINAL_PHASE)
+				reconect_nodes_tokens(dat, dat->ast_root, dat->prompt.tokens);
 		}
 		i++;
 	}

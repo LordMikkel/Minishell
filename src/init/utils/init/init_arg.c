@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_arg.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 22:46:42 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/25 21:56:00 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/04 13:39:52 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	open_error(t_shell *data, char *file)
 /*
  * Procesa argumentos como script: abre el archivo, lee línea por línea
  * ejecutando cada comando y termina el programa al finalizar el script
- */
+*/
 
 void	init_arg(t_shell *data, int ac, char **av)
 {
