@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   transform_word_to_file.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 20:43:29 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/27 14:05:08 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/12 18:16:03 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,6 @@ void	transform_word_to_file(t_prompt *prompt, t_token *tokens)
 		else if (i > 0 && tokens[i].type == WORD
 			&& tokens[i - 1].type == FILENAME
 			&& (!search_for_cmd(tokens, i) || search_for_paren(tokens, i)))
-		{
 			tokens[i].type = COMMAND;
-		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 00:04:17 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/10/31 22:42:45 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/10 16:07:01 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,11 @@ static void	reorganize(t_prompt *prompt, t_token *tokens, int i)
 	free_single_token(tokens, i);
 	tokens[i] = (t_token){0};
 	tokens_to_move = prompt->n_tokens - i - 1;
-	ft_memmove(&tokens[i], &tokens[i + 1],
-		tokens_to_move * sizeof(t_token));
+	if (tokens_to_move > 0)
+	{
+		ft_memmove(&tokens[i], &tokens[i + 1],
+			tokens_to_move * sizeof(t_token));
+	}
 	prompt->n_tokens--;
 	void_tokens_at_the_end(tokens, prompt->n_alloc_tokens, prompt->n_tokens);
 }
@@ -45,4 +48,5 @@ void	eliminate_token(t_prompt *prompt, t_token *tokens, int index)
 		tokens[j].id -= 1;
 		j++;
 	}
+	//adjust_id_and_hash(tokens, prompt->n_tokens);
 }

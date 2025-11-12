@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:18:26 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/27 18:57:35 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/12 18:14:27 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,24 @@ int	extract_key(t_shell *data, t_token *token, char **key_to_find, int phase)
 	int	found;
 	int	match;
 	int	result;
+	int	type;
 
+	type = INDIFERENT;
 	found = FALSE;
-	match = copy_key(token->value, key_to_find);
-	// printf("MATCH: %d\n\n", match);
+	match = copy_key(token->value, key_to_find, &type);
 	if (!match)
 		return (FAILURE);
-	found = find_key_in_lst(data, token, key_to_find);
+	if (type == DOLLAR)
+		found = find_key_in_lst(data, token, key_to_find);
+	else
+		found = is_it_tilde(data, token, key_to_find);
 	if (found == ERROR)
 		return (ERROR);
 	if (found)
 		token->type = WORD;
 	if (!found && phase == FINAL_PHASE)
 	{
-		result = expand_empty_str(data, token, key_to_find);
+		result = expand_empty_str(data, token, key_to_find, type);
 		if (result == REPLACED)
 			token->type = WORD;
 	}

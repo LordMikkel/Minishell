@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 01:07:14 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/31 21:38:24 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/11 17:18:54 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	add_token(t_shell *data, t_prompt *prompt, char *value, int type)
 	check_buffer(data, prompt);
 	tokens = prompt->tokens;
 	tokens[i].id = i;
+	//printf("token->id: %d\n\n", tokens[i].id);
 	tokens[i].hash = i;
 	tokens[i].value = value;
 	tokens[i].type = type;

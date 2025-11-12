@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_parent_balance.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 22:39:51 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/08/20 16:56:28 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/04 13:37:14 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ int	check_parent_balance(t_shell *data, t_prompt *prompt, t_token *tokens)
 			balance--;
 		if (balance < 0)
 		{
-			syntax_error(data, ERR_SYNTAX, EXIT_USE, ")");// cierre sin apertura
+			syntax_error(data, ERR_SYNTAX, EXIT_USE, ")");
 			return (SYNTAX_ERROR);
 		}
 		i++;
 	}
 	if (balance > 0)
 	{
-		syntax_error(data, ERR_SYNTAX, EXIT_USE, "(");// apertura sin cierre
+		syntax_error(data, ERR_SYNTAX, EXIT_USE, "(");
 		return (SYNTAX_ERROR);
 	}
 	return (SUCCESS);

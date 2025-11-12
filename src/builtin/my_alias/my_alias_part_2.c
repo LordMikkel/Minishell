@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_alias_part_2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 20:48:42 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/10/25 19:08:29 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/03 11:38:44 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	check_if_already_assing(t_shell *data, t_cmd *cmd, char *alias)
 
 static int	check_alias_conflicts(t_shell *data, char *alias, char *cmd_to_find)
 {
-	if (is_built_in(NULL, alias)
+	if (is_built_in(data, NULL, alias)
 		|| get_path(data, alias, data->env.envp)) //leak porque no se libera alias y cmd_to_find. Quitar el return exit de alli o duplicar la funcion pero sin el return.
 	{
 		ft_printf_fd(STDERR, ERR_BUILTIN_ALIAS, alias);

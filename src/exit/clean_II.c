@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_II.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 01:53:47 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/25 21:51:36 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/11 13:16:39 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	clean_node(t_node **node)
 		free((*node)->arg_types);
 	if ((*node)->redir)
 		clean_redirs(&(*node)->redir);
+	if ((*node)->assig_tmp)
+		ft_free_str_array((*node)->assig_tmp);
 	if ((*node)->fake)
 		clean_token(&(*node)->token);
 	free(*node);

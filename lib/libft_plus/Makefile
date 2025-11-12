@@ -6,7 +6,7 @@
 #    By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/28 19:51:37 by migarrid          #+#    #+#              #
-#    Updated: 2025/10/31 16:44:01 by davdiaz-         ###   ########.fr        #
+#    Updated: 2025/11/03 14:35:55 by davdiaz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,6 +77,7 @@ SRCS =	libft/ft_isalpha.c \
 		libft/ft_strmapi.c \
 		libft/ft_striteri.c \
 		libft/ft_putchar_fd.c \
+		libft/ft_str_match.c \
 		libft/ft_putstr_fd.c \
 		libft/ft_putendl_fd.c \
 		libft/ft_putnbr_fd.c \

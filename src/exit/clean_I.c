@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 21:47:38 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/01 17:47:38 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/03 11:41:22 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,4 +110,5 @@ void	clean_all(t_shell *data)
 	clean_ast(data->ast_root);
 	clean_fd(&data->exec);
 	clean_extras(&data->extra_features);
+	clean_builtins_selection(data);
 }

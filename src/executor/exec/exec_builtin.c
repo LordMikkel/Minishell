@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:23:12 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/29 19:27:38 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/12 13:02:33 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,15 @@ void	exec_builtin(t_shell *data, t_node *node, t_exec *exec, int mode)
 {
 	pid_t	pid;
 
+	printf("llego\n\n");
 	if (mode == FATHER)
+	{
+		printf("Antes de final_expansion\n\n");
+		print_tokens_debug(&data->prompt);
 		expansion_final_process(data, node);
+		printf("Depues de expansion_final_proces\n\n");
+		print_tokens_debug(&data->prompt);
+	}
 	if (node->background) //si es por background
 	{
 		pid = fork();
@@ -67,73 +74,29 @@ void	exec_builtin(t_shell *data, t_node *node, t_exec *exec, int mode)
 	}
 	if (apply_properties(data, node, exec->env, mode) == SUCCESS)
 		which_builtin(data, node->token, node);
+	/*t_var *current;
+		current = data->env.vars;
+		printf("\n\nDuring execution\n\n");
+		while (current)
+		{
+			printf("Key: %s, Value: %s, Type: %d\n\n",
+				current->key,
+				current->value,
+				current->type);
+			current = current->next;
+		}*/
+	clean_temp_variables(data, exec->env, data->prompt.tokens, node);
+		/*current = data->env.vars;
+		printf("\n\nAFTER CLEAN TEMP_VARIABLES\n\n");
+		while (current)
+		{
+			printf("Key: %s, Value: %s, Type: %d\n\n",
+				current->key,
+				current->value,
+				current->type);
+			current = current->next;
+		}*/
 	if (mode == CHILD) // si era child de un pipe se sale con su exit_code
 		exit_succes(data, NULL, data->exit_code);
 	return ;
 }
-/*
-static void     eliminate_arg(char **args, int index)
-{
-   int i;
-
-
-   if (!args || !args[index])
-       return ;
-   free (args[index]);
-   i = index;
-   while (args[i])
-   {
-       args[i] = args[i + 1];
-       i++;
-   }
-   args[i] = NULL;
-}
-
-
-static int arg_exists_in_tokens(char *arg, t_token *tokens, int start, int n_tokens)
-{
-   int j;
-
-
-   j = start;
-   while (j < n_tokens)
-   {
-       if (tokens[j].value && ft_strnstr(tokens[j].value, arg, ft_strlen(tokens[j].value)))
-           return (true);
-       j++;
-   }
-   return (false);
-}
-
-
-static void compare_args_vs_tokens(t_token *tokens, t_node *node, int n_tokens)
-{
-   int i;
-
-
-   i = 0;
-   while (node->args[i])
-   {
-       if (!arg_exists_in_tokens(node->args[i], tokens, node->token->id + 1, n_tokens))
-       {
-           eliminate_arg(node->args, i);
-           continue; // no incrementamos i porque los args se han corrido
-       }
-       i++;
-   }
-}
-
-
-static int check_for_expansion(t_token *tokens, int id, int n_tokens)
-{
-   id += 1;
-   while (id < n_tokens)
-   {
-       if (tokens[id].type == EXPANSION)
-           return (TRUE);
-       if (is_delimiter_type(tokens[id].type) || is_cmd_builtin_type(tokens[id].type))
-           break ;
-   }
-   return (FALSE);
-}
-*/

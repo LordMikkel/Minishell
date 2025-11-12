@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 22:44:45 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/24 13:34:20 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/12 13:49:06 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,54 @@ void	reorganize_tokens(t_prompt *p, t_token *tokens, int *range, char *res)
 		(tokens_to_move * sizeof(t_token)));
 	p->n_tokens = p->n_tokens - tokens_to_remove;
 	void_tokens_at_the_end(tokens, p->n_alloc_tokens, p->n_tokens);
+	adjust_id(tokens, p->n_tokens);
+}
+
+/*
+	Función para eliminar tokens NO_SPACE cuando estan al lado de un delimitador
+	Por ejemplo:
+	*$PW && ls -> * - no_space - expansion - && -> * - no_space - &&
+*/
+
+int	no_space_at_delimiter(t_shell *data, t_prompt *prompt, t_token *tokens)
+{
+	int	i;
+
+	i = 0;
+	while (i < prompt->n_tokens)
+	{
+		if (tokens[i].type == NO_SPACE && (i + 1) < prompt->n_tokens
+			&& is_delimiter_type(tokens[i + 1].type))
+		{
+			printf("no_space_at_delimiter: eliminate\n\n");
+			eliminate_token(prompt, tokens, i);
+			return (TRUE);
+		}
+		i++;
+	}
+	return (FALSE);
+}
+
+/*
+	Función para eliminar tokens NO_SPACE manualmente si llegan a estar en el
+	último indice. Esto puede pasar por ejemplo con:
+	echo *$PW -> echo - * - no_space - expansion -> echo - * - no_space
+*/
+
+int	no_space_at_end(t_shell *data, t_prompt *prompt, t_token *tokens)
+{
+	int	i;
+
+	i = 0;
+	while (i < prompt->n_tokens)
+	{
+		if (tokens[i].type == NO_SPACE && (i + 1) == prompt->n_tokens)//si es el ultimo token
+		{
+			printf("no_scape_at_end: eliminate\n\n");
+			eliminate_token(prompt, tokens, i);
+			return (TRUE);
+		}
+		i++;
+	}
+	return (FALSE);
 }

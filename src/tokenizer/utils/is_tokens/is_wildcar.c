@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:41 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/31 12:54:22 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:39:37 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,29 @@ char	*cleanner_wildcar(t_shell *data, char *wildcar, int len, char trash)
 static int	isn_wild(int c, int *i)
 {
 	if (c == '|' || c == '<' || c == '>' || c == '&' || c == '(' || c == ')'
-		|| c == '\'' || c == '\"' )
+		|| c == '$' || c == '\'' || c == '\"' )
 		return (1);
 	else if (c == ';')
 	{
 		(*i)++;
-		return (1);
+		return (TRUE);
 	}
-	return (0);
+	return (FALSE);
+}
+
+/*
+	Funcion para caso edge: *$USER o cauquier otra variable de env.
+	De este modo, se pueden separar, expandir y luego unir
+*/
+
+static int	if_expansion(t_shell *data, const char *str, int i)
+{
+	if (i + 1 < ft_strlen(str) && str[i] == '$'
+		&& (ft_isalpha(str[i + 1]) || is_symbol(str[i + 1])))
+	{
+		return (TRUE);
+	}
+	return (FALSE);
 }
 
 /*
@@ -77,7 +92,9 @@ void	is_wildcar(t_shell *data, t_prompt *prompt, const char *str, int *i)
 {
 	int		len;
 	int		start;
+	int		found_dollar;
 	char	*wildcar;
+	char	*no_space;
 
 	if (str[*i] == '*')
 	{
@@ -95,5 +112,7 @@ void	is_wildcar(t_shell *data, t_prompt *prompt, const char *str, int *i)
 			wildcar = cleanner_wildcar(data, wildcar, len, '?');
 			add_token(data, prompt, wildcar, WILDCARD);
 		}
+		if (if_expansion(data, str, *i))
+			add_token(data, prompt, "", NO_SPACE);
 	}
 }

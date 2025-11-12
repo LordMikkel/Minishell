@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/01 19:07:41 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/12 19:15:52 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	init_data(t_shell *data, char **envp);
 void	init_enviroment(t_shell *data, char **envp);
 void	init_arg(t_shell *data, int ac, char **av);
 void	init_exec(t_exec *exec, t_env *env);
+void	init_builtins(t_shell *data);
 void	init_ic_readline(void);
 
 /* ************************************************************************** */
@@ -63,7 +64,7 @@ int		add_token(t_shell *data, t_prompt *prompt, char *value, int type);
 /* ************************************************************************** */
 int		asignation(t_shell *data, t_token *token, int type);
 int		expansion(t_shell *data, t_token *tokens, int i, int phase);
-int		expand_wildcards(t_shell *data, t_prompt *prompt, t_token *tokens);
+int		expand_wildcards(t_shell *d, t_prompt *pro, t_token *tokens, int phase);
 
 /* ************************************************************************** */
 /*                                  AST                                       */
@@ -93,7 +94,7 @@ void	exec_command(t_shell *data, t_node *node, t_exec *exec, int mode);
 /* ************************************************************************** */
 /*                                buil_in                                     */
 /* ************************************************************************** */
-int		my_pwd(void);
+int		my_pwd(t_shell *data);
 int		my_echo(char **args);
 int		my_env(t_var *vars, char **args);
 int		my_cd(t_shell *data, char **args);
@@ -134,6 +135,7 @@ void	my_clean_unset(t_shell *data, t_env *env, t_token *tokens, int *index);
 void	clean_temp_variables(t_shell *d, t_env *e, t_token *t, t_node *node);
 void	restore_fd(t_exec *exec);
 void	clean_fd(t_exec *exec);
+void	clean_builtins_selection(t_shell *data);
 
 /* ************************************************************************** */
 /*                                 Exits                                      */
@@ -182,7 +184,7 @@ int		is_real_assignation_type(int type);
 int		is_redir_output_type(int type);
 int		is_redir_input_type(int type);
 int		is_invalid_char(int c);
-int		is_built_in(t_token *token, char *str);
+int		is_built_in(t_shell *data, t_token *token, char *str);
 
 //VALID TOKENS
 void	is_it_quoted(t_prompt *prompt, t_token *tokens);
@@ -205,7 +207,10 @@ int		check_cmd_externs(t_shell *d, t_prompt *prompt, t_token *tokens, int i);
 int		find_range_end(t_token *tokens, int no_space_position);
 int		find_range_start(t_token *tokens, int no_space_position);
 void	remove_quotes_tokens(t_prompt *prompt, t_token *tokens);
+int		no_space_at_end(t_shell *data, t_prompt *prompt, t_token *tokens);
+int		no_space_at_delimiter(t_shell *data, t_prompt *prompt, t_token *tokens);
 void	simplify_tokens(t_shell *data, t_prompt *prompt, t_token *tokens);
+void	adjust_id(t_token *tokens, int n_tokens);
 void	reorganize_tokens(t_prompt *p, t_token *tokens, int *range, char *res);
 
 //TRANSFORM TOKENS
@@ -219,6 +224,7 @@ void	transform_word_to_file(t_prompt *prompt, t_token *tokens);
 void	transform_command_built_lowercase(t_prompt *prompt, t_token *tokens);
 void	transform_asig_to_temp(t_shell *dat, t_prompt *prompt, t_token *tokens);
 void	transform_cmd_to_built_in(t_shell *d, t_prompt *p, t_token *tokens);
+void	transform_word_to_wildcard(t_shell *d, t_prompt *prom, t_token *tokens);
 
 //AST
 int		get_heredoc(t_shell *data, t_redir *redir, char *delimiter);
@@ -240,20 +246,22 @@ void	apply_temp_asig(t_shell *da, t_token *tokens, t_node *node, t_env *env);
 
 
 //EXPANSION
-int		copy_key(char *buffer, char **key_to_find);
+int		copy_key(char *buffer, char **key_to_find, int *type);
 int		find_key_in_lst(t_shell *d, t_token *t, char **key_to_f);
 int		is_it_symbol(t_shell *data, t_token *token, char **key_to_find);
 int		extract_key(t_shell *d, t_token *t, char **key_to_f, int phase);
-int		expand_empty_str(t_shell *data, t_token *token, char **key_to_find);
+int		expand_empty_str(t_shell *data, t_token *token, char **key_to_find, int type);
 int		copy_value(t_shell *d, char **t_val, char *key_value, char *key_to_f);
+int		is_it_tilde(t_shell *data, t_token *token, char **key_to_find);
+void	reconect_nodes_tokens(t_shell *data, t_node *node, t_token *tokens);
 
 //EXPANSION_WILDCARDS
-void	process_wildcard(t_shell *data, t_token *token);
-int		count_matches(t_shell *data, char *key_to_find);
-int		extract_wildcard(t_shell *data, char *str, char **ptr);
-char	**find_matches(t_shell *data, char *key_to_find, int n_dirs);
-void	reorder_tokens(t_shell *d, t_token *oritoken, int orisize, char **dirs);
+int		process_wildcard(t_shell *data, t_token *token);
+int		reorder_tokens(t_shell *d, t_token *oritoken, int orisize, char **dirs);
+int		count_matches(t_shell *data, char *key_to_find, int wildcard_type);
+char	**find_matches(t_shell *d, char *key, int n_dirs, int wildcard_type);
 void	rebuild_tokens(t_shell *data, t_token *token, char **dirs, int n_dirs);
+int		extract_wildcard(t_shell *d, char *str, char **ptr, int *wildcard_type);
 
 
 //ASIGNATION
@@ -304,6 +312,7 @@ char	*cleanner_slash_quotes_d(t_shell *data, char *word, int len, int *flag);
 
 //BUILT_IN
 int		check_arg_syntax(char *arg, const char *built_in_err);
+int		ask_confirmation(t_shell *data, t_token *token, char *built_in);
 int		find_cmd(t_shell *data, t_cmd *cmd, char *to_find, char *alias);
 
 /* ************************************************************************** */

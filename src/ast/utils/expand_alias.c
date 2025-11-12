@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_alias.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 20:48:05 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/10/25 19:08:20 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/03 11:37:48 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	find_alias(t_shell *data, t_cmd *cmd, t_token *token)
 		{
 			if (ft_strcmp(token->value, cmd->alias) == 0) //se compara el alias que puso el usuario con los nodos
 			{
-				if (is_built_in(NULL, cmd->value)) //si es el alias de un built_in entonces se cambia su token a built_in
+				if (is_built_in(data, NULL, cmd->value)) //si es el alias de un built_in entonces se cambia su token a built_in
 					token->type = BUILT_IN;
 				if (token->value) //No hace falta esete if pero lo dejo por seguridad?
 					free (token->value);

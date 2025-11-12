@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 20:29:52 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/27 22:59:33 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/12 13:42:18 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ int	get_information(t_shell *data, t_token *tokens, int *i, t_node *left)
 	int		start;
 
 	start = *i;
-	// expansion(data, tokens, &data->env, FINAL_PHASE);
 	left->assig_tmp = get_temp_asignations(data, tokens, *i);
 	left->redir = get_redirs(data, tokens, i, COMMAND);
 	left->args = get_args_for_binary(data, tokens, i);
@@ -85,6 +84,23 @@ int	get_information(t_shell *data, t_token *tokens, int *i, t_node *left)
 	left->background = get_background(tokens, data->prompt.n_tokens, i);
 	return (SUCCESS);
 }
+
+/*
+	La razón por que el wildcard se pasa como comando es por el caso edge en el
+	que *$pdw && ls se ejecute. Esto no se expandira sino hasta la ejecución,
+	de modo que quedara como WILDCARD - NO_SPACE - EXPANSION....
+	como bien se sabe, no existe un nodo wildcard y una ejecución en
+	especifico en un AST y ademas bash no lo trata así de modo que simplemente
+	se crea el nodo y luego pasa por execute_cmd, el cual expande el wildcard
+	y luego intenta ejecutarlo, cosa que dara error y que esta bien. De otro
+	modo el programa no haria absolutamnete nada (ast, ejecución, errores. etc).
+
+	Cabe resaltar que el if (is_asignation_type(tokens[*i].type)) es para asig
+	locales (si no mal recuerdo). Así, tenemos nodos para TEMP_ASIG Y LOCAL_ASIG
+
+	En definitiva, parse_cmd no solo es para commands, sino para wildcards,
+	asigs locales, redirs y cmd. Es una función versatil y muiltiuso.
+*/
 
 t_node	*parse_cmd(t_shell *data, t_token *tokens, int *i, int n_tokens)
 {
@@ -97,7 +113,7 @@ t_node	*parse_cmd(t_shell *data, t_token *tokens, int *i, int n_tokens)
 	if (*i < n_tokens && tokens[*i].type
 		&& (is_cmd_builtin_type(tokens[*i].type)
 			|| is_real_assignation_type(tokens[*i].type)
-			|| is_redir_type(tokens[*i].type)))
+			|| is_redir_type(tokens[*i].type) || tokens[*i].type == WILDCARD))
 	{
 		index_redir_input(tokens[*i].type, i, n_tokens);
 		//expand_alias(data, tokens, *i); //verificar si el cmd es un alias o no, ver si se puede colocar en transform tokens

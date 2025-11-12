@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_III.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 21:43:11 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/25 21:52:36 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/05 11:59:11 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,11 @@ void	clean_fd(t_exec *exec)
 {
 	close(exec->original_stdin);
 	close(exec->original_stdout);
+}
+
+void	clean_builtins_selection(t_shell *data)
+{
+	ft_free_str_array(data->builtins->builtins_selection);
+	free (data->builtins);
+	data->builtins = NULL;
 }

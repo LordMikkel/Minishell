@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 20:37:22 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/28 16:07:58 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/12 23:05:00 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	join_tokens(t_prompt *prompt, t_token *tokens, int *range)
 	result = ft_strdup("");
 	while (i <= range[1])
 	{
-		if (is_primitive_cmd_type(tokens[i].type))
+		if (is_primitive_cmd_type(tokens[i].type) || tokens[i].type == WILDCARD)
 		{
 			tmp = result;
 			result = ft_strjoin(result, tokens[i].value);
@@ -125,6 +125,9 @@ void	simplify_tokens(t_shell *data, t_prompt *prompt, t_token *tokens)
 		{
 			if (is_possible_simplify(tokens, range))
 			{
+				if (no_space_at_end(data, prompt, tokens)
+					|| no_space_at_delimiter(data, prompt, tokens))
+					return ;
 				join_tokens(prompt, tokens, range);
 				i = range[0] + 1;
 				continue ;
@@ -133,4 +136,5 @@ void	simplify_tokens(t_shell *data, t_prompt *prompt, t_token *tokens)
 		i++;
 	}
 	remove_quotes_tokens(prompt, tokens);
+	adjust_id(tokens, prompt->n_tokens);
 }

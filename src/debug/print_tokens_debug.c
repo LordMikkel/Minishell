@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:50:14 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/31 12:56:44 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/10 17:58:18 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,12 @@ void	print_tokens_debug(t_prompt *prompt)
 
 	i = 0;
 	printf("------------------------------------------------\n");
+	printf("n_tokens: %d\n\n", prompt->n_tokens);
 	while (i < prompt->n_tokens)
 	{
 		if (prompt->tokens[i].value)
-			printf("Token [%d]: '%s' (type: %s)\n", i, prompt->tokens[i].value,
-				g_type_names[prompt->tokens[i].type]);
+			printf("Token [%d]: '%s' (type: %s) - token id: %d - token hash: %d\n", i, prompt->tokens[i].value,
+				g_type_names[prompt->tokens[i].type], prompt->tokens[i].id, prompt->tokens[i].hash);
 		i++;
 	}
 }

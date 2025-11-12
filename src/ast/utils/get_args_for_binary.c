@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 23:03:38 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/01 18:40:03 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/09 21:06:25 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ static void	arg_count(t_token *tokens, int n_tokens, int *i, int *n_args)
 			}
 		}
 		if ((is_arg_type(tokens[*i].type) || tokens[*i].type == COMMAND
-			|| tokens[*i].type == NO_SPACE || tokens[*i].type == INDIFERENT)
+			|| tokens[*i].type == NO_SPACE || tokens[*i].type == INDIFERENT
+			|| tokens[*i].type == WILDCARD)
 			&& tokens[*i].value && tokens[*i].value[0] != '\0')
 			(*n_args)++;
 		if (is_delimiter_type(tokens[*i].type))
