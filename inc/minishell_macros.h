@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_macros.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:23:16 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 00:02:05 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/13 14:08:04 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,7 @@ Exec format error\n"
 # define ERR_CD_TOO_MANY	"minishell: cd: too many arguments\n"
 # define ERR_CD_NO_HOME		"minishell: cd: HOME not set\n"
 # define ERR_CD_OLDPWD		"minishell: cd: OLDPWD not set\n"
+# define ERR_OLDPWD_NOT_SET	"minishell: ~-: OLDPWD not set\n"
 # define ERR_EXPORT			"minishell: export: `%s': not a valid identifier\n"
 # define ERR_UNSET			"minishell: unset: `%s': not a valid identifier\n"
 # define ERR_EXIT_NUMERIC	"minishell: exit: %s: numeric argument required\n"

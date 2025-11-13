@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
+#    By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/11/13 00:58:47 by migarrid         ###   ########.fr        #
+#    Updated: 2025/11/13 13:56:11 by davdiaz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ CC					= cc
 #WFLAGS				= -Wall -Wextra -Werror
 DFLAGS				= -g
 #OFLAGS				= -Ofast -march=native -flto
-SFLAGS				= -fsanitize=address,undefined
+##SFLAGS				= -fsanitize=address,undefined
 DEPFLAGS			= -MMD -MP
 
 # **************************************************************************** #

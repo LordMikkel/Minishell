@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_correction.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 20:48:00 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/13 00:50:36 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/13 13:40:58 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ static int	is_valid_value(char *str)
 	}
 	return (TRUE);
 }
-
 
 int	process_token(t_shell *data, t_token *tokens, char **builtins, int i)
 {

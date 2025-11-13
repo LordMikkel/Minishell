@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:10 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 02:20:03 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/13 14:31:59 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,10 @@ int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 	is_it_quoted(prompt, prompt->tokens); // Se puede hacer mas eficiente
 
 	if (expansion(data, prompt->tokens, 0, INITIAL_PHASE) == ERROR)
+	{
+		clean_cycle(data, prompt, NULL);
 		return (FAILURE);
-
+	}
 	//printf("\n\nAFTER EXPANSION INITIAL_PHASE\n\n");
 	//print_tokens_debug(prompt);
 
