@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   copy_key.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:23:28 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 00:42:30 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/13 14:18:42 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static void aux_copy_tilde(char *str, char **key_to_find, int i)
 	j = 0;
 	flag = FALSE;
 	(*key_to_find)[j++] = '~';
-	while ((str[i] == '+' || str[i] == '/') && flag == FALSE)
+	while ((str[i] == '+' || str[i] == '-' || str[i] == '/') && flag == FALSE)
 	{
 		if (str[i] == '$' || str[i] == '~')
 		{
@@ -112,10 +112,12 @@ static int	if_find_tilde(char *str, char **key_to_find, int i)
 			return (TRUE);
 		}
 		i++;
-		if (str[i] != '+' && str[i] != '/')
+		if (str[i] != '+' && str[i] != '/' && str[i] != '-')
 			return (FALSE) ;
 		if (str[i] == '+' && str[i + 1]
-			&& ((str[i + 1] == '+') || (str[i + 1] != '/')))
+			&& ((str[i + 1] == '+') || (str[i + 1] != '/'))
+				|| (str[i] == '-' && str[i + 1]
+					&& ((str[i + 1] == '-') || (str[i + 1] != '/'))))
 			return (FALSE);
 		aux_copy_tilde(str, key_to_find, i);
 		return (TRUE);

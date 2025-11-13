@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_II.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 01:53:47 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 01:40:29 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/13 14:49:53 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,9 @@ void	clean_cycle(t_shell *data, t_prompt *prompt, t_node **ast_root)
 {
 	restore_fd(&data->exec);
 	clean_prompt(prompt);
-	clean_ast(*ast_root);
-	*ast_root = NULL;
+	if (ast_root)
+	{
+		clean_ast(*ast_root);
+		*ast_root = NULL;
+	}
 }

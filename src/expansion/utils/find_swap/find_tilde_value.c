@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 15:16:04 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/05 12:31:04 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/13 14:42:27 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ static int is_just_tilde(t_shell *data, t_token *token, char **key_to_find)
 	value = get_var_value(data->env.vars, *key_to_find);
 	if (!value)
 	{
+		free (*key_to_find);
+		*key_to_find = NULL;
 		ft_printf_fd(STDERR, ERR_HOME_NOT_SET); //Im not doung the whole USERS/name: Is a directory cuz I dont have the function to retrieve the Home value
 		return (ERROR);
 	}
@@ -108,12 +110,34 @@ static int is_tilde_plus(t_shell *data, t_token *token, char **key_to_find)
 		if (!getcwd(cwd, sizeof(cwd)))
 		{
 			free (*key_to_find);
+			*key_to_find = NULL;
 			return (perror("minishell: cd: "), ERROR);//codigo de error de getcwd?
 		}
 		//if (if_tilde_error(data, token, cwd, ft_strlen(token->value)))
 		//	return (ERROR);
 		expand_tilde(data, token, cwd, *key_to_find);
 		return (TRUE);
+	}
+	expand_tilde(data, token, value, *key_to_find);
+	return (TRUE);
+}
+
+static int is_tilde_minus(t_shell *data, t_token *token, char **key_to_find)
+{
+	char	cwd[PATH_MAX];
+	char	*value;
+
+	free (*key_to_find);
+	*key_to_find = ft_strdup("OLDPWD");
+	if (!*key_to_find)
+		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+	value = get_var_value(data->env.vars, *key_to_find);
+	if (!value)//-Bash saca el PWD desde el env o lo saca con getcwd? el resultado varia porque se puede borrar en env
+	{
+		free (*key_to_find);
+		*key_to_find = NULL;
+		ft_printf_fd(STDERR, ERR_OLDPWD_NOT_SET); //Im not doung the whole USERS/name: Is a directory cuz I dont have the function to retrieve the Home value
+		return (ERROR);
 	}
 	expand_tilde(data, token, value, *key_to_find);
 	return (TRUE);
@@ -128,10 +152,15 @@ int is_it_tilde(t_shell *data, t_token *token, char **key_to_find)
 	{
 		result = is_just_tilde(data, token, key_to_find);
 	}
-	if (key_to_find[0][0] == '~' && key_to_find[0][1] == '+'
+	else if (key_to_find[0][0] == '~' && key_to_find[0][1] == '+'
 		&& key_to_find[0][2] == '\0') //update the copy_key to take the tilde as well
 	{
 		result = is_tilde_plus(data, token, key_to_find);
+	}
+	else if (key_to_find[0][0] == '~' && key_to_find[0][1] == '-'
+		&& key_to_find[0][2] == '\0')
+	{
+		result = is_tilde_minus(data, token, key_to_find);
 	}
 	return (result);
 }

@@ -150,7 +150,7 @@ void	handle_tilde_expansion(t_shell *d, t_prompt *p, const char *str, int *i)
 	start = *i;
 	found = FALSE;
 	(*i)++;
-	if (str[*i] == '+')
+	if (str[*i] == '+' || str[*i] == '-')
 		(*i)++;
 	make_expan_token(d, str, start, i);
 	if (str[*i] != '\0' && !ft_isspace(str[*i]))
@@ -208,7 +208,7 @@ void	is_dolar(t_shell *data, t_prompt *prompt, const char *str, int *i)
 	}
 	if (str[*i] == '~'
 	&& (((str[*i + 1] && ft_isspace(str[*i + 1])) || str[*i + 1] == '\0')
-		|| (str[*i + 1] && str[*i + 1] == '/')
-		|| (str[*i + 1] && (str[*i + 1] == '+'))))
+		|| (str[*i + 1] && (str[*i + 1] == '/' || str[*i + 1] == '+'
+		|| str[*i + 1] == '-'))))
 		handle_tilde_expansion(data, prompt, str, i);
 }
