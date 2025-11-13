@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   transform_word_to_wildcard.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 17:49:40 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/13 01:25:52 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/13 18:09:54 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@
 	-"hola*" ->Se cataloga como WORD pero esta mal. Debería de ser WILDCARD.
 
 	Por esto se revisa el char final de su value.
+
+	También se ve el caso específico en que tenga el wildcard al incio:
+	*tmp
+	Aunque el tokenizador lo cataloga de manera correcta (wildcard), puede
+	que si tiene un NO_SPACE delante y un WORD, va a unir el wildcard con el
+	WORD, de modo que quedara un WORD (que es correcto según
+	las transformaciones), sin embargo, en este caso hay que reconvertirlo a
+	WILDCARD y revertir la desición de simplify_tokens y las transformaciones
 */
 
 void	transform_word_to_wildcard(t_shell *d, t_prompt *promp, t_token *tokens)
@@ -39,6 +47,10 @@ void	transform_word_to_wildcard(t_shell *d, t_prompt *promp, t_token *tokens)
 				len = ft_strlen(tokens[i].value);
 				if (len > 0 && tokens[i].value[len - 1] == '*')
 					tokens[i].type = WILDCARD;
+				else if (tokens[i].value[0] == '*')
+				{
+					tokens[i].type = WILDCARD;
+				}
 			}
 		}
 		i++;

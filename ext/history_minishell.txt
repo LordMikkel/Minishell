@@ -1,22 +1,3 @@
-lear
-ls *.pdf
-ls *pdf
-ls *t
-ls*
-lshola*
-echo $PWD
-ls t*
-echo */home/david/42/minishell
-ls */home/david/42/minishell
-ls *$PWD
-ls**
-clea
-claer
-dlear
-echo *
-echo *$PWD && echo hola
-echo hola &&echo adios
-ls $USER
 var=1 && ls $var
 ls $PW
 ls *$PW
@@ -81,7 +62,6 @@ cler
 *$pw
 echo *$pw
 echo *$hola
-echo *$USER
 *$PWD && ls
 cleaar
 ls && *$P
@@ -94,7 +74,6 @@ tmp*
 ls *$pw && ls
 ls *$pw && ls && ls *$pw && echo hola
 vas=1 vas+=2 echo $USER && ls $vas
-echo $USER
 echo
 cat "$HOME"/*.txt
 echo "'$USER'"
@@ -153,7 +132,6 @@ CLEAR
 echo $USER"A   $   C"$USER
 echo $USER" A   $   C "$USER
 export a="hola   pi"
-echo $a
 mkdir -p /tmp/testdir/real
 ln -s /tmp/testdir/real /tmp/testdir/link
 cd /tmp/testdir/link
@@ -189,11 +167,33 @@ echo hola
 ls
 ~+
 ~+.hola
-env
 unset PWD
 unset HOME
 export HOME=123
 ~
-clear
 ~+/hola
 ~+/~
++=1
+export a="abc"
+export a="abc           hola       como       estas"
+export a="abc           hola       como       estas'' espacio"mundial
+env
+export a="abc           hola       como       estas''espacio"mundial
+echo $a
+echo $USER
+echo *
+echo $missing "$missing"
+echo $missing "$missing" | cat -e
+echo *makefile*
+echo *akef*
+echo *makef*
+echo *akefi*
+echo *Makef*
+echo *$USER
+var=1
+echo *file
+var=file
+echo *$var
+echo *$var*
+echo $var*
+clear

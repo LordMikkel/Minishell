@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 01:11:58 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/13 17:46:01 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,26 +255,25 @@ void	apply_temp_asig(t_shell *data, t_token *tokens, t_node *node);
 //EXPANSION
 int		copy_key(char *buffer, char **key_to_find, int *type);
 int		find_key_in_lst(t_shell *d, t_token *t, char **key_to_f);
-int		is_it_symbol(t_shell *data, t_token *token, char **key_to_find);
-int		extract_key(t_shell *d, t_token *t, char **key_to_f, int phase);
-int		expand_empty_str(t_shell *data, t_token *token, char **key_to_find, int type);
-int		copy_value(t_shell *d, char **t_val, char *key_value, char *key_to_f);
 int		is_it_tilde(t_shell *data, t_token *token, char **key_to_find);
+int		extract_key(t_shell *d, t_token *t, char **key_to_f, int phase);
+int		is_it_symbol(t_shell *data, t_token *token, char **key_to_find);
 void	reconect_nodes_tokens(t_shell *data, t_node *node, t_token *tokens);
+int		copy_value(t_shell *d, char **t_val, char *key_value, char *key_to_f);
+int		expand_empty_str(t_shell *d, t_token *to, char **key_to_find, int type);
 
 //EXPANSION_WILDCARDS
 int		process_wildcard(t_shell *data, t_token *token);
-int		reorder_tokens(t_shell *d, t_token *oritoken, int orisize, char **dirs);
 int		count_matches(t_shell *data, char *key_to_find, int wildcard_type);
 char	**find_matches(t_shell *d, char *key, int n_dirs, int wildcard_type);
 void	rebuild_tokens(t_shell *data, t_token *token, char **dirs, int n_dirs);
 int		extract_wildcard(t_shell *d, char *str, char **ptr, int *wildcard_type);
+int		reorder_tokens(t_shell *d, t_token *oritoken, int orisize, char **dirs);
 
 
 //ASIGNATION
 int		check_asignation_syntax(t_token *token, int type);
 void	eliminate_temp_asig(t_prompt *prompt, t_token *tokens);
-int		send_tokens_for_asig(t_shell *data, t_token *tokens, int phase);
 int		verify_if_already_set(t_shell *data, char *key, char **value, int t);
 int		check_externs_syntax(t_shell *d, t_token *tkens, t_token *token, int t);
 

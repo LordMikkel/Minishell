@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:57:33 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 02:55:58 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/13 17:53:20 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,81 +72,69 @@ static int	aux_mem_alloc(t_shell *data, t_token *token, char **key_to_find)
 	return (SUCCESS);
 }
 
-static int	get_symbol_to_expand_count(char *str, int type)
+static int	tokens_size_has_changed(int *original_size, int new_size)
+{
+	if (*original_size > new_size)
+	{
+		*original_size = new_size;
+		return (TRUE);
+	}
+	return (FALSE);
+}
+
+static int	get_symbol_to_expand_count(char *str)
 {
 	int	number_of_symbols;
 
-	if (type == '$')
-	{
-		number_of_symbols = ft_count_char(str, '$');
-		number_of_symbols += ft_count_char(str, '~');
-	}
-	else if (type == '*')
-		number_of_symbols = ft_count_char(str, '*');
+	number_of_symbols = ft_count_char(str, '$');
+	number_of_symbols += ft_count_char(str, '~');
 	return (number_of_symbols);
 }
 
-int	expansion(t_shell *data, t_token *tokens, int i, int phase)
+static int	process_expansion_token(t_shell *data, t_token *token, int phase)
 {
 	char	*key_to_find;
 	int		number_of_dollars;
 	int		found;
 
 	found = FALSE;
-	while (i < data->prompt.n_tokens)
+	aux_mem_alloc(data, token, &key_to_find);
+	number_of_dollars = get_symbol_to_expand_count(token->value);
+	while (number_of_dollars > 0)
 	{
-		if (phase == FINAL_PHASE && is_delimiter_type(tokens[i].type)) //si se encuentra un delimitador se acaba para no afectar otros nodos
-			return (SUCCESS);
-		if (tokens[i].type == EXPANSION)
-		{
-			if ( i > 0 && tokens[i - 1].type == REDIR_HEREDOC)
-			{
-				i++;
-				continue ;
-			}
-			aux_mem_alloc(data, &tokens[i], &key_to_find);
-			number_of_dollars = get_symbol_to_expand_count(tokens[i].value, '$');
-			while (number_of_dollars > 0)
-			{
-				found = extract_key(data, &tokens[i], &key_to_find, phase);
-				number_of_dollars--;
-			}
-			free (key_to_find);
-			key_to_find = NULL;
-			if (found == ERROR)
-				return (found);
-		}
-		i++;
+		found = extract_key(data, token, &key_to_find, phase);
+		number_of_dollars--;
 	}
+	free(key_to_find);
+	key_to_find = NULL;
 	return (found);
 }
 
-int	expand_wildcards(t_shell *dat, t_prompt *prompt, t_token *tokens, int phase)
+int expansion(t_shell *data, t_token *tokens, int i, int phase)
 {
-	int	i;
+	int	found;
+	int	original_size;
 
-	i = 0;
-	while (i < prompt->n_tokens)
+	found = FALSE;
+	original_size = data->prompt.n_tokens; //para evitar omitir un token cuando se elimina en expand_empty_str porque hace tokens--; en eliminate_token
+	while (i < data->prompt.n_tokens)
 	{
-		if (tokens[i].type == WILDCARD)
+		if (phase == FINAL_PHASE && is_delimiter_type(tokens[i].type))
+			return (SUCCESS);
+		if (tokens[i].type == EXPANSION)
 		{
-			if (phase == FINAL_PHASE && is_delimiter_type(tokens[i].type))
-				return (SUCCESS);
-			if (((i + 1) < prompt->n_tokens) && (tokens[i + 1].type == NO_SPACE)) //hay una expansion que no se proceso porque aun no existe su valor
+			if (i > 0 && tokens[i - 1].type == REDIR_HEREDOC)
 			{
 				i++;
 				continue ;
 			}
-			if (!process_wildcard(dat, &tokens[i]))
-			{
-				i++;
-				continue ;
-			}
-			tokens = prompt->tokens;
-			if (phase == FINAL_PHASE)
-				reconect_nodes_tokens(dat, dat->ast_root, dat->prompt.tokens);
+			found = process_expansion_token(data, &tokens[i], phase);
+			if (found == ERROR)
+				return (found);
 		}
+		if (tokens_size_has_changed(&original_size, data->prompt.n_tokens))
+			continue ;
 		i++;
 	}
-	return (SUCCESS);
+	return (found);
 }
