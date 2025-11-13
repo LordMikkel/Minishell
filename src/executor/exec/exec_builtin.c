@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builtin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:23:12 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 00:30:06 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/13 18:01:50 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,7 @@ void	exec_builtin(t_shell *data, t_node *node, int mode)
 {
 	pid_t	pid;
 
-	// printf("llego\n\n");
-	if (mode == FATHER)
-	{
-		// printf("Antes de final_expansion\n\n");
-		// print_tokens_debug(&data->prompt);
-		expansion_final_process(data, node);
-		// printf("Depues de expansion_final_proces\n\n");
-		// print_tokens_debug(&data->prompt);
-	}
+	expansion_final_process(data, node);
 	if (node->background) //si es por background
 	{
 		pid = fork();

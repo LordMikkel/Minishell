@@ -6,7 +6,7 @@
 #    By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/11/13 13:56:11 by davdiaz-         ###   ########.fr        #
+#    Updated: 2025/11/13 17:45:51 by davdiaz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -158,7 +158,6 @@ SRCS =				main/main.c \
 					tokenizer/utils/cmd_sugestion/cmd_correction.c \
 					tokenizer/utils/cmd_sugestion/cmd_correction_utils.c \
 					expansion/expansion.c \
-					expansion/send_tokens_for_asig.c \
 					expansion/utils/find_swap/copy_key.c \
 					expansion/utils/find_swap/copy_value.c \
 					expansion/utils/find_swap/extract_key.c \
@@ -166,6 +165,7 @@ SRCS =				main/main.c \
 					expansion/utils/find_swap/expand_empty_str.c \
 					expansion/utils/find_swap/is_it_symbol.c \
 					expansion/utils/find_swap/find_tilde_value.c \
+					expansion/utils/find_swap/wildcards/expand_wildcards.c \
 					expansion/utils/find_swap/wildcards/process_wildcards.c \
 					expansion/utils/find_swap/wildcards/count_matches.c \
 					expansion/utils/find_swap/wildcards/find_matches.c \
