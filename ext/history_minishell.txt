@@ -1,4 +1,3 @@
-"$USER"
 echo "\\echo"
 echo "\\'echo"
 echo "\\"echo"
@@ -182,9 +181,6 @@ echo $?
 cat < Makefile > out >> out1 | wc -l out1 > out2
 echo $/ $/
 cat << "$US"E"R"
-$USER
-mikel
-ls
 echo "$"U"SER
 echo "$"U"SER "
 echo "$"U""S"ER
@@ -192,8 +188,12 @@ echo "$"U""S"ER "
 echo "$"U""S"ER"
 echo $USER" A    $     B "$USER
 /bin/echo "''$USER''"
-clear
 /bin/echo "'$USER'"
 echo $USER"A    $     B"$USER
-~
 echo $missing "$missing"
+clear
+ls
+~
+cat << $USER
+mikel
+$USER
