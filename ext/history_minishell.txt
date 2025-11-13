@@ -197,3 +197,202 @@ ls
 cat << $USER
 mikel
 $USER
+unset HOME
+cl
+cd ..
+cd $HOME
+echo *mini*
+echo *shell hola
+echo *pdf hola
+echo *pdf hola como estas manito
+echo *pdf hola como estas *file manito
+echo *pdf hola como estas
+ls mini*
+unset PWD
+echo *pdf
+echo *tmp*
+cd tmp_out_bash
+ls tmp_err_bash
+lear
+ls *.pdf
+ls *pdf
+ls *t
+ls*
+lshola*
+echo $PWD
+ls t*
+echo */home/david/42/minishell
+ls */home/david/42/minishell
+ls *$PWD
+ls**
+clea
+claer
+dlear
+echo *
+echo *$PWD && echo hola
+echo hola &&echo adios
+ls $USER
+var=1 && ls $var
+ls $PW
+ls *$PW
+ls * || echo hola
+ls * | grep "tmp"
+ls
+echo $USER && ls *
+* || *
+* hola
+var=1 * hola
+ls *lllplp
+ls tmp*
+ls *tmp
+ls *tmp*
+export var=tmp*
+ls *
+echo * hola que tal
+ls tmp* && echo $USER
+echo * && echo hola que tal
+ls *tmp && echo $USER
+ls *tmp && echo $USE
+* | ls
+cat "$HOME"
+echo $USER.txt
+echo *tmp
+echo *$PW
+echo *$USE
+echo $EXT
+ls * && echo $USER
+echo *$USER$EXT
+cat *$USER | grep "error"
+echo *$USER > result.txt
+echo *$USER && echo $EXT
+cat $HOME/*.txt
+* | *
+export va=*$USER
+unset va
+echo hola && echo * && ls && pwd && echo $USER
+vas=1 echo hola && echo $vas
+echo ~
+echo ~ como estas
+echo '~ como estas'
+echo ~+ como estas
+echo ~+' a'
+echo hola' a'"como estas"
+echo $USER' '"como estas"
+echo ~' '"como estas"
+echo ~+' '"como estas"
+echo ~+' a'"como estas"
+echo "'~' como estas"
+echo ~+ ' a'
+echo ~+"como estas"
+echo "~ como estas"
+echo ~+'a '"como estas"
+echo tmp*
+vas=1 echo $USER && ls $vas && var=21
+vas=1 echo $USER && echo $vas
+vas=1 echo $USER && var=1 echo $vas && echo $vas $var
+vas=1 echo $USER && ls | ls $vas
+vas=1 echo $USER && ls $vas
+echo $USERborrar$USER$USER
+cler
+*$pw
+echo *$pw
+echo *$hola
+echo *$USER
+*$PWD && ls
+cleaar
+ls && *$P
+*tmp
+*$PWD
+*$P
+echo *$pw && ls
+tmp*
+*$pw && ls
+ls *$pw && ls
+ls *$pw && ls && ls *$pw && echo hola
+vas=1 vas+=2 echo $USER && ls $vas
+echo $USER
+echo
+cat "$HOME"/*.txt
+echo "'$USER'"
+echo '$USER'
+ECHO HOLA
+ecg
+echo $USER" A B C"$USER
+echo $USER"A  $  C"$USERmak
+$
+$ && ls
+echo $ && ls
+echo '$ a b' && ls
+echo "$ a b" && ls
+echo $USER"A  $  C"$USER
+echo $USER" A  $  C "$USER
+echo $USER"   A   $  C    "$USER
+export a
+a=1
+unset a
+nev
+export b
+export "a"
+echo $!
+$$
+echo $$
+echo $?
+export $$USER
+~+
+echo ~+
+echo "~+"
+echo *~+
+echo ~+*
+echo '~+'
+unset PWD SHLVL PATH
+unset PATH SHLVL PWD
+env
+pwd
+echo $asda
+a
+d
+c
+e
+exiwt
+exir
+echo "a $ b"
+~+'a '"como estas"
+*
+echo *$pwd
+echo *$PWD
+a=file
+echo *$file
+echo *$a
+echo make *
+var=1 echo hola && echo $var
+va=1 vas=3 vas+=3 echo hola && echo $va $vas
+export "$$USER"
+CLEAR
+echo $USER"A   $   C"$USER
+echo $USER" A   $   C "$USER
+export a="hola   pi"
+echo $a
+mkdir -p /tmp/testdir/real
+ln -s /tmp/testdir/real /tmp/testdir/link
+cd /tmp/testdir/link
+mkdir -p /tmp/real/dir
+ln -s /tmp/real /tmp/link
+cd /tmp/link/dir
+echo "$USER"
+echo "$exit code-> $?  user -> $USER home -> $HOME"
+$USER$TESTNOFOUND$HOME
+echo $USER$TESTNOFOUND$HOME
+"e"'x''p''o''r''t' hola
+"e"'x''p''o''r''t' T=j
+export
+echo "$"U""S"ER"
+ECHO "'$USER'"
+secho $USER"A   $   C"$USER
+echo test$missing "$missing"
+export a="asd"
+echo $notfound$USER
+clear
+export a="hola"
+export r=1
+export r+=1
+~
