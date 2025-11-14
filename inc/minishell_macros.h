@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_macros.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:23:16 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 14:08:04 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/14 22:40:24 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@
 /* ************************************************************************** */
 # define NO_FILE					0
 # define ILIMITED					-1
+# define N_BULTINS					9
 
 /* ************************************************************************** */
 /*                              Signal Handling                               */
@@ -202,7 +203,7 @@ delimited by end-of-file (wanted `%s')\n"
 is negative resetting to 1\033[0m\n"
 
 //Redirection Errors
-# define ERR_AMBIGUOUS_REDIR	"minishell: ambiguous redirect\n"
+# define ERR_AMBIGUOUS_REDIR	"minishell: *: ambiguous redirect\n"
 # define ERR_NO_INPUT_FILE		"minishell: No such file or directory\n"
 # define ERR_REDIR_DENIED		"minishell: Permission denied\n"
 

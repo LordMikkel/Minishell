@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 20:37:22 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 01:10:28 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/14 15:06:20 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	join_tokens(t_shell *d, t_prompt *prompt, t_token *tokens, int *range)
 		exit_error(d, ERR_MALLOC, EXIT_FAILURE);
 	while (i <= range[1])
 	{
-		if (is_primitive_cmd_type(tokens[i].type) || tokens[i].type == WILDCARD)
+		if (is_needed_to_simplify(tokens[i].type))
 		{
 			tmp = result;
 			result = ft_strjoin(result, tokens[i].value);

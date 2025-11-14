@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_and_or.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 20:20:29 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/07 20:24:23 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/13 22:38:55 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_node	*parse_and_or(t_shell *data, t_token *tokens, int *i, int n_tokens)
 		safe_index_plus(i, n_tokens);
 		right = parse_pipes(data, tokens, i, n_tokens);
 		if (!right)
-			return (NULL);
+			return (clean_node(&central), clean_node(&left), NULL);
 		central->left = left;
 		central->right = right;
 		left = central;

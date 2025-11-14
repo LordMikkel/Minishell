@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_correction.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 20:48:00 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/13 13:40:58 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/14 22:41:43 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	process_token(t_shell *data, t_token *tokens, char **builtins, int i)
 
 	j = 0;
 	result = FALSE;
-	while (j < data->builtins->len)
+	while (j < data->builtins.n_builtins)
 	{
 		if (is_valid_value(tokens[i].value)
 			&& find_match(tokens[i].value, builtins[j])) //si solo hay un caracter diferente
@@ -122,7 +122,7 @@ int	cmd_correction(t_shell *data, t_token *tokens, int n_tokens)
 	int		i;
 
 	i = 0;
-	builtins = data->builtins->builtins_selection;
+	builtins = data->builtins.builtins_selection;
 	result = SUCCESS;
 	while (i < n_tokens)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_builtins.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 10:55:44 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/04 20:54:45 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/14 14:52:06 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	init_builtins(t_shell *data)
 	int		index;
 	int		len;
 
-	len = 9;
+	len = N_BULTINS;
 	built_ins = ft_calloc(len + 1, sizeof(char *));
 	if (!built_ins)
 		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
@@ -51,9 +51,6 @@ void	init_builtins(t_shell *data)
 	built_ins[9] = NULL;
 	if (check_if_error(built_ins, len) == ERROR)
 		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
-	data->builtins = ft_calloc(1, sizeof(t_builtin));
-	if (!data->builtins)
-		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
-	data->builtins->builtins_selection = built_ins;
-	data->builtins->len = len;
+	data->builtins.builtins_selection = built_ins;
+	data->builtins.n_builtins = len;
 }

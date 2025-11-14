@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 17:12:22 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/13 00:16:56 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/14 17:02:58 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ static int	validate_and_move(t_shell *data, t_var *vars, char *new_dir)
 	if (ft_strcmp(new_dir, "-") == 0) // expandir real OLD_PWD
 	{
 		new_dir = get_var_value(vars, "OLDPWD");
+		if (!new_dir)
+			return (ft_printf_fd(STDOUT, ERR_CD_OLDPWD), EXIT_FAILURE);
 		ft_printf_fd(STDOUT, "%s\n", new_dir);
 	}
 	if (!getcwd(old_cwd, sizeof(old_cwd))) // actual dir para OLDPWD

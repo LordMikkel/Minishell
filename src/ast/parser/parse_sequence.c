@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_sequence.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 20:04:50 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/07 20:43:49 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/13 22:39:06 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_node	*parse_sequence(t_shell *data, t_token *tokens, int *i, int n_tokens)
 		safe_index_plus(i, n_tokens);
 		right = parse_and_or(data, tokens, i, n_tokens);
 		if (!right)
-			return (central);
+			return (clean_node(&central), clean_node(&left), central);
 		central->right = right;
 		left = central;
 	}

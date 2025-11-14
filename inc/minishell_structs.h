@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 02:35:23 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/14 14:50:54 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ struct s_cmd
 typedef struct s_builtin
 {
 	char	**builtins_selection;
-	int		len;
+	int		n_builtins;
 }t_builtin;
 
 typedef struct s_extras
@@ -165,16 +165,15 @@ typedef struct s_extras
 	char		*user_name;
 	time_t		session_start;
 	t_cmd		*cmd;
-	int			n_built_ins;
 }	t_extras;
 
 typedef struct s_shell
 {
-	t_builtin	*builtins;
 	t_env		env;
 	t_prompt	prompt;
-	t_exec		exec;
+	t_builtin	builtins;
 	t_node		*ast_root;
+	t_exec		exec;
 	pid_t		shell_pid;
 	pid_t		last_background_pid;
 	t_extras	extras;

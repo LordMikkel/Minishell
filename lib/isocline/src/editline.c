@@ -1078,6 +1078,7 @@ static char* edit_line( ic_env_t* env, const char* prompt_text )
         edit_swap_char(env,&eb);
         break;
       case KEY_CTRL_BS:
+        raise(SIGQUIT);
         break;
 
       // Editing
@@ -1119,6 +1120,9 @@ static char* edit_line( ic_env_t* env, const char* prompt_text )
 //   if ((c == KEY_CTRL_D && sbuf_len(eb.input) == 0) || c == KEY_CTRL_C || c == KEY_EVENT_STOP) {
 //     res = NULL;
 //   }
+  if ( c == KEY_CTRL_C) {
+    raise(SIGINT);
+  }
   if ((c == KEY_CTRL_D && sbuf_len(eb.input) == 0) || c == KEY_EVENT_STOP) {
       res = NULL;
   }

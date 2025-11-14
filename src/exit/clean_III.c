@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 21:43:11 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 00:41:39 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/14 14:47:05 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	clean_temp_variables(t_shell *d, t_env *e, t_token *t, t_node *node)
 }
 
 /*
-	Restea toda la memorua de `t_extras` y la deja apuntando
+	Restea toda la memoria de `t_extras` y la deja apuntando
 	a NULL para evitar accesos inválidos.
 */
 
@@ -49,9 +49,14 @@ void	clean_fd(t_exec *exec)
 	close(exec->original_stdout);
 }
 
-void	clean_builtins_selection(t_shell *data)
+/*
+	Restea y libera toda la memoria de `t_builtin` y la deja apuntando
+	a NULL para evitar accesos inválidos.
+*/
+
+void	clean_builtins_selection(t_builtin *builtins)
 {
-	ft_free_str_array(data->builtins->builtins_selection);
-	free (data->builtins);
-	data->builtins = NULL;
+	if (builtins->builtins_selection)
+		ft_free_str_array(builtins->builtins_selection);
+	*builtins = (t_builtin){0};
 }

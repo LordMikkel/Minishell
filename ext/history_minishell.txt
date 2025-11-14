@@ -197,3 +197,202 @@ echo *$var
 echo *$var*
 echo $var*
 clear
+;s
+cear
+cleas
+export var="'"
+echo $var
+(echo a && exit 1) && (echo b && exit 1) || (echo c && exit 0)(echo a && exit 1) && (echo b && exit 1) || (echo c && exit 0)
+ls &&        ls
+ls && ""
+/bin
+whereis /../bin/ls
+whereis /bin/ls
+/bin/ls
+""
+whereis ls
+/../bin
+(echo a && exit 1) && (echo b && exit 1) || (echo c && exit 0)
+b=
+unseth PATh
+unseth PATH
+where is /bin/
+where is /../bin/
+a="'"
+echo $a
+export a=1 b=2 c=3
+echo $a$b$c
+export a=1 1b=2 c=3
+export a=a 1b=2 c=c
+cd /bin
+cd /../bin
+export A="'"
+export
+export a=""
+exit 99999999999999999999999999999999999999999999999999999999999999999999999999999
+exit 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
+exit 9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
+exit 99999999999999999999999999999999999999999999
+dc
+cleare
+matriz
+matrix
+xmatriz
+btop
+ncdu ~
+fernanda
+lsls
+cd minishell/
+cd ..
+cloc Makefile
+ncdu
+cmatriz
+cmatrix
+cmd
+make leaks
+\xC0Z\xA9\x04
+sds
+cs
+sdc
+d
+va
+ev
+v
+cd /
+(ls && echo hola | echo "
+nada"
+(ls && echo hola | echo " nada" )
+(ls && echo hola | echo " nada" ) ||
+(ls && echo hola | echo " nada" ) || ls
+ls |
+ls | ls
+ls &&  s
+echo '"
+echo '" " '
+lls
+ls ||
+ls || ls
+ls &&  sd
+()
+ls &&  ()
+ls &&
+echo "
+hola"
+wc -l
+ls &&  ( echo " hola" | wc -l )
+c;ear
+(echo a && exit 1) && (echo b && exit 1) || (echo c && exit 1)
+(echo a && exit 1) && (echo b && exit 1) || (echo c && exit 1) || (echo d && exit 1)
+celar
+ls && ls
+echo ''
+bash
+/bin/echo "exit_code ->$? user ->$USER home -> $HOME"
+cat < Makefile > out >> out1 | wc -l out1 > out2
+echo $/ $/
+mikel
+echo "$"U"SER
+echo "$"U"SER "
+echo "$"U""S"ER
+echo "$"U""S"ER "
+echo "$"U""S"ER"
+echo $USER" A    $     B "$USER
+/bin/echo "''$USER''"
+echo $USER"A    $     B"$USER
+/bin/echo "'$USER'"
+/bin/echo '' ""
+/bin/echo $USER$TESTNOTFOUND$HOME$WTF$PWD
+/bin/echo test$MISSING "$MISSING"
+echo "" "" "" -n -n -n -n
+echo '' -n
+export T="l"
+$Ts -a
+export T="echo segfault | grep segfault"
+$T
+echo $/"$/"
+/bin/echo $USER$TESTNOTFOUND$HOME$
+unset "?"
+/bin/echo $HOME
+unset $HOME
+echo "$HO ME"
+export a="asd" b="de" o= c="hellomi" X
+ls | cat << stop | ls -la | cat << stop1 | ls | cat << stop2 | ls -la | cat << stop3
+ls | << LM
+ls | << stop
+echo "$HO ME" | cat -e
+echo $USE"R"$HOME
+echo $'HOM'E$USER
+echo $'HOM'E$USER | cat -e
+echo $"42$"
+export pipe_var=1 | echo $pipe_var
+ls | cat << stop
+./minishell
+export PATH=" "
+echo $PATH
+echo 1
+export A=" "
+echo $A | cat -e
+export TEST=
+ls * | ls
+clea
+touch "*1"
+/usr/bin/printf "%s\\n" "*"* | sort
+rm "*1"
+touch tmp_out
+/bin/echo 42 >tmp_o*t*
+rm -f "tmp_out*"
+ls > file * file2
+make
+ls > *
+ls && ls > *
+/usr/bin/printf "%s\\n" * | sort
+ls *
+ls 'test'*
+ls "test"*
+ls dfbvdf
+ls > file > * > file2
+clar
+grep hi <./test_files/infile
+echo  $US"ER"
+ cat << $US"ER"
+<<
+cat << $US"ER"
+<< LM
+cat << "$US"E"R"
+<< $USER
+sd
+scv
+scd
+$US
+echo $US"ER"
+>> $US"ER"
+ls
+<< $US"ER"
+$USER
+> $NOEXISTE.file
+echo -nnnn 2> stderrormini
+unset _
+unset sd
+unset 1sd
+unset $PATH 2> stderrormini
+unset $PATH
+unset PATH 2> stderrormini
+unset s
+unset d
+unset A
+unset hola
+clear
+unset PATH
+unset $PATH
+$PWD
+unset OLDPWD
+echo $HOME$NOTHING$USER$
+cd
+echo $?
+/bin/cat Makefile > out >>out1 >out2 | /bin/cat << stop > out3 | /bin/ls > > | /bin/cat << file
+unset PATH
+env
+unset PWD
+cd ~
+cd -
+pwd
