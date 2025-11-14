@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/14 22:40:17 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/14 23:07:44 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -271,7 +271,6 @@ char	**find_matches(t_shell *d, char *key, int n_dirs, int wildcard_type);
 void	rebuild_tokens(t_shell *data, t_token *token, char **dirs, int n_dirs);
 int		extract_wildcard(t_shell *d, char *str, char **ptr, int *wildcard_type);
 int		reorder_tokens(t_shell *d, t_token *oritoken, int orisize, char **dirs);
-
 
 //ASIGNATION
 int		check_asignation_syntax(t_token *token, int type);

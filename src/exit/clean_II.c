@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 01:53:47 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/14 22:41:25 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/14 22:55:14 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,5 @@ void	clean_cycle(t_shell *data, t_prompt *prompt, t_node **ast_root)
 {
 	restore_fd(&data->exec);
 	clean_prompt(prompt);
-	if (ast_root)
-	{
-		clean_ast(*ast_root);
-		*ast_root = NULL;
-	}
+	clean_ast(*ast_root);
 }
