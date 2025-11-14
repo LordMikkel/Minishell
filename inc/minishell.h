@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 17:46:01 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/14 22:40:17 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,9 +136,9 @@ void	clean_extras(t_extras *extras);
 void	clean_cycle(t_shell *data, t_prompt *prompt, t_node **ast_root);
 void	my_clean_unset(t_shell *data, t_env *env, t_token *tokens, int *index);
 void	clean_temp_variables(t_shell *d, t_env *e, t_token *t, t_node *node);
+void	clean_builtins_selection(t_builtin *builtins);
 void	restore_fd(t_exec *exec);
 void	clean_fd(t_exec *exec);
-void	clean_builtins_selection(t_shell *data);
 
 /* ************************************************************************** */
 /*                                 Exits                                      */
@@ -192,6 +192,7 @@ int		is_real_assignation_type(int type);
 int		is_redir_output_type(int type);
 int		is_redir_input_type(int type);
 int		is_invalid_char(int c);
+int		is_needed_to_simplify(int type);
 int		is_built_in(t_shell *data, t_token *token, char *str);
 
 //VALID TOKENS
@@ -246,6 +247,7 @@ t_redir	*get_redirs(t_shell *data, t_token *tokens, int *i, int mode);
 //EXECUTOR
 char	*get_path(t_shell *data, char *cmd, char **envp);
 int		apply_redirs(t_shell *data, t_node *node, int mode);
+int		check_ambiguous_redir(t_shell *data, const char *filename, int mode);
 void	expansion_final_process(t_shell *data, t_node *node);
 void	which_builtin(t_shell *data, t_token *token, t_node *node);
 int		apply_properties(t_shell *data, t_node *node, int mode);

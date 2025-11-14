@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 21:35:11 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 00:50:43 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/14 14:51:15 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,8 @@ int	is_built_in(t_shell *data, t_token *token, char *str)
 	int		i;
 
 	i = 0;
-	len = data->builtins->len;
-	builtins = data->builtins->builtins_selection;
+	len = data->builtins.n_builtins;
+	builtins = data->builtins.builtins_selection;
 	while (i < len)
 	{
 		if (ft_strmatch_cmp(builtins[i], str) == 0)

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 20:43:29 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 00:53:29 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/14 01:59:11 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	transform_word_to_file(t_prompt *prompt, t_token *tokens)
 	i = -1;
 	while (++i < prompt->n_tokens)
 	{
-		if (i > 0 && (tokens[i].type == WORD || tokens[i].type == EXPANSION)
+		if (i > 0 && (tokens[i].type == WORD || tokens[i].type == EXPANSION || tokens[i].type == WILDCARD)
 			&& is_redir_type(tokens[i - 1].type))
 		{
 			if (tokens[i - 1].type == REDIR_HEREDOC)

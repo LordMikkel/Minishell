@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+         #
+#    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/11/13 17:45:51 by davdiaz-         ###   ########.fr        #
+#    Updated: 2025/11/14 22:40:56 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ CC					= cc
 #WFLAGS				= -Wall -Wextra -Werror
 DFLAGS				= -g
 #OFLAGS				= -Ofast -march=native -flto
-##SFLAGS				= -fsanitize=address,undefined
+SFLAGS				= -fsanitize=address,undefined
 DEPFLAGS			= -MMD -MP
 
 # **************************************************************************** #
@@ -125,6 +125,7 @@ SRCS =				main/main.c \
 					tokenizer/utils/is_tokens/is_type_I.c \
 					tokenizer/utils/is_tokens/is_type_II.c \
 					tokenizer/utils/is_tokens/is_type_III.c \
+					tokenizer/utils/is_tokens/is_type_IV.c \
 					tokenizer/utils/is_tokens/utils_is_double_quote.c \
 					tokenizer/utils/check_syntax/is_it_quoted.c \
 					tokenizer/utils/check_syntax/check_redir_input.c \
@@ -142,6 +143,7 @@ SRCS =				main/main.c \
 					tokenizer/utils/check_syntax/check_parent_balance.c \
 					tokenizer/utils/check_syntax/check_cmd_externs.c \
 					tokenizer/utils/check_syntax/check_full_line_syntax.c \
+					tokenizer/utils/check_syntax/check_ambiguous_redir.c \
 					tokenizer/utils/simplify_tokens/simplify_tokens.c \
 					tokenizer/utils/simplify_tokens/reorganize_tokens.c \
 					tokenizer/utils/simplify_tokens/adjust_range_tokens.c \

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/11 02:32:54 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/01 22:23:03 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/14 01:04:54 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ int	apply_redirs(t_shell *data, t_node *node, int mode)
 	curr = node->redir;
 	while (curr)
 	{
+		if ((check_ambiguous_redir(data, curr->filename, mode)) == FAIL)
+				return (FAIL);
 		if (curr->type == REDIR_INPUT)
 			if (handle_redir_input(data, curr->filename, curr->fd_redir, mode))
 				return (FAILURE);

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 21:47:38 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 00:39:15 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/14 14:44:44 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,5 @@ void	clean_all(t_shell *data)
 	clean_ast(data->ast_root);
 	clean_fd(&data->exec);
 	clean_extras(&data->extras);
-	clean_builtins_selection(data);
+	clean_builtins_selection(&data->builtins);
 }
