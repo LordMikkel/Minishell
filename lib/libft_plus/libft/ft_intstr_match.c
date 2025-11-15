@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_it_quoted.c                                     :+:      :+:    :+:   */
+/*   ft_intstr_match.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/26 21:23:00 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/15 22:45:55 by davdiaz-         ###   ########.fr       */
+/*   Created: 2025/11/15 10:57:44 by davdiaz-          #+#    #+#             */
+/*   Updated: 2025/11/15 20:58:19 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../inc/minishell.h"
+#include "../libft_plus.h"
 
-void	is_it_quoted(t_prompt *prompt, t_token *tokens)
+int		ft_intstr_match(char *str, char *word_to_find, int start)
 {
-	int	i;
-	int	in_quotes_flag;
+	int	j;
 
-	i = 0;
-	in_quotes_flag = FALSE;
-	while (i < prompt->n_tokens)
+	if (!*word_to_find)
+		return (-1);
+	while (str[start] != '\0')
 	{
-		if (tokens[i].type == DOUBLE_QUOTE)
-		{
-			in_quotes_flag = !in_quotes_flag;
-			i++;
-			continue ;
-		}
-		if (in_quotes_flag)
-			tokens[i].double_quoted = TRUE;
-		i++;
+		j = 0;
+		while (word_to_find[j] && str[start + j] == word_to_find[j])
+			j++;
+		if (word_to_find[j] == '\0')
+			return (start);
+		start++;
 	}
+	return (-1);
 }

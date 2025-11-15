@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:10 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 16:19:35 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/15 22:40:28 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,8 @@ int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 	if (!check_if_valid_tokens(data, prompt, prompt->tokens))
 		return (SYNTAX_ERROR);
 
-	 printf("antes de expansion en la ejecución\n\n");
-	 print_tokens_debug(prompt);
-
-	is_it_quoted(prompt, prompt->tokens); // Se puede hacer mas eficiente
-
+	//printf("antes de expansion en la ejecución\n\n");
+	//print_tokens_debug(prompt);
 	if (expansion(data, prompt->tokens, 0, INITIAL_PHASE) == ERROR)
 	{
 		clean_cycle(data, prompt, NULL);
@@ -100,6 +97,7 @@ int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 
 	simplify_tokens(data, prompt, prompt->tokens);
 
+	is_it_quoted(prompt, prompt->tokens);
 	transform_tokens_logic(data, prompt, prompt->tokens);
 
 	//print_tokens_debug(prompt);
@@ -110,16 +108,16 @@ int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 	// else
 	// 	transform_tokens_logic(data, prompt, prompt->tokens);
 
+	transform_tokens_logic(data, prompt, prompt->tokens);
 	expand_wildcards(data, prompt, prompt->tokens, INITIAL_PHASE);
 
 	//printf("after expand_wildcards\n\n");
 
-	transform_tokens_logic(data, prompt, prompt->tokens);
 
 	if (!check_if_valid_tokens(data, prompt, prompt->tokens))
 		return (SYNTAX_ERROR);
 
-	// print_tokens_debug(prompt);
+	//print_tokens_debug(prompt);
 
 	// printf("After TOKENIZER\n\n");
 	return (SUCCESS);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_envp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 20:43:35 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/03 01:49:18 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/13 22:22:04 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ char	**make_envp(t_shell *data, t_env *env, t_var *vars)
 			envp[i] = ft_strjoin_multi(3, vars->key, "=", vars->value);
 			if (!envp[i])
 				return (exit_error(data, ERR_MALLOC, EXIT_FAIL), NULL);
+			i++;
 		}
 		vars = vars->next;
-		i++;
 	}
 	return (envp);
 }

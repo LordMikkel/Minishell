@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft_plus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 16:10:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 00:19:40 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/15 20:59:21 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int		ft_strcmp(const char *s1, const char *s2);
 int		ft_strmatch_cmp(char *s1, const char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
+int		ft_count_str_in_arr(char **arr);
+int		ft_intstr_match(char *str, char *word_to_find, int start);
 size_t	ft_strlcat(char *dst, const char *src, size_t cat_size);
 size_t	ft_strlcpy(char *dst, const char *src, size_t cpy_size);
 size_t	ft_strlen(const char *s);
@@ -70,7 +72,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 char	*ft_itoa(int n);
 char	*ft_strdup(const char *s);
 char	*ft_strndup(const char *s, size_t n);
-char	*ft_str_match(char *str, char *word_to_find);
+char	*ft_charstr_match(char *str, char *word_to_find);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
 char	*ft_strcut(char *str, int c);

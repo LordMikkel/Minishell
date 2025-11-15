@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_token.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 01:07:14 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 00:46:58 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/15 21:48:15 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int	add_token(t_shell *data, t_prompt *prompt, char *value, int type)
 	check_buffer(data, prompt);
 	tokens = prompt->tokens;
 	tokens[i].id = i;
-	//printf("token->id: %d\n\n", tokens[i].id);
 	tokens[i].hash = i;
 	tokens[i].value = value;
 	tokens[i].type = type;

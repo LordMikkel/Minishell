@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 17:49:40 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/13 18:09:54 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/15 22:40:55 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,26 @@
 	WILDCARD y revertir la desición de simplify_tokens y las transformaciones
 */
 
+static int	has_middle_wildcard(char *value)
+{
+	int len;
+	int i;
+
+	if (!value)
+		return (FALSE);
+	len = ft_strlen(value);
+	if (len <= 2)
+		return (FALSE);
+	i = 1;
+	while (i < len - 1)
+	{
+		if (value[i] == '*')
+			return (TRUE);
+		i++;
+	}
+	return (FALSE);
+}
+
 void	transform_word_to_wildcard(t_shell *d, t_prompt *promp, t_token *tokens)
 {
 	int		i;
@@ -51,6 +71,8 @@ void	transform_word_to_wildcard(t_shell *d, t_prompt *promp, t_token *tokens)
 				{
 					tokens[i].type = WILDCARD;
 				}
+				else if (has_middle_wildcard(tokens[i].value))
+					tokens[i].type = WILDCARD;
 			}
 		}
 		i++;

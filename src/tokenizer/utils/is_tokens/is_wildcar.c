@@ -3,14 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   is_wildcar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:41 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 01:08:41 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/14 12:16:39 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/minishell.h"
+
+/*
+	Elimina los * (WILDCARD) consecutivos, dejando solo uno.
+	Ejemplo: "**file***txt" -> "*file*txt"
+*/
+
+static char	*normalize_wildcards(t_shell *data, char *wildcard, int len)
+{
+	int	j;
+	int	k;
+	char	*clean_wildcar;
+
+	j = 0;
+	k = 0;
+	clean_wildcar = ft_calloc(len + 1, sizeof(char));
+	if (!clean_wildcar)
+	{
+		free (wildcard);
+		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+	}
+	while (wildcard[j] != '\0')
+	{
+		clean_wildcar[k++] = wildcard[j];
+		if (wildcard[j] == '*')
+		{
+			while (wildcard[j + 1] == '*')
+				j++;
+		}
+		j++;
+	}
+	clean_wildcar[k] = '\0';
+	free (wildcard);
+	return (clean_wildcar);
+}
+
 
 /*
 	Elimina todos los caracteres 'trash' de la cadena wildcard.
@@ -66,10 +101,14 @@ static int	isn_wild(int c)
 	De este modo, se pueden separar, expandir y luego unir
 */
 
-static int	if_expansion(t_shell *data, const char *str, int i)
+static int	if_expansion_or_quotes(t_shell *data, const char *str, int i)
 {
 	if (i + 1 < ft_strlen(str) && str[i] == '$'
 		&& (ft_isalpha(str[i + 1]) || is_symbol(str[i + 1])))
+	{
+		return (TRUE);
+	}
+	else if (i + 1 < ft_strlen(str) && (str[i] == '\"' || str[i] == '\''))
 	{
 		return (TRUE);
 	}
@@ -105,9 +144,10 @@ void	is_wildcar(t_shell *data, t_prompt *prompt, const char *str, int *i)
 				exit_error(data, ERR_MALLOC, EXIT_FAILURE);
 			wildcar = cleanner_wildcar(data, wildcar, len, ';');
 			wildcar = cleanner_wildcar(data, wildcar, len, '?');
+			wildcar = normalize_wildcards(data, wildcar, len);
 			add_token(data, prompt, wildcar, WILDCARD);
 		}
-		if (if_expansion(data, str, *i))
+		if (if_expansion_or_quotes(data, str, *i))
 			add_token(data, prompt, "", NO_SPACE);
 	}
 }

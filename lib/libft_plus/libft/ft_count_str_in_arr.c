@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_it_quoted.c                                     :+:      :+:    :+:   */
+/*   ft_count_str_in_arr.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/26 21:23:00 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/15 22:45:55 by davdiaz-         ###   ########.fr       */
+/*   Created: 2025/11/15 10:35:02 by davdiaz-          #+#    #+#             */
+/*   Updated: 2025/11/15 13:50:24 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../inc/minishell.h"
+#include "../libft_plus.h"
 
-void	is_it_quoted(t_prompt *prompt, t_token *tokens)
+int ft_count_str_in_arr(char **arr)
 {
-	int	i;
-	int	in_quotes_flag;
+	int count;
 
-	i = 0;
-	in_quotes_flag = FALSE;
-	while (i < prompt->n_tokens)
-	{
-		if (tokens[i].type == DOUBLE_QUOTE)
-		{
-			in_quotes_flag = !in_quotes_flag;
-			i++;
-			continue ;
-		}
-		if (in_quotes_flag)
-			tokens[i].double_quoted = TRUE;
-		i++;
-	}
+	if (!arr)
+		return (0);
+	count = 0;
+	while (arr[count] != NULL)
+		count++;
+	return (count);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   transform_tokens_logic.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 21:33:14 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 01:12:04 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/15 22:39:45 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

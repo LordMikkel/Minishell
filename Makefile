@@ -6,7 +6,7 @@
 #    By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/11/13 17:45:51 by davdiaz-         ###   ########.fr        #
+#    Updated: 2025/11/15 22:42:26 by davdiaz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -125,6 +125,7 @@ SRCS =				main/main.c \
 					tokenizer/utils/is_tokens/is_type_I.c \
 					tokenizer/utils/is_tokens/is_type_II.c \
 					tokenizer/utils/is_tokens/is_type_III.c \
+					tokenizer/utils/is_tokens/is_type_IV.c \
 					tokenizer/utils/is_tokens/utils_is_double_quote.c \
 					tokenizer/utils/check_syntax/is_it_quoted.c \
 					tokenizer/utils/check_syntax/check_redir_input.c \
@@ -142,6 +143,7 @@ SRCS =				main/main.c \
 					tokenizer/utils/check_syntax/check_parent_balance.c \
 					tokenizer/utils/check_syntax/check_cmd_externs.c \
 					tokenizer/utils/check_syntax/check_full_line_syntax.c \
+					tokenizer/utils/check_syntax/check_ambiguous_redir.c \
 					tokenizer/utils/simplify_tokens/simplify_tokens.c \
 					tokenizer/utils/simplify_tokens/reorganize_tokens.c \
 					tokenizer/utils/simplify_tokens/adjust_range_tokens.c \
@@ -172,6 +174,7 @@ SRCS =				main/main.c \
 					expansion/utils/find_swap/wildcards/rebuild_tokens.c \
 					expansion/utils/find_swap/wildcards/extract_wildcard.c \
 					expansion/utils/find_swap/wildcards/reorder_tokens.c \
+					expansion/utils/find_swap/wildcards/handle_complex_case.c \
 					expansion/utils/asignation/asignation.c \
 					expansion/utils/asignation/verify_if_already_set.c \
 					expansion/utils/asignation/check_externs_syntax.c \
