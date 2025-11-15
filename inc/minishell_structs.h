@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/14 14:50:54 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/14 23:08:49 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ typedef struct s_redir	t_redir;
 typedef struct s_node	t_node;
 typedef struct s_extras	t_extras;
 typedef struct s_cmd	t_cmd;
-
 
 typedef enum e_type
 {

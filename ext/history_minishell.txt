@@ -1,15 +1,3 @@
-cleas
-export var="'"
-echo $var
-(echo a && exit 1) && (echo b && exit 1) || (echo c && exit 0)(echo a && exit 1) && (echo b && exit 1) || (echo c && exit 0)
-ls &&        ls
-ls && ""
-/bin
-whereis /../bin/ls
-whereis /bin/ls
-/bin/ls
-""
-whereis ls
 /../bin
 (echo a && exit 1) && (echo b && exit 1) || (echo c && exit 0)
 b=
@@ -81,7 +69,6 @@ ls &&  ( echo " hola" | wc -l )
 c;ear
 (echo a && exit 1) && (echo b && exit 1) || (echo c && exit 1)
 (echo a && exit 1) && (echo b && exit 1) || (echo c && exit 1) || (echo d && exit 1)
-ls && ls
 echo ''
 bash
 /bin/echo "exit_code ->$? user ->$USER home -> $HOME"
@@ -194,6 +181,19 @@ d
 clear
 s
 ls
-unset PWD
 cd ~+
+cmd && nothing if (tokens[i - 1].type && !tokens[i - 1].type)
+cmd && cmd
+cmd && word
+ls && csd
+ls && ls
+sdc && ls
+scd && sSD
+"" && ""
+"" && sds
+unset OLPWWD
+~-
 cd ~-
+unset PWD
+~+
+ls && ~-

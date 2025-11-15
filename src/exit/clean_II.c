@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 01:53:47 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/14 22:55:14 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/14 23:41:21 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ void	clean_node(t_node **node)
 
 void	restore_fd(t_exec *exec)
 {
+	if (!exec)
+		return ;
 	dup2(exec->original_stdin, STDIN_FILENO);
 	dup2(exec->original_stdout, STDOUT_FILENO);
 }
@@ -90,9 +92,9 @@ void	restore_fd(t_exec *exec)
 	tiene que llamarse en cada ciclo del minishell.
 */
 
-void	clean_cycle(t_shell *data, t_prompt *prompt, t_node **ast_root)
+void	clean_cycle(t_exec *exec, t_prompt *prompt, t_node **ast_root)
 {
-	restore_fd(&data->exec);
+	restore_fd(exec);
 	clean_prompt(prompt);
-	clean_ast(*ast_root);
+	clean_ast(ast_root);
 }

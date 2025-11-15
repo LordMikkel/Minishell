@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 21:47:38 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/14 14:44:44 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/14 23:48:28 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	clean_tokens(t_prompt **prompt)
 
 void	clean_prompt(t_prompt *prompt)
 {
+	if (!prompt)
+		return ;
 	if (prompt->input)
 		free(prompt->input);
 	if (prompt->before_tokens_type)
@@ -89,13 +91,13 @@ void	clean_env(t_env *env, t_var *vars)
 	left, luego hasta el ultimo right y ahi liberando cada uno hacia arriba.
 */
 
-void	clean_ast(t_node *node)
+void	clean_ast(t_node **node)
 {
-	if (!node)
+	if (!node || !*node)
 		return ;
-	clean_ast(node->left);
-	clean_ast(node->right);
-	clean_node(&node);
+	clean_ast(&(*node)->left);
+	clean_ast(&(*node)->right);
+	clean_node(node);
 }
 
 /*
@@ -105,9 +107,11 @@ void	clean_ast(t_node *node)
 
 void	clean_all(t_shell *data)
 {
+	if (!data)
+		return ;
 	clean_prompt(&data->prompt);
 	clean_env(&data->env, data->env.vars);
-	clean_ast(data->ast_root);
+	clean_ast(&data->ast_root);
 	clean_fd(&data->exec);
 	clean_extras(&data->extras);
 	clean_builtins_selection(&data->builtins);

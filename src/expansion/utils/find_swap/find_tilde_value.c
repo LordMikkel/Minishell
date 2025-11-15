@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_tilde_value.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 15:16:04 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/13 14:42:27 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/15 02:12:20 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
