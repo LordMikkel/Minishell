@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_it_quoted.c                                     :+:      :+:    :+:   */
+/*   check_ambiguous_redir.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/26 21:23:00 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/15 22:45:55 by davdiaz-         ###   ########.fr       */
+/*   Created: 2025/11/14 01:02:29 by migarrid          #+#    #+#             */
+/*   Updated: 2025/11/15 14:41:30 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/minishell.h"
 
-void	is_it_quoted(t_prompt *prompt, t_token *tokens)
+int	check_ambiguous_redir(t_shell *data, const char *filename, int mode)
 {
-	int	i;
-	int	in_quotes_flag;
-
-	i = 0;
-	in_quotes_flag = FALSE;
-	while (i < prompt->n_tokens)
+	if (filename[0] == '*' && filename[1] == '\0')
 	{
-		if (tokens[i].type == DOUBLE_QUOTE)
-		{
-			in_quotes_flag = !in_quotes_flag;
-			i++;
-			continue ;
-		}
-		if (in_quotes_flag)
-			tokens[i].double_quoted = TRUE;
-		i++;
+		if (mode == CHILD)
+			return (exit_error(data, ERR_AMBIGUOUS_REDIR, EXIT_FAILURE));
+		if (mode == FATHER)
+			return (FAIL);
 	}
 }

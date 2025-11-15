@@ -64,8 +64,6 @@ static int	copy_orig_tokens(t_shell *data, t_token *tmp, int ignore)
 			free_tmp_tokens(tmp, tmp_i);
 			return (ERROR);
 		}
-		else
-			//printf("copy_orig_tokens token[i]: %d\n\n", data->prompt.tokens[i].type);
 		tmp_i++;
 		i++;
 	}
@@ -87,7 +85,7 @@ static int	copy_orig_tokens(t_shell *data, t_token *tmp, int ignore)
 	deberia de ser 1 2 3 4 5 6 7 8
 */
 
-static int generate_valid_hash(t_shell *data, int n_dirs, int n_tokens, int starting_hash)
+static int create_hash(t_shell *data, int n_dirs, int n_tokens, int starting_hash)
 {
 	int	i;
 	int	collision;
@@ -138,18 +136,20 @@ static int	count_dirs(char **dirs)
 static int	copy_new_tokens(t_shell *data, t_token *tmp, int *i, char **dirs)
 {
 	int	j;
+	int	n_dirs;
 
 	j = 0;
-	while (dirs[j] != NULL)// copio los nuevos tokens del wildcard
+	n_dirs = ft_count_str_in_arr(dirs);
+	while (dirs[j] != NULL)
 	{
 		tmp[*i].type = WORD;
 		tmp[*i].double_quoted = FALSE;
 		tmp[*i].single_quoted = FALSE;
+		tmp[*i].id = *i;
 		if (j == 0)
-			tmp[*i].id = *i;//reemplaza el hash del wildcard por si llegase a transformarse en cmd
+			tmp[*i].hash = *i;
 		else
-			tmp[*i].hash = generate_valid_hash(data, count_dirs(dirs),
-				data->prompt.n_tokens, 0);//needs to generate a new hash because of collisions
+			tmp[*i].hash = create_hash(data, n_dirs, data->prompt.n_tokens, *i);
 		tmp[*i].value = ft_strdup(dirs[j]);
 		if (!tmp[*i].value)
 		{
@@ -243,7 +243,6 @@ int	reorder_tokens(t_shell *d, t_token *orig_token, int n_dirs, char **dirs)
 		return (ERROR);
 	if (copy_last_token(d, tmp, &i, wildcard + 1) == ERROR)
 		return (ERROR);
-	// print_tokens_debug(&d->prompt);
 	j = d->prompt.n_alloc_tokens;
 	free_tokens(&d->prompt);
 	d->prompt.tokens = tmp;

@@ -1,88 +1,3 @@
-var=1 && ls $var
-ls $PW
-ls *$PW
-ls * || echo hola
-ls * | grep "tmp"
-echo $USER && ls *
-* || *
-* hola
-var=1 * hola
-ls *lllplp
-ls tmp*
-ls *tmp
-ls *tmp*
-export var=tmp*
-ls *
-echo * hola que tal
-ls tmp* && echo $USER
-echo * && echo hola que tal
-ls *tmp && echo $USER
-ls *tmp && echo $USE
-* | ls
-cat "$HOME"
-echo $USER.txt
-echo *tmp
-echo *$PW
-echo *$USE
-echo $EXT
-ls * && echo $USER
-echo *$USER$EXT
-cat *$USER | grep "error"
-echo *$USER > result.txt
-echo *$USER && echo $EXT
-cat $HOME/*.txt
-* | *
-export va=*$USER
-unset va
-echo hola && echo * && ls && pwd && echo $USER
-vas=1 echo hola && echo $vas
-echo ~
-echo ~ como estas
-echo '~ como estas'
-echo ~+ como estas
-echo ~+' a'
-echo hola' a'"como estas"
-echo $USER' '"como estas"
-echo ~' '"como estas"
-echo ~+' '"como estas"
-echo ~+' a'"como estas"
-echo "'~' como estas"
-echo ~+ ' a'
-echo ~+"como estas"
-echo "~ como estas"
-echo ~+'a '"como estas"
-echo tmp*
-vas=1 echo $USER && ls $vas && var=21
-vas=1 echo $USER && echo $vas
-vas=1 echo $USER && var=1 echo $vas && echo $vas $var
-vas=1 echo $USER && ls | ls $vas
-vas=1 echo $USER && ls $vas
-echo $USERborrar$USER$USER
-cler
-*$pw
-echo *$pw
-echo *$hola
-*$PWD && ls
-cleaar
-ls && *$P
-*tmp
-*$PWD
-*$P
-echo *$pw && ls
-tmp*
-*$pw && ls
-ls *$pw && ls
-ls *$pw && ls && ls *$pw && echo hola
-vas=1 vas+=2 echo $USER && ls $vas
-echo
-cat "$HOME"/*.txt
-echo "'$USER'"
-echo '$USER'
-ECHO HOLA
-ecg
-echo $USER" A B C"$USER
-echo $USER"A  $  C"$USERmak
-$
 $ && ls
 echo $ && ls
 echo '$ a b' && ls
@@ -99,18 +14,14 @@ export "a"
 echo $!
 $$
 echo $$
-echo $?
 export $$USER
 echo ~+
 echo "~+"
 echo *~+
 echo ~+*
 echo '~+'
-unset PWD SHLVL PATH
 unset PATH SHLVL PWD
-pwd
 echo $asda
-a
 d
 c
 e
@@ -118,7 +29,6 @@ exiwt
 exir
 echo "a $ b"
 ~+'a '"como estas"
-*
 echo *$pwd
 echo *$PWD
 a=file
@@ -144,7 +54,6 @@ $USER$TESTNOFOUND$HOME
 echo $USER$TESTNOFOUND$HOME
 "e"'x''p''o''r''t' hola
 "e"'x''p''o''r''t' T=j
-export
 echo "$"U""S"ER"
 ECHO "'$USER'"
 secho $USER"A   $   C"$USER
@@ -177,7 +86,6 @@ export HOME=123
 export a="abc"
 export a="abc           hola       como       estas"
 export a="abc           hola       como       estas'' espacio"mundial
-env
 export a="abc           hola       como       estas''espacio"mundial
 echo $a
 echo $USER
@@ -189,11 +97,103 @@ echo *akef*
 echo *makef*
 echo *akefi*
 echo *Makef*
-echo *$USER
-var=1
 echo *file
 var=file
 echo *$var
 echo *$var*
 echo $var*
+unset USER
+export USER+=@@@
+export USER+=Hola
+export hola+=Hola
+ttt=1
+var=1
+export hola var=1
+export var=1 hola var+=1
+unset PWD SHLVL PATH
+export a=1
+export b=1
+path=12
+export rrr=3
+export hola
+export USER=1231
+export america_latina=hola
+export
+export var=1
+export var=1 hola
+export var=1 hola va=2
+export var=1 va=2
+export var=1 va=2 r=2
+export var=1 va=2 r=2 a
+export var=1 a va=2 r=2 
+export var=1 var+=1
+export var=1 a va=2 r=2
+export var=1 a va=2 r=2 hola perro
+export var=1 a va=2 r=2 hola perro var=2
+sort
+/usr/bin/printf "%s\\n" * | sort
+export ARG="*"
+/usr/bin/printf "%s\\n" $ARG | sort
+touch "   "
+ls * | grep "   "
+rm "   "
+/usr/bin/printf "%s\\n" *"Mak"'e'* | sort
+hola"como estas"bien y tu
+*file*
+**file
+**file****
+*"hola muncod"
+\\usr/bin/printf "%s\\n" ***"Mak"'e'** | sort
+pwd
+a
+touch "*1"
+rm "*1"
+echo $?
+echo "*1"
+/usr/bin/printf "%s\\n" "*"* | sort
+echo "*"*
+clera
+rm "a" "aa" "aaa"
+touch "a" "aa" "aaa"
+echo *l*
+echo *.
+echo .*
+*
+* && ls
+make**
+make*
+echo *l
+echo make**
+**make
+/usr/bin/printf "%s\\n" "Mak"'e'** | sort
+/usr/bin/printf "%s\\n" "Mak"'e'*'*' | sort
+export test=" * "
+env
+touch "?eHallo"
+touch tmp_out1
+touch tmp_out2
+/bin/echo 42 >tmp_out*
+touch tmp_out
+/bin/echo 42 >tmp_o*t*
+rm -f "tmp_out*"
+rm -f tmp_out*
+/usr/bin/printf "%s\\n" "*" | sort
+/usr/bin/printf "%s\\n" *"."* | sort
+echo $USER"HOLA"
+echo $bola"HOLA"
+/usr/bin/printf "%s\\n" *"." | sort
+echo "hola "$USER
+echo "hola """$USER
+touch "$USER * ?eHallo"
+/usr/bin/printf "%s\\n" "."* | sort
+/usr/bin/printf "%s\\n" *a*a | sort
+/usr/bin/printf "%s\\n" ***"Mak"'e'** | sort
+/usr/bin/printf "%s\\n" minishe*l | sort
+echo "hola"$USER
+touch "$USER * ?eHallol"
+touch "* ?eHallo"
+echo *$USER
+echo *$bobo
+echo "*$bobo"
+echo "*$USER"
 clear

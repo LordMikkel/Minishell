@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_pipe.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 22:40:33 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/13 01:10:02 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/13 22:44:11 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	check_pipe(t_shell *data, t_prompt *prompt, t_token *tokens, int i)
 					|| tokens[i + 1].type == BUILT_IN
 					|| tokens[i + 1].type == PAREN_OPEN
 					|| tokens[i + 1].type == EXPANSION
+					|| tokens[i + 1].type == WILDCARD
 					|| is_quote_type(tokens[i + 1].type)
 					|| is_redir_type(tokens[i + 1].type)
 					|| is_asignation_type(tokens[i + 1].type)))
@@ -44,6 +45,7 @@ int	check_pipe(t_shell *data, t_prompt *prompt, t_token *tokens, int i)
 					|| tokens[i - 1].type == EXPANSION
 					|| tokens[i - 1].type == DELIMITER
 					|| tokens[i - 1].type == FILENAME
+					|| tokens[i - 1].type == WILDCARD
 					|| is_quote_type(tokens[i - 1].type)
 					|| is_asignation_type(tokens[i - 1].type)))
 		{

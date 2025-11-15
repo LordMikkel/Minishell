@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_match.c                                     :+:      :+:    :+:   */
+/*   is_type_IV.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/03 14:30:13 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/12 22:09:25 by davdiaz-         ###   ########.fr       */
+/*   Created: 2025/11/15 14:34:32 by davdiaz-          #+#    #+#             */
+/*   Updated: 2025/11/15 14:34:35 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft_plus.h"
+#include "../../../../inc/minishell.h"
 
-char	*ft_str_match(char *str, char *word_to_find)
+/*
+ * Determina si el token requiere simplificación cuando está junto
+ * a un token NO_SPACE, lo que indica que deben unirse
+ * para poder procesarse correctamente.
+ */
+
+int	is_needed_to_simplify(int type)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	if (!*word_to_find)
-		return (NULL);
-	while (str[i] != '\0')
-	{
-		j = 0;
-		while (word_to_find[j] && str[i + j] == word_to_find[j])
-			j++;
-		if (word_to_find[j] == '\0')
-			return ((char *)&str[i]);
-		i++;
-	}
-	return (NULL);
+	if (is_primitive_cmd_type(type)
+		|| type == WILDCARD || type == DELIMITER)
+		return (1);
+	return (0);
 }

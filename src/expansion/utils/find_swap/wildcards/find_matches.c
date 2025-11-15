@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:42:56 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/12 21:38:29 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/15 22:46:45 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,23 +43,24 @@ static int	extract_dir(char **dir_extract, char *word)
 	Cabe resaltar que ignoramos elemtos del sistema que tengan "." o ".."
 */
 
-static int	should_ignore_file(char *filename, char *wildc, int wildcard_type)
+static int should_ignore_file(char *filename, t_wild *wildcard)
 {
-	if (ft_strcmp(filename, ".") == 0 || ft_strcmp(filename, "..") == 0)// Siempre ignorar . y ..
-		return (1);
-	if (filename[0] == '.')// Si el archivo empieza con '.' (es oculto)
+	if (ft_strcmp(filename, ".") == 0 || ft_strcmp(filename, "..") == 0)
+		return (TRUE);
+	if (wildcard->starts_with_dot)
 	{
-		if (wildcard_type == END && wildc[0] == '.') // Solo incluirlo si el patrón también empieza con '.'
-			return (0); // No ignorar: patrón es .algo*
-		if (wildcard_type == BEGINING && wildc[0] == '.')
-			return (0); // No ignorar: patrón es *.algo pero empieza con .
-		if (wildcard_type == MIDDLE && wildc[0] == '.')
-			return (0); // No ignorar: patrón es *.algo*
-
-		return (1); // Ignorar: archivo oculto y patrón no empieza con .
+		if (filename[0] == '.')
+			return (FALSE);
+		else
+			return (TRUE);
 	}
-
-	return (0); // No ignorar: archivo visible
+	else
+	{
+		if (filename[0] == '.')
+			return (TRUE);
+		else
+			return (FALSE);
+	}
 }
 
 static int	if_theres_match(char *file, char *key, int wild_type)
@@ -71,27 +72,27 @@ static int	if_theres_match(char *file, char *key, int wild_type)
 	file_len = ft_strlen(file);
 	key_len = ft_strlen(key);
 	if (key_len > file_len)
-		return (FAILURE);
+		return (FALSE);
 	if (wild_type == BEGINING)
 	{
 		if (ft_strcmp(file + (file_len - key_len), key) == 0)
-			return (SUCCESS);
+			return (TRUE);
 	}
 	else if (wild_type == END)
 	{
 		if (ft_strncmp(file, key, key_len) == 0)
-			return (SUCCESS);
+			return (TRUE);
 	}
 	else if (wild_type == MIDDLE)
 	{
-		found = ft_str_match(file, key);
+		found = ft_charstr_match(file, key);
 		if (found)
-			return (SUCCESS);
+			return (TRUE);
 	}
-	return (FAILURE);
+	return (FALSE);
 }
 
-static int	through_dir(DIR *dir, char **dirs, char *key, int wildcard_type)
+static int	through_dir(t_shell *data, t_wild *wd, DIR *dir, char **dirs)
 {
 	int	count;
 	struct 	dirent *entry;
@@ -102,19 +103,18 @@ static int	through_dir(DIR *dir, char **dirs, char *key, int wildcard_type)
 		entry = readdir(dir);
 		if (!entry)
 			break ;
-		if (should_ignore_file(entry->d_name, key, wildcard_type))
-			continue;
-		if (wildcard_type == ALL)
+		if (should_ignore_file(entry->d_name, wd))
+			continue ;
+		if (wd->type == ALL)
 		{
-			if (extract_dir(&dirs[count], entry->d_name) == ERROR)
+			if (extract_dir(&dirs[count++], entry->d_name) == ERROR)
 				return (ERROR);
-			count++;
 		}
-		else if (if_theres_match(entry->d_name, key, wildcard_type))
+		else if (if_theres_match(entry->d_name, wd->key, wd->type)
+			|| handle_complex_case(data, entry->d_name, wd->key, wd->type))
 		{
-			if (extract_dir(&dirs[count], entry->d_name) == ERROR)
+			if (extract_dir(&dirs[count++], entry->d_name) == ERROR)
 				return (ERROR);
-			count++;
 		}
 	}
 	return (SUCCESS);
@@ -136,7 +136,7 @@ static int	through_dir(DIR *dir, char **dirs, char *key, int wildcard_type)
 		->minishell.pdf -> Toma este!
 */
 
-char	**find_matches(t_shell *d, char *key_to_find, int n_dirs, int wild_type)
+char	**find_matches(t_shell *data, t_wild *wildcard_info, int n_dirs)
 {
 	char	**dirs;
 	DIR 	*directory;
@@ -145,16 +145,16 @@ char	**find_matches(t_shell *d, char *key_to_find, int n_dirs, int wild_type)
 	if (!directory)
 	{
 		perror("minishell: opendir: ");
-		free (key_to_find);
+		free (wildcard_info->key);
 		return (NULL);
 	}
 	if (aux_alloc_mem(&dirs, n_dirs) == ERROR
-		|| through_dir(directory, dirs, key_to_find, wild_type) == ERROR)
+		|| through_dir(data, wildcard_info, directory, dirs) == ERROR)
 	{
-		free (key_to_find);
+		free (wildcard_info->key);
 		ft_free_str_array(dirs);
 		closedir(directory);
-		exit_error(d, ERR_MALLOC, EXIT_FAILURE);
+		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
 	}
 	closedir(directory);
 	return (dirs);

@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:23:16 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 14:08:04 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/15 14:37:19 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define MIDDLE						1
 # define END						2
 # define ALL						3
+# define COMPLEX					4
 # define DOLLAR						2
 # define TILDE						3
 

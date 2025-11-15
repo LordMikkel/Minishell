@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 17:46:01 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/15 22:39:54 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,6 +192,7 @@ int		is_real_assignation_type(int type);
 int		is_redir_output_type(int type);
 int		is_redir_input_type(int type);
 int		is_invalid_char(int c);
+int		is_needed_to_simplify(int type);
 int		is_built_in(t_shell *data, t_token *token, char *str);
 
 //VALID TOKENS
@@ -246,6 +247,7 @@ t_redir	*get_redirs(t_shell *data, t_token *tokens, int *i, int mode);
 //EXECUTOR
 char	*get_path(t_shell *data, char *cmd, char **envp);
 int		apply_redirs(t_shell *data, t_node *node, int mode);
+int		check_ambiguous_redir(t_shell *data, const char *filename, int mode);
 void	expansion_final_process(t_shell *data, t_node *node);
 void	which_builtin(t_shell *data, t_token *token, t_node *node);
 int		apply_properties(t_shell *data, t_node *node, int mode);
@@ -264,11 +266,12 @@ int		expand_empty_str(t_shell *d, t_token *to, char **key_to_find, int type);
 
 //EXPANSION_WILDCARDS
 int		process_wildcard(t_shell *data, t_token *token);
-int		count_matches(t_shell *data, char *key_to_find, int wildcard_type);
-char	**find_matches(t_shell *d, char *key, int n_dirs, int wildcard_type);
+int		count_matches(t_shell *data, t_wild *wildcard);
+char	**find_matches(t_shell *d, t_wild *wildcard_info, int n_dirs);
 void	rebuild_tokens(t_shell *data, t_token *token, char **dirs, int n_dirs);
 int		extract_wildcard(t_shell *d, char *str, char **ptr, int *wildcard_type);
 int		reorder_tokens(t_shell *d, t_token *oritoken, int orisize, char **dirs);
+int		handle_complex_case(t_shell *d, char *file, char *key, int wild_type);
 
 
 //ASIGNATION

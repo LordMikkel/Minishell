@@ -3,35 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   process_wildcards.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 16:18:03 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/13 01:03:27 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/15 17:36:01 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../../inc/minishell.h"
 
 
-static int	extract(t_shell *d, t_token *t, int *wildc_type, char **key_to_find)
+static void	init_wildcard(t_shell *data, t_wild **wildcard)
 {
-	if (!extract_wildcard(d, t->value, key_to_find, wildc_type))
-	{
-		if (*key_to_find)
-			free(*key_to_find);
+	*wildcard = ft_calloc(1, sizeof(t_wild));
+	if (!*wildcard)
+		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+}
+
+static void free_wildcard(t_wild **wildcard_ptr)
+{
+	t_wild *wildcard = *wildcard_ptr;
+
+	if (!wildcard)
+		return ;
+	if (wildcard->key)
+		free(wildcard->key);
+	free (wildcard);
+	*wildcard_ptr = NULL;
+}
+
+static int	extract(t_shell *data, t_token *token, t_wild *wildcard)
+{
+	if (token->value[0] == '.')
+		wildcard->starts_with_dot = TRUE;
+	else
+		wildcard->starts_with_dot = FALSE;
+	if (!extract_wildcard(data, token->value, &wildcard->key, &wildcard->type))
 		return (FAILURE);
-	}
 	return (SUCCESS);
 }
 
-static int	matches(t_shell *d, char **key_to_find, int wildc_type, int *n_dirs)
+static int	matches(t_shell *dat, t_token *token, t_wild *wildcard, int *n_dirs)
 {
 
-	*n_dirs = count_matches(d, *key_to_find, wildc_type);
-	// printf("matches: %d\n\n", *n_dirs);
+	*n_dirs = count_matches(dat, wildcard);
 	if (*n_dirs == 0)
 	{
-		free(*key_to_find);
+		free_wildcard(&token->wildcard_info);
 		return (FAILURE);
 	}
 	return (SUCCESS);
@@ -40,25 +58,24 @@ static int	matches(t_shell *d, char **key_to_find, int wildc_type, int *n_dirs)
 int	process_wildcard(t_shell *data, t_token *token)
 {
 	char	**new_tokens;
-	char	*key_to_find;
 	int		n_dirs;
-	int		wildcard_type;
 
 	new_tokens = NULL;
-	key_to_find = NULL;
-	wildcard_type = 0;
 	n_dirs = 0;
-	if (!extract(data, token, &wildcard_type, &key_to_find))
+	//if (token->double_quoted)
+	//	return (FAILURE);
+	init_wildcard(data, &token->wildcard_info);
+	if (!extract(data, token, token->wildcard_info))
 		return (FAILURE);
-	if (!matches(data, &key_to_find, wildcard_type, &n_dirs))
+	if (!matches(data, token, token->wildcard_info, &n_dirs))
 		return (FAILURE);
-	new_tokens = find_matches(data, key_to_find, n_dirs, wildcard_type);
+	new_tokens = find_matches(data, token->wildcard_info, n_dirs);
 	if (!new_tokens)
 	{
-		free (key_to_find);
+		free_wildcard(&token->wildcard_info);
 		return (FAILURE);
 	}
-	free (key_to_find);
+	free_wildcard(&token->wildcard_info);
 	rebuild_tokens(data, token, new_tokens, n_dirs);
 	ft_free_str_array(new_tokens);
 	return (SUCCESS);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_structs.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 02:35:23 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/15 15:53:24 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "minishell.h"
 
 typedef struct s_var	t_var;
+typedef struct s_wild	t_wild;
 typedef struct s_env	t_env;
 typedef struct s_token	t_token;
 typedef struct s_redir	t_redir;
@@ -68,11 +69,19 @@ typedef enum e_type
 	DONT_ELIMINATE,
 }	t_type;
 
+struct s_wild
+{
+	char	*key;
+	int		type;
+	bool	starts_with_dot;
+};
+
 struct s_token
 {
 	int			id;
 	int			hash;
 	t_type		type;
+	t_wild		*wildcard_info;
 	char		*value;
 	bool		single_quoted;
 	bool		double_quoted;
