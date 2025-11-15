@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/14 23:42:23 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/15 18:02:44 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int		add_token(t_shell *data, t_prompt *prompt, char *value, int type);
 int		asignation(t_shell *data, t_token *token, int type);
 int		expansion(t_shell *data, t_token *tokens, int i, int phase);
 int		expand_wildcards(t_shell *d, t_prompt *pro, t_token *tokens, int phase);
+int		expand_line_heredoc(t_shell *data, char **line);
 
 /* ************************************************************************** */
 /*                                  AST                                       */

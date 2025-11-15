@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/11 04:19:38 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 21:30:47 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/15 18:49:45 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	loop_heredoc(t_shell *data, t_redir *redir, int *pipe_fd, char *delimiter)
 			line = ft_strtrim(tmp, "\n");
 			free(tmp);
 		}
+		expand_line_heredoc(data, &line);
 		if (!line)
 		{
 			ft_printf_fd(STDERR, ERR_HEREDOC_EOF, n_line, delimiter);

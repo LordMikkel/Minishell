@@ -1,22 +1,3 @@
-/../bin
-(echo a && exit 1) && (echo b && exit 1) || (echo c && exit 0)
-b=
-unseth PATh
-unseth PATH
-where is /bin/
-where is /../bin/
-a="'"
-echo $a
-export a=1 b=2 c=3
-echo $a$b$c
-export a=1 1b=2 c=3
-export a=a 1b=2 c=c
-cd /bin
-cd /../bin
-export A="'"
-export
-export a=""
-exit 99999999999999999999999999999999999999999999999999999999999999999999999999999
 exit 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
 exit 9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
 exit 99999999999999999999999999999999999999999999
@@ -70,7 +51,6 @@ c;ear
 (echo a && exit 1) && (echo b && exit 1) || (echo c && exit 1)
 (echo a && exit 1) && (echo b && exit 1) || (echo c && exit 1) || (echo d && exit 1)
 echo ''
-bash
 /bin/echo "exit_code ->$? user ->$USER home -> $HOME"
 cat < Makefile > out >> out1 | wc -l out1 > out2
 echo $/ $/
@@ -149,7 +129,6 @@ $US
 echo $US"ER"
 >> $US"ER"
 << $US"ER"
-$USER
 > $NOEXISTE.file
 echo -nnnn 2> stderrormini
 unset _
@@ -178,9 +157,7 @@ makee
 make
 ./minishell
 d
-clear
 s
-ls
 cd ~+
 cmd && nothing if (tokens[i - 1].type && !tokens[i - 1].type)
 cmd && cmd
@@ -197,3 +174,26 @@ cd ~-
 unset PWD
 ~+
 ls && ~-
+cat << LM
+cat << :M
+:m
+:M
+ls
+clear
+$USER$USERS$USER
+$USER$df$USER
+"$USER"
+'SUSER'
+'$USER"
+$USER$USER$USER
+<< LM CAT
+'$USER'
+export A=1 && cat << LM
+$A
+LM
+cat << 'lim' | cat -e
+$USER
+$NOVAR
+$HOME
+lim
+bash
