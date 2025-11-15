@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 21:34:18 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/13 01:04:32 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/15 22:03:14 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	ask_confirmation(t_shell *data, t_token *token, char *built_in)
 		ptr = ic_readline("\033[1;32m->\033[0m");
 		if (!ptr)
 			exit_error(data, NULL, EXIT_FATAL_SIGNAL);
-		if (check_signals(data, NULL, NULL, NULL))
+		if (check_signals(data, NULL, NULL))
 		{
 			free (ptr);
 			return (FAILURE);

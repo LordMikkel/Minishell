@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/11 02:32:54 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/14 23:11:30 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/15 23:33:17 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,36 @@ int	handle_redir_input(t_shell *data, char *filename, int fd_redir, int mode)
 	return (OK);
 }
 
-void	handle_redir_heredoc(int fd_heredoc)
+int	handle_redir_heredoc(t_shell *data, t_redir *redir)
 {
-	dup2(fd_heredoc, STDIN_FILENO);
-	close(fd_heredoc);
+	char	*line;
+	int		pipe_fd[2];
+	t_list	*heredoc_line;
+
+	if (pipe(pipe_fd) == ERROR)
+		return (exit_error(data, ERR_PIPE, EXIT_FAILURE));
+	heredoc_line = redir->heredoc_lines;
+	while (heredoc_line)
+	{
+		line = ft_strdup((char *)heredoc_line->content);
+		if (!line)
+		{
+			close(pipe_fd[0]);
+			close(pipe_fd[1]);
+			return (exit_error(data, ERR_MALLOC, EXIT_FAILURE));
+		}
+		if (redir->expand)
+			expand_line_heredoc(data, &line);
+		write(pipe_fd[1], line, ft_strlen(line));
+		write(pipe_fd[1], "\n", 1);
+		free(line);
+		heredoc_line = heredoc_line->next;
+	}
+	close(pipe_fd[1]);
+	redir->fd_heredoc = pipe_fd[0];
+	dup2(redir->fd_heredoc, STDIN_FILENO);
+	close(redir->fd_heredoc);
+	return (SUCCESS);
 }
 
 int	apply_redirs(t_shell *data, t_node *node, int mode)
@@ -106,7 +132,7 @@ int	apply_redirs(t_shell *data, t_node *node, int mode)
 			if (handle_redir_append(data, curr->filename, curr->fd_redir, mode))
 				return (FAILURE);
 		if (curr->type == REDIR_HEREDOC)
-			handle_redir_heredoc(curr->fd_heredoc);
+			handle_redir_heredoc(data, curr);
 		curr = curr->next;
 	}
 	return (SUCCESS);

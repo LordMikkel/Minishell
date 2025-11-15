@@ -6,13 +6,13 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 16:18:45 by migarrid          #+#    #+#             */
-/*   Updated: 2025/03/18 15:22:26 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/15 22:44:24 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft_plus.h"
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void **))
 {
 	t_list	*new_list;
 	t_list	*new_node;

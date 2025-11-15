@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/14 23:08:49 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/15 23:22:42 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,8 @@ struct	s_redir
 	char		*delimiter;
 	int			fd_redir;
 	int			fd_heredoc;
+	t_list		*heredoc_lines;
+	bool		expand;
 	bool		signal;
 	t_redir		*next;
 };

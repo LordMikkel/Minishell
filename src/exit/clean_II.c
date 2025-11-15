@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 01:53:47 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/14 23:41:21 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/15 22:47:07 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ void	clean_redirs(t_redir **lst)
 	while (current)
 	{
 		next = current->next;
-		free(current);
+		if (current->heredoc_lines)
+			ft_lstclear(&current->heredoc_lines, ft_free);
+		ft_free((void **)&current);
 		current = next;
 	}
 	*lst = NULL;

@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/28 19:51:37 by migarrid          #+#    #+#              #
-#    Updated: 2025/11/13 00:19:47 by migarrid         ###   ########.fr        #
+#    Updated: 2025/11/15 22:42:59 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,6 +84,7 @@ SRCS =	libft/ft_isalpha.c \
 		libft/ft_putendl_fd.c \
 		libft/ft_putnbr_fd.c \
 		libft/ft_capitalize.c \
+		libft/ft_free.c \
 		libft/ft_free_str_array.c \
 		libft/ft_free_int_matrix.c \
 		libft/ft_free_multi.c \
