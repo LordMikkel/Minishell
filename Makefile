@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/11/14 22:40:56 by migarrid         ###   ########.fr        #
+#    Updated: 2025/11/15 18:03:41 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -178,6 +178,7 @@ SRCS =				main/main.c \
 					expansion/utils/asignation/verify_if_already_set.c \
 					expansion/utils/asignation/check_externs_syntax.c \
 					expansion/utils/asignation/check_asignation_syntax.c \
+					expansion/utils/heredoc/expand_line_heredoc.c \
 					ast/ast_builder.c \
 					ast/parser/parse_sequence.c \
 					ast/parser/parse_and_or.c \

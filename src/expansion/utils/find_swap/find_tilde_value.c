@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 15:16:04 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/15 02:12:20 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/15 18:05:23 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,4 +164,3 @@ int is_it_tilde(t_shell *data, t_token *token, char **key_to_find)
 	}
 	return (result);
 }
-
