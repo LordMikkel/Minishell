@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_or_and.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 22:39:47 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/04 13:37:00 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/14 23:15:03 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,6 @@
 /*
 	Comprueba que los operadores '||' y '&&' tengan un comando válido a ambos
 	lados. Si no se cumple, lanza un error de sintaxis.
-*/
-
-/* heardoc:cmd && nothing if (tokens[i - 1].type && !tokens[i - 1].type)
-	command not found: cmd && cmd success;      cmd && word fails;
-	word && cmd fails and success;  word && word fails;
-	syntax error near unexpected token `&&':    nothing && nothing fails;
-	nothing && cmd fails;
 */
 
 int	check_or_and(t_shell *data, t_prompt *prompt, t_token *tokens, int i)

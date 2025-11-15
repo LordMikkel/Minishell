@@ -144,7 +144,7 @@ void	handle_tilde_expansion(t_shell *d, t_prompt *p, const char *str, int *i)
 {
 	int		start;
 	int		len;
-	int	found;
+	int		found;
 	char	*word;
 
 	start = *i;
@@ -156,7 +156,7 @@ void	handle_tilde_expansion(t_shell *d, t_prompt *p, const char *str, int *i)
 	if (str[*i] != '\0' && !ft_isspace(str[*i]))
 	{
 		start = *i;
-		if (str[*i] == '\'' || str[*i] == '\"')//caso para tilde+'a '"como estas" no es perfecto pero luego ya se mira como mejorarlo.
+		if (str[*i] == '\'' || str[*i] == '\"') //caso para tilde+'a '"como estas" no es perfecto pero luego ya se mira como mejorarlo.
 		{
 			add_token(d, p, "", NO_SPACE);
 			add_token(d, p, "\'", SINGLE_QUOTE);
@@ -207,8 +207,8 @@ void	is_dolar(t_shell *data, t_prompt *prompt, const char *str, int *i)
 			add_token(data, prompt, "", NO_SPACE);
 	}
 	if (str[*i] == '~'
-	&& (((str[*i + 1] && ft_isspace(str[*i + 1])) || str[*i + 1] == '\0')
-		|| (str[*i + 1] && (str[*i + 1] == '/' || str[*i + 1] == '+'
-		|| str[*i + 1] == '-'))))
+		&& (((str[*i + 1] && ft_isspace(str[*i + 1])) || str[*i + 1] == '\0')
+			|| (str[*i + 1] && (str[*i + 1] == '/' || str[*i + 1] == '+'
+			|| str[*i + 1] == '-'))))
 		handle_tilde_expansion(data, prompt, str, i);
 }

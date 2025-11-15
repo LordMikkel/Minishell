@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:10 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/14 22:50:14 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/15 02:18:15 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,7 @@ int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 	// is_it_quoted(prompt, prompt->tokens); // Se puede hacer mas eficiente
 
 	if (expansion(data, prompt->tokens, 0, INITIAL_PHASE) == ERROR)
-	{
-		clean_cycle(data, prompt, NULL);
 		return (FAILURE);
-	}
 	//printf("\n\nAFTER EXPANSION INITIAL_PHASE\n\n");
 	//print_tokens_debug(prompt);
 

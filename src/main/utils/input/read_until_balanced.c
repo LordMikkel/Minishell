@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 22:05:53 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/06 22:54:57 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/14 23:20:40 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	join_lines_until_balanced(t_shell *data, t_prompt *prompt, char **full_line)
 	return (OK);
 }
 
- char	*read_until_balanced(t_shell *data, char *initial_line)
+char	*read_until_balanced(t_shell *data, char *initial_line)
 {
 	char	*full_line;
 

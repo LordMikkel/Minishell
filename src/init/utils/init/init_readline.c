@@ -6,13 +6,13 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 20:37:34 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/04 23:47:24 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/14 23:23:27 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/minishell.h"
 
-void ensure_dir(const char *path)
+void	ensure_dir(const char *path)
 {
 	struct stat	st;
 

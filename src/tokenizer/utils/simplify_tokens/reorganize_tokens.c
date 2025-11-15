@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 22:44:45 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 01:04:48 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/14 23:12:29 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int	no_space_at_end(t_shell *data, t_prompt *prompt, t_token *tokens)
 	i = 0;
 	while (i < prompt->n_tokens)
 	{
-		if (tokens[i].type == NO_SPACE && (i + 1) == prompt->n_tokens)//si es el ultimo token
+		if (tokens[i].type == NO_SPACE && (i + 1) == prompt->n_tokens) //si es el ultimo token
 		{
 			// printf("no_scape_at_end: eliminate\n\n");
 			eliminate_token(prompt, tokens, i);

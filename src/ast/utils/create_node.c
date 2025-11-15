@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 20:41:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 01:45:11 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/14 23:21:55 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_node	*create_true_node(t_shell *data, t_type type)
 	node = allocate_true_node(data);
 	node->fake = TRUE;
 	node->type = type;
-	node->token_hash = data->prompt.n_tokens + 1;;
+	node->token_hash = data->prompt.n_tokens + 1;
 	node->args = ft_calloc(2, sizeof(char *));
 	node->args[0] = ft_strdup("true");
 	if (!node->args || !node->args[0])

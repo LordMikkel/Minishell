@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 01:05:00 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/03 01:49:52 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/14 23:22:55 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ void	*lstlast_var(void *data, char type)
 
 	if (!data)
 		return (NULL);
-	if (type == 'v')//t_var
+	if (type == 'v') //t_var
 	{
 		lst = (t_var *)data;
 		while (lst->next != NULL)
 			lst = lst->next;
 		return ((void *)lst);
 	}
-	else if (type == 'c')//t_cmd
+	else if (type == 'c') //t_cmd
 	{
 		cmd_lst = (t_cmd *)data;
 		while (cmd_lst->next != NULL)

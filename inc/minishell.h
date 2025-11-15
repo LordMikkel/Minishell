@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/14 23:07:44 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/14 23:42:23 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ int		check_signal_cmd_correction(t_shell *data);
 /*                                 Clean                                      */
 /* ************************************************************************** */
 void	clean_all(t_shell *data);
-void	clean_ast(t_node *node);
+void	clean_ast(t_node **node);
 void	clean_node(t_node **node);
 void	clean_prompt(t_prompt *prompt);
 void	clean_token(t_token **token);
@@ -133,7 +133,7 @@ void	clean_tokens(t_prompt **prompt);
 void	clean_redirs(t_redir **lst);
 void	clean_env(t_env *env, t_var *vars);
 void	clean_extras(t_extras *extras);
-void	clean_cycle(t_shell *data, t_prompt *prompt, t_node **ast_root);
+void	clean_cycle(t_exec *exec, t_prompt *prompt, t_node **ast_root);
 void	my_clean_unset(t_shell *data, t_env *env, t_token *tokens, int *index);
 void	clean_temp_variables(t_shell *d, t_env *e, t_token *t, t_node *node);
 void	clean_builtins_selection(t_builtin *builtins);

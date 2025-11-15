@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:23:16 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/14 22:40:24 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/15 02:07:50 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,7 @@ allowed\n"
 # define ERR_PERM_DENIED	"minishell: %s: Permission denied\n"
 # define ERR_IS_DIR			"minishell: %s: Is a directory\n"
 # define ERR_NOT_DIR		"minishell: %s: Not a directory\n"
-# define ERR_HOME_NOT_SET	"minishell: HOME not set\n"
+# define ERR_HOME_NOT_SET	"minishell: ~: HOME not set\n"
 
 //Command Errors
 # define ERR_CMD_NOT_FOUND	"minishell: %s: command not found\n"

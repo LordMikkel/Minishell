@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 01:02:53 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 00:45:43 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/14 23:23:37 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*get_var_value(t_var *vars, const char *key)
 		if (var->key && ft_strcmp(var->key, key) == 0)
 		{
 			if (var->value && var->value[0] != '\0')
-				return var->value;
+				return (var->value);
 		}
 		var = var->next;
 	}

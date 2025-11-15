@@ -6,30 +6,32 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:42:00 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/06 22:39:33 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/14 23:20:30 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/minishell.h"
 
-void	display_info_shell_home(char *user, char *host, char *pwd, char **line)
+int	display_info_shell_home(char *user, char *host, char *pwd, char **line)
 {
 	char	*display_shell;
 
 	display_shell = ft_strjoin_multi(9, FUSER, user, "@",
-		ft_strcut(host, '.'), FRESET, FPATH, "~", pwd, FEND);
+			ft_strcut(host, '.'), FRESET, FPATH, "~", pwd, FEND);
 	*line = ic_readline(display_shell);
 	free(display_shell);
+	return (SUCCESS);
 }
 
-void	display_info_shell_system(char *user, char *host, char *pwd, char **line)
+int	display_info_shell_system(char *user, char *host, char *pwd, char **line)
 {
 	char	*display_shell;
 
 	display_shell = ft_strjoin_multi(8, FUSER, user, "@",
-		ft_strcut(host, '.'), FRESET, FPATH, pwd, FEND);
+			ft_strcut(host, '.'), FRESET, FPATH, pwd, FEND);
 	*line = ic_readline(display_shell);
 	free(display_shell);
+	return (SUCCESS);
 }
 
 void	terminal_readline(t_shell *data, t_var *vars, char *line)
@@ -37,6 +39,7 @@ void	terminal_readline(t_shell *data, t_var *vars, char *line)
 	char	*user;
 	char	*home;
 	char	*pwd;
+	int		*flag;
 	char	host[HOST_NAME_MAX + 1];
 
 	home = get_var_value(vars, "HOME");

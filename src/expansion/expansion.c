@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:57:33 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 17:53:20 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/15 02:09:48 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ int expansion(t_shell *data, t_token *tokens, int i, int phase)
 			}
 			found = process_expansion_token(data, &tokens[i], phase);
 			if (found == ERROR)
-				return (found);
+				return (clean_cycle(&data->exec, &data->prompt, NULL), found);
 		}
 		if (tokens_size_has_changed(&original_size, data->prompt.n_tokens))
 			continue ;
