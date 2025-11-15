@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/18 02:47:16 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 22:28:22 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/15 21:50:48 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
  * termina la ejecución del heredoc con código de Ctrl+C
 */
 
-int	check_signals(t_shell *data, t_redir *redir, char *line, int *pipe_fd)
+int	check_signals(t_shell *data, t_redir *redir, char *line)
 {
 	if (g_signal[0] == SIG_INTERACTIVE)
 	{
@@ -33,8 +33,6 @@ int	check_signals(t_shell *data, t_redir *redir, char *line, int *pipe_fd)
 	{
 		if (g_signal[1] == SIGINT)
 		{
-			close(pipe_fd[0]);
-			close(pipe_fd[1]);
 			if (line)
 				free(line);
 			redir->signal = TRUE;

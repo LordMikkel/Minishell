@@ -6,13 +6,13 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 12:55:46 by migarrid          #+#    #+#             */
-/*   Updated: 2025/03/18 15:57:04 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/15 22:36:59 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft_plus.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+void	ft_lstclear(t_list **lst, void (*del)(void**))
 {
 	t_list	*current;
 	t_list	*next;
@@ -23,7 +23,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void*))
 	while (current)
 	{
 		next = current->next;
-		del(current->content);
+		del(&current->content);
 		free(current);
 		current = next;
 	}

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/15 18:02:44 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/15 23:57:00 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void	setup_signals_heredoc(void);
 void	handle_sigint_interative(int sig);
 void	handle_sigint_heredoc(int sig);
 int		check_signal_node_heredoc(t_node *node, t_redir *redir);
-int		check_signals(t_shell *data, t_redir *redir, char *line, int *pipe_fd);
+int		check_signals(t_shell *data, t_redir *redir, char *line);
 void	setup_signals_cmd_correction(void);
 int		check_signal_cmd_correction(t_shell *data);
 
@@ -237,7 +237,7 @@ void	transform_cmd_to_built_in(t_shell *d, t_prompt *p, t_token *tokens);
 void	transform_word_to_wildcard(t_shell *d, t_prompt *prom, t_token *tokens);
 
 //AST
-int		get_heredoc(t_shell *data, t_redir *redir, char *delimiter);
+int		get_heredoc(t_shell *data, t_redir *redir, char *delimiter, int mode);
 void	expand_alias(t_shell *data, t_token *tokens, int i);
 int		get_background(t_token *tokens, int n_tokens, int *i);
 int		*get_arg_types(t_shell *data, t_node *node, int i, int j);
@@ -264,6 +264,8 @@ int		is_it_symbol(t_shell *data, t_token *token, char **key_to_find);
 void	reconect_nodes_tokens(t_shell *data, t_node *node, t_token *tokens);
 int		copy_value(t_shell *d, char **t_val, char *key_value, char *key_to_f);
 int		expand_empty_str(t_shell *d, t_token *to, char **key_to_find, int type);
+void	ignore_words(t_shell *data, t_token *token, char **str, int len);
+void	handle_double_quoted_token(t_token *token, int token_len);
 
 //EXPANSION_WILDCARDS
 int		process_wildcard(t_shell *data, t_token *token);
@@ -280,7 +282,7 @@ int		verify_if_already_set(t_shell *data, char *key, char **value, int t);
 int		check_externs_syntax(t_shell *d, t_token *tkens, t_token *token, int t);
 
 //ENV
-void	add_var(t_shell *data, char *key, char *value, int type);
+int		add_var(t_shell *data, char *key, char *value, int type);
 void	add_var_and_envp_alloc(t_shell *data, char *key, char *value, int type);
 void	add_var_and_envp(t_shell *data, char *key, char *value, int type);
 void	update_shlvl(t_var *vars);
@@ -339,6 +341,6 @@ int		find_cmd(t_shell *data, t_cmd *cmd, char *to_find, char *alias);
 void	print_session_end(time_t start);
 void	print_time_of_day(time_t start, char *user_name);
 void	print_session_start(t_shell *data, time_t start, char **user_name);
-void	add_node_rule(t_shell *data, char *value, char *alias, int state);
+int		add_node_rule(t_shell *data, char *value, char *alias, int state);
 
 #endif

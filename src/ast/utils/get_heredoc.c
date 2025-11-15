@@ -6,13 +6,27 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/11 04:19:38 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/15 18:49:45 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/15 23:25:59 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/minishell.h"
 
-int	loop_heredoc(t_shell *data, t_redir *redir, int *pipe_fd, char *delimiter)
+int	save_heredoc_line(t_shell *data, t_redir *redir, char *line)
+{
+	t_list	*heredoc_line;
+
+	heredoc_line = ft_lstnew(line);
+	if (!heredoc_line)
+	{
+		free(line);
+		return (exit_error(data, ERR_MALLOC, EXIT_FAILURE));
+	}
+	ft_lstadd_back(&redir->heredoc_lines, heredoc_line);
+	return (SUCCESS);
+}
+
+int	loop_heredoc(t_shell *data, t_redir *redir, char *delimiter)
 {
 	char	*tmp;
 	char	*line;
@@ -26,45 +40,36 @@ int	loop_heredoc(t_shell *data, t_redir *redir, int *pipe_fd, char *delimiter)
 			line = ic_readline("> ");
 		else // esto es del test se puede borrar y debe borrarse con la
 		{
+			// return (ft_printf_fd(STDERR, ERR_STDIN), ERROR);
 			tmp = get_next_line(fileno(stdin));
 			if (!tmp)
 				break ;
 			line = ft_strtrim(tmp, "\n");
 			free(tmp);
 		}
-		expand_line_heredoc(data, &line);
 		if (!line)
-		{
-			ft_printf_fd(STDERR, ERR_HEREDOC_EOF, n_line, delimiter);
-			break ;
-		}
+			return (ft_printf_fd(STDERR, ERR_HEREDOC_EOF, n_line, delimiter));
 		if (ft_strcmp(line, delimiter) == 0)
 		{
 			free(line);
 			break ;
 		}
-		if (check_signals(data, redir, line, pipe_fd))
+		if (check_signals(data, redir, line))
 			return (ERROR);
-		write(pipe_fd[1], line, ft_strlen(line));
-		write(pipe_fd[1], "\n", 1);
-		free(line);
+		save_heredoc_line(data, redir, line);
 		n_line++;
 	}
 	return (OK);
 }
 
-int	get_heredoc(t_shell *data, t_redir *redir, char *delimiter)
+int	get_heredoc(t_shell *data, t_redir *redir, char *delimiter, int expansion)
 {
-	int		pipe_fd[2];
+	t_list *heredoc_lines;
 
-	if (pipe(pipe_fd) == ERROR)
-	{
-		exit_error(data, ERR_PIPE, EXIT_FAILURE);
-		return (ERROR);
-	}
-	if (loop_heredoc(data, redir, pipe_fd, delimiter) == ERROR)
+	if (expansion == TRUE)
+		redir->expand = TRUE;
+	if (loop_heredoc(data, redir, delimiter) == ERROR)
 		return (setup_signals_interactive(), ERROR);
 	setup_signals_interactive();
-	close(pipe_fd[1]);
-	return (pipe_fd[0]);
+	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/18 11:57:46 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/13 00:43:24 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/15 23:56:57 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	aux_alloc_mem(t_shell *data, char **str, char **new_str, int len)
 	lo reemplaza por escpacio e ignora el resto de "$".
 */
 
-static void	ignore_words(t_shell *data, t_token *token, char **str, int len)
+void	ignore_words(t_shell *data, t_token *token, char **str, int len)
 {
 	char	*new_str;
 	int		i;
@@ -74,7 +74,7 @@ static void	ignore_words(t_shell *data, t_token *token, char **str, int len)
 	*str = new_str;
 }
 
-static void	handle_double_quoted_token(t_token *token, int token_len)
+void	handle_double_quoted_token(t_token *token, int token_len)
 {
 	ft_memset(token->value, 0, token_len);
 	token->value[0] = 32; // espacio en blanco
