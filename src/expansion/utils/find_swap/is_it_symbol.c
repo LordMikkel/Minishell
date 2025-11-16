@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_it_symbol.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 12:42:41 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/13 01:13:41 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/16 00:23:51 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static void	sym_expa(t_shell *d, t_token *token, char **key_to_f, int sym_value)
 
 int	is_it_symbol(t_shell *data, t_token *token, char **key_to_find)
 {
-	// printf("key_to_find: %s\n\n", *key_to_find);
 	if (key_to_find[0][0] == '!' && key_to_find[0][1] == '\0')
 	{
 		if (data->shell_pid)

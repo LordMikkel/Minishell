@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 21:56:06 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/13 00:27:50 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/16 00:04:56 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,6 @@ void	my_clean_unset(t_shell *data, t_env *env, t_token *tokens, int *index)
 			i++;
 			continue ;
 		}
-		//printf("It gets in the loop in my_clena_unset\n\n");
-		//printf("my_clean_unset: %s\n\n", tokens[index[i]].value);
 		ptr = ft_calloc(ft_strlen(tokens[index[i]].value) + 1, sizeof(char));
 		if (!ptr)
 			exit_error(data, ERR_MALLOC, EXIT_FAILURE);

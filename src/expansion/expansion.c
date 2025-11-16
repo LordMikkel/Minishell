@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:57:33 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 17:53:20 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/16 00:27:04 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
  *    prompt. Si un token está marcado como tipo `EXPANSION`,
  *    se envía a la función  `expansion`.
  *
- *
  * 2. En `expansion`, se reserva memoria para almacenar el nombre de la
  *    variable (`key_to_find`) y se cuenta cuántos signos `$` hay
  *    en el token con `count_char`.
@@ -36,20 +35,12 @@
  *     el valor correspondiente en la lista `env.vars`.
 
  *    - Si no se encuentra y estamos en `phase == 2`, se reemplaza
- *     el token por una cadena vacía.
+ *     el token por una cadena vacía o se elimina dependiendo del contexto.
  *
  * 4. Si se encuentra la variable, `copy_value` se encarga de:
  *    - Calcular el nuevo tamaño del token con `calculate_total_lenght`.
- *    - Reasignar memoria con `ft_realloc`.
- *    - Localizar el `$VAR` en el token con `find_key_in_new_buffer`.
- *    - Reemplazar el nombre de la variable por su valor.
- *
- * 5. Funciones auxiliares:
- *    - `aux_mem_alloc`: reserva memoria para `key_to_find`.
- *    - `count_char`: cuenta cuántos signos `$` hay en una cadena.
- *    - `calculate_total_lenght`: calcula el tamaño necesario para
- *       el token expandido.
- *    - `find_key_in_new_buffer`: localiza la posición del `$VAR` a reemplazar.
+ *    - Pasar el str a un nuevo buffer primero copiando hasta la clave, luego
+ *      reemplazandola y luego copia el resto del value
  *
  * Validaciones:
  * - Solo se consideran válidas las variables que comienzan con `$`

@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/15 15:53:24 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/16 00:46:06 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ struct s_token
 	char		*value;
 	bool		single_quoted;
 	bool		double_quoted;
+	bool		heardoc;
 };
 
 typedef struct s_prompt

@@ -1,11 +1,3 @@
-$ && ls
-echo $ && ls
-echo '$ a b' && ls
-echo "$ a b" && ls
-echo $USER"A  $  C"$USER
-echo $USER" A  $  C "$USER
-echo $USER"   A   $  C    "$USER
-export a
 a=1
 unset a
 nev
@@ -103,7 +95,6 @@ echo *$var
 echo *$var*
 echo $var*
 unset USER
-export USER+=@@@
 export USER+=Hola
 export hola+=Hola
 ttt=1
@@ -111,7 +102,6 @@ var=1
 export hola var=1
 export var=1 hola var+=1
 unset PWD SHLVL PATH
-export a=1
 export b=1
 path=12
 export rrr=3
@@ -168,7 +158,6 @@ echo make**
 /usr/bin/printf "%s\\n" "Mak"'e'** | sort
 /usr/bin/printf "%s\\n" "Mak"'e'*'*' | sort
 export test=" * "
-env
 touch "?eHallo"
 touch tmp_out1
 touch tmp_out2
@@ -185,7 +174,6 @@ echo $bola"HOLA"
 echo "hola "$USER
 echo "hola """$USER
 touch "$USER * ?eHallo"
-/usr/bin/printf "%s\\n" "."* | sort
 /usr/bin/printf "%s\\n" *a*a | sort
 /usr/bin/printf "%s\\n" ***"Mak"'e'** | sort
 /usr/bin/printf "%s\\n" minishe*l | sort
@@ -193,7 +181,19 @@ echo "hola"$USER
 touch "$USER * ?eHallol"
 touch "* ?eHallo"
 echo *$USER
-echo *$bobo
 echo "*$bobo"
-echo "*$USER"
+export a=1
+export a=1 a+=1 a+=2 a+=abcde
+env
+sd
+export PWD+="XXXX"
+export a=1 a+=1 a=2 a+=2 a+=abcde
+export USER+=@@@
+export a=1 a+=1
+a=2
+export a+=1
+va=1 ls && hola=2 export gato=2 word gato+=2
 clear
+/usr/bin/printf "%s\\n" "."* | sort
+echo "*$USER"
+echo *$bobo

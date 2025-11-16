@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   apply_properties.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 17:02:23 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/13 00:11:09 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/16 00:05:23 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 int	apply_properties(t_shell *data, t_node *node, int mode)
 {
 	if (node->assig_tmp)
-	{
-		// printf("IT HAS ASSIG_TEMP\n\n");
 		apply_temp_asig(data, data->prompt.tokens, node);
-	}
 	if (node->redir)
 	{
 		if (!apply_redirs(data, node, mode))

@@ -6,7 +6,7 @@
 #    By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/11/15 22:42:26 by davdiaz-         ###   ########.fr        #
+#    Updated: 2025/11/15 23:59:10 by davdiaz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -168,6 +168,7 @@ SRCS =				main/main.c \
 					expansion/utils/find_swap/is_it_symbol.c \
 					expansion/utils/find_swap/find_tilde_value.c \
 					expansion/utils/find_swap/wildcards/expand_wildcards.c \
+					expansion/utils/find_swap/wildcards/reorder_tokens_utils.c \
 					expansion/utils/find_swap/wildcards/process_wildcards.c \
 					expansion/utils/find_swap/wildcards/count_matches.c \
 					expansion/utils/find_swap/wildcards/find_matches.c \
