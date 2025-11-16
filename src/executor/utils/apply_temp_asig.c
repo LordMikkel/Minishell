@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   apply_temp_asig.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 17:05:58 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/13 00:11:44 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/16 00:08:54 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,37 +35,44 @@
 	cualquier otro numero, qu es valido.
 */
 
-void	apply_temp_asig(t_shell *data, t_token *tokens, t_node *node)
+static void apply_to_built_in_loop(t_shell *data, t_token *tokens, t_node *node)
 {
 	int	i;
 
 	i = 0;
+	while (node->arg_types[i] != -1)
+	{
+		if (is_real_assignation_type(tokens[node->arg_types[i]].type))
+			return ;
+		if (tokens[node->arg_types[i]].type == TEMP_ASIGNATION)
+			asignation(data, &tokens[node->arg_types[i]], LOCAL);
+		else if (tokens[node->arg_types[i]].type == TEMP_PLUS_ASIGNATION)
+			asignation(data, &tokens[node->arg_types[i]], PLUS_ASIGNATION);
+		i++;
+	}
+}
+
+static void apply_to_commnad_loop(t_shell *data, t_token *tokens, t_node *node)
+{
+	int	i;
+
+	i = 0;
+	while (node->arg_types[i] != -1)
+	{
+		if (is_real_assignation_type(tokens[node->arg_types[i]].type))
+			return ;
+		if (tokens[node->arg_types[i]].type == TEMP_ASIGNATION)
+			asignation(data, &tokens[node->arg_types[i]], ENV);
+		else if (tokens[node->arg_types[i]].type == TEMP_PLUS_ASIGNATION)
+			asignation(data, &tokens[node->arg_types[i]], PLUS_ASIGNATION);
+		i++;
+	}
+}
+
+void	apply_temp_asig(t_shell *data, t_token *tokens, t_node *node)
+{
 	if (node->type == BUILT_IN)
-	{
-		//printf("apply temp_asig for built_in\n\n");
-		while (node->arg_types[i] != -1)
-		{
-			if (is_real_assignation_type(tokens[node->arg_types[i]].type))
-				return ;
-			if (tokens[node->arg_types[i]].type == TEMP_ASIGNATION)
-				asignation(data, &tokens[node->arg_types[i]], LOCAL);
-			else if (tokens[node->arg_types[i]].type == TEMP_PLUS_ASIGNATION)
-				asignation(data, &tokens[node->arg_types[i]], PLUS_ASIGNATION);
-			i++;
-		}
-	}
+		apply_to_built_in_loop(data, tokens, node);
 	else if (node->type == COMMAND)
-	{
-		//printf("apply temp_asig for cmd\n\n");
-		while (node->arg_types[i] != -1)
-		{
-			if (is_real_assignation_type(tokens[node->arg_types[i]].type))
-				return ;
-			if (tokens[node->arg_types[i]].type == TEMP_ASIGNATION)
-				asignation(data, &tokens[node->arg_types[i]], ENV);
-			else if (tokens[node->arg_types[i]].type == TEMP_PLUS_ASIGNATION)
-				asignation(data, &tokens[node->arg_types[i]], PLUS_ASIGNATION);
-			i++;
-		}
-	}
+		apply_to_commnad_loop(data, tokens, node);
 }

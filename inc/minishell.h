@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/15 22:39:54 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/16 00:00:27 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -272,6 +272,9 @@ void	rebuild_tokens(t_shell *data, t_token *token, char **dirs, int n_dirs);
 int		extract_wildcard(t_shell *d, char *str, char **ptr, int *wildcard_type);
 int		reorder_tokens(t_shell *d, t_token *oritoken, int orisize, char **dirs);
 int		handle_complex_case(t_shell *d, char *file, char *key, int wild_type);
+void	free_tmp_tokens(t_token *tmp, int count);
+int 	create_hash(t_shell *da, int n_dirs, int n_tokens, int starting_hash);
+void	free_tokens(t_prompt *prompt);
 
 
 //ASIGNATION

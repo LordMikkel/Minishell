@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_empty_str.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/18 11:57:46 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/13 00:43:24 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/16 01:08:20 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static void	handle_double_quoted_token(t_token *token, int token_len)
 	token->value[1] = '\0';
 }
 
-int	expand_empty_str(t_shell *data, t_token *token, char **key_to_find, int type)
+int	expand_empty_str(t_shell *dat, t_token *token, char **key_to_find, int type)
 {
 	int	key_len;
 	int	token_len;
@@ -93,17 +93,19 @@ int	expand_empty_str(t_shell *data, t_token *token, char **key_to_find, int type
 	token_len = ft_strlen(token->value); //si su len es igual es porque
 	if (token_len == key_len) // no hay nada mas
 	{
-		if (token->double_quoted)
+		if (token->double_quoted && !token->heardoc)
 		{
 			handle_double_quoted_token(token, token_len);
 			return (REPLACED);
 		}
+		else if (token->double_quoted && token->heardoc)
+			ft_memset(token->value, 0, token_len);
 		else
-			eliminate_token(&data->prompt, data->prompt.tokens, token->id);
+			eliminate_token(&dat->prompt, dat->prompt.tokens, token->id);
 	}
 	else
 	{
-		ignore_words(data, token, &token->value, token_len);
+		ignore_words(dat, token, &token->value, token_len);
 		return (REPLACED);
 	}
 	return (SUCCESS);

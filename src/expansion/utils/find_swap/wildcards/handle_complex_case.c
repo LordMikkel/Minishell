@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 11:19:36 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/15 21:03:52 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/16 00:49:09 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 
 	result = [10, 5] -> Hay matches pero no en el orden correcto.
 */
+
 static void aux_alloc(t_shell *data, char ***ptr, int **result, char *key)
 {
 	*ptr = ft_split(key, '*');
@@ -87,7 +88,7 @@ static int	build_match_array(char *file, char **ptr, int *out_len, int *result)
 			i++;
 			continue ;
 		}
-		result[j] = ft_intstr_match(file, ptr[i], search_start_index);//tengo que encontrar una manera de que no tome el mismo indice, sino que lo pase si ya esta tomado
+		result[j] = ft_intstr_match(file, ptr[i], search_start_index);
 		if (result[j] == ERROR)
 			return (FAILURE);
 		search_start_index = result[j] + ft_strlen(ptr[i]);

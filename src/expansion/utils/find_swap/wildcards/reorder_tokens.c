@@ -1,29 +1,5 @@
 #include "../../../../../inc/minishell.h"
 
-/*
-	Funcion para eliminar los tokens tmp que se han creado hasta el moemento.
-
-	Si i = 5; y falla malloc, entonces se liberan los tmp[5] que si fueron
-	allocated para que no hayan leaks
-*/
-
-void	free_tmp_tokens(t_token *tmp, int count)
-{
-	int	i;
-
-	i = 0;
-	while (i < count)
-	{
-		if (tmp[i].value)
-		{
-			free(tmp[i].value);
-			tmp[i].value = NULL;
-		}
-		i++;
-	}
-	free(tmp);
-}
-
 int copy_token_members(t_token *tmp_index, t_token *src)
 {
 	tmp_index->type = src->type;
@@ -39,7 +15,6 @@ int copy_token_members(t_token *tmp_index, t_token *src)
 	}
 	return (SUCCESS);
 }
-
 
 /*
 	FunciÃ³n para copiar en el nuevo arr tmp los tokens en el rango desde 0
@@ -68,57 +43,6 @@ static int	copy_orig_tokens(t_shell *data, t_token *tmp, int ignore)
 		i++;
 	}
 	return (tmp_i);
-}
-
-/*
-	Funcion para generar hashes validos, ya que al expandir un wildcard hay
-	altas posibilidades de que los haya colisión entre los hashes de los tokens
-	y los hashes que se le asignan a los nuevos tokens insertados a partir
-	del wildcard.
-
-	Ejemplo:
-
-	Tokens: 1 2 3 4 5 6 ->El 3 es el wildcard a expandir
-
-	new_tokens: 1 2 new_token new_token new_token 4 5 6 -> colisión, ya que
-	los cada new_sigue el orden, es decir: 1 2 3 4 5 4 5 6. ERRROR
-	deberia de ser 1 2 3 4 5 6 7 8
-*/
-
-static int create_hash(t_shell *data, int n_dirs, int n_tokens, int starting_hash)
-{
-	int	i;
-	int	collision;
-	int	hash_generator;
-
-	hash_generator = starting_hash + data->prompt.n_tokens + n_dirs;
-	while (1)
-	{
-		collision = FALSE;
-		i = 0;
-		while (i < n_tokens)
-		{
-			if (data->prompt.tokens[i].hash == hash_generator)
-			{
-				collision = TRUE;
-				hash_generator++;
-				break;
-			}
-			i++;
-		}
-		if (collision == FALSE)
-			return (hash_generator);
-	}
-}
-
-static int	count_dirs(char **dirs)
-{
-	int	i;
-
-	i = 0;
-	while (dirs[i] != NULL)
-		i++;
-	return (i);
 }
 
 /*
@@ -189,28 +113,6 @@ static int	copy_last_token(t_shell *data, t_token *tmp, int *i, int j)
 		}
 	}
 	return (SUCCESS);
-}
-
-void	free_tokens(t_prompt *prompt)
-{
-	int i;
-
-	if (!prompt || !prompt->tokens)
-		return ;
-	i = 0;
-	while (i < prompt->n_tokens)
-	{
-		if (is_alloc_type(prompt->tokens[i].type) && prompt->tokens[i].value)
-		{
-			free (prompt->tokens[i].value);
-			prompt->tokens[i].value = NULL;
-		}
-		i++;
-	}
-	free (prompt->tokens);
-	prompt->tokens = NULL;
-	prompt->n_tokens = 0;
-	prompt->n_alloc_tokens = 0;
 }
 
 /*
