@@ -1,7 +1,3 @@
-cd /
-(ls && echo hola | echo "
-nada"
-(ls && echo hola | echo " nada" )
 (ls && echo hola | echo " nada" ) ||
 (ls && echo hola | echo " nada" ) || ls
 ls |
@@ -87,7 +83,6 @@ cat << $US"ER"
 << LM
 cat << "$US"E"R"
 << $USER
-sd
 scv
 scd
 $US
@@ -160,7 +155,6 @@ echo $PATH | /bin/cat -e
 echo 1
 not
 migarrid
-clar
 cat <<  "$USER"
 why
 us
@@ -174,17 +168,14 @@ $T
 mak
 make minishell
 make re
-./minishell
 exit
 exitls
 echo $USER"A    $     B"$USER
 export T="ls -l"
 cd ext/
 cd ..
-ls
 /
 echo /
-clear
 cat << LIM
 LIM
 make
@@ -193,7 +184,16 @@ lm
 LM
 cat << lim
 cat << lim | cat -e
-$USER
 $NOVAR
 $HOME
 lim
+clar
+$USER
+ $HOME
+EOF
+ls && cat << EOF
+./minishell
+clear
+ls
+vs
+sd

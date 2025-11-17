@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 16:18:03 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/13 01:03:27 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/17 01:09:31 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,6 @@ int	process_wildcard(t_shell *data, t_token *token)
 	}
 	free (key_to_find);
 	rebuild_tokens(data, token, new_tokens, n_dirs);
-	ft_free_str_array(new_tokens);
+	ft_free_str_array(&new_tokens);
 	return (SUCCESS);
 }

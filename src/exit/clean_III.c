@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 21:43:11 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/14 14:47:05 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/17 01:09:25 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ void	clean_fd(t_exec *exec)
 void	clean_builtins_selection(t_builtin *builtins)
 {
 	if (builtins->builtins_selection)
-		ft_free_str_array(builtins->builtins_selection);
+		ft_free_str_array(&builtins->builtins_selection);
 	*builtins = (t_builtin){0};
 }

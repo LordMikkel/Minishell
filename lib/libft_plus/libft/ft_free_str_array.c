@@ -6,18 +6,20 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/24 00:11:06 by migarrid          #+#    #+#             */
-/*   Updated: 2025/05/24 00:25:43 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/17 01:07:24 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft_plus.h"
 
-void	ft_free_str_array(char **array)
+void	ft_free_str_array(char ***array_ptr)
 {
 	int	i;
+	char **array;
 
-	if (!array)
+	if (!array_ptr || !*array_ptr)
 		return ;
+	array = *array_ptr;
 	i = 0;
 	while (array[i])
 	{
@@ -26,5 +28,5 @@ void	ft_free_str_array(char **array)
 		i++;
 	}
 	free(array);
-	array = NULL;
+	*array_ptr = NULL;
 }

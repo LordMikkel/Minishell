@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rebuild_tokens.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 18:43:47 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/10 18:17:19 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/17 01:09:34 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	rebuild_tokens(t_shell *data, t_token *token, char **dirs, int n_dirs)
 	result = reorder_tokens(data, token, n_dirs, dirs);
 	if (result == ERROR)
 	{
-		ft_free_str_array(dirs);
+		ft_free_str_array(&dirs);
 		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
 	}
 	adjust_id(data->prompt.tokens, data->prompt.n_tokens);

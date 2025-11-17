@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_matches.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:42:56 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/12 21:38:29 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/17 01:09:28 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ char	**find_matches(t_shell *d, char *key_to_find, int n_dirs, int wild_type)
 		|| through_dir(directory, dirs, key_to_find, wild_type) == ERROR)
 	{
 		free (key_to_find);
-		ft_free_str_array(dirs);
+		ft_free_str_array(&dirs);
 		closedir(directory);
 		exit_error(d, ERR_MALLOC, EXIT_FAILURE);
 	}
