@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strfilterc.c                                    :+:      :+:    :+:   */
+/*   ft_strfilter_c.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 17:05:03 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/21 17:09:30 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/17 01:25:27 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*ft_strfilter_c(const char *str, char c)
 	while (str[i])
 		if (str[i++] != c)
 			count++;
-	result = ft_calloc(count + 1, sizeof (char *));
+	result = ft_calloc(count + 1, sizeof (char));
 	if (!result)
 		return (NULL);
 	i = 0;

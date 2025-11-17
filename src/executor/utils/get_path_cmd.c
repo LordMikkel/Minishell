@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 19:24:46 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/14 17:00:32 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/17 01:09:07 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,11 @@ static char	*search_in_path(t_shell *data, char *cmd, char **envp)
 		path = build_and_check_path(data, paths[i], cmd);
 		if (path)
 		{
-			ft_free_str_array(paths);
+			ft_free_str_array(&paths);
 			return (path);
 		}
 	}
-	ft_free_str_array(paths);
+	ft_free_str_array(&paths);
 	return (NULL);
 }
 

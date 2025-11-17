@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 21:47:38 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/14 23:48:28 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/17 01:09:10 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	clean_env(t_env *env, t_var *vars)
 		free(var);
 		var = next;
 	}
-	ft_free_str_array(env->envp);
+	ft_free_str_array(&env->envp);
 	env->envp = NULL;
 	env->vars = NULL;
 }

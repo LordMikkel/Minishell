@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 19:04:23 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/13 02:36:05 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/17 01:09:00 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,7 +191,7 @@ void expansion_final_process(t_shell *data, t_node *node)
 		//print_tokens_debug(&data->prompt);
 		i = node->token->id;
 		if (node->args)
-			ft_free_str_array(node->args);
+			ft_free_str_array(&node->args);
 		expand_wildcards(data, &data->prompt, data->prompt.tokens, FINAL_PHASE); //Las wildcards que no se hayan expandido llegado este punto es debido a que dependen de una expansion que no se ha podido hacer
 		node->args = get_args_for_binary(data, data->prompt.tokens, &i);
 		//print_tokens_debug(&data->prompt);

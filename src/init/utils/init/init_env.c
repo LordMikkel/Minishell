@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 01:02:53 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/14 23:23:37 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/17 01:09:51 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	init_no_env(t_shell *data)
 	var[4] = strdup("PATH");
 	var[5] = strdup("/usr/local/bin:/usr/bin:/bin");
 	if (!var[0] || !var[1] || !var[2] || !var[3] || !var[4] || !var[5])
-		return (ft_free_str_array(var), (void)exit_error(data, ERR_MALLOC, 1));
+		return (ft_free_str_array(&var), (void)exit_error(data, ERR_MALLOC, 1));
 	add_var(data, var[0], var[1], ENV);
 	add_var(data, var[2], var[3], ENV);
 	add_var(data, var[4], var[5], ENV);

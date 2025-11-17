@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 20:43:35 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/03 01:49:18 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/17 01:09:38 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	**upadte_envp(t_shell *data, t_env *env, t_var *vars)
 
 	i = 0;
 	if (env->envp)
-		ft_free_str_array(env->envp);
+		ft_free_str_array(&env->envp);
 	envp = ft_calloc(env->size + 1, sizeof(char *));
 	if (!envp)
 		return (exit_error(data, ERR_MALLOC, EXIT_FAIL), NULL);

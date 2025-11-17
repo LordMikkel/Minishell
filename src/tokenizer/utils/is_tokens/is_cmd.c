@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 21:35:11 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/14 14:51:15 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/17 01:09:55 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 static void	set_free(char **path_arr, char **path_slash, char **path)
 {
-	ft_free_str_array(path_arr);
+	ft_free_str_array(&path_arr);
 	if (*path_slash)
 		free (*path_slash);
 	*path_slash = NULL;

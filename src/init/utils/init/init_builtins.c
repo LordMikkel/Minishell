@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 10:55:44 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/14 14:52:06 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/17 01:09:45 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	check_if_error(char **builtins, int len)
 	{
 		if (!builtins[i])
 		{
-			ft_free_str_array(builtins);
+			ft_free_str_array(&builtins);
 			return (ERROR);
 		}
 		i++;
