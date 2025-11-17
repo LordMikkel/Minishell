@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/17 15:43:18 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/17 20:40:59 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,7 +216,7 @@ int		check_parent_balance(t_shell *data, t_prompt *prompt, t_token *tokens);
 int		check_cmd_externs(t_shell *d, t_prompt *prompt, t_token *tokens, int i);
 
 //SIMPLIFY TOKENS
-int		find_range_end(t_token *tokens, int no_space_position);
+int		find_range_end(t_token *tokens, int no_space_position, int n_tokens);
 int		find_range_start(t_token *tokens, int no_space_position);
 void	remove_quotes_tokens(t_prompt *prompt, t_token *tokens);
 int		no_space_at_end(t_shell *data, t_prompt *prompt, t_token *tokens);

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:22:59 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 00:42:37 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/17 21:04:02 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ int	copy_value(t_shell *d, char **token_val, char *key_value, char *key_to_find)
 		return (ERROR);
 	new_buffer = ft_calloc(total_len + 1, sizeof(char));
 	if (!new_buffer)
-		exit_error(d, ERR_MALLOC, EXIT_FAILURE);
+		return (free(key_to_find), exit_error(d, ERR_MALLOC, EXIT_FAILURE));
 	new_buffer[total_len] = '\0';
 	expand(*token_val, &new_buffer, key_value, key_to_find);
 	free(*token_val);

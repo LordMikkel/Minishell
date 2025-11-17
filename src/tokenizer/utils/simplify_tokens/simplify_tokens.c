@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 20:37:22 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/14 15:06:20 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/17 21:14:54 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	get_no_space_range(t_token *tokens, int *range, int start_i, int n_tokens)
 		if (tokens[i].type == NO_SPACE)
 		{
 			range[0] = find_range_start(tokens, i);
-			range[1] = find_range_end(tokens, i);
+			range[1] = find_range_end(tokens, i, n_tokens);
 			return (SUCCESS);
 		}
 		i++;

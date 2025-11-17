@@ -2,27 +2,26 @@
 Minishell - Bash
 
 🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
-🏁                                     BONUS                                                       🏁
-             TOTAL TEST COUNT: 71  TESTS PASSED: 54  LEAKING: 0
-                     STD_OUT: 17  STD_ERR: 2  EXIT_CODE: ✓
+🏁                                    RESULT                                       🏁
+🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
+             TOTAL TEST COUNT: 71  TESTS PASSED: 55  LEAKING: 0
+                     STD_OUT: 16  STD_ERR: 2  EXIT_CODE: ✓
                          TOTAL FAILED AND PASSED CASES:
-                                     ❌ 19
-                                     ✅ 194
+                                     ❌ 18
+                                     ✅ 195
 
 🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
-🏁                                    MANDATORY                                                    🏁
+🏁                                    MANDATORY                                     🏁
 🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
-             TOTAL TEST COUNT: 882  TESTS PASSED: 815  LEAKING: 0
-                     STD_OUT: 36  STD_ERR: 34  EXIT_CODE: 27
+             TOTAL TEST COUNT: 884  TESTS PASSED: 819  LEAKING: 0
+                     STD_OUT: 34  STD_ERR: 34  EXIT_CODE: 27
                          TOTAL FAILED AND PASSED CASES:
-                                     ❌ 97
-                                     ✅ 2549
+                                     ❌ 95
+                                     ✅ 2557
 
 ## POR HACER:
 
 ## MIKEL:
-- leaks -> (cat) << LM
-- No funciona
 
 ## DAVID:
 - Important:

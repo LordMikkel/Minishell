@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   adjust_range_tokens.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 19:57:07 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/12 18:23:12 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/17 20:40:46 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,30 +54,30 @@ int	find_range_start(t_token *tokens, int no_space_position)
 	- Igual que start, considera comillas y combinaciones especiales.
 */
 
-int	find_range_end(t_token *tokens, int no_space_position)
+int	find_range_end(t_token *tokens, int no_space_position, int n_tokens)
 {
 	int	end;
 
 	end = no_space_position;
-	if (tokens[end + 4].type
+	if ((end + 4 < n_tokens)
 		&& is_quote_type(tokens[end + 1].type)
 		&& is_quote_type(tokens[end + 2].type)
 		&& tokens[end + 3].type == NO_SPACE
 		&& is_between_quotes_type(tokens[end + 4].type))
 		return (end + 4);
-	else if (tokens[end + 3].type
+	else if ((end + 3 < n_tokens)
 		&& is_quote_type(tokens[end + 1].type)
 		&& is_between_quotes_type(tokens[end + 2].type))
 		return (end + 3);
-	else if (tokens[end + 2].type
+	else if ((end + 2 < n_tokens)
 		&& is_quote_type(tokens[end + 1].type)
 		&& is_quote_type(tokens[end + 2].type))
 		return (end + 2);
-	else if (tokens[end + 2].type
+	else if ((end + 2 < n_tokens)
 		&& is_quote_type(tokens[end + 1].type)
 		&& tokens[end + 2].type == EXPANSION)
 		return (end - 1);
-	else if (end >= 1)
+	else if ((end + 1 < n_tokens))
 		return (end + 1);
 	else
 		return (end);
