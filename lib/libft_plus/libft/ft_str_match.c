@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 14:30:13 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/17 01:26:55 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/17 19:20:30 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_str_match(const char *str, const char *word_to_find)
 	int	j;
 
 	i = 0;
-	if (!word_to_find || !*word_to_find == '\0')
+	if (!word_to_find || !*word_to_find)
 		return ((char *)str);
 	if (str == NULL)
 		return (NULL);
