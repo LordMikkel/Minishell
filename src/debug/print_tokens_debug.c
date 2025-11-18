@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:50:14 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/10 17:58:18 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/16 16:02:10 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,10 @@ const char	*g_type_names[] = {
 	"DELIMITER",
 	"SUBSHELL",
 	"SHELL",
-	"TEMP_PLUS_ASIGNATION,"
+	"TEMP_PLUS_ASIGNATION",
+	"NEW_TOKEN_TO_ORGANIZE",
+	"DONT_ELIMINATE",
+	"SCRIPT_ARG",
 };
 
 void	print_tokens_debug(t_prompt *prompt)

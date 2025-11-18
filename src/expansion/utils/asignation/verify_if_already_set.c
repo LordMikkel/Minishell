@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 15:36:26 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/15 23:54:30 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/17 23:44:26 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ static int	handle_plus_assignation(t_shell *d, t_var *var, char **value, int t)
 		free (var->value);
 		var->value = tmp;
 		update_envp(d);
-		//printf("var->value: %s\n\n", var->value);
 	}
 	return (0);
 }

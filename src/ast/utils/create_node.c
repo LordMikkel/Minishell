@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_node.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 20:41:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 01:45:11 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/17 11:40:49 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ t_node	*create_node(t_shell *data, t_token *token, t_type type)
 	if (!node)
 		return (exit_error(data, ERR_MALLOC, EXIT_FAIL), NULL);
 	node->type = type;
-	if (node->type == WILDCARD)
+	if (node->type == WILDCARD || node->type == EXPANSION)
 		node->type = COMMAND;
 	node->token = token;
 	node->token_hash = token->hash;

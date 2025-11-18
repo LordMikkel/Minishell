@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_args_for_binary.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 23:03:38 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 01:39:25 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/17 00:38:31 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,6 @@ char	**get_args_for_binary(t_shell *data, t_token *tokens, int *i)
 		j++;
 	}
 	if (k == 0)
-	{
-		free(args);
-		return (NULL);
-	}
+		return (free(args), NULL);
 	return (args);
 }

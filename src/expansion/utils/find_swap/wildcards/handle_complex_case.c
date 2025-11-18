@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 11:19:36 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/16 00:49:09 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/17 23:40:41 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@
 	result = [10, 5] -> Hay matches pero no en el orden correcto.
 */
 
-static void aux_alloc(t_shell *data, char ***ptr, int **result, char *key)
+static void	aux_alloc(t_shell *data, char ***ptr, int **result, char *key)
 {
 	*ptr = ft_split(key, '*');
 	if (!*ptr)

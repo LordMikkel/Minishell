@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   transform_asig_to_temp_asig.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 20:39:26 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/10/30 01:09:58 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/17 02:02:29 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,21 @@ static int	verify_till_valid_token_case_2(t_prompt *p, t_token *tokens, int i)
 
 static int	check_if_temp_asig(t_prompt *promp, t_token *tokens, t_token *token)
 {
+	int i;
+
+	i = token->id;
+	while (i > 0)
+	{
+		i--;
+		if (is_delimiter_type(tokens[i].type))
+			break;
+		if (tokens[i].type == BUILT_IN
+			&& ft_strcmp(tokens[i].value, BUILTIN_EXPORT) == 0)
+			return (FALSE);
+	}
 	if (token->id < promp->n_tokens)
 	{
-		if ((//tokens[token->id + 1].type == WORD
-				//&& verify_till_valid_token(promp, tokens, token->id))
-			is_cmd_builtin_type(tokens[token->id + 1].type)
+		if ((is_cmd_builtin_type(tokens[token->id + 1].type)
 			|| (is_asignation_type(tokens[token->id + 1].type)
 				&& !verify_till_valid_token(promp, tokens, token->id))
 			|| tokens[token->id + 1].type == BUILT_IN))

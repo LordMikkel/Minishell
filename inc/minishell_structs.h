@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/16 00:46:06 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/16 15:58:04 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef enum e_type
 	TEMP_PLUS_ASIGNATION,
 	NEW_TOKEN_TO_ORGANIZE,
 	DONT_ELIMINATE,
+	SCRIPT_ARG,
 }	t_type;
 
 struct s_wild

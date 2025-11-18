@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/16 00:00:27 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/17 12:17:28 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,6 +234,7 @@ void	transform_command_built_lowercase(t_prompt *prompt, t_token *tokens);
 void	transform_asig_to_temp(t_prompt *prompt, t_token *tokens);
 void	transform_cmd_to_built_in(t_shell *d, t_prompt *p, t_token *tokens);
 void	transform_word_to_wildcard(t_shell *d, t_prompt *prom, t_token *tokens);
+void	split_expansion_result(t_shell *data, t_prompt *prompt, t_token *tokens);
 
 //AST
 int		get_heredoc(t_shell *data, t_redir *redir, char *delimiter);
@@ -263,6 +264,8 @@ int		is_it_symbol(t_shell *data, t_token *token, char **key_to_find);
 void	reconect_nodes_tokens(t_shell *data, t_node *node, t_token *tokens);
 int		copy_value(t_shell *d, char **t_val, char *key_value, char *key_to_f);
 int		expand_empty_str(t_shell *d, t_token *to, char **key_to_find, int type);
+void	create_before_tokens(t_shell *d, t_token *tokens, t_prompt *prompt);
+void	move_script_args_to_end(t_shell *data, t_prompt *p, t_token *tokens);
 
 //EXPANSION_WILDCARDS
 int		process_wildcard(t_shell *data, t_token *token);

@@ -13,6 +13,8 @@ int copy_token_members(t_token *tmp_index, t_token *src)
 		if (!tmp_index->value)
 			return (ERROR);
 	}
+	else
+		tmp_index->value = src->value;
 	return (SUCCESS);
 }
 
@@ -71,7 +73,7 @@ static int	copy_new_tokens(t_shell *data, t_token *tmp, int *i, char **dirs)
 		tmp[*i].single_quoted = FALSE;
 		tmp[*i].id = *i;
 		if (j == 0)
-			tmp[*i].hash = *i;
+			tmp[*i].hash = data->prompt.tokens[*i].hash;
 		else
 			tmp[*i].hash = create_hash(data, n_dirs, data->prompt.n_tokens, *i);
 		tmp[*i].value = ft_strdup(dirs[j]);
@@ -150,5 +152,6 @@ int	reorder_tokens(t_shell *d, t_token *orig_token, int n_dirs, char **dirs)
 	d->prompt.tokens = tmp;
 	d->prompt.n_tokens = i;
 	d->prompt.n_alloc_tokens = j + n_dirs;
+	transform_tokens_logic(d, &d->prompt, d->prompt.tokens);
 	return (SUCCESS);
 }

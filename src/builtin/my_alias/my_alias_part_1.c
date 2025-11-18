@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   my_alias_part_1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 20:48:38 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/13 01:02:07 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/18 16:24:48 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../../inc/minishell.h"
 
