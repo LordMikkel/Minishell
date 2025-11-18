@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:22:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 18:57:58 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/18 13:58:46 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ static void	print_env_variables(t_env	*env)
 	while (var)
 	{
 		if (var->type == ENV)
-			ft_printf_fd(STDOUT, "declare -x %s=\"%s\"\n", var->key, var->value);
+			printf("declare -x %s=\"%s\"\n", var->key, var->value);
 		if (var->type == EXP)
-			ft_printf_fd(STDOUT, "declare -x %s\n", var->key);
+			printf("declare -x %s\n", var->key);
 		var = var->next;
 	}
 }

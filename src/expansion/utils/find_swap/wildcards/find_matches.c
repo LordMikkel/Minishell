@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:42:56 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/15 22:46:45 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/17 23:42:01 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	extract_dir(char **dir_extract, char *word)
 	Cabe resaltar que ignoramos elemtos del sistema que tengan "." o ".."
 */
 
-static int should_ignore_file(char *filename, t_wild *wildcard)
+static int	should_ignore_file(char *filename, t_wild *wildcard)
 {
 	if (ft_strcmp(filename, ".") == 0 || ft_strcmp(filename, "..") == 0)
 		return (TRUE);

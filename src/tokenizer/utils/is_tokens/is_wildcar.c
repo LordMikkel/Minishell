@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:41 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/14 12:16:39 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/18 16:25:17 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,18 +101,13 @@ static int	isn_wild(int c)
 	De este modo, se pueden separar, expandir y luego unir
 */
 
-static int	if_expansion_or_quotes(t_shell *data, const char *str, int i)
+static void	if_expan_or_quotes(t_shell *d, t_prompt *p, const char *str, int i)
 {
 	if (i + 1 < ft_strlen(str) && str[i] == '$'
 		&& (ft_isalpha(str[i + 1]) || is_symbol(str[i + 1])))
-	{
-		return (TRUE);
-	}
+		add_token(d, p, "", NO_SPACE);
 	else if (i + 1 < ft_strlen(str) && (str[i] == '\"' || str[i] == '\''))
-	{
-		return (TRUE);
-	}
-	return (FALSE);
+		add_token(d, p, "", NO_SPACE);
 }
 
 /*
@@ -147,7 +142,6 @@ void	is_wildcar(t_shell *data, t_prompt *prompt, const char *str, int *i)
 			wildcar = normalize_wildcards(data, wildcar, len);
 			add_token(data, prompt, wildcar, WILDCARD);
 		}
-		if (if_expansion_or_quotes(data, str, *i))
-			add_token(data, prompt, "", NO_SPACE);
+		if_expan_or_quotes(data, prompt, str, *i);
 	}
 }

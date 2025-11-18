@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 00:04:17 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/13 16:35:25 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/17 23:47:03 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,4 @@ void	eliminate_token(t_prompt *prompt, t_token *tokens, int index)
 		tokens[j].id -= 1;
 		j++;
 	}
-	//adjust_id_and_hash(tokens, prompt->n_tokens);
 }

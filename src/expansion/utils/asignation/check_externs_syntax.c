@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:30:59 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/15 23:49:19 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/17 02:11:34 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static int check_case_both_sides_aux(t_token *tokens, t_token *token)
 {
-	if ((tokens[token->id - 1].type == AND
-			|| tokens[token->id - 1].type == OR
+	if ((tokens[token->id - 1].type == AND || tokens[token->id - 1].type == OR
 			|| tokens[token->id - 1].type == PAREN_OPEN
 			|| tokens[token->id - 1].type == ASIGNATION
+			|| tokens[token->id - 1].type == PLUS_ASIGNATION
 			|| tokens[token->id - 1].type == DOUBLE_QUOTE
 			|| tokens[token->id - 1].type == SINGLE_QUOTE
 			|| tokens[token->id - 1].type == SEMICOLON
@@ -28,6 +28,7 @@ static int check_case_both_sides_aux(t_token *tokens, t_token *token)
 		&& (tokens[token->id + 1].type == AND
 			|| tokens[token->id + 1].type == OR
 			|| tokens[token->id + 1].type == ASIGNATION
+			|| tokens[token->id + 1].type == PLUS_ASIGNATION
 			|| tokens[token->id + 1].type == DOUBLE_QUOTE
 			|| tokens[token->id - 1].type == PAREN_CLOSE
 			|| tokens[token->id + 1].type == SINGLE_QUOTE
@@ -35,8 +36,7 @@ static int check_case_both_sides_aux(t_token *tokens, t_token *token)
 			|| tokens[token->id + 1].type == SEMICOLON
 			|| tokens[token->id + 1].type == WORD
 			|| (tokens[token->id + 1].type == BUILT_IN
-				&& ft_strcmp(tokens[token->id + 1].value,
-					BUILTIN_EXPORT) == 0)))
+				&& ft_strcmp(tokens[token->id + 1].value,BUILTIN_EXPORT) == 0)))
 			return (1);
 	return (0);
 }
@@ -61,6 +61,7 @@ static int	check_case_only_left(t_token *tokens, t_token *token, int n_tokens)
 			|| tokens[token->id - 1].type == DOUBLE_QUOTE
 			|| tokens[token->id - 1].type == SINGLE_QUOTE
 			|| tokens[token->id - 1].type == ASIGNATION
+			|| tokens[token->id - 1].type == PLUS_ASIGNATION
 			|| tokens[token->id - 1].type == SEMICOLON
 			|| tokens[token->id - 1].type == WORD
 			|| ((tokens[token->id - 1].type == BUILT_IN
@@ -80,6 +81,7 @@ static int	check_case_only_right(t_token *tokens, t_token *token, int n_tokens)
 			|| tokens[token->id + 1].type == DOUBLE_QUOTE
 			|| tokens[token->id + 1].type == SINGLE_QUOTE
 			|| tokens[token->id + 1].type == ASIGNATION
+			|| tokens[token->id + 1].type == PLUS_ASIGNATION
 			|| tokens[token->id + 1].type == SEMICOLON
 			|| (tokens[token->id + 1].type == BUILT_IN
 				&& ft_strcmp(tokens[token->id + 1].value, BUILTIN_EXPORT) == 0)

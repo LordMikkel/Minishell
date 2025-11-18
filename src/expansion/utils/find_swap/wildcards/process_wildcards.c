@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 16:18:03 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/15 17:36:01 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/17 23:40:26 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	init_wildcard(t_shell *data, t_wild **wildcard)
 		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
 }
 
-static void free_wildcard(t_wild **wildcard_ptr)
+static void	free_wildcard(t_wild **wildcard_ptr)
 {
 	t_wild *wildcard = *wildcard_ptr;
 

@@ -6,13 +6,13 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 19:15:26 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/15 22:47:08 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/17 23:43:19 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../../inc/minishell.h"
 
-static int should_ignore_file(char *filename, t_wild *wildcard)
+static int	should_ignore_file(char *filename, t_wild *wildcard)
 {
 	if (ft_strcmp(filename, ".") == 0 || ft_strcmp(filename, "..") == 0)
 		return (TRUE);
@@ -61,7 +61,7 @@ static int	if_theres_match(char *file, char *key, int wild_type)
 	return (FALSE);
 }
 
-static int	go_through_dir(t_shell *data, t_wild *wildcard, DIR *dir)
+static int	go_through_dir(t_shell *data, t_wild *wildc, DIR *dir)
 {
 	int		count;
 	struct 	dirent *entry;
@@ -72,13 +72,13 @@ static int	go_through_dir(t_shell *data, t_wild *wildcard, DIR *dir)
 		entry = readdir(dir);
 		if (!entry)
 			break ;
-		if (should_ignore_file(entry->d_name, wildcard))
+		if (should_ignore_file(entry->d_name, wildc))
 			continue;
-		if (wildcard->type == ALL)
+		if (wildc->type == ALL)
 			count++;
-		if (handle_complex_case(data, entry->d_name, wildcard->key, wildcard->type))
+		if (handle_complex_case(data, entry->d_name, wildc->key, wildc->type))
 			count++;
-		if (if_theres_match(entry->d_name, wildcard->key, wildcard->type))
+		if (if_theres_match(entry->d_name, wildc->key, wildc->type))
 			count++;
 	}
 	return (count);

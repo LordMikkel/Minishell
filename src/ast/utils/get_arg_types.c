@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_arg_types.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 01:44:27 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/13 00:22:16 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/18 13:55:12 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,11 @@ static int	*alloc_arg_types(t_shell *dat, t_node *node, int start_i, int end_j)
 			tmp_counter++;
 		create_dinamic_arr(dat, &arg_types, start_i, (end_j + tmp_counter));
 		len = tmp_counter;
-		//printf("%d", tmp_counter);
 		tmp_token_index = tmp_counter;
 		tmp_counter = 0;
 		while (tmp_counter < len)//copiamos las temp_Asigs en el orden correcto (de la primera a la ultima)
 		{
 			arg_types[tmp_counter] = dat->prompt.tokens[start_i - tmp_token_index].id;
-			//printf("token que se copia: %d\n\n", arg_types[tmp_counter]);
 			tmp_counter++;
 			tmp_token_index--;
 		}
@@ -87,7 +85,6 @@ static void	check_arg_index(int arg_index, int **arg_types)
 {
 	if (arg_index == 0)
 	{
-		//printf("zero\n\n");
 		free (*arg_types);
 		*arg_types = NULL;
 	}
@@ -130,15 +127,15 @@ int	*get_arg_types(t_shell *data, t_node *node, int start_i, int end_j)
 	int		arg_index;
 
 	tokens = data->prompt.tokens;
-	//printf("get_arg_types: %s\n\n", data->prompt.tokens[start_i].value);
 	arg_types = alloc_arg_types(data, node, start_i, end_j);
-	if (ft_strcmp(tokens[start_i].value, BUILTIN_EXPORT) != 0 && node->assig_tmp == NULL)
+	if (ft_strcmp(tokens[start_i].value, BUILTIN_EXPORT) != 0
+		&& node->assig_tmp == NULL)
 		return (free (arg_types), NULL);
-	if (ft_strcmp(tokens[start_i].value, BUILTIN_EXPORT) != 0 && tokens[start_i + 1].type)
+	if (ft_strcmp(tokens[start_i].value, BUILTIN_EXPORT) != 0
+		&& tokens[start_i + 1].type)
 		return (arg_types);
 	if (start_i + 1 < data->prompt.n_tokens)
 		start_i += 1;
-	//printf("TOKENS:  %s\n\n", data->prompt.tokens[start_i].value);
 	arg_index = find_correct_index(data->prompt.tokens, arg_types);
 	while (start_i < data->prompt.n_tokens && start_i < end_j)
 	{
@@ -146,12 +143,8 @@ int	*get_arg_types(t_shell *data, t_node *node, int start_i, int end_j)
 		{
 			arg_types[arg_index] = tokens[start_i].id;
 			arg_index++;
-			// Si se simplican los tokens ya no son el id... hay un caso que no
-			// funciona revisar --> 'ex'port A=1
-			// A=1 es id 5 pero index 1
 		}
 		start_i++;
 	}
-	check_arg_index(arg_index, &arg_types);
-	return (arg_types);
+	return (check_arg_index(arg_index, &arg_types), arg_types);
 }

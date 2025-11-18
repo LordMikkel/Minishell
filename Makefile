@@ -6,7 +6,7 @@
 #    By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/11/15 23:59:10 by davdiaz-         ###   ########.fr        #
+#    Updated: 2025/11/18 16:24:05 by davdiaz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -157,6 +157,8 @@ SRCS =				main/main.c \
 					tokenizer/utils/trasnform_tokens/transform_word_to_wildcard.c \
 					tokenizer/utils/trasnform_tokens/transform_command_builtin_lowercase.c \
 					tokenizer/utils/trasnform_tokens/transform_cmd_to_built_in.c \
+					tokenizer/utils/trasnform_tokens/move_script_args_to_end.c \
+					tokenizer/utils/trasnform_tokens/split_expansion_result.c \
 					tokenizer/utils/cmd_sugestion/cmd_correction.c \
 					tokenizer/utils/cmd_sugestion/cmd_correction_utils.c \
 					expansion/expansion.c \
@@ -207,7 +209,6 @@ SRCS =				main/main.c \
 					executor/utils/which_builtin.c \
 					executor/utils/get_path_cmd.c \
 					executor/utils/eliminate_token.c \
-					executor/utils/eliminate_temp_asig.c \
 					executor/utils/apply_properties.c \
 					executor/utils/apply_redirs.c \
 					executor/utils/apply_temp_asig.c \

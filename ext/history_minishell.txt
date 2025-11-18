@@ -1,126 +1,3 @@
-a=1
-unset a
-nev
-export b
-export "a"
-echo $!
-$$
-echo $$
-export $$USER
-echo ~+
-echo "~+"
-echo *~+
-echo ~+*
-echo '~+'
-unset PATH SHLVL PWD
-echo $asda
-d
-c
-e
-exiwt
-exir
-echo "a $ b"
-~+'a '"como estas"
-echo *$pwd
-echo *$PWD
-a=file
-echo *$file
-echo *$a
-echo make *
-var=1 echo hola && echo $var
-va=1 vas=3 vas+=3 echo hola && echo $va $vas
-export "$$USER"
-CLEAR
-echo $USER"A   $   C"$USER
-echo $USER" A   $   C "$USER
-export a="hola   pi"
-mkdir -p /tmp/testdir/real
-ln -s /tmp/testdir/real /tmp/testdir/link
-cd /tmp/testdir/link
-mkdir -p /tmp/real/dir
-ln -s /tmp/real /tmp/link
-cd /tmp/link/dir
-echo "$USER"
-echo "$exit code-> $?  user -> $USER home -> $HOME"
-$USER$TESTNOFOUND$HOME
-echo $USER$TESTNOFOUND$HOME
-"e"'x''p''o''r''t' hola
-"e"'x''p''o''r''t' T=j
-echo "$"U""S"ER"
-ECHO "'$USER'"
-secho $USER"A   $   C"$USER
-echo test$missing "$missing"
-export a="asd"
-echo $notfound$USER
-export a="hola"
-export r=1
-export r+=1
-hello ~+
-echo hello ~+
-unsete OLDPWD
-unset OLDPWD
-export OLDPWD=hola
-~-
-export PWD=123
-export 123
-dsd
-echo hola
-ls
-~+
-~+.hola
-unset PWD
-unset HOME
-export HOME=123
-~
-~+/hola
-~+/~
-+=1
-export a="abc"
-export a="abc           hola       como       estas"
-export a="abc           hola       como       estas'' espacio"mundial
-export a="abc           hola       como       estas''espacio"mundial
-echo $a
-echo $USER
-echo *
-echo $missing "$missing"
-echo $missing "$missing" | cat -e
-echo *makefile*
-echo *akef*
-echo *makef*
-echo *akefi*
-echo *Makef*
-echo *file
-var=file
-echo *$var
-echo *$var*
-echo $var*
-unset USER
-export USER+=Hola
-export hola+=Hola
-ttt=1
-var=1
-export hola var=1
-export var=1 hola var+=1
-unset PWD SHLVL PATH
-export b=1
-path=12
-export rrr=3
-export hola
-export USER=1231
-export america_latina=hola
-export
-export var=1
-export var=1 hola
-export var=1 hola va=2
-export var=1 va=2
-export var=1 va=2 r=2
-export var=1 va=2 r=2 a
-export var=1 a va=2 r=2 
-export var=1 var+=1
-export var=1 a va=2 r=2
-export var=1 a va=2 r=2 hola perro
-export var=1 a va=2 r=2 hola perro var=2
-sort
 /usr/bin/printf "%s\\n" * | sort
 export ARG="*"
 /usr/bin/printf "%s\\n" $ARG | sort
@@ -142,13 +19,11 @@ echo $?
 echo "*1"
 /usr/bin/printf "%s\\n" "*"* | sort
 echo "*"*
-clera
 rm "a" "aa" "aaa"
 touch "a" "aa" "aaa"
 echo *l*
 echo *.
 echo .*
-*
 * && ls
 make**
 make*
@@ -184,7 +59,6 @@ echo *$USER
 echo "*$bobo"
 export a=1
 export a=1 a+=1 a+=2 a+=abcde
-env
 sd
 export PWD+="XXXX"
 export a=1 a+=1 a=2 a+=2 a+=abcde
@@ -193,7 +67,133 @@ export a=1 a+=1
 a=2
 export a+=1
 va=1 ls && hola=2 export gato=2 word gato+=2
-clear
 /usr/bin/printf "%s\\n" "."* | sort
 echo "*$USER"
 echo *$bobo
+$(hola)
+$(ls)
+$5
+$5 && cd
+$5 && cd   
+/
+ls /
+echo hola"/"/hola
+ls hola"/"/hola
+echo $/
+$5 && echo hola
+echo
+aclear
+$5 && echo hola hola echo && ls clear ls clear aclear clear 
+&& ls
+ls && echo hola
+$123434234234
+$12
+$4
+$42
+ls && echo
+ls && echo;
+EOF
+&& hola hola ls && echo ls && echo; ; EOF     
+&& hola && hola
+hola"
+hola" hola"
+&&  && 
+()
+( )
+clear && hola
+ls pwd
+&& clear && hola hola ls pwd
+hola &&
+hola && hola
+&& && &&
+| hola
+jola | hola
+| jola | hola 
+jola |
+jola
+abc | abc
+| jola
+|
+jola | jola
+)
+$12334
+$112312
+claer
+$1a
+$1 && a
+&& hola
+$1
+export t="ls -l"
+$t
+$1 && ls
+&&
+cler
+$1 || hola
+ls && $1
+$1 && 
+ls
+echo $1
+$1 $1 $1
+$1 $1 $1 hola
+$123345 34345234
+ls $1 $1 $1 && echo hola
+ls $1$ $1$USER $1$abc && echo hola
+$123345
+$1 &&  ls
+hola
+ls 04 abc
+cat 23r23 wsd
+echo "hola $USER como estas"
+export var="ls -l"
+echo "hola $USER, como estas"
+echo "hola '$USER', como estas"
+echo "hola "$USER", como estas"
+sas=1 && echo $sas
+sa=1 && echo "$sa hola"
+var="ls-l"
+export a var=1
+export a var=1 var+=12
+export a var=1 var+=12 r=1 r=2
+export a var=1 var+=12 r=1 r=2 r=3 a=1 b=4
+export d=@@@
+ls && 
+ls &&  export var=1 var+=2 r=1 r=2 r=3 word r+=1231
+$1 $1 ls $1 && echo hola
+var="ls -l"
+$var
+$$
+$?
+clera
+$!
+echo hola &
+echo hola 
+export a var=1 sa=2 v= r=% pepe=1
+env
+||
+export var=1 var+=2 r=1 r=2 r=3 word r+=1231
+ls && export var=1 var+=2 r=1 r=2 r=3 word r+=1231
+ls && lola=1 export var=1 var+=2 r=1 r=2 r=3 word r+=1231
+ls && transform_asig_to_asig_plus(prompt, tokens);
+ls && lola=1 lola=+2 export var=1 var+=2 r=1 r=2 r=3 word r+=1231
+lola=1 lola=+2 export var=1 var+=2 r=1 r=2 r=3 word r+=1231
+ls &&
+lola=1 lola+=2 export var=1 var+=2 r=1 r=2 r=3 word r+=1231
+ls && lola=1 lola+=2 export var=1 var+=2 r=1 r=2 r=3 word r+=1231
+*
+* &&
+echo hola
+* && echo hola
+echo $USER
+ar="ls -l" && echo $ar
+* | *
+var="ls -l" && hola" "$var
+var="ls -l" && $var" "hola
+var="ls -l" && $var
+$HOME$NOTHING$USER$
+export "$$USER"
+CLEAR
+clear
+echo $HOME$NOTHING$USER$
+echo "$USERBorrar$USER"$USER
+echo $USER"A   $   C"$USER
+echo test$h "$h" | cat -e

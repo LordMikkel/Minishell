@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 17:05:58 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/16 00:08:54 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/17 23:47:28 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 	cualquier otro numero, qu es valido.
 */
 
-static void apply_to_built_in_loop(t_shell *data, t_token *tokens, t_node *node)
+static void	apply_to_built_in_loop(t_shell *data, t_token *tokens, t_node *node)
 {
 	int	i;
 
@@ -52,7 +52,7 @@ static void apply_to_built_in_loop(t_shell *data, t_token *tokens, t_node *node)
 	}
 }
 
-static void apply_to_commnad_loop(t_shell *data, t_token *tokens, t_node *node)
+static void	apply_to_commnad_loop(t_shell *data, t_token *tokens, t_node *node)
 {
 	int	i;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 20:29:52 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 00:20:14 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/17 11:38:29 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ t_node	*special_cases(t_shell *data, t_token *tokens, int *i, int n_tokens)
 	if ((*i + 1 == n_tokens && is_redir_type(tokens[*i].type))
 		|| (*i + 2 == n_tokens && is_redir_type(tokens[*i].type))
 		|| (*i + 2 < n_tokens && is_redir_type(tokens[*i].type)
-			&& !is_cmd_builtin_type(tokens[*i + 2].type)))
+			&& !is_cmd_builtin_type(tokens[*i + 2].type))
+		|| tokens[*i].type == SCRIPT_ARG)
 	{
 		left = create_true_node(data, COMMAND);
 		left->redir = get_redirs(data, tokens, i, TRUE);
@@ -112,7 +113,8 @@ t_node	*parse_cmd(t_shell *data, t_token *tokens, int *i, int n_tokens)
 	if (*i < n_tokens && tokens[*i].type
 		&& (is_cmd_builtin_type(tokens[*i].type)
 			|| is_real_assignation_type(tokens[*i].type)
-			|| is_redir_type(tokens[*i].type) || tokens[*i].type == WILDCARD))
+			|| is_redir_type(tokens[*i].type) || tokens[*i].type == WILDCARD
+			|| tokens[*i].type == EXPANSION))
 	{
 		index_redir_input(tokens[*i].type, i, n_tokens);
 		//expand_alias(data, tokens, *i); //verificar si el cmd es un alias o no, ver si se puede colocar en transform tokens
