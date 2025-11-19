@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:10 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/19 01:22:27 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/19 01:50:40 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,13 +105,10 @@ int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 	// else
 	// 	transform_tokens_logic(data, prompt, prompt->tokens);
 
-	//sustitution_here();
 	expand_wildcards(data, prompt, prompt->tokens, INITIAL_PHASE);
 	transform_tokens_logic(data, prompt, prompt->tokens);
 
 	if (!check_if_valid_tokens(data, prompt, prompt->tokens))
 		return (SYNTAX_ERROR);
-
-	//print_tokens_debug(prompt);
 	return (SUCCESS);
 }
