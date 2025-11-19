@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 20:43:35 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/17 01:09:38 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/19 16:49:27 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ char	**make_envp(t_shell *data, t_env *env, t_var *vars)
 			envp[i] = ft_strjoin_multi(3, vars->key, "=", vars->value);
 			if (!envp[i])
 				return (exit_error(data, ERR_MALLOC, EXIT_FAIL), NULL);
+			i++;
 		}
 		vars = vars->next;
-		i++;
 	}
 	return (envp);
 }

@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/28 19:51:37 by migarrid          #+#    #+#              #
-#    Updated: 2025/11/15 22:42:59 by migarrid         ###   ########.fr        #
+#    Updated: 2025/11/19 16:40:48 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,10 +76,12 @@ SRCS =	libft/ft_isalpha.c \
 		libft/ft_strcut.c \
 		libft/ft_split.c \
 		libft/ft_itoa.c \
+		libft/ft_count_str_in_arr.c \
 		libft/ft_strmapi.c \
 		libft/ft_striteri.c \
 		libft/ft_putchar_fd.c \
-		libft/ft_str_match.c \
+		libft/ft_charstr_match.c \
+		libft/ft_intstr_match.c \
 		libft/ft_putstr_fd.c \
 		libft/ft_putendl_fd.c \
 		libft/ft_putnbr_fd.c \

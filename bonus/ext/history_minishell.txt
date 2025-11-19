@@ -55,4 +55,3 @@ $NOVAR
 $NOVAR ls
 $NOVAR && ls
 ls && $NOVAR && ls
-$vsdvasvss $vsvsdv $SVsdvs

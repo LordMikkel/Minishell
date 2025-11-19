@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:23:16 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/15 02:07:50 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/19 16:35:46 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define MIDDLE						1
 # define END						2
 # define ALL						3
+# define COMPLEX					4
 # define DOLLAR						2
 # define TILDE						3
 
@@ -132,7 +133,7 @@
 /* ************************************************************************** */
 # define NO_FILE					0
 # define ILIMITED					-1
-# define N_BULTINS					9
+# define N_BULTINS					7
 
 /* ************************************************************************** */
 /*                              Signal Handling                               */

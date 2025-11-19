@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_type_IV.c                                       :+:      :+:    :+:   */
+/*   ft_count_str_in_arr.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/14 15:03:34 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/19 16:53:11 by migarrid         ###   ########.fr       */
+/*   Created: 2025/11/15 10:35:02 by davdiaz-          #+#    #+#             */
+/*   Updated: 2025/11/19 16:38:20 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../inc/minishell.h"
+#include "../libft_plus.h"
 
-/*
- * Determina si el token requiere simplificación cuando está junto
- * a un token NO_SPACE, lo que indica que deben unirse
- * para poder procesarse correctamente.
- */
-
-int	is_needed_to_simplify(int type)
+int ft_count_str_in_arr(char **arr)
 {
-	if (is_primitive_cmd_type(type)
-		|| type == WILDCARD || type == DELIMITER)
-		return (1);
-	return (0);
+	int count;
+
+	if (!arr)
+		return (0);
+	count = 0;
+	while (arr[count] != NULL)
+		count++;
+	return (count);
 }

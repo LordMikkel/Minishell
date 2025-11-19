@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 21:56:06 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/14 16:51:49 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/19 16:47:58 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	my_unset(t_shell *data, t_env *env, char **args)
 
 	i = 0;
 	exit_flag = 0;
-	if (!args || !args[0])
+	if (!args || !*args)
 		return (0);
 	while (args[i] != NULL)
 	{
@@ -109,8 +109,6 @@ void	my_clean_unset(t_shell *data, t_env *env, t_token *tokens, int *index)
 			i++;
 			continue ;
 		}
-		//printf("It gets in the loop in my_clena_unset\n\n");
-		//printf("my_clean_unset: %s\n\n", tokens[index[i]].value);
 		ptr = ft_calloc(ft_strlen(tokens[index[i]].value) + 1, sizeof(char));
 		if (!ptr)
 			exit_error(data, ERR_MALLOC, EXIT_FAILURE);

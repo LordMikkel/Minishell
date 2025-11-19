@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/17 20:40:59 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/19 19:51:14 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,7 +210,6 @@ int		check_redir_input(t_shell *d, t_prompt *p, t_token *t, int i);
 int		check_close_parent(t_shell *d, t_prompt *p, t_token *t, int i);
 int		check_redir_output(t_shell *d, t_prompt *p, t_token *t, int i);
 int		check_pipe(t_shell *data, t_prompt *prompt, t_token *tokens, int i);
-int		check_double_parent(t_shell *data, t_token *tokens, t_prompt *prompt);
 int		check_or_and(t_shell *data, t_prompt *prompt, t_token *tokens, int i);
 int		check_parent_balance(t_shell *data, t_prompt *prompt, t_token *tokens);
 int		check_cmd_externs(t_shell *d, t_prompt *prompt, t_token *tokens, int i);
@@ -237,6 +236,7 @@ void	transform_command_built_lowercase(t_prompt *prompt, t_token *tokens);
 void	transform_asig_to_temp(t_prompt *prompt, t_token *tokens);
 void	transform_cmd_to_built_in(t_shell *d, t_prompt *p, t_token *tokens);
 void	transform_word_to_wildcard(t_shell *d, t_prompt *prom, t_token *tokens);
+void	split_expansion_result(t_shell *data, t_prompt *prompt, t_token *tokens);
 
 //AST
 int		get_heredoc(t_shell *data, t_redir *redir, char *delimiter, int mode);
@@ -251,7 +251,7 @@ t_redir	*get_redirs(t_shell *data, t_token *tokens, int *i, int mode);
 char	*get_path(t_shell *data, char *cmd, char **envp);
 int		apply_redirs(t_shell *data, t_node *node, int mode);
 int		check_ambiguous_redir(t_shell *data, const char *filename, int mode);
-void	expansion_final_process(t_shell *data, t_node *node);
+int		expansion_final_process(t_shell *data, t_node *node);
 void	which_builtin(t_shell *data, t_token *token, t_node *node);
 int		apply_properties(t_shell *data, t_node *node, int mode);
 void	apply_temp_asig(t_shell *data, t_token *tokens, t_node *node);
@@ -265,16 +265,20 @@ int		is_it_symbol(t_shell *data, t_token *token, char **key_to_find);
 void	reconect_nodes_tokens(t_shell *data, t_node *node, t_token *tokens);
 int		copy_value(t_shell *d, char **t_val, char *key_value, char *key_to_f);
 int		expand_empty_str(t_shell *d, t_token *to, char **key_to_find, int type);
-void	ignore_words(t_shell *data, t_token *token, char **str, int len);
-void	handle_double_quoted_token(t_token *token, int token_len);
+void	create_before_tokens(t_shell *d, t_token *tokens, t_prompt *prompt);
+void	move_script_args_to_end(t_shell *data, t_prompt *p, t_token *tokens);
 
 //EXPANSION_WILDCARDS
 int		process_wildcard(t_shell *data, t_token *token);
-int		count_matches(t_shell *data, char *key_to_find, int wildcard_type);
-char	**find_matches(t_shell *d, char *key, int n_dirs, int wildcard_type);
+int		count_matches(t_shell *data, t_wild *wildcard);
+char	**find_matches(t_shell *d, t_wild *wildcard_info, int n_dirs);
 void	rebuild_tokens(t_shell *data, t_token *token, char **dirs, int n_dirs);
 int		extract_wildcard(t_shell *d, char *str, char **ptr, int *wildcard_type);
 int		reorder_tokens(t_shell *d, t_token *oritoken, int orisize, char **dirs);
+int		handle_complex_case(t_shell *d, char *file, char *key, int wild_type);
+void	free_tmp_tokens(t_token *tmp, int count);
+int 	create_hash(t_shell *da, int n_dirs, int n_tokens, int starting_hash);
+void	free_tokens(t_prompt *prompt);
 
 //ASIGNATION
 int		check_asignation_syntax(t_token *token, int type);
@@ -318,14 +322,13 @@ char	*cleanner_slash_quotes_d(t_shell *data, char *word, int len, int *flag);
 char	*clean_slash_expan_d(t_shell *data, char *word, int len, char slash);
 void	clean_quote_until_slash_d(char *word, char *clean_word, char quote);
 void	void_tokens_at_the_end(t_token *tokens, int n_alloc, int n_tokens);
-void	eliminate_token(t_prompt *prompt, t_token *tokens, int index);
+void	eliminate_token(t_shell *data, t_prompt *prompt, t_token *tokens, int index);
 int		cmd_correction(t_shell *data, t_token *tokens, int n_tokens);
 void	safe_index_plus(int *i, int n_tokens);
 void	normalize_token_to_lower(char *str);
 void	check_buffer(t_shell *data, t_prompt *prompt);
 void	safe_index_plus(int *i, int n_tokens);
 int		cmd_correction(t_shell *data, t_token *tokens, int n_tokens);
-void	eliminate_token(t_prompt *prompt, t_token *tokens, int index);
 void	void_tokens_at_the_end(t_token *tokens, int n_alloc, int n_tokens);
 void	clean_quote_until_slash_d(char *word, char *clean_word, char quote);
 char	*clean_slash_expan_d(t_shell *data, char *word, int len, char slash);

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 16:35:21 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/14 23:15:21 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/19 16:52:36 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ int	get_or_and_balance(t_prompt *prompt, t_token *tokens)
 	{
 		if (tokens[i].type == OR || tokens[i].type == AND)
 		{
-			if (i == 0)
-				return (CANT_CONTINUE);
+			if (i == 0 && tokens[i + 1].type == NONE)
+				return (BALANCE);
 			if (i > 0 && tokens[i - 1].type && tokens[i + 1].type == NONE)
 				return (KEEP_TRYING);
 		}
@@ -94,8 +94,8 @@ int	get_pipe_balance(t_prompt *prompt, t_token *tokens)
 	{
 		if (tokens[i].type == PIPE)
 		{
-			if (i == 0)
-				return (CANT_CONTINUE);
+			if (i == 0 && tokens[i + 1].type == NONE)
+				return (BALANCE);
 			if (i > 0 && tokens[i - 1].type && tokens[i + 1].type == NONE)
 				return (KEEP_TRYING);
 		}

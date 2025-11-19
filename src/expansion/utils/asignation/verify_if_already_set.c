@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verify_if_already_set.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 15:36:26 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/05 22:38:31 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/17 23:44:26 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
  	variable existente o se crea una nueva.
 */
 
-static int	assign_or_ignore_or_replace_value(t_shell *data, t_var *var, char **value, int t)
+static int	assign_igno_repla_val(t_shell *dat, t_var *var, char **value, int t)
 {
 	if (t == EXP && var->type == EXP)
 	{// si solo es una palabra sin ""="" -> hola
@@ -46,18 +46,22 @@ static int	assign_or_ignore_or_replace_value(t_shell *data, t_var *var, char **v
 		//printf("if t == LOCAL\n");
 		if (var->value)
 			free (var->value);
-		var->value = *value;
-		update_envp(data);
+		var->value = ft_strdup(*value);
+		if (!var->value)
+			return (ERROR);
+		update_envp(dat);
 	}
 	if (!var->value && var->type == EXP && t != EXP)//Si no existe su valor, solo hay que agregarse
 	{
-		var->value = *value;
-		update_envp(data);
+		var->value = ft_strdup(*value);
+		if (!var->value)
+			return (ERROR);
+		update_envp(dat);
 	}
 	return (0);
 }
 
-static void	handle_plus_assignation(t_shell *d, t_var *var, char **value, int t)
+static int	handle_plus_assignation(t_shell *d, t_var *var, char **value, int t)
 {
 	char	*tmp;
 
@@ -68,23 +72,27 @@ static void	handle_plus_assignation(t_shell *d, t_var *var, char **value, int t)
 		tmp = ft_strjoin(var->value, *value);
 		if (!tmp)
 		{
-			free(var->key);
-			free(*value);
-			exit_error(d, ERR_MALLOC, EXIT_FAILURE);
+			//free(var->key);
+			//free(*value);
+			return (ERROR);
+			//exit_error(d, ERR_MALLOC, EXIT_FAILURE);
 		}
 		free (var->value);
 		var->value = tmp;
 		update_envp(d);
-		//printf("var->value: %s\n\n", var->value);
 	}
+	return (0);
 }
 
 static int	handle_existing_value(t_shell *dat, t_var *var, char **value, int t)
 {
-	if (assign_or_ignore_or_replace_value(dat, var, value, t) == IGNORE)
-		return (IGNORE);
-	handle_plus_assignation(dat, var, value, t);
-	return (0);
+	int	result;
+
+	result = assign_igno_repla_val(dat, var, value, t);
+	if (result == ERROR || result == IGNORE)
+		return (result);
+	result = handle_plus_assignation(dat, var, value, t);
+	return (result);
 }
 
 static void	update_variable_type(t_var *var, int t)
@@ -106,15 +114,23 @@ static void	update_variable_type(t_var *var, int t)
 int	verify_if_already_set(t_shell *data, char *key, char **value, int t)
 {
 	t_var	*var;
+	int		result;
 
+	result = 0;
 	var = data->env.vars;
 	while (var)
 	{
 		if (ft_strcmp(var->key, key) == 0)
 		{
-			//printf("Found it-> %s=%s\n\n", key, *value);
-			if (handle_existing_value(data, var, value, t) == IGNORE)
+			result = handle_existing_value(data, var, value, t);
+			if (result == IGNORE)
 				return (IGNORE);
+			else if (result == ERROR)
+			{
+				free (key);
+				free (*value);
+				exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+			}
 			update_variable_type(var, t);
 			return (TRUE);
 		}

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:22:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 01:01:15 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/19 17:00:52 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,76 +46,6 @@
  * - Permite extender fácilmente el comportamiento para soportar más casos
  *   (como `export -p` o variables sin valor).
 */
-/*
-static int	check_for_valid_args(t_token *tokens, int i)
-{
-	if (tokens[i].type == PIPE || tokens[i].type == AND
-		|| tokens[i].type == OR || tokens[i].type == PAREN_OPEN)
-		return (FALSE);
-	return (TRUE);
-}
-
-static void	print_env_variables(t_var	*var)
-{
-	while (var)
-	{
-		if (var->type == ENV)
-			printf("declare -x %s=\"%s\"\n", var->key, var->value);
-		if (var->type == EXP)
-			printf("declare -x %s\n", var->key);
-		var = var->next;
-	}
-}
-
-static int	asignation_type(t_shell *data, t_token *token, t_env *env)
-{
-	if (token->type == ASIGNATION)
-		asignation(data, token, ENV);
-	else if (token->type == WORD)
-	{
-		if (check_asignation_syntax(token, EXP) == FALSE)
-		{
-			ft_printf_fd(STDERR, ERR_EXPORT, token->value);
-			return (EXIT_FAIL);
-		}
-		else
-			asignation(data, token, EXP);
-	}
-	else if (token->type == PLUS_ASIGNATION)
-		asignation(data, token, PLUS_ASIGNATION);
-	return (SUCCESS);
-}
-
-int	my_export(t_shell *data, t_token *tokens, t_token *token, t_env *env)
-{
-	t_var	*var;
-	int		i;
-	int		result;
-	int		args_found;
-
-	var = env->vars;
-	i = token->id + 1;
-	args_found = FALSE;
-	while (i < data->prompt.n_tokens)
-	{
-		if (i > 0)
-			args_found = TRUE;
-		if (check_for_valid_args(tokens, i) == FALSE)
-			break ;
-		if ((is_asignation_type(tokens[i].type) || tokens[i].type == WORD)
-			&& tokens[i].type != BUILT_IN)
-			{
-				//printf("token: %s\n\n", tokens[i].value);
-				result = asignation_type(data, &tokens[i], env);
-				if (result == EXIT_FAIL)
-					return (EXIT_FAIL);
-			}
-		i++;
-	}
-	if (!args_found)
-		print_env_variables(var);
-	return (result);
-}*/
 
 static int	check_for_valid_args(t_token *tokens, int index)
 {
@@ -134,9 +64,9 @@ static void	print_env_variables(t_env	*env)
 	while (var)
 	{
 		if (var->type == ENV)
-			ft_printf_fd(STDOUT, "declare -x %s=\"%s\"\n", var->key, var->value);
+			ft_printf_fd(1, "declare -x %s=\"%s\"\n", var->key, var->value);
 		if (var->type == EXP)
-			ft_printf_fd(STDOUT, "declare -x %s\n", var->key);
+			ft_printf_fd(1, "declare -x %s\n", var->key);
 		var = var->next;
 	}
 }
@@ -190,9 +120,7 @@ int	my_export(t_shell *data, t_token *tokens, t_env *env, t_node *node)
 		if (check_for_valid_args(tokens, node->arg_types[i]) == FALSE)
 			break ;
 		if ((is_asignation_type(tokens[node->arg_types[i]].type)
-			|| tokens[node->arg_types[i]].type == WORD
-			|| tokens[node->arg_types[i]].type == TEMP_PLUS_ASIGNATION)
-			&& tokens[node->arg_types[i]].type != BUILT_IN)
+			|| tokens[node->arg_types[i]].type == WORD))
 		{
 			if (asignation_type(data, tokens, node->arg_types[i]) == ERROR)
 				exit_flag = EXIT_FAIL;

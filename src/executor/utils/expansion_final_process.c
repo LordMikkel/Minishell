@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 19:04:23 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/17 01:09:00 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/19 21:40:34 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 	pueden ir cambiando a medida que se expande y simplifica
 */
 
-static void	create_before_tokens(t_shell *d, t_token *tokens, t_prompt *prompt)
+void	create_before_tokens(t_shell *d, t_token *tokens, t_prompt *prompt)
 {
 	int	i;
 	int	*token_type_buffer;
@@ -86,8 +86,13 @@ static void	prepare_simplify(t_shell *data, t_prompt *prompt, t_token *tokens)
 				}
 				else if (tokens[i - 1].type == WORD
 					&& tokens[i + 1].type == WORD)
-				{
 					tokens[i].type = DONT_ELIMINATE;
+				else if (tokens[i - 1].type == NO_SPACE
+					|| tokens[i + 1].type == NO_SPACE)
+				{
+					eliminate_token(data, &data->prompt, data->prompt.tokens, i);
+					reconect_nodes_tokens(data, data->ast_root, data->prompt.tokens);
+					continue ;
 				}
 			}
 		}
@@ -116,14 +121,14 @@ void	reconect_nodes_tokens(t_shell *data, t_node *node, t_token *tokens)
 	reconect_nodes_tokens(data, node->right, tokens);
 }
 
-static int if_theres_an_expansion(t_token *start_token, t_token *tokens, t_prompt *prompt)
+static int	if_theres_an_expan(t_token *start_t, t_token *tokens, t_prompt *p)
 {
 	int i;
 
 	i = 0;
-	while (i < prompt->n_tokens && &tokens[i] != start_token)//probar con hash en lugar de esto
+	while (i < p->n_tokens && &tokens[i] != start_t)//probar con hash en lugar de esto
 		i++;
-	while (i < prompt->n_tokens)
+	while (i < p->n_tokens)
 	{
 		if (is_delimiter_type(tokens[i].type))
 			return (FALSE);
@@ -159,6 +164,19 @@ static int if_theres_an_expansion(t_token *start_token, t_token *tokens, t_promp
 	Luego se verifica si hubo alguna expansión. Si es así, entonces se
 	ajustan los args con get_args_for_binary.
 
+	split_expansion_result sirve para poder hacer un split de el resultado
+	de expandir una clave que como valor tenga "echo -n", de modo que se
+	separan los tokens y se ejecutan. De lo contrario se ejecutarian como un
+	soolo token echo -n.
+	split_expansion_result tambien vuelve a reorganizar los tokens, de modo
+	que se vuelve a perder la referencia con los nodos y por eso hay que
+	llamara reconect una vez mas.
+
+	En conclusión, cada vez que se alteran los tokens en esta etapa, siempre
+	se perderá su referencia con los nodos y por eso hay que reconectarlos
+	a través del hash. Esta solución nos da bastante flexibilidad a la hora
+	de poder seguir transformando los tokens durante la ejecución sin ningun
+	problema de estados, que es el problema mas grande en esta etapa.
 
 	De este modo:
 	* No se tiene que hacer una expansión extra a otro tipo de dato
@@ -170,31 +188,30 @@ static int if_theres_an_expansion(t_token *start_token, t_token *tokens, t_promp
 	para poder seguir los procesos con afinidad.
 */
 
-void expansion_final_process(t_shell *data, t_node *node)
+int expansion_final_process(t_shell *data, t_node *node)
 {
 	int	i;
 
-	if (if_theres_an_expansion(node->token, data->prompt.tokens, &data->prompt))
+	i = 0;
+	if (if_theres_an_expan(node->token, data->prompt.tokens, &data->prompt))
 	{
-		//printf("node->token.value: %s\n\n", node->token->value);
 		create_before_tokens(data, data->prompt.tokens, &data->prompt);
-		expansion(data, data->prompt.tokens, node->token->id, FINAL_PHASE);
-		// printf("AFTER EXPANSION\n\n");
 		// print_tokens_debug(&data->prompt);
+		expansion(data, data->prompt.tokens, node->token->id, FINAL_PHASE);
+		if (data->prompt.n_tokens == 0)
+			return (FAILURE);
 		prepare_simplify(data, &data->prompt, data->prompt.tokens);
-		//printf("AFTER PREPARE_SIMPLY\n\n");
-		//print_tokens_debug(&data->prompt);
 		simplify_tokens(data, &data->prompt, data->prompt.tokens);
-		//print_tokens_debug(&data->prompt);
-		//printf("AFTER SIMPLIFY\n\n");
 		reconect_nodes_tokens(data, data->ast_root, data->prompt.tokens);
-		//print_tokens_debug(&data->prompt);
+		split_expansion_result(data, &data->prompt, data->prompt.tokens);
+		reconect_nodes_tokens(data, data->ast_root, data->prompt.tokens);
 		i = node->token->id;
+		// print_tokens_debug(&data->prompt);
 		if (node->args)
 			ft_free_str_array(&node->args);
 		expand_wildcards(data, &data->prompt, data->prompt.tokens, FINAL_PHASE); //Las wildcards que no se hayan expandido llegado este punto es debido a que dependen de una expansion que no se ha podido hacer
 		node->args = get_args_for_binary(data, data->prompt.tokens, &i);
-		//print_tokens_debug(&data->prompt);
+		// print_ast(data->ast_root);
 	}
-	//print_ast(data->ast_root);
+	return (SUCCESS);
 }

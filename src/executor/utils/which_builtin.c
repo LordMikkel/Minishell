@@ -3,22 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   which_builtin.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:58:35 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 00:32:09 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/19 01:22:19 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/minishell.h"
-
-static void	extras(t_shell *data, t_token *token, t_node *node)
-{
-	if (ft_strcmp(token->value, BUILTIN_ALIAS) == 0)
-		data->exit_code = my_alias(data, data->extras.cmd, node->args);
-	else if (ft_strcmp(token->value, BUILTIN_UNALIAS) == 0)
-		data->exit_code = my_unalias(data->extras.cmd, node->args);
-}
 
 static void	asignations(t_shell *data, t_token *token)
 {
@@ -55,5 +47,4 @@ void	which_builtin(t_shell *data, t_token *token, t_node *node)
 	asignations(data, token);
 	env_cmds(data, &data->env, token, node);
 	basic_builtins(data, token, node);
-	// extras(data, token, node);
 }

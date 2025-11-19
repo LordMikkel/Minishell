@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/18 11:57:46 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/17 21:05:30 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/19 20:01:34 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,26 @@ static void	aux_alloc_mem(t_shell *data, char **str, char **new_str, int len)
 }
 
 /*
+	Funcion para revisar si se tiene que poner espacio o no. Si llega a haber
+	otra expansion en el token value, ademas de la que ta estamos evalueando,
+	entonces no se pone espacio, pero si no hay mas entonces si se poner espacio
+*/
+
+static int write_space_or_not(char *str, int quoted, int start)
+{
+	int	ptr;
+	int	len;
+
+	len = ft_strlen(str);
+	ptr = ft_intstr_match(str, "$", start);
+	if (!quoted)
+		(FALSE);
+	if (ptr && (ptr + 1) < len && ft_isalnum(str[ptr + 1]) || str[ptr + 1] == '_' )
+		return (FALSE);
+	return (TRUE);
+}
+
+/*
 	Recorro el str y copio cada caracter. Si me encuentro el $ y lo siguiente
 	es valido, ignoro todo eso y solo escribo un espacio. Si llegase
 	a encontrar otro "$" después del que ya reemplaze por espacio, no pasa nada,
@@ -52,6 +72,7 @@ void	ignore_words(t_shell *data, t_token *token, char **str, int len)
 	char	*new_str;
 	int		i;
 	int		j;
+	int		start;
 
 	i = 0;
 	j = 0;
@@ -62,9 +83,10 @@ void	ignore_words(t_shell *data, t_token *token, char **str, int len)
 			&& ft_isalpha((*str)[i + 1]) && i == j)
 		{
 			i++;
+			start = i;
 			while (ft_isalnum((*str)[i]) || (*str)[i] == '_')
 				i++;
-			if (token->double_quoted)// en lugar de new_str[j++] = (*str)[i++] //porque(*str)[i++]puede ser cualquier otro simbolo que no sea alnum
+			if (write_space_or_not(token->value, token->double_quoted, start))// en lugar de new_str[j++] = (*str)[i++] //porque(*str)[i++]puede ser cualquier otro simbolo que no sea alnum
 				new_str[j++] = ' '; //i++;
 		}
 		else
@@ -93,7 +115,7 @@ int	expand_empty_str(t_shell *data, t_token *token, char **key_to_find, int type
 	token_len = ft_strlen(token->value); //si su len es igual es porque
 	if (token_len == key_len) // no hay nada mas
 	{
-		if (token->double_quoted)
+		if (token->double_quoted && !token->heredoc)
 		{
 			handle_double_quoted_token(token, token_len);
 			return (REPLACED);
@@ -101,12 +123,9 @@ int	expand_empty_str(t_shell *data, t_token *token, char **key_to_find, int type
 		else if (token->heredoc)
 			ft_memset(token->value, 0, token_len);
 		else
-			eliminate_token(&data->prompt, data->prompt.tokens, token->id);
+			eliminate_token(data, &data->prompt, data->prompt.tokens, token->id);
 	}
 	else
-	{
-		ignore_words(data, token, &token->value, token_len);
-		return (REPLACED);
-	}
+		return (ignore_words(data, token, &token->value, token_len), REPLACED);
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:23:28 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 14:18:42 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/17 23:39:54 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,35 +20,6 @@
 	aquellos que estan depués del mismo (siemore y cuando sea una sintaxis
 	válida).
 */
-/*
-static int	if_find_dollar(char *str, char **key_to_find, int i)
-{
-	int	j;
-	int	flag;
-
-	j = 0;
-	flag = FALSE;
-	if (str[i] == '$')
-	{
-		i++;
-		if (!ft_isalpha(str[i]) && !is_symbol(str[i]))
-			return (FALSE);
-		while ((ft_isalnum(str[i]) || is_symbol(str[i]))
-			&& flag == FALSE)
-		{
-			if (str[i] == '$' || str[i] == '~')
-			{
-				flag = TRUE;
-				break ;
-			}
-			(*key_to_find)[j++] = str[i];
-			i++;
-		}
-		(*key_to_find)[j] = '\0';
-		return (TRUE);
-	}
-	return (FALSE);
-}*/
 
 static int	if_find_dollar(char *str, char **key_to_find, int i)
 {
