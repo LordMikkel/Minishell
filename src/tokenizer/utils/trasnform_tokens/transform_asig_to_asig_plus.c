@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/18 18:38:33 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/09/26 14:28:02 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/17 02:18:30 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	transform_asig_to_asig_plus(t_prompt *prom, t_token *tokens)
 	result = FALSE;
 	while (i < prom->n_tokens)
 	{
-		if (tokens[i].type != ASIGNATION)
+		if (tokens[i].type != ASIGNATION && tokens[i].type != TEMP_ASIGNATION)
 		{
 			i++;
 			continue ;

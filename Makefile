@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/11/17 21:15:58 by migarrid         ###   ########.fr        #
+#    Updated: 2025/11/19 16:55:55 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -129,7 +129,6 @@ SRCS =				main/main.c \
 					tokenizer/utils/is_tokens/utils_is_double_quote.c \
 					tokenizer/utils/check_syntax/is_it_quoted.c \
 					tokenizer/utils/check_syntax/check_redir_input.c \
-					tokenizer/utils/check_syntax/check_double_parent.c \
 					tokenizer/utils/check_syntax/check_redir_output.c \
 					tokenizer/utils/check_syntax/check_background.c \
 					tokenizer/utils/check_syntax/check_semicolon.c \
@@ -157,6 +156,8 @@ SRCS =				main/main.c \
 					tokenizer/utils/trasnform_tokens/transform_word_to_wildcard.c \
 					tokenizer/utils/trasnform_tokens/transform_command_builtin_lowercase.c \
 					tokenizer/utils/trasnform_tokens/transform_cmd_to_built_in.c \
+					tokenizer/utils/trasnform_tokens/move_script_args_to_end.c \
+					tokenizer/utils/trasnform_tokens/split_expansion_result.c \
 					tokenizer/utils/cmd_sugestion/cmd_correction.c \
 					tokenizer/utils/cmd_sugestion/cmd_correction_utils.c \
 					expansion/expansion.c \
@@ -168,12 +169,14 @@ SRCS =				main/main.c \
 					expansion/utils/find_swap/is_it_symbol.c \
 					expansion/utils/find_swap/find_tilde_value.c \
 					expansion/utils/find_swap/wildcards/expand_wildcards.c \
+					expansion/utils/find_swap/wildcards/reorder_tokens_utils.c \
 					expansion/utils/find_swap/wildcards/process_wildcards.c \
 					expansion/utils/find_swap/wildcards/count_matches.c \
 					expansion/utils/find_swap/wildcards/find_matches.c \
 					expansion/utils/find_swap/wildcards/rebuild_tokens.c \
 					expansion/utils/find_swap/wildcards/extract_wildcard.c \
 					expansion/utils/find_swap/wildcards/reorder_tokens.c \
+					expansion/utils/find_swap/wildcards/handle_complex_case.c \
 					expansion/utils/asignation/asignation.c \
 					expansion/utils/asignation/verify_if_already_set.c \
 					expansion/utils/asignation/check_externs_syntax.c \
@@ -206,7 +209,6 @@ SRCS =				main/main.c \
 					executor/utils/which_builtin.c \
 					executor/utils/get_path_cmd.c \
 					executor/utils/eliminate_token.c \
-					executor/utils/eliminate_temp_asig.c \
 					executor/utils/apply_properties.c \
 					executor/utils/apply_redirs.c \
 					executor/utils/apply_temp_asig.c \

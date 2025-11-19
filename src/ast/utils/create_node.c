@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 20:41:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/17 14:15:47 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/19 16:41:21 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ t_node	*create_node(t_shell *data, t_token *token, t_type type)
 	if (!node)
 		return (error_status_node(data, &node, ERR_MALLOC));
 	node->type = type;
-	if (node->type == WILDCARD)
+	if (node->type == WILDCARD || node->type == EXPANSION)
 		node->type = COMMAND;
 	node->token = token;
 	node->token_hash = token->hash;

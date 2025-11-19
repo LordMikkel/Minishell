@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builtin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:23:12 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 18:01:50 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/19 17:12:04 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,11 @@
 	y control de procesos, garantizando el comportamiento esperado tanto en
 	ejecución secuencial como en estructuras complejas.
 */
-
-void	exec_builtin(t_shell *data, t_node *node, int mode)
+static void hanlde_background_exec(t_shell *data, t_node *node)
 {
 	pid_t	pid;
 
-	expansion_final_process(data, node);
-	if (node->background) //si es por background
-	{
-		pid = fork();
+	pid = fork();
 		if (pid == ERROR)
 			exit_error(data, ERR_FORK, FAIL);
 		if (pid == 0)
@@ -63,6 +59,15 @@ void	exec_builtin(t_shell *data, t_node *node, int mode)
 		data->last_background_pid = pid;
 		ft_printf_fd(STDOUT, "[&] %d\n", pid);
 		data->exit_code = OK; //da 0 porque el fork en si fue exitoso
+}
+
+void	exec_builtin(t_shell *data, t_node *node, int mode)
+{
+	if (!expansion_final_process(data, node))
+		return ;
+	if (node->background) //si es por background
+	{
+		hanlde_background_exec(data, node);
 		return ;
 	}
 	if (apply_properties(data, node, mode) == SUCCESS)

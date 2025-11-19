@@ -2,82 +2,39 @@
 Minishell - Bash
 
 🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
-🏁                                    RESULT                                       🏁
+🏁                                    RESULT                                                       🏁
 🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
-             TOTAL TEST COUNT: 71  TESTS PASSED: 55  LEAKING: 0
-                     STD_OUT: 16  STD_ERR: 2  EXIT_CODE: ✓
+             TOTAL TEST COUNT: 64  TESTS PASSED: 60  LEAKING: 0
+                     STD_OUT: 2  STD_ERR: 2  EXIT_CODE: ✓
                          TOTAL FAILED AND PASSED CASES:
-                                     ❌ 18
-                                     ✅ 195
+                                     ❌ 4
+                                     ✅ 188
 
 🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
-🏁                                    MANDATORY                                     🏁
+🏁                                    MANDATORY                                                    🏁
 🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
-             TOTAL TEST COUNT: 884  TESTS PASSED: 819  LEAKING: 0
-                     STD_OUT: 34  STD_ERR: 34  EXIT_CODE: 27
+             TOTAL TEST COUNT: 860  TESTS PASSED: 840  LEAKING: 0
+                     STD_OUT: 9  STD_ERR: 11  EXIT_CODE: 11
                          TOTAL FAILED AND PASSED CASES:
-                                     ❌ 95
-                                     ✅ 2557
+                                     ❌ 31
+                                     ✅ 2549
 
 ## POR HACER:
 
-## MIKEL:
+### MIKEL:
 
-## DAVID:
-- Important:
-- Export
-- Unset
-- Variables
-- Wildcars
-- Expansiones
+### DAVID:
+- Splitting de Expansion genera un pequeño leak -> `export X="  A  B  "; /bin/echo "1"$X'2'`
+- Espacios entre expansiones pegadas cuando no exite la variable `echo $USER$TESTNOTFOUND$HOME$WTF$PWD` o `/bin/echo test"$MISSING"`
+- wildcards complejas in the middle no son 100% perfectas-> `touch minishelxxxl; /usr/bin/printf "%s\n" minishe*l | sort`
 
-- get_arg_types funciona y sin leaks
-- get_temp_asig funciona y sin leaks -> con export y con cualquier otro comando
-- Expandir ~
-- Expandir $$
-- Expandir el Heredoc
-- get_temp_asig debe funcionar correctamente y sin leaks -> con export y con cualquier otro comando
-- bugs de tempasignations bien catalogadas
-- bugs de export - unset
-- bugs de expansiones
-
-- Secondary:
-- `echo $a && a=1`
-- leaks en `export USER+=@@@`
-- Expansion ha de soportar los wildcards *
-- Norminette
-- Comentarios
-
-mikel@MSI ~/documents/cursus/rank03/minishell ❯ export PWD+="XXXX"
-mikel@MSI ~/documents/cursus/rank03/minishellXXXX ❯ sd
-minishell: sd: command not found
-=================================================================
-==1549155==ERROR: LeakSanitizer: detected memory leaks
-
-Direct leak of 10 byte(s) in 1 object(s) allocated from:
-    #0 0x7fca0fb209c7 in malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69
-    #1 0x557ca4241787 in ft_calloc libft/ft_calloc.c:28
-    #2 0x557ca422c320 in aux_mem_alloc src/expansion/utils/asignation/asignation.c:31
-    #3 0x557ca422d097 in asignation src/expansion/utils/asignation/asignation.c:129
-    #4 0x557ca423b6fc in asignation_type src/builtin/my_export.c:164
-    #5 0x557ca423bb8b in my_export src/builtin/my_export.c:197
-    #6 0x557ca4237aba in env_cmds src/executor/utils/which_builtin.c:34
-    #7 0x557ca4237fe1 in which_builtin src/executor/utils/which_builtin.c:56
-    #8 0x557ca4237613 in exec_builtin src/executor/exec/exec_builtin.c:70
-    #9 0x557ca42356d7 in executor_recursive src/executor/executor.c:32
-    #10 0x557ca420fe53 in main src/main/main.c:32
-    #11 0x7fca0f7a51c9 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
-    #12 0x7fca0f7a528a in __libc_start_main_impl ../csu/libc-start.c:360
-    #13 0x557ca420fb84 in _start (/home/mikel/documents/cursus/rank03/minishell/minishell+0xcb84) (BuildId: ad722d2bb59b5508c96c8035214b2b410d7914aa)
-
-SUMMARY: AddressSanitizer: 10 byte(s) leaked in 1 allocation(s).
-
-## Errores:
+#### Errores:
 - En is_double_quote -> no se pueden hacer dos expansiones seguidas cuando hay `\` antes del `$` funciona para expansiones individuales pero la flag seteada evita las demas expansiones
 - export no acepta todas las posibilidades de entrada por la menera en la que tokenizamos, tampoco export esta remplazando su variable de la misma manera porque a veces una variabel la entraga en varios argumentos.
 - Al expandir una variable que tenga () deberia volverse a tokenizar, sucede que cuando tenemos una subshell en una variable y la expande no ha pasado por su proceso de tokenizacion y no es capaz de realizar el comando.
 - Deberia rehacerse todo la tokenizacion y expansion para que se consiga que cada token solo tenga una sola funcion argumento, operador(varios), Filename, heredoc comando o builtin, solo esas funciones. Nada de tokens de expansion deben marcarse antes con un bool pero no como un tipo y asi todo sera mas sencillo de gestionar.
 - tokenizamos los saltos de linea como ";" cuando bash depende del contexto lo hace de otra manera, en archivos si en linea de comando no
+- El manejo de bool quotes para los tokens deberia mejorar mas que solo revisar si i - 1 es DOUBLE_QUOTE. 1quote 2quote 3hola ->hola:true
 - funciones prohibidas que usamos:
 localtime
 difftime
@@ -153,7 +110,7 @@ getpid
                 └─────────────────────────────┘
 ```
 
-## OPCIÓN PARA FLUJO DE TRABAJO:
+### OPCIÓN PARA FLUJO DE TRABAJO:
 
 1. Si hay token de expansión → Se intenta expandir. Si no se puede, no importa, se ignora y no se intercambia por "".
 2. Entonces se aplica una función de juntar (esto en caso de que haya algún NO SPACE token, si no hay este token, no se junta nada).

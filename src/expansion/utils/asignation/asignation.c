@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asignation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 22:35:11 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/13 00:42:04 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/15 23:42:55 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ static void	aux_key_asig(t_token *token, char **key, int *i)
 		j++;
 	}
 	(*key)[j] = '\0';
-	//printf("key: %s\n\n", *key);
 }
 
 static void	aux_value_asig(t_token *token, char **value, int *i)
@@ -75,7 +74,6 @@ static void	aux_value_asig(t_token *token, char **value, int *i)
 		(*i)++;
 	}
 	(*value)[j] = '\0';
-	//printf("value: %s\n\n", *value);
 }
 
 /*
@@ -122,7 +120,6 @@ int	asignation(t_shell *data, t_token *token, int type)
 	int		result;
 	int		i;
 
-	result = FALSE;
 	key = NULL;
 	value = NULL;
 	i = 0;
@@ -131,17 +128,12 @@ int	asignation(t_shell *data, t_token *token, int type)
 	aux_key_asig(token, &key, &i);
 	aux_value_asig(token, &value, &i);
 	result = verify_if_already_set(data, key, &value, type);
-	if (result == TRUE)
-	{
-		free (key);
-		return (0);
-	}
-	else if (result == IGNORE)
+	if (result == TRUE || result == IGNORE)
 	{
 		free (key);
 		free (value);
 	}
-	if (result == FALSE)
+	else if (result == FALSE)
 	{
 		if (type == PLUS_ASIGNATION)
 			is_it_env_or_local(data, &type, token->id);

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 10:55:44 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/17 01:09:45 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/19 16:49:52 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,7 @@ void	init_builtins(t_shell *data)
 	built_ins[4] = ft_strdup("env");
 	built_ins[5] = ft_strdup("exit");
 	built_ins[6] = ft_strdup("pwd");
-	built_ins[7] = ft_strdup("alias");
-	built_ins[8] = ft_strdup("unalias");
-	built_ins[9] = NULL;
+	built_ins[7] = NULL;
 	if (check_if_error(built_ins, len) == ERROR)
 		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
 	data->builtins.builtins_selection = built_ins;

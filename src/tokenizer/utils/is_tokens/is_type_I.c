@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 20:48:00 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/10 14:20:05 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/16 16:57:23 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	is_alloc_type(int type)
 		|| type == ASIGNATION || type == TEMP_ASIGNATION
 		|| type == TEMP_PLUS_ASIGNATION || type == PLUS_ASIGNATION
 		|| type == DELIMITER || type == FILENAME
-		|| type == INDIFERENT)
+		|| type == INDIFERENT || type == SCRIPT_ARG)
 		return (1);
 	return (0);
 }
