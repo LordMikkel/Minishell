@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:51:53 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/30 02:07:49 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/20 20:38:47 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	print_temp_asig(char **args)
 	if (!args || !args[0])
 	{
 		printf(" (No temp)");
-		return;
+		return ;
 	}
 	printf(" [Temp Asig: ");
 	i = 0;
@@ -55,7 +55,7 @@ static void	print_args(char **args)
 	if (!args || !args[0])
 	{
 		printf(" (No args)");
-		return;
+		return ;
 	}
 	printf(" [Args: ");
 	i = 0;
@@ -76,7 +76,7 @@ static void	print_token_index(int *index)
 	if (!index)
 	{
 		printf(" (No index)");
-		return;
+		return ;
 	}
 
 	printf(" [token index: ");

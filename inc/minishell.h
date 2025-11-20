@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/19 19:51:14 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/20 20:41:50 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,8 +235,8 @@ void	transform_word_to_file(t_prompt *prompt, t_token *tokens);
 void	transform_command_built_lowercase(t_prompt *prompt, t_token *tokens);
 void	transform_asig_to_temp(t_prompt *prompt, t_token *tokens);
 void	transform_cmd_to_built_in(t_shell *d, t_prompt *p, t_token *tokens);
-void	transform_word_to_wildcard(t_shell *d, t_prompt *prom, t_token *tokens);
-void	split_expansion_result(t_shell *data, t_prompt *prompt, t_token *tokens);
+void	transform_word_to_wildcard(t_shell *d, t_prompt *p, t_token *t);
+void	split_expansion_result(t_shell *d, t_prompt *p, t_token *t);
 
 //AST
 int		get_heredoc(t_shell *data, t_redir *redir, char *delimiter, int mode);
@@ -277,7 +277,7 @@ int		extract_wildcard(t_shell *d, char *str, char **ptr, int *wildcard_type);
 int		reorder_tokens(t_shell *d, t_token *oritoken, int orisize, char **dirs);
 int		handle_complex_case(t_shell *d, char *file, char *key, int wild_type);
 void	free_tmp_tokens(t_token *tmp, int count);
-int 	create_hash(t_shell *da, int n_dirs, int n_tokens, int starting_hash);
+int		create_hash(t_shell *da, int n_dirs, int n_tokens, int starting_hash);
 void	free_tokens(t_prompt *prompt);
 
 //ASIGNATION
@@ -322,12 +322,13 @@ char	*cleanner_slash_quotes_d(t_shell *data, char *word, int len, int *flag);
 char	*clean_slash_expan_d(t_shell *data, char *word, int len, char slash);
 void	clean_quote_until_slash_d(char *word, char *clean_word, char quote);
 void	void_tokens_at_the_end(t_token *tokens, int n_alloc, int n_tokens);
-void	eliminate_token(t_shell *data, t_prompt *prompt, t_token *tokens, int index);
+void	eliminate_token(t_shell *d, t_prompt *p, t_token *t, int i);
 int		cmd_correction(t_shell *data, t_token *tokens, int n_tokens);
 void	safe_index_plus(int *i, int n_tokens);
 void	normalize_token_to_lower(char *str);
 void	check_buffer(t_shell *data, t_prompt *prompt);
 void	safe_index_plus(int *i, int n_tokens);
+int		ischrkey(int c);
 int		cmd_correction(t_shell *data, t_token *tokens, int n_tokens);
 void	void_tokens_at_the_end(t_token *tokens, int n_alloc, int n_tokens);
 void	clean_quote_until_slash_d(char *word, char *clean_word, char quote);

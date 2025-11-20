@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_tokens_debug.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:50:14 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/16 16:02:10 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/20 21:06:29 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,10 @@ void	print_tokens_debug(t_prompt *prompt)
 	while (i < prompt->n_tokens)
 	{
 		if (prompt->tokens[i].value)
-			printf("Token [%d]: '%s' (type: %s) - token id: %d - token hash: %d\n", i, prompt->tokens[i].value,
-				g_type_names[prompt->tokens[i].type], prompt->tokens[i].id, prompt->tokens[i].hash);
+			printf("Token [%d]: '%s' (type: %s) - token id: %d - hash: %d\n",
+				i, prompt->tokens[i].value,
+				g_type_names[prompt->tokens[i].type],
+				prompt->tokens[i].id, prompt->tokens[i].hash);
 		i++;
 	}
 }

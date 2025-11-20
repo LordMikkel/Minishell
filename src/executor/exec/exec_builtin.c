@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:23:12 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/19 17:12:04 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/20 18:02:26 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,23 +42,24 @@
 	y control de procesos, garantizando el comportamiento esperado tanto en
 	ejecución secuencial como en estructuras complejas.
 */
-static void hanlde_background_exec(t_shell *data, t_node *node)
+
+static void	hanlde_background_exec(t_shell *data, t_node *node)
 {
 	pid_t	pid;
 
 	pid = fork();
-		if (pid == ERROR)
-			exit_error(data, ERR_FORK, FAIL);
-		if (pid == 0)
-		{
-			setup_signals_child();
-			apply_properties(data, node, CHILD);
-			which_builtin(data, node->token, node);
-			exit_succes(data, NULL, data->exit_code);
-		}
-		data->last_background_pid = pid;
-		ft_printf_fd(STDOUT, "[&] %d\n", pid);
-		data->exit_code = OK; //da 0 porque el fork en si fue exitoso
+	if (pid == ERROR)
+		exit_error(data, ERR_FORK, FAIL);
+	if (pid == 0)
+	{
+		setup_signals_child();
+		apply_properties(data, node, CHILD);
+		which_builtin(data, node->token, node);
+		exit_succes(data, NULL, data->exit_code);
+	}
+	data->last_background_pid = pid;
+	ft_printf_fd(STDOUT, "[&] %d\n", pid);
+	data->exit_code = OK; //da 0 porque el fork en si fue exitoso
 }
 
 void	exec_builtin(t_shell *data, t_node *node, int mode)
