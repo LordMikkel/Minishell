@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 23:03:38 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/19 16:47:34 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/20 17:56:46 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ static void	arg_count(t_token *tokens, int n_tokens, int *i, int *n_args)
 			}
 		}
 		if ((is_arg_type(tokens[*i].type) || tokens[*i].type == COMMAND
-			|| tokens[*i].type == NO_SPACE || tokens[*i].type == INDIFERENT
-			|| tokens[*i].type == WILDCARD)) //&& tokens[*i].value && tokens[*i].value[0] != '\0'
+				|| tokens[*i].type == NO_SPACE || tokens[*i].type == INDIFERENT
+				|| tokens[*i].type == WILDCARD)) //&& tokens[*i].value && tokens[*i].value[0] != '\0'
 			(*n_args)++;
 		if (is_delimiter_type(tokens[*i].type))
 			break ;
@@ -101,9 +101,8 @@ char	**get_args_for_binary(t_shell *data, t_token *tokens, int *i)
 	{
 		if (is_delimiter_type(tokens[j].type))
 			break ;
-		if (is_redir_type(tokens[j].type)
-			|| tokens[j].type == FILENAME || tokens[j].type == DELIMITER
-			|| tokens[j].type == DONT_ELIMINATE)
+		if (is_redir_type(tokens[j].type) || tokens[j].type == FILENAME
+			|| tokens[j].type == DELIMITER || tokens[j].type == DONT_ELIMINATE)
 		{
 			j++;
 			continue ;

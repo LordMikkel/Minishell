@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   transform_invalid_asig_to_word.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 21:56:00 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/19 01:42:43 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/20 20:20:48 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	aux_if_word(t_prompt *prompt, t_token *tokens, int i)
 	while (j >= 0 && j < prompt->n_tokens && tokens[j].type == WORD)
 		j--;
 	if (j >= 0 && (tokens[j].type == COMMAND || (tokens[j].type == BUILT_IN
-			&& ft_strcmp(tokens[j].value, BUILTIN_EXPORT) != 0)))
+				&& ft_strcmp(tokens[j].value, BUILTIN_EXPORT) != 0)))
 		tokens[i].type = WORD;
 }
 

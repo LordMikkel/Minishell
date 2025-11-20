@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 20:59:47 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/17 16:36:27 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/20 20:40:10 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@ void	set_index(t_token *tokens, int *j, int *i)
 		*j = *i - 2;
 	else
 		*j = *i;
+}
+
+bool	expand_heredoc(t_token *token)
+{
+	if (!token[+1].type)
+		return false;
+	return (!(token[+1].single_quoted || token[+1].double_quoted));
 }
 
 /*
@@ -32,13 +39,6 @@ t_redir	*lstlast_redir(t_redir *lst)
 	while (lst->next != NULL)
 		lst = lst->next;
 	return (lst);
-}
-
-bool expand_heredoc(t_token *token)
-{
-	if (!token[+1].type)
-		return false;
-	return !(token[+1].single_quoted || token[+1].double_quoted);
 }
 
 /*

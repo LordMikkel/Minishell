@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 21:34:18 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/19 17:00:21 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/20 20:35:51 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static int	is_yes_or_no(const char *str)
 static	int	parse_answer(t_shell *d, t_token *token, char *str, char *built_in)
 {
 	int	result;
+
 	result = is_yes_or_no(str);
 	if (result == YES)
 	{

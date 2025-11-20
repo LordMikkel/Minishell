@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 23:19:18 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/19 16:57:02 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/20 21:06:55 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,12 @@ static int	set_arr(t_shell *data, char ***arr, int i, int *count)
 		|| data->prompt.tokens[i].value[len - 1] == '\t')
 		&& ((i + 1) < data->prompt.n_tokens
 		&& data->prompt.tokens[i + 1].type == NO_SPACE))
+	{
 		if (ft_count_str_in_arr(*arr) > 1)
 			altern_arr(data, arr, ft_count_str_in_arr(*arr) - 1, TRUE);
 		else
 			altern_arr(data, arr, 0, FALSE);
+	}
 	*count = ft_count_str_in_arr(*arr);
 	return (1);
 }

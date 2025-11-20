@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 22:44:45 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/19 20:00:39 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/20 20:44:09 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ int	no_space_at_delimiter(t_shell *data, t_prompt *prompt, t_token *tokens)
 		if (tokens[i].type == NO_SPACE && (i + 1) < prompt->n_tokens
 			&& is_delimiter_type(tokens[i + 1].type))
 		{
-			// printf("no_space_at_delimiter: eliminate\n\n");
 			eliminate_token(data, prompt, tokens, i);
 			return (TRUE);
 		}
@@ -119,10 +118,9 @@ int	no_space_at_end(t_shell *data, t_prompt *prompt, t_token *tokens)
 	i = 0;
 	while (i < prompt->n_tokens)
 	{
-		if (tokens[i].type == NO_SPACE && (i + 1) == prompt->n_tokens) //si es el ultimo token
+		if (tokens[i].type == NO_SPACE && (i + 1) == prompt->n_tokens)
 		{
-			// printf("no_scape_at_end: eliminate\n\n");
-			eliminate_token(data, prompt, tokens, i);
+			eliminate_token(data, prompt, tokens, i); //si es el ultimo token
 			return (TRUE);
 		}
 		i++;

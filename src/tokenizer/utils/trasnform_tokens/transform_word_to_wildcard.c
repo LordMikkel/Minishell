@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 17:49:40 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/19 21:40:34 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/20 20:42:13 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@
 
 static int	has_middle_wildcard(char *value)
 {
-	int len;
-	int i;
+	int	len;
+	int	i;
 
 	if (!value)
 		return (FALSE);
@@ -76,7 +76,8 @@ void	transform_word_to_wildcard(t_shell *d, t_prompt *promp, t_token *tokens)
 	len = 0;
 	while (i < promp->n_tokens)
 	{
-		if (tokens[i].type == WORD && aux_if_word(promp, tokens, i) && !tokens[i].single_quoted && !tokens[i].double_quoted)
+		if (tokens[i].type == WORD && aux_if_word(promp, tokens, i)
+			&& !tokens[i].single_quoted && !tokens[i].double_quoted)
 		{
 			if (tokens[i].value)
 			{

@@ -66,7 +66,7 @@ static int	isn_exp(const char *str, int *i, int str_len, int *flag)
 
 	c = str[*i];
 	if (c == '|' || c == '<' || c == '>' || c == '&' || c == '(' || c == ')'
-		|| c == ';' || (str[*i - 1] != '$' && c == '?'))
+		|| c == ';' || (str[*i - 1] != '$' && c == '?' || c == '-'))
 		return (1);
 	else if (c == '.' || c == '\'' || c == '\"' || c == '\\')
 	{
@@ -192,7 +192,7 @@ static void	is_ignore_token(t_shell *d, t_prompt *prom, const char *str, int *i)
 
 	token_to_ignore = ft_substr(str, *i - 1, 2);
 	if (!token_to_ignore)
-			exit_error(d, ERR_MALLOC, EXIT_FAILURE);
+		exit_error(d, ERR_MALLOC, EXIT_FAILURE);
 	add_token(d, prom, token_to_ignore, SCRIPT_ARG);
 	(*i)++;
 }
@@ -222,6 +222,6 @@ void	is_dolar(t_shell *data, t_prompt *prompt, const char *str, int *i)
 	if (str[*i] == '~'
 		&& (((str[*i + 1] && ft_isspace(str[*i + 1])) || str[*i + 1] == '\0')
 			|| (str[*i + 1] && (str[*i + 1] == '/' || str[*i + 1] == '+'
-			|| str[*i + 1] == '-'))))
+					|| str[*i + 1] == '-'))))
 		handle_tilde_expansion(data, prompt, str, i);
 }

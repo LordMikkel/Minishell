@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_script_args_to_end.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 17:34:44 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/17 23:17:57 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/20 20:21:05 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static void	reorg_tokens(t_prompt *p, t_token *ts, t_token *tmp, int count_args)
 void	move_script_args_to_end(t_shell *data, t_prompt *p, t_token *tokens)
 {
 	t_token	*tmp;
-	int	count_args;
+	int		count_args;
 
 	tmp = NULL;
 	count_args = extract_script_args(p, tokens, &tmp);

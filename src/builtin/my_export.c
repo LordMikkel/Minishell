@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:22:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/19 17:00:52 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/20 18:00:08 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ int	my_export(t_shell *data, t_token *tokens, t_env *env, t_node *node)
 		if (check_for_valid_args(tokens, node->arg_types[i]) == FALSE)
 			break ;
 		if ((is_asignation_type(tokens[node->arg_types[i]].type)
-			|| tokens[node->arg_types[i]].type == WORD))
+				|| tokens[node->arg_types[i]].type == WORD))
 		{
 			if (asignation_type(data, tokens, node->arg_types[i]) == ERROR)
 				exit_flag = EXIT_FAIL;

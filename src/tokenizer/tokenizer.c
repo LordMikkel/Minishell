@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:10 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/19 21:40:34 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/20 20:13:06 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 	if (!check_if_valid_tokens(data, prompt, prompt->tokens))
 		return (SYNTAX_ERROR);
 
-	//print_tokens_debug(prompt);
+	// print_tokens_debug(prompt);
 
 	move_script_args_to_end(data, prompt, prompt->tokens);
 	create_before_tokens(data, prompt->tokens, prompt);

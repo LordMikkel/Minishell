@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 22:40:33 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/19 16:52:49 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/20 20:46:22 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 static int	check_cases(t_prompt *prompt, t_token *tokens, int i)
 {
-	if ((i > 0 && i + 1< prompt->n_tokens) && tokens[i + 1].type
+	if ((i > 0 && i + 1 < prompt->n_tokens) && tokens[i + 1].type
 		&& tokens[i - 1].type && ((tokens[i + 1].type == COMMAND
 				|| tokens[i + 1].type == WORD
 				|| tokens[i + 1].type == BUILT_IN
@@ -36,16 +36,16 @@ static int	check_cases(t_prompt *prompt, t_token *tokens, int i)
 				|| is_quote_type(tokens[i + 1].type)
 				|| is_redir_type(tokens[i + 1].type)
 				|| is_asignation_type(tokens[i + 1].type)))
-			&& (tokens[i - 1].type == COMMAND
-				|| tokens[i - 1].type == WORD
-				|| tokens[i - 1].type == BUILT_IN
-				|| tokens[i - 1].type == PAREN_CLOSE
-				|| tokens[i - 1].type == EXPANSION
-				|| tokens[i - 1].type == DELIMITER
-				|| tokens[i - 1].type == FILENAME
-				|| tokens[i - 1].type == WILDCARD
-				|| is_quote_type(tokens[i - 1].type)
-				|| is_asignation_type(tokens[i - 1].type)))
+		&& (tokens[i - 1].type == COMMAND
+			|| tokens[i - 1].type == WORD
+			|| tokens[i - 1].type == BUILT_IN
+			|| tokens[i - 1].type == PAREN_CLOSE
+			|| tokens[i - 1].type == EXPANSION
+			|| tokens[i - 1].type == DELIMITER
+			|| tokens[i - 1].type == FILENAME
+			|| tokens[i - 1].type == WILDCARD
+			|| is_quote_type(tokens[i - 1].type)
+			|| is_asignation_type(tokens[i - 1].type)))
 	{
 		prompt->n_pipes++;
 		return (SUCCESS);

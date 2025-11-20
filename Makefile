@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/11/19 16:55:55 by migarrid         ###   ########.fr        #
+#    Updated: 2025/11/20 20:34:02 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ CC					= cc
 #WFLAGS				= -Wall -Wextra -Werror
 DFLAGS				= -g
 #OFLAGS				= -Ofast -march=native -flto
-SFLAGS				= -fsanitize=address,undefined
+SFLAGS				= #-fsanitize=address,undefined
 DEPFLAGS			= -MMD -MP
 
 # **************************************************************************** #
@@ -126,7 +126,8 @@ SRCS =				main/main.c \
 					tokenizer/utils/is_tokens/is_type_II.c \
 					tokenizer/utils/is_tokens/is_type_III.c \
 					tokenizer/utils/is_tokens/is_type_IV.c \
-					tokenizer/utils/is_tokens/utils_is_double_quote.c \
+					tokenizer/utils/is_tokens/utils_is_double_quote_I.c \
+					tokenizer/utils/is_tokens/utils_is_double_quote_II.c \
 					tokenizer/utils/check_syntax/is_it_quoted.c \
 					tokenizer/utils/check_syntax/check_redir_input.c \
 					tokenizer/utils/check_syntax/check_redir_output.c \

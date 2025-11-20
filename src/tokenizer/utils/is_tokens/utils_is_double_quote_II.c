@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_count_str_in_arr.c                              :+:      :+:    :+:   */
+/*   utils_is_double_quote_II.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/15 10:35:02 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/20 17:50:57 by migarrid         ###   ########.fr       */
+/*   Created: 2025/09/13 20:34:54 by migarrid          #+#    #+#             */
+/*   Updated: 2025/11/20 21:10:55 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft_plus.h"
+#include "../../../../inc/minishell.h"
 
-int	ft_count_str_in_arr(char **arr)
+int	ischrkey(int c)
 {
-	int	count;
-
-	if (!arr)
+	if (c == '|' || c == '<' || c == '>' || c == '&' || c == '(' || c == ')'
+		|| c == ';' || c == '-' || c == '\0')
 		return (0);
-	count = 0;
-	while (arr[count] != NULL)
-		count++;
-	return (count);
+	return (1);
 }

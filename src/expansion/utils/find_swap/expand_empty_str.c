@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/18 11:57:46 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/19 20:01:34 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/20 20:47:05 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	aux_alloc_mem(t_shell *data, char **str, char **new_str, int len)
 	entonces no se pone espacio, pero si no hay mas entonces si se poner espacio
 */
 
-static int write_space_or_not(char *str, int quoted, int start)
+static int	write_space_or_not(char *str, int quoted, int start)
 {
 	int	ptr;
 	int	len;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_wildcar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:41 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/18 16:25:17 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/20 20:21:30 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 
 static char	*normalize_wildcards(t_shell *data, char *wildcard, int len)
 {
-	int	j;
-	int	k;
+	int		j;
+	int		k;
 	char	*clean_wildcar;
 
 	j = 0;
@@ -45,7 +45,6 @@ static char	*normalize_wildcards(t_shell *data, char *wildcard, int len)
 	free (wildcard);
 	return (clean_wildcar);
 }
-
 
 /*
 	Elimina todos los caracteres 'trash' de la cadena wildcard.

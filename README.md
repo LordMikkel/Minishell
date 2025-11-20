@@ -41,6 +41,7 @@ difftime
 mkdir
 gethostname
 getpid
+ic_readline
 
 ## ARQUITECTURA GENERAL
 
