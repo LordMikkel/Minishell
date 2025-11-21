@@ -189,11 +189,11 @@ bash
 export TEST1=123
 cat tmp_lol.c | cat > tmp_lol.c
 lear
-export T*EST=hola
 export t*est=hola
 export make*
 export *file
-export var=*file
 $var
 export
 clear
+export T*EST=hola
+export var=*file
