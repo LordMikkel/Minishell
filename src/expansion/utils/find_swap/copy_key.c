@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:23:28 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 15:07:52 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 20:01:28 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ static int	if_find_tilde(char *str, char **key_to_find, int i)
 		i++;
 		if (str[i] != '+' && str[i] != '/' && str[i] != '-')
 			return (FALSE);
-		if (str[i] == '+' && str[i + 1]
-			&& ((str[i + 1] == '+') || (str[i + 1] != '/'))
+		if ((str[i] == '+' && str[i + 1]
+				&& ((str[i + 1] == '+') || (str[i + 1] != '/')))
 			|| (str[i] == '-' && str[i + 1]
 				&& ((str[i + 1] == '-') || (str[i + 1] != '/'))))
 			return (FALSE);

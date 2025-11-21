@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:23:16 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 15:39:48 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 19:11:06 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,9 +124,8 @@
 /*                              Default Values                                */
 /* ************************************************************************** */
 # define DEFAULT_PATH				"/usr/local/bin:/usr/bin:/bin"
-# define DEFAULT_HISTORY_FILE		"./ext/history_minishell.txt"
-# define DEFAULT_HYSTORY_DIR		"./ext"
-# define DEFAULT_HOME				"/home/"
+# define HISTORY_FILE		"./ext/history_minishell.txt"
+# define HYSTORY_DIR		"./ext"
 
 /* ************************************************************************** */
 /*                                   ARGS                                     */

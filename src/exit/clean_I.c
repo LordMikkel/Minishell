@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 21:47:38 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/19 16:48:13 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 19:14:35 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void	clean_all(t_shell *data)
 	clean_prompt(&data->prompt);
 	clean_env(&data->env, data->env.vars);
 	clean_ast(&data->ast_root);
-	clean_fd(&data->exec);
+	clean_fd(&data->exec, data->history_fd);
 	clean_extras(&data->extras);
 	clean_builtins_selection(&data->builtins);
 }

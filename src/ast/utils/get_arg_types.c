@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_arg_types.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 01:44:27 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/21 18:05:46 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/21 19:44:26 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,10 +104,10 @@ int	*get_arg_types(t_shell *data, t_node *node, int start_i, int end_j)
 	arg_types = alloc_arg_types(data, node, start_i, end_j);
 	if (!arg_types)
 		return (NULL);
-	if (!toks[start_i].value || ft_strcmp(toks[start_i].value, "export") != 0
+	if ((!toks[start_i].value || ft_strcmp(toks[start_i].value, "export") != 0)
 		&& node->assig_tmp == NULL)
 		return (free (arg_types), NULL);
-	if (!toks[start_i].value || ft_strcmp(toks[start_i].value, "export") != 0
+	if ((!toks[start_i].value || ft_strcmp(toks[start_i].value, "export") != 0)
 		&& toks[start_i + 1].type)
 		return (arg_types);
 	if (start_i + 1 < data->prompt.n_tokens)

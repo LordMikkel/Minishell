@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:23:14 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 16:07:49 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 19:45:47 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,5 @@ void	exec_command(t_shell *data, t_node *node, t_exec *exec, int mode)
 		execute_cmd_from_child(data, node, exec->env);
 	if (mode == FATHER || mode == SUBSHELL)
 		execute_cmd_from_father(data, node, exec->env);
-	clean_temp_variables(data, exec->env, data->prompt.tokens, node);
+	clean_temp_variables(data, data->prompt.tokens, node);
 }

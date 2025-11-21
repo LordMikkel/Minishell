@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 16:32:57 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 00:44:13 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 19:17:42 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	update_var(t_shell *d, char *new_value, char *key_to_find)
 {
 	t_var	*var;
-	char	*ptr;
 	int		flag_found;
 
 	flag_found = FALSE;
