@@ -6,7 +6,7 @@
 #    By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/11/21 17:11:14 by davdiaz-         ###   ########.fr        #
+#    Updated: 2025/11/21 19:01:26 by davdiaz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -129,6 +129,7 @@ SRCS =				main/main.c \
 					tokenizer/utils/is_tokens/is_type_IV.c \
 					tokenizer/utils/is_tokens/utils_is_double_quote_I.c \
 					tokenizer/utils/is_tokens/utils_is_double_quote_II.c \
+					tokenizer/utils/is_tokens/handle_tilde_expansion.c \
 					tokenizer/utils/check_syntax/is_it_quoted.c \
 					tokenizer/utils/check_syntax/check_redir_input.c \
 					tokenizer/utils/check_syntax/check_redir_output.c \
@@ -202,7 +203,7 @@ SRCS =				main/main.c \
 					ast/utils/get_background.c \
 					ast/utils/safe_index_plus.c \
 					ast/utils/get_heredoc.c \
-					ast/utils/alloc_arg_types.c \
+					ast/utils/get_arg_types_utils.c \
 					executor/executor.c \
 					executor/exec/exec_semicolon.c \
 					executor/exec/exec_and.c \
