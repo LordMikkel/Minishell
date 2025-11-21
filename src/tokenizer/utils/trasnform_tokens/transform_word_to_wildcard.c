@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   transform_word_to_wildcard.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 17:49:40 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/21 14:59:10 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 19:54:23 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,8 @@ void	transform_word_to_wildcard(t_shell *d, t_prompt *promp, t_token *tokens)
 		if ((tokens[i].type == WORD || tokens[i].type == FILENAME
 				|| tokens[i].type == COMMAND)
 			&& !tokens[i].single_quoted && !tokens[i].double_quoted
-			&& has_a_wildcard(tokens[i].value))
+			&& has_a_wildcard(tokens[i].value)
+			&& is_valid_wildcard(tokens, promp, i))
 		{
 			tokens[i].type = WILDCARD;
 		}

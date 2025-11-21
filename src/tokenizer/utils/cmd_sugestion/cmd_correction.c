@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_correction.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 20:48:00 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/21 14:59:52 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 19:17:01 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ static int	find_match(const char *s1, const char *s2)
 			j++;
 		i++;
 	}
-	if ((s1[j] == '\0' && s2[i + 1] == '\0')
-		|| (s1[j + 1] == '\0' && s2[i] == '\0')
+	if ((s1[j] == '\0' && s2[i] != '\0' && s2[i + 1] == '\0')
+		|| (s1[j] != '\0' && s1[j + 1] == '\0' && s2[i] == '\0')
 		|| (s1[j] == '\0' && s2[i] == '\0'))
 		return (SUCCESS);
 	else if ((j + 1 == len_1 && i == len_2) || (i + 1 == len_2 && j == len_1))

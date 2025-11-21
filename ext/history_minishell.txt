@@ -1,58 +1,3 @@
-man gethostname
-echo $$
-vsavas
-asvass
-"$"
-"$a"
-"$sdfasdf"
-"$SHELL
-echo $SHELL
-echo $SHLVL
-ls -lah --color /proc/504966/fd
-cd /proc/self/
-cd /tmp/
-ls &vsabe
-(yes | head -n 10)
-&(yes | head -n 10)
-(yes | head -n 10) &
-yes &
-exit
-env env
-env -i
-setopt
-exec
-/usr/bin/echo
-/usr/bin/echo a
-unset PATH
-/usr/bin/vim
-cd /usr/bin/vim
-cd /usr/bin/
-?
-$?
-$??
-echo "$??
-echo "$??"
-echo "$??????"
-echo "$--?"
-echo "$-"
-echo "$$$"
-echo "$_A"
-echo "$_??A"
-echo "$?_?A"
-echo "$]"
-echo "$[]"
-echo "$[a]"
-echo "$[?]"
-echo "$\\?"
-echo "$\\A?"
-echo "$!"
-echo "!!"
-export export
-export export export export export export
-export export export export export export -i
-export export export export export export ''
-export export export export export export '_'
-export export export export export export '_A FADFAKJDASJDKASJD KAJSD JKASDJK A"
 export export export export export export '_A FADFAKJDASJDKASJD KAJSD JKASDJK A" '
 echo 'a'
 echo 'a  ()) $() '
@@ -148,13 +93,10 @@ echo hola$noexiste""-como_estas
 /bin/echo test$MISSING "$MISSING"
 /bin/echo test$MISSING "$MISSING" | cat -e
 /usr/bin/printf "%s\\n" minishe*l | sort
-touch palala
 export va*r=hola
 export va*rrrr=hola
 export var=pa*ala
-export var=pal*la
 export va=pal*la
-env
 export va=pal*la pala*a
 pa*ala=hola
 var=hola
@@ -164,31 +106,21 @@ export TES$?T=123
 bash
 export TEST1=123
 cat tmp_lol.c | cat > tmp_lol.c
-lear
 export t*est=hola
-export make*
-export *file
-$var
-export
-export var=*file
-export T*EST=hola
 eche hola
 sd
 eche
 celar
 make
 echa
-l
 sl
 slds
 sdv
 s
 ""
-c
 ss
 ava
 va
-v
 veas
 asev
 sev
@@ -196,4 +128,72 @@ sa
 hola
 ls
 echo ~
+a
+q
+w
+e
+r
+t
+y
+u
+i
+o
+p
+;
+l
+k
+j
+h
+g
+f
+d
+z
+xx
+c
+m
+,
+pw
+ex
+export var=
+export var=file*
+export *=hola
+export v*ar=make*
+export make*
+export var=make*
+make*
+*make
+*Make
+Make*
+export var=Make*
+export Make*
+cat $var
+env
+va=*ll
+export var=*file
+export *file
+echo hola && *file 
+echo hola && >> *file
+export T*EST=hola
+export VAR=*.c
+export VAR=*src
+export VAR=*sr
+export VAR=*sr*
+echo $VAR
+export var=1
+var+=*file
+$var
+lear
+export var=pal*la
+touch palala
+export va=p*lal*
+$a
+$va
+export ba*
+echo $ba
+echo $b
+export
+export var=ba*
+echo $var
 clear
+$eef*ef
+$*asfas

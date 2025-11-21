@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 22:34:34 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/21 13:50:24 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/21 19:26:51 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,8 @@ static int	check_invalid_char_exp(t_token *token)
 	int	i;
 
 	i = 1;
-	if (!ft_isalpha(token->value[0]) && token->value[0] != '_')
+	if (!ft_isalpha(token->value[0]) && token->value[0] != '_'
+			&& !ft_strchr(token->value, '*'))
 		return (FALSE);
 	while (token->value[i] != '\0')
 	{
