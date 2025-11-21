@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 22:40:29 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/08/21 21:13:32 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 15:00:14 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	check_quotes(t_shell *data, t_prompt *prompt, t_token *tokens, int i)
 				return (SUCCESS);
 			i++;
 		}
-		syntax_error(data, ERR_SYNTAX, EXIT_USE, "\'");//HEARDOC
+		syntax_error(data, ERR_SYNTAX, EXIT_USE, "\'");
 		return (SYNTAX_ERROR);
 	}
 	return (SUCCESS);

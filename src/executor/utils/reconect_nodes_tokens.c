@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reconect_nodes_tokens.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 19:40:47 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/20 19:40:51 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/21 15:08:35 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	reconect_nodes_tokens(t_shell *data, t_node *node, t_token *tokens)
 		{
 			node->token = &tokens[i];
 			node->token->id = i;
-			break ; //ya encontro el token correcto, así que hay que seguir con los demás
+			break ;
 		}
 		i++;
 	}

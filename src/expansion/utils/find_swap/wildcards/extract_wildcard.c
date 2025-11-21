@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 16:15:42 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/20 23:52:09 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 15:02:14 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	extract_wildcard(t_shell *data, char *str, char **ptr, int *wildcard_type)
 	{
 		if (str[i] == '*')
 		{
-			if ((str[i + 1] == '\0' || ft_isspace(str[i + 1])) //se puede eliminar el ft_Strdup aqui porque no hace nada y solo afecta en eficiencia
+			if ((str[i + 1] == '\0' || ft_isspace(str[i + 1]))
 				&& (i == 0 || !ft_isalnum(str[i - 1])))
 				result = handle_case1(str, ptr, wildcard_type);
 			else if (str[i + 1] != '\0' && !ft_isspace(str[i + 1]))

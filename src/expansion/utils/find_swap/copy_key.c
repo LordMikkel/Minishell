@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:23:28 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/20 23:56:15 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 15:07:52 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	if_find_dollar(char *str, char **key_to_find, int i)
 	if (str[i] == '$')
 	{
 		i++;
-		if (is_symbol(str[i])) //tratar los simbolos de manera independiente. $$ $! $? y ademas el export "$$USER" ahora si funcionaria
+		if (is_symbol(str[i]))
 		{
 			(*key_to_find)[j++] = str[i];
 			(*key_to_find)[j] = '\0';

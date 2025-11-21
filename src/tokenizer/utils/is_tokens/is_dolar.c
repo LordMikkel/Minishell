@@ -130,7 +130,7 @@ void	handle_tilde_expansion(t_shell *d, t_prompt *p, const char *str, int *i)
 	if (str[*i] != '\0' && !ft_isspace(str[*i]))
 	{
 		start = *i;
-		if (str[*i] == '\'' || str[*i] == '\"') //caso para tilde+'a '"como estas" no es perfecto pero luego ya se mira como mejorarlo.
+		if (str[*i] == '\'' || str[*i] == '\"')
 		{
 			add_token(d, p, "", NO_SPACE);
 			add_token(d, p, "\'", SINGLE_QUOTE);

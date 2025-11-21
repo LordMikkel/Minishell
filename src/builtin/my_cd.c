@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 17:12:22 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/20 23:46:06 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 15:05:44 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,24 +85,24 @@ static int	validate_and_move(t_shell *data, t_var *vars, char *new_dir)
 	char		old_cwd[PATH_MAX];
 	struct stat	info;
 
-	if (ft_strcmp(new_dir, "-") == 0) // expandir real OLD_PWD
+	if (ft_strcmp(new_dir, "-") == 0)
 	{
 		new_dir = get_var_value(vars, "OLDPWD");
 		if (!new_dir)
 			return (ft_printf_fd(STDOUT, ERR_CD_OLDPWD), EXIT_FAILURE);
 		ft_printf_fd(STDOUT, "%s\n", new_dir);
 	}
-	if (!getcwd(old_cwd, sizeof(old_cwd))) // actual dir para OLDPWD
+	if (!getcwd(old_cwd, sizeof(old_cwd)))
 		cwd_has_been_deleted(vars, old_cwd, &new_dir);
-	if (stat(new_dir, &info) == ERROR) // Para saber si existe
+	if (stat(new_dir, &info) == ERROR)
 		return (ft_printf_fd(STDERR, ERR_FILE_NOT_FOUND, new_dir), EXIT_FAIL);
-	if (!S_ISDIR(info.st_mode)) // Para saber si es un dir
+	if (!S_ISDIR(info.st_mode))
 		return (ft_printf_fd(STDERR, ERR_NOT_DIR, new_dir), ENOTDIR);
-	if (access(new_dir, X_OK) == ERROR) //Para saber si tiene permiso o no
+	if (access(new_dir, X_OK) == ERROR)
 		return (ft_printf_fd(STDERR, ERR_PERM_DENIED, new_dir), EACCES);
-	if (chdir(new_dir) == ERROR) //Para cambiar de directorio
+	if (chdir(new_dir) == ERROR)
 		return (perror("minishell: cd: "), EXIT_FAILURE);
-	if (!getcwd(new_cwd, sizeof(new_cwd))) // nuevo dir para PWD
+	if (!getcwd(new_cwd, sizeof(new_cwd)))
 		return (perror("minishell: cd: "), EXIT_FAILURE);
 	update_var(data, old_cwd, "OLDPWD");
 	update_var(data, new_cwd, "PWD");
@@ -152,7 +152,7 @@ int	my_cd(t_shell *data, char **args)
 		result = validate_and_move(data, data->env.vars, args[0]);
 		return (result);
 	}
-	else if (result == IGNORE) //pueden ser expansiones vacias
+	else if (result == IGNORE)
 		return (FAILURE);
 	return (FAIL);
 }

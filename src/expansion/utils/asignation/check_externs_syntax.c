@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:30:59 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/20 23:54:21 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 15:04:08 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	check_case_both_sides(t_token *tokens, t_token *token, int n_tokens)
 		if (check_case_both_sides_aux(tokens, token))
 			return (1);
 	}
-	return (0); //comillas hace que no se tenga en cuenta "hola""var=hola"
+	return (0);
 }
 
 static int	check_case_only_left(t_token *tokens, t_token *token, int n_tokens)
@@ -69,7 +69,7 @@ static int	check_case_only_left(t_token *tokens, t_token *token, int n_tokens)
 						BUILTIN_EXPORT) == 0)))
 			return (1);
 	}
-	return (0); //if not, then it needs to remain as WORD
+	return (0);
 }
 
 static int	check_case_only_right(t_token *tokens, t_token *token, int n_tokens)
@@ -114,6 +114,5 @@ int	check_externs_syntax(t_shell *d, t_token *tokens, t_token *token, int type)
 	}
 	else
 		result = check_asignation_syntax(token, type);
-	//en caso de que sea el primero y no haya ningun otro token
 	return (result);
 }

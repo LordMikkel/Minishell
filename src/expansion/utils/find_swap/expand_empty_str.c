@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/18 11:57:46 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/21 03:59:30 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 15:03:11 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ void	ignore_words(t_shell *data, t_token *token, char **str, int len)
 			start = i;
 			while (ft_isalnum((*str)[i]) || (*str)[i] == '_')
 				i++;
-			if (write_space_or_not(token->value, token->double_quoted, start)) // en lugar de new_str[j++] = (*str)[i++] //porque(*str)[i++]puede ser cualquier otro simbolo que no sea alnum
-				new_str[j++] = ' '; //i++;
+			if (write_space_or_not(token->value, token->double_quoted, start))
+				new_str[j++] = ' ';
 		}
 		else
 			new_str[j++] = (*str)[i++];
@@ -100,7 +100,7 @@ void	ignore_words(t_shell *data, t_token *token, char **str, int len)
 void	handle_double_quoted_token(t_token *token, int token_len)
 {
 	ft_memset(token->value, 0, token_len);
-	token->value[0] = 32; // espacio en blanco
+	token->value[0] = 32;
 	token->value[1] = '\0';
 }
 
@@ -110,11 +110,11 @@ int	expand_empty_str(t_shell *dat, t_token *token, char **key_to_find, int type)
 	int	token_len;
 
 	if (type == DOLLAR)
-		key_len = ft_strlen(*key_to_find) + 1; //+ 1 por el '$' que no se copio
+		key_len = ft_strlen(*key_to_find) + 1;
 	else if (type == TILDE)
 		key_len = ft_strlen(*key_to_find);
-	token_len = ft_strlen(token->value); //si su len es igual es porque
-	if (token_len == key_len) // no hay nada mas
+	token_len = ft_strlen(token->value);
+	if (token_len == key_len)
 	{
 		if (token->double_quoted && !token->heredoc)
 		{

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 01:44:27 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/20 23:58:38 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 15:14:43 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	create_dinamic_arr(t_shell *data, int **arg_types, int i, int j)
 	return (SUCCESS);
 }
 
-static int	*alloc_arg_types(t_shell *dat, t_node *node, int start_i, int end_j)
+static int	*alloc_arg_types(t_shell *d, t_node *node, int start_i, int end_j)
 {
 	int	*arg_types;
 	int	tmp_counter;
@@ -70,20 +70,20 @@ static int	*alloc_arg_types(t_shell *dat, t_node *node, int start_i, int end_j)
 	{
 		while (node->assig_tmp[tmp_counter])
 			tmp_counter++;
-		if (!create_dinamic_arr(dat, &arg_types, start_i, (end_j + tmp_counter)))
+		if (!create_dinamic_arr(d, &arg_types, start_i, (end_j + tmp_counter)))
 			return (NULL);
 		len = tmp_counter;
 		tmp_token_index = tmp_counter;
 		tmp_counter = 0;
-		while (tmp_counter < len) //copiamos las temp_Asigs en el orden correcto (de la primera a la ultima)
+		while (tmp_counter < len)
 		{
-			arg_types[tmp_counter] = dat->prompt.tokens[start_i - tmp_token_index].id;
+			arg_types[tmp_counter] = d->prompt.tokens[start_i - tmp_token_index].id;
 			tmp_counter++;
 			tmp_token_index--;
 		}
 	}
 	else
-		if (!create_dinamic_arr(dat, &arg_types, start_i, end_j))
+		if (!create_dinamic_arr(d, &arg_types, start_i, end_j))
 			return (NULL);
 	return (arg_types);
 }
@@ -137,9 +137,13 @@ int	*get_arg_types(t_shell *data, t_node *node, int start_i, int end_j)
 	arg_types = alloc_arg_types(data, node, start_i, end_j);
 	if (!arg_types)
 		return (NULL);
-	if (!tokens[start_i].value || ft_strcmp(tokens[start_i].value, BUILTIN_EXPORT) != 0 && node->assig_tmp == NULL)
+	if (!tokens[start_i].value
+		|| ft_strcmp(tokens[start_i].value, BUILTIN_EXPORT) != 0
+		&& node->assig_tmp == NULL)
 		return (free (arg_types), NULL);
-	if (!tokens[start_i].value || ft_strcmp(tokens[start_i].value, BUILTIN_EXPORT) != 0 && tokens[start_i + 1].type)
+	if (!tokens[start_i].value
+		|| ft_strcmp(tokens[start_i].value, BUILTIN_EXPORT) != 0
+		&& tokens[start_i + 1].type)
 		return (arg_types);
 	if (start_i + 1 < data->prompt.n_tokens)
 		start_i += 1;

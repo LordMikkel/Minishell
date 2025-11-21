@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 23:03:38 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/20 17:56:46 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 15:06:08 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void	arg_count(t_token *tokens, int n_tokens, int *i, int *n_args)
 		}
 		if ((is_arg_type(tokens[*i].type) || tokens[*i].type == COMMAND
 				|| tokens[*i].type == NO_SPACE || tokens[*i].type == INDIFERENT
-				|| tokens[*i].type == WILDCARD)) //&& tokens[*i].value && tokens[*i].value[0] != '\0'
+				|| tokens[*i].type == WILDCARD))
 			(*n_args)++;
 		if (is_delimiter_type(tokens[*i].type))
 			break ;
