@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:42:00 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 15:01:35 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 19:17:22 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	terminal_readline(t_shell *data, t_var *vars, char *line)
 	char	*user;
 	char	*home;
 	char	*pwd;
-	int		*flag;
 	char	host[HOST_NAME_MAX + 1];
 
 	home = get_var_value(vars, "HOME");

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:41 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/20 20:21:30 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 19:19:03 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,10 @@ static int	isn_wild(int c)
 
 static void	if_expan_or_quotes(t_shell *d, t_prompt *p, const char *str, int i)
 {
-	if (i + 1 < ft_strlen(str) && str[i] == '$'
+	if (i + 1 < (int)ft_strlen(str) && str[i] == '$'
 		&& (ft_isalpha(str[i + 1]) || is_symbol(str[i + 1])))
 		add_token(d, p, "", NO_SPACE);
-	else if (i + 1 < ft_strlen(str) && (str[i] == '\"' || str[i] == '\''))
+	else if (i + 1 < (int)ft_strlen(str) && (str[i] == '\"' || str[i] == '\''))
 		add_token(d, p, "", NO_SPACE);
 }
 
@@ -120,9 +120,7 @@ void	is_wildcar(t_shell *data, t_prompt *prompt, const char *str, int *i)
 {
 	int		len;
 	int		start;
-	int		found_dollar;
 	char	*wildcar;
-	char	*no_space;
 
 	if (str[*i] == '*')
 	{

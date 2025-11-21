@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/18 11:57:46 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/21 15:03:11 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 20:01:38 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ static int	write_space_or_not(char *str, int quoted, int start)
 	ptr = ft_intstr_match(str, "$", start);
 	if (!quoted)
 		(FALSE);
-	if (ptr && (ptr + 1) < len && ft_isalnum(str[ptr + 1])
-		|| str[ptr + 1] == '_' )
+	if (ptr && (ptr + 1) < len && (ft_isalnum(str[ptr + 1])
+			|| str[ptr + 1] == '_' ))
 		return (FALSE);
 	return (TRUE);
 }
@@ -109,6 +109,8 @@ int	expand_empty_str(t_shell *dat, t_token *token, char **key_to_find, int type)
 	int	key_len;
 	int	token_len;
 
+	key_len = 0;
+	token_len = 0;
 	if (type == DOLLAR)
 		key_len = ft_strlen(*key_to_find) + 1;
 	else if (type == TILDE)

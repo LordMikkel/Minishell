@@ -1,3 +1,57 @@
+<<<<<<< HEAD
+=======
+"$"
+"$a"
+"$sdfasdf"
+"$SHELL
+echo $SHELL
+echo $SHLVL
+ls -lah --color /proc/504966/fd
+cd /proc/self/
+cd /tmp/
+ls &vsabe
+(yes | head -n 10)
+&(yes | head -n 10)
+(yes | head -n 10) &
+yes &
+exit
+env env
+env -i
+setopt
+exec
+/usr/bin/echo
+/usr/bin/echo a
+unset PATH
+/usr/bin/vim
+cd /usr/bin/vim
+cd /usr/bin/
+?
+$?
+$??
+echo "$??
+echo "$??"
+echo "$??????"
+echo "$--?"
+echo "$-"
+echo "$$$"
+echo "$_A"
+echo "$_??A"
+echo "$?_?A"
+echo "$]"
+echo "$[]"
+echo "$[a]"
+echo "$[?]"
+echo "$\\?"
+echo "$\\A?"
+echo "$!"
+echo "!!"
+export export
+export export export export export export
+export export export export export export -i
+export export export export export export ''
+export export export export export export '_'
+export export export export export export '_A FADFAKJDASJDKASJD KAJSD JKASDJK A"
+>>>>>>> 57e082b5e747adc80a67a5920c4a64ac8689dae9
 export export export export export export '_A FADFAKJDASJDKASJD KAJSD JKASDJK A" '
 echo 'a'
 echo 'a  ()) $() '
@@ -107,6 +161,13 @@ bash
 export TEST1=123
 cat tmp_lol.c | cat > tmp_lol.c
 export t*est=hola
+<<<<<<< HEAD
+=======
+export make*
+$var
+export var=*file
+export T*EST=hola
+>>>>>>> 57e082b5e747adc80a67a5920c4a64ac8689dae9
 eche hola
 sd
 eche
@@ -126,7 +187,6 @@ asev
 sev
 sa
 hola
-ls
 echo ~
 a
 q
@@ -195,5 +255,15 @@ export
 export var=ba*
 echo $var
 clear
+<<<<<<< HEAD
 $eef*ef
 $*asfas
+=======
+ls
+export test=file*
+export test=hola*
+export test=*file
+$test
+export *file
+export
+>>>>>>> 57e082b5e747adc80a67a5920c4a64ac8689dae9

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_matches.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:42:56 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/21 16:44:46 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/21 19:43:30 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static int	extract_dir(char **dir_extract, char *word)
 
 static int	if_theres_match(char *file, char *key, int wild_type)
 {
-	char	*found;
 	int		file_len;
 	int		key_len;
 

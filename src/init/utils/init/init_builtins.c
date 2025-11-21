@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 10:55:44 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/20 22:15:05 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 19:17:31 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ static int	check_if_error(char **builtins, int len)
 void	init_builtins(t_shell *data)
 {
 	char	**built_ins;
-	int		index;
 	int		len;
 
 	len = N_BULTINS;

@@ -6,7 +6,11 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 17:49:40 by davdiaz-          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/11/21 19:54:23 by davdiaz-         ###   ########.fr       */
+=======
+/*   Updated: 2025/11/21 19:21:37 by migarrid         ###   ########.fr       */
+>>>>>>> 57e082b5e747adc80a67a5920c4a64ac8689dae9
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +73,7 @@ static int	has_a_wildcard(char *value)
 	return (result);
 }
 
-static int	is_valid_wildcard(t_token *tokens, t_prompt *prompt, int i)
+static int	is_valid_wildcard(t_token *tokens, int i)
 {
 	int	j;
 
@@ -90,13 +94,14 @@ void	transform_word_to_wildcard(t_shell *d, t_prompt *promp, t_token *tokens)
 
 	i = 0;
 	len = 0;
+	(void)d;
 	while (i < promp->n_tokens)
 	{
 		if ((tokens[i].type == WORD || tokens[i].type == FILENAME
 				|| tokens[i].type == COMMAND)
 			&& !tokens[i].single_quoted && !tokens[i].double_quoted
 			&& has_a_wildcard(tokens[i].value)
-			&& is_valid_wildcard(tokens, promp, i))
+			&& is_valid_wildcard(tokens, i))
 		{
 			tokens[i].type = WILDCARD;
 		}
