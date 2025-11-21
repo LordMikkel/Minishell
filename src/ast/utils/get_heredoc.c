@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/11 04:19:38 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 19:44:38 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 20:48:03 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	save_heredoc_line(t_shell *data, t_redir *redir, char *line)
  * 	eñal o EOF, el bucle se interrumpe y retorna el estado.
  */
 
-int	loop_heredoc(t_shell *data, t_redir *redir, char *delimiter)
+ int	loop_heredoc(t_shell *data, t_redir *redir, char *delimiter)
 {
 	char	*tmp;
 	char	*line;
@@ -77,6 +77,32 @@ int	loop_heredoc(t_shell *data, t_redir *redir, char *delimiter)
 	}
 	return (OK);
 }
+
+// int	loop_heredoc(t_shell *data, t_redir *redir, char *delimiter)
+// {
+// 	char	*line;
+// 	int		n_line;
+
+// 	n_line = 0;
+// 	while (42)
+// 	{
+// 		setup_signals_heredoc();
+// 		if (isatty(fileno(stdin)))
+// 			line = ic_readline("> ");
+// 		else
+// 			return (ft_printf_fd(STDERR, ERR_STDIN), ERROR);
+// 		if (!line)
+// 			return (ft_printf_fd(STDERR, ERR_HEREDOC_EOF, n_line, delimiter));
+// 		if (ft_strcmp(line, delimiter) == 0)
+// 			return (free(line), OK);
+// 		if (check_signals(data, redir, line) == RECIVED_SIGNAL)
+// 			return (RECIVED_SIGNAL);
+// 		if (save_heredoc_line(data, redir, line) == ERROR)
+// 			return (ERROR);
+// 		n_line++;
+// 	}
+// 	return (OK);
+// }
 
 /*
  *	Funcion de control principal para iniciar la captura del heredoc.
