@@ -114,43 +114,6 @@ static void	make_expan_token(t_shell *data, const char *str, int start, int *i)
 	}
 }
 
-void	handle_tilde_expansion(t_shell *d, t_prompt *p, const char *str, int *i)
-{
-	int		start;
-	int		len;
-	int		found;
-	char	*word;
-
-	start = *i;
-	found = FALSE;
-	(*i)++;
-	if (str[*i] == '+' || str[*i] == '-')
-		(*i)++;
-	make_expan_token(d, str, start, i);
-	if (str[*i] != '\0' && !ft_isspace(str[*i]))
-	{
-		start = *i;
-		if (str[*i] == '\'' || str[*i] == '\"')
-		{
-			add_token(d, p, "", NO_SPACE);
-			add_token(d, p, "\'", SINGLE_QUOTE);
-			found = TRUE;
-		}
-		while (str[*i] != '\0' && !ft_isspace(str[*i]))
-			(*i)++;
-		if (*i > start)
-		{
-			len = *i - start;
-			if (!found)
-				add_token(d, p, "", NO_SPACE);
-			word = ft_substr(str, start, len);
-			if (!word)
-				exit_error(d, ERR_MALLOC, EXIT_FAILURE);
-			add_token(d, p, word, WORD);
-		}
-	}
-}
-
 /*
 	Procesa un token que comienza con '$':
 	- Salta si está seguido de un dígito ($1), que no se expande.

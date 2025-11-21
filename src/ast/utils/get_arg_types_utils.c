@@ -6,11 +6,24 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 17:09:50 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/21 17:24:02 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/21 18:04:54 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/minishell.h"
+
+static int	create_dinamic_arr(t_shell *data, int **arg_types, int i, int j)
+{
+	*arg_types = (int *)malloc((j - i) * sizeof(int));
+	if (!*arg_types)
+	{
+		data->error_state = TRUE;
+		ft_printf_fd(STDERR, ERR_MALLOC);
+		return (FAILURE);
+	}
+	ft_memset(*arg_types, -1, (j - i) * sizeof(int));
+	return (SUCCESS);
+}
 
 static void	aux_loop(t_node *node, int *tmp_count)
 {
@@ -28,7 +41,7 @@ int	*alloc_arg_types(t_shell *d, t_node *node, int start_i, int end_j)
 	tmp_count = 0;
 	if (node->assig_tmp)
 	{
-		aux_loop(node, tmp_count);
+		aux_loop(node, &tmp_count);
 		if (!create_dinamic_arr(d, &arg_tps, start_i, (end_j + tmp_count)))
 			return (NULL);
 		len = tmp_count;

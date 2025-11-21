@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 17:10:46 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/21 19:03:18 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,7 @@ int		get_double_quotes_balance(t_prompt *prompt, t_token *tokens);
 int		get_paren_balance(t_prompt *prompt, t_token *tokens);
 
 // GET TOKENS
+void	handle_tilde_expansion(t_shell *d, t_prompt *p, const char *st, int *i);
 void	allocate_tokens(t_shell *data, t_prompt *prompt);
 void	is_cmd(t_shell *data, t_token *token, char *str);
 void	is_word(t_shell *data, t_prompt *prompt, const char *str, int *i);
@@ -196,6 +197,7 @@ int		is_redir_input_type(int type);
 int		is_invalid_char(int c);
 int		is_needed_to_simplify(int type);
 int		is_built_in(t_shell *data, t_token *token, char *str);
+
 
 //VALID TOKENS
 void	is_it_quoted(t_prompt *prompt, t_token *tokens);
@@ -322,6 +324,7 @@ void	print_tokens_debug(t_prompt *prompt);
 
 //UTILS
 void	print_minishell_title(void);
+char	*cleanner_exp(t_shell *data, char *expansion, int len, char trash);
 char	*cleanner_slash_quotes_d(t_shell *data, char *word, int len, int *flag);
 char	*clean_slash_expan_d(t_shell *data, char *word, int len, char slash);
 void	clean_quote_until_slash_d(char *word, char *clean_word, char quote);

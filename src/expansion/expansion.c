@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:57:33 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 17:11:41 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/21 18:03:35 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,6 @@
  * dentro de un shell, respetando fases de ejecución y tipos de token.
 */
 
-static int	aux_mem_alloc(t_shell *data, t_token *token, char **key_to_find)
-{
-	int	len;
-
-	len = ft_strlen(token->value);
-	*key_to_find = ft_calloc((len * 2) + 1, sizeof(char));
-	if (!*key_to_find)
-		exit_error(data, ERR_MALLOC, EXIT_USE);
-	return (SUCCESS);
-}
-
 static int	tokens_size_has_changed(int *original_size, int new_size)
 {
 	if (*original_size > new_size)
@@ -71,15 +60,6 @@ static int	tokens_size_has_changed(int *original_size, int new_size)
 		return (TRUE);
 	}
 	return (FALSE);
-}
-
-static int	get_symbol_to_expand_count(char *str)
-{
-	int	number_of_symbols;
-
-	number_of_symbols = ft_count_char(str, '$');
-	number_of_symbols += ft_count_char(str, '~');
-	return (number_of_symbols);
 }
 
 static int	check_for_heredoc(t_token *tokens, int i)
