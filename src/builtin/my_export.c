@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:22:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 14:31:18 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/21 14:58:48 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,24 @@ static void	print_env_variables(t_env	*env)
 
 static int	check_wildcard_asig(t_shell *data, t_token *tokens, int i)
 {
-	int	result;
+	int	result_asig;
+	int	result_word;
 
-	result = 0;
+	result_asig = 0;
+	result_word = 0;
 	expand_wildcards(data, &data->prompt, tokens, FINAL_PHASE);
-	result = check_asignation_syntax(&tokens[i], ENV);
-	if (result)
+	result_asig = check_asignation_syntax(&tokens[i], ENV);
+	if (result_asig)
 		asignation(data, &tokens[i], ENV);
 	else
 	{
-		result = check_asignation_syntax(&tokens[i], EXP);
-		if (!result)
+		result_word = check_asignation_syntax(&tokens[i], EXP);
+		if (!result_word && !ft_strchr(tokens[i].value, '='))
+		{
+			ft_printf_fd(STDERR, ERR_EXPORT, tokens[i].value);
+			return (ERROR);
+		}
+		else if (!result_asig && ft_strchr(tokens[i].value, '='))
 		{
 			ft_printf_fd(STDERR, ERR_EXPORT, tokens[i].value);
 			return (ERROR);
@@ -146,7 +153,8 @@ int	my_export(t_shell *data, t_token *tokens, t_env *env, t_node *node)
 		if (check_for_valid_args(tokens, node->arg_types[i]) == FALSE)
 			break ;
 		if ((is_asignation_type(tokens[node->arg_types[i]].type)
-				|| tokens[node->arg_types[i]].type == WORD))
+				|| tokens[node->arg_types[i]].type == WORD
+				|| tokens[node->arg_types[i]].type == WILDCARD))
 		{
 			if (asignation_type(data, tokens, node->arg_types[i]) == ERROR)
 				exit_flag = EXIT_FAIL;
