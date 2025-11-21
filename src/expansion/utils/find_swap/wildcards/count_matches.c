@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   count_matches.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 19:15:26 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/21 16:43:44 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/21 19:43:23 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static int	if_theres_match(char *file, char *key, int wild_type)
 {
-	char	*found;
 	int		file_len;
 	int		key_len;
 

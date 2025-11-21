@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 23:17:43 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 00:45:15 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 19:13:07 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	init_data(t_shell *data, char **envp)
 	*data = (t_shell){0};
 	data->shell_pid = getpid();
 	data->extras.session_start = time(NULL);
-	init_ic_readline();
+	init_ic_readline(&data->history_fd);
 	init_enviroment(data, &data->env, envp);
 	init_builtins(data);
 	init_exec(&data->exec, &data->env);

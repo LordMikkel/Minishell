@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 21:56:06 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/21 08:18:26 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/21 19:44:49 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ static void	process_unset_token(t_shell *data, t_token *token, char *ptr)
 	ptr = NULL;
 }
 
-void	my_clean_unset(t_shell *data, t_env *env, t_token *tokens, int *index)
+void	my_clean_unset(t_shell *data, t_token *tokens, int *index)
 {
 	char	*ptr;
 	int		i;
