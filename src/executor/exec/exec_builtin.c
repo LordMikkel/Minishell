@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:23:12 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/20 18:02:26 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 02:44:57 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ void	exec_builtin(t_shell *data, t_node *node, int mode)
 	if (apply_properties(data, node, mode) == SUCCESS)
 		which_builtin(data, node->token, node);
 	clean_temp_variables(data, &data->env, data->prompt.tokens, node);
+	if (mode == FATHER)
+		restore_fd(&data->exec);
 	if (mode == CHILD) // si era child de un pipe se sale con su exit_code
 		exit_succes(data, NULL, data->exit_code);
 	return ;

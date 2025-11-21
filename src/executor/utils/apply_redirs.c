@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/11 02:32:54 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/15 23:33:17 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 02:07:53 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	handle_redir_output(t_shell *data, char *filename, int fd_redir, int mode)
 			ft_printf_fd(STDERR, ERR_IS_DIR, filename);
 		if (mode == CHILD)
 			return (exit_error(data, NULL, EXIT_FAILURE));
-		if (mode == FATHER)
+		if (mode == FATHER || mode == SUBSHELL)
 			return (FAIL);
 	}
 	dup2(file_fd, fd_redir);
@@ -50,7 +50,7 @@ int	handle_redir_append(t_shell *data, char *filename, int fd_redir, int mode)
 			ft_printf_fd(STDERR, ERR_IS_DIR, filename);
 		if (mode == CHILD)
 			return (exit_error(data, NULL, EXIT_FAILURE));
-		if (mode == FATHER)
+		if (mode == FATHER || mode == SUBSHELL)
 			return (FAIL);
 	}
 	dup2(file_fd, fd_redir);
@@ -73,7 +73,7 @@ int	handle_redir_input(t_shell *data, char *filename, int fd_redir, int mode)
 			ft_printf_fd(STDERR, ERR_IS_DIR, filename);
 		if (mode == CHILD)
 			return (exit_error(data, NULL, EXIT_FAILURE));
-		if (mode == FATHER)
+		if (mode == FATHER || mode == SUBSHELL)
 			return (FAIL);
 	}
 	dup2(file_fd, fd_redir);

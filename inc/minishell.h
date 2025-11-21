@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 00:08:08 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 01:46:00 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,7 +257,7 @@ void	apply_temp_asig(t_shell *data, t_token *tokens, t_node *node);
 //EXPANSION
 int		set_arr(t_shell *data, char ***arr, int i, int *count);
 int		copy_key(char *buffer, char **key_to_find, int *type);
-int		find_key_in_lst(t_shell *d, t_token *t, char **key_to_f);
+int		find_key_in_lst(t_shell *d, t_token *t, char **key_to_f, int phase);
 int		is_it_tilde(t_shell *data, t_token *token, char **key_to_find);
 int		extract_key(t_shell *d, t_token *t, char **key_to_f, int phase);
 int		is_it_symbol(t_shell *data, t_token *token, char **key_to_find);

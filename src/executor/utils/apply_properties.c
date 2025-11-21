@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   apply_properties.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 17:02:23 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/16 00:05:23 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/21 01:26:55 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

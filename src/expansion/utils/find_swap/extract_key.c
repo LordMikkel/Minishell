@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:18:26 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/15 17:24:42 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 01:44:46 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	extract_key(t_shell *data, t_token *token, char **key_to_find, int phase)
 	if (!match)
 		return (FAILURE);
 	if (type == DOLLAR)
-		found = find_key_in_lst(data, token, key_to_find);
+		found = find_key_in_lst(data, token, key_to_find, phase);
 	else
 		found = is_it_tilde(data, token, key_to_find);
 	if (found == ERROR)

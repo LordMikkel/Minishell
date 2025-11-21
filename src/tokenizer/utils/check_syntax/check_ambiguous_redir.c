@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 01:02:29 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/19 16:50:19 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 02:08:28 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	check_ambiguous_redir(t_shell *data, const char *filename, int mode)
 	{
 		if (mode == CHILD)
 			return (exit_error(data, ERR_AMBIGUOUS_REDIR, EXIT_FAILURE));
-		if (mode == FATHER)
+		if (mode == FATHER || mode == SUBSHELL)
 			return (FAIL);
 	}
 	return (OK);

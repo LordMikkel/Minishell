@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_key_in_list.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:59 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/16 22:34:54 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/21 01:45:43 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,15 @@
 	puede expandir las mismas además de la ya descritas temp y exp (vacias)
 */
 
-int	find_key_in_lst(t_shell *data, t_token *token, char **key_to_find)
+int	find_key_in_lst(t_shell *d, t_token *token, char **key_to_find, int pashe)
 {
 	t_var	*var;
 	int		match_for_symbol;
 
-	var = data->env.vars;
-	match_for_symbol = is_it_symbol(data, token, key_to_find);
+	var = d->env.vars;
+	match_for_symbol = FALSE;
+	if (pashe == FINAL_PHASE)
+		match_for_symbol = is_it_symbol(d, token, key_to_find);
 	if (match_for_symbol)
 		return (TRUE);
 	while (var != NULL)
@@ -46,7 +48,7 @@ int	find_key_in_lst(t_shell *data, t_token *token, char **key_to_find)
 			&& var->type != TEMP_ASIGNATION)
 		{
 			token->type = WORD;
-			copy_value(data, &token->value, var->value, *key_to_find);
+			copy_value(d, &token->value, var->value, *key_to_find);
 			return (TRUE);
 		}
 		var = var->next;
