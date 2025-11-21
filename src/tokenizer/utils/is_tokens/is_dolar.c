@@ -68,7 +68,7 @@ static int	isn_exp(const char *str, int *i, int str_len, int *flag)
 	if (c == '|' || c == '<' || c == '>' || c == '&' || c == '(' || c == ')'
 		|| c == ';' || (str[*i - 1] != '$' && c == '?' || c == '-'))
 		return (1);
-	else if (c == '.' || c == '\'' || c == '\"' || c == '\\')
+	else if (c == '.' || c == '\'' || c == '\"' || c == '\\' || c == '/')
 	{
 		*flag = TRUE;
 		return (1);

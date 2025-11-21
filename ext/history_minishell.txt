@@ -1,61 +1,3 @@
-echo $T | cat -e
-$Ts -a |cat -e
-unset $PATH
-/bin/echo test"$MISSING" | cat -e
-/bin/echo $USER$TESTNOTFOUND$HOME$WTF$PWD
-export T="l"
-$Ts -a | cat -e
-$Ts -a
-true -a
-ls $novar -a
-$NOVAR > ls
-$bdsfvsvd -sd
-$sacds > ls
-$svsavsd $asdvasvd $savasdv
-$svsavsd $asdvasvd
-$svsavsd $asdvasvd ls
-$svsavsd
-$vasvasvsd
-$vasvasvsd  $vasvasd
-$dscadscs -a
-$dscadscs ls
-$dscadscs ls -a
-$dscadscs avgadsv
-$svcasv $svsdvs $vsdsvd
- echo '> >> < * ? [ ] | ; [ ] || && ( ) & \x23 $  <<
-make
-echo "hola * como estas?"
- echo '> >> < * ? [ ] | ; [ ] || && ( ) & \x23 $  <<'
-export A=ksle=;
-echo $A
-$svsfdfvsa $vsfsdv $SvSDFV
-$svsfdfvsa -aascas
-$svsfdfvsa ls
-$csca ls
-$NOVAR
-$NOVAR ls
-$NOVAR && ls
-ls && $NOVAR && ls
-$vsdvasvss $vsvsdv $SVsdvs
-export USER=hola
-export VAR1=caca
-echo $VAR1
-unset USER
-export USER=$VAR1
-false & echo hola
-false & ls
-bg
-false && ls
-cat << $VAR1
-caca
-cat << EOF
-$VAR1
-export $SHLVL
-cat <<EOF <<          EOF2
-hola
-EOF
-adios
-EOF2
 cat Makefile
 cat Makefile > out1.txt > out2.txt >> out3.txt
 cat out2.txt
@@ -163,18 +105,14 @@ echo 'a  ()) $() '
 echo 'a  ()a=sdf-asdf-as $() '
 echo "$USER"'' a
 echo "$"'' a
-echo "$|"'' a
 echo "$hse"'' a
-echo "$_"'' a
 echo "$-"'' a
 ckear
 echo A && echo B; echo C || echo D
 echo A && echo B; (echo C || echo D) > A
-s
 sd
 /bin/echo "exit_code ->$? user ->$USER home -> $HOME"
 /bin/echo "$?"
-bash
 sleep 10
 << LM
 /bin/echo $HOME$NOTHING$USER$
@@ -187,14 +125,75 @@ cd -
 /usr/bin/printf "%s\\n" "Mak"'e'*'*' | sort
 echo hola
 /bin/echo 42 >tmp_out*
-echo $?
 mak
 /usr/bin/printf "%s\\n" minishe*l | sort
 cat Mak*
-ls
 env | sort | grep -v SHLVL | grep -v ^_
-celar
-clear
 COLORTERM=truecolor
 osoft VS Code/bin:/mnt/c/Users/mikel/.lmstudio/bin:/mnt/c/Users/mikel/AppData/Local/Microsoft/WindowsApps:/home/mikel/.local/bin:/snap/bin:/home/mikel/.bin:/snap/bin:/home/mikel/.bin
  env | sort | grep -v SHLVL | grep -v ^_
+echo "$|"'' a
+echo "$scsd"'' a
+echo "$HOME"'' a
+echo "$_"'' a
+echo "$HO ME"
+bassh
+\nsd
+\n\n\n\n\n\n\n
+\n
+\n\n\n\n\n
+ls && ls
+echo && ls
+cat < file
+echo A > file && echo < file hola
+echo A  && echo b
+echo A && echo b
+echo A > file && echo < file b
+echo A && echo < file b
+echo A > a&& echo < file b
+echo A > a && echo < file b
+echo A && ls
+echo A > a&& ls
+echo A > a && ls
+ls > a && ls
+echo A > file && printf B
+echo A > file && printf "B"
+echo A > file && printf("B")
+echo A > file && ls
+echo A > file && echo B
+/usr/bin/echo A > file && echo B
+/usr/bin/echo A  && echo B
+/usr/bin/echo A && echo B
+/usr/bin/echo A && echo B < file
+/usr/bin/echo A > file && echo B < file
+/usr/bin/echo A > file && echo B > file
+/usr/bin/echo A > file && cat < file
+ /usr/bin/env /bin/sh /tmp/Microsoft-MIEngine-Cmd-ht24pvbs.eaq 
+echo A > file && cat < file
+clear &&echo "Starting monster test" && echo "Part 1: Basic Commands" && ls -la | grep "." && pwd && whoami && echo $? && echo $USER && echo "Part 2: Pipes and Redirections" && cat < Makefile | grep "gcc" | wc -l > output.txt && cat output.txt && rm output.txt && echo "Part 3: Multiple Commands" && echo hello > file1 && cat < file1 >> file2 && cat file2 && rm file1 file2 && echo "Part 4: Environment Variables" && export TEST=hello && echo $TEST && unset TEST && echo $TEST && echo "Part 5: Quotes and Special Characters" && echo "   spaces   " && echo '   single quotes   ' && echo "mixed 'quotes' here" && echo $"HOME" && echo $'HOME' && echo "Part 6: Exit Status" && false || echo $? && true && echo $? && echo "Part 7: Complex Pipes" && ls -la | grep "." | wc -l | xargs echo "Files:" && echo "Part 8: Signal Handling Test" && sleep 2 && echo "Part 9: Error Cases" && cd nonexistentdir 2>errorlog.txt || echo "dir not found $?" && ./nonexistentfile 2>/dev/null || echo "file not found $?" && echo "Part 10: AND/OR operators" && false || echo "OR works" && true && echo "AND works" && false || echo "Complex OR" && true && echo "Complex AND" || echo "Should not print" && echo "Monster test completed with exit status $?"
+echo "Part 9: Error Cases" && cd nonexistentdir 2>errorlog.txt || echo "dir not found $?" && ./nonexistentfile 2>/dev/null || echo "file not found $?"
+cd $sds
+cd nonexistentdir
+cd nonexistentdir 2>errorlog.txt || echo "dir not found $?"
+ls TES0T=123
+echo TES0T=123
+export TES0T=123
+export tes$HOME
+export tes$sd
+export TES$?T=123
+s
+/bin/echo ""$?""
+/bin/echo $USER$TESTNOTFOUND$HOME$WTF$PWD
+/bin/echo test$MISSING "$MISSING"
+bash
+./minishell
+/bin/echo test$MISSING "$MISSING" | cat -e
+ls
+celar
+echo $?
+echo $/ $/
+make
+clear
+echo $/"$<"
+echo $/"$/"
+echo $USER$TESTNOTFOUND$HOME$

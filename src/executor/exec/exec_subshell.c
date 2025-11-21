@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 16:42:21 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/03 23:52:58 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 02:08:16 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	exec_subshell(t_shell *data, t_node *node, t_exec *exec, int mode)
 	if (pid == 0)
 	{
 		setup_signals_child();
-		apply_properties(data, node, FATHER);
-		executor_recursive(data, node->left, exec, FATHER);
+		apply_properties(data, node, SUBSHELL);
+		executor_recursive(data, node->left, exec, SUBSHELL);
 		exit_succes(data, NULL, data->exit_code);
 	}
 	waitpid(pid, &status, 0);

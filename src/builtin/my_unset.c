@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 21:56:06 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/20 19:50:37 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/21 02:44:02 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,13 +93,18 @@ static void	process_unset_token(t_shell *data, t_token *token, char *ptr)
 	char	*char_to_find;
 	int		len;
 
+	len = 0;
+	char_to_find = NULL;
 	if (token->type == TEMP_ASIGNATION)
 		char_to_find = ft_strchr(token->value, '=');
 	else if (token->type == TEMP_PLUS_ASIGNATION)
 		char_to_find = ft_strchr(token->value, '+');
 	if (char_to_find)
 		len = char_to_find - token->value;
-	ft_memcpy(ptr, token->value, len);
+	else
+		len = ft_strlen(token->value);
+	if (len > 0)
+		ft_memcpy(ptr, token->value, len);
 	delete_var(data, &data->env, ptr);
 	free(ptr);
 	ptr = NULL;
