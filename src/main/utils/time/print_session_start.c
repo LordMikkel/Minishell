@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 02:13:28 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/13 01:04:01 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 15:44:19 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,6 @@
 	Luego llama a la función print_time_of_day para mostrar un
 	mensaje personalizado según el momento del día en que se inicia la sesión.
 */
-
-void	print_minishell_title(void)
-{
-	ft_printf_fd(STDOUT, TITLE_COLOR "\n\n");
-	ft_printf_fd(STDOUT, T1 "\n");
-	ft_printf_fd(STDOUT, T2 "\n");
-	ft_printf_fd(STDOUT, T3 "\n");
-	ft_printf_fd(STDOUT, T4 "\n");
-	ft_printf_fd(STDOUT, T5 "\n");
-	ft_printf_fd(STDOUT, "\n\n" RESET_COLOR);
-}
 
 static void	check_user_name_syntax(char *name, int *validation)
 {

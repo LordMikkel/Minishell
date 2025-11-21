@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:10 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 15:01:17 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 16:15:17 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ void	get_tokens(t_shell *data, t_prompt *prompt, char *input)
 		is_word(data, prompt, input, &i);
 		is_hash(input, &i);
 	}
-	// printf("Alloc Tokens: %d\n", data->prompt.n_alloc_tokens);
-	// printf("Syntax Tokens: %d\n", data->prompt.n_tokens);
 }
 
 /*
@@ -55,7 +53,6 @@ int	check_if_valid_tokens(t_shell *data, t_prompt *prompt, t_token *tokens)
 	int	i;
 
 	i = 0;
-	//print_tokens_debug(prompt);
 	while (i < prompt->n_tokens)
 	{
 		if (!check_open_parent(data, prompt, tokens, i)
@@ -90,7 +87,6 @@ int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 {
 	allocate_tokens(data, prompt);
 	get_tokens(data, prompt, input);
-	// print_tokens_debug(prompt);
 	if (!check_if_valid_tokens(data, prompt, prompt->tokens))
 		return (SYNTAX_ERROR);
 	is_it_quoted(prompt, prompt->tokens);
@@ -98,19 +94,13 @@ int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 	create_before_tokens(data, prompt->tokens, prompt);
 	if (expansion(data, prompt->tokens, 0, INITIAL_PHASE) == ERROR)
 		return (FAILURE);
-	//print_tokens_debug(prompt);
 	split_expansion_result(data, prompt, prompt->tokens);
 	simplify_tokens(data, prompt, prompt->tokens);
 	transform_tokens_logic(data, prompt, prompt->tokens);
 	simplify_tokens(data, prompt, prompt->tokens);
-	// if (!cmd_correction(data, prompt->tokens, prompt->n_tokens))
-	// 	return (FAILURE);
-	// else
-	// 	transform_tokens_logic(data, prompt, prompt->tokens);
 	transform_tokens_logic(data, prompt, prompt->tokens);
 	expand_wildcards(data, prompt, prompt->tokens, INITIAL_PHASE);
 	if (!check_if_valid_tokens(data, prompt, prompt->tokens))
 		return (SYNTAX_ERROR);
-	//print_tokens_debug(prompt);
 	return (SUCCESS);
 }

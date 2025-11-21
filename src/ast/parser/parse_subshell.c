@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 20:24:05 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/20 22:28:14 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 16:13:45 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,7 @@ t_node	*parse_subshell(t_shell *data, t_token *tokens, int *i, int n_tokens)
 		return (central);
 	}
 	else if (*i < n_tokens && is_real_assignation_type(tokens[*i].type))
-	{
-		central = parse_assignations(data, tokens, i, n_tokens);
-		if (!central)
-			return (NULL);
-		return (central);
-	}
+		return (central = parse_assignations(data, tokens, i, n_tokens));
 	central = parse_cmd(data, tokens, i, n_tokens);
 	return (central);
 }

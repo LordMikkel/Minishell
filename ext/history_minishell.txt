@@ -1,19 +1,3 @@
-cat <
-cat | cat | ls
-/dev/urandom
-cat /dev/urandom
-cat /dev/urandom | ls
-VAR3=coco
-cat $VAR3
-echo $VAR3
-A=1 echo $A
-B=1 && echo $B
-$B
-$USER
-LM
-svsd
-sv
-B=2 && cat << LM
 svdsv
 sb
 man gethostname
@@ -82,7 +66,6 @@ echo "$-"'' a
 ckear
 echo A && echo B; echo C || echo D
 echo A && echo B; (echo C || echo D) > A
-sd
 /bin/echo "exit_code ->$? user ->$USER home -> $HOME"
 /bin/echo "$?"
 sleep 10
@@ -151,13 +134,9 @@ echo TES0T=123
 export TES0T=123
 export tes$HOME
 export tes$sd
-s
 /bin/echo ""$?""
 ./minishell
-ls
-celar
 echo $?
-make
 echo $/"$<"
 echo $/"$/"
 echo" "$USE.txt
@@ -167,7 +146,6 @@ echo $USER$TESTNOTFOUND$HOME$
 echo hola$noexiste-como_estas
 echo hola$noexiste$wtf-como_estas
 /bin/echo $USER$TESTNOTFOUND$HOME$WTF$PWD
-""
 echo hola$noexiste""-como_estas
 /bin/echo test$MISSING "$MISSING"
 /bin/echo test$MISSING "$MISSING" | cat -e
@@ -194,6 +172,28 @@ export make*
 export *file
 $var
 export
-clear
 export var=*file
 export T*EST=hola
+eche hola
+sd
+eche
+celar
+make
+echa
+clear
+l
+sl
+ls
+slds
+sdv
+s
+""
+c
+ss
+ava
+va
+v
+veas
+asev
+sev
+sa
