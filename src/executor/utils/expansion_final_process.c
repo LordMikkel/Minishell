@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion_final_process.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 19:04:23 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/21 08:58:21 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/21 13:17:37 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,9 +187,9 @@ int expansion_final_process(t_shell *data, t_node *node)
 		expansion(data, data->prompt.tokens, node->token->id, FINAL_PHASE);
 		if (data->prompt.n_tokens == 0)
 			return (FAILURE);
-		 print_tokens_debug(&data->prompt);
+		// print_tokens_debug(&data->prompt);
 		prepare_simplify(data, &data->prompt, data->prompt.tokens);
-		 print_tokens_debug(&data->prompt);
+		// print_tokens_debug(&data->prompt);
 		simplify_tokens(data, &data->prompt, data->prompt.tokens);
 		reconect_nodes_tokens(data, data->ast_root, data->prompt.tokens);
 		split_expansion_result(data, &data->prompt, data->prompt.tokens);
