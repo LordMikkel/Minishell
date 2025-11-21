@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:10 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 20:13:38 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/21 20:47:46 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,10 @@ int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 	transform_tokens_logic(data, prompt, prompt->tokens);
 	simplify_tokens(data, prompt, prompt->tokens);
 	transform_tokens_logic(data, prompt, prompt->tokens);
-	if (!cmd_correction(data, prompt->tokens, prompt->n_tokens))
-		return (FAILURE);
-	else
-		transform_tokens_logic(data, prompt, prompt->tokens);
+	// if (!cmd_correction(data, prompt->tokens, prompt->n_tokens))
+	// 	return (FAILURE);
+	// else
+	// 	transform_tokens_logic(data, prompt, prompt->tokens);
 	expand_wildcards(data, prompt, prompt->tokens, INITIAL_PHASE);
 	if (!check_if_valid_tokens(data, prompt, prompt->tokens))
 		return (SYNTAX_ERROR);

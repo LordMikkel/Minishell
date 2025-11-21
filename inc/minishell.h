@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 20:02:06 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 20:29:20 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 /*                                 Globales                                   */
 /* ************************************************************************** */
 extern volatile sig_atomic_t	g_signal[2];
-extern const char				*g_type_names[];
+// extern const char				*g_type_names[];
 
 /* ************************************************************************** */
 /*                             Initialization                                 */

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:42:00 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 19:17:22 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 20:47:42 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,12 @@ void	terminal_readline(t_shell *data, t_var *vars, char *line)
 		ic_history_add(data->prompt.input);
 }
 
-/*
-	Controla la lectura de la entrada de comandos por el usuario.
-	Si está en un **TTY interactivo**, usa `terminal_readline` con un prompt.
-	Si no lo es (pipe/script), lee la entrada directamente con `ic_readline`.
-	Verifica el estado de las señales antes de devolver la entrada.
-*/
+// /*
+// 	Controla la lectura de la entrada de comandos por el usuario.
+// 	Si está en un **TTY interactivo**, usa `terminal_readline` con un prompt.
+// 	Si no lo es (pipe/script), lee la entrada directamente con `ic_readline`.
+// 	Verifica el estado de las señales antes de devolver la entrada.
+// */
 
 char	*receive_input(t_shell *data, t_prompt *prompt)
 {
@@ -104,3 +104,16 @@ char	*receive_input(t_shell *data, t_prompt *prompt)
 	check_signals(data, NULL, NULL);
 	return (prompt->input);
 }
+
+// char	*receive_input(t_shell *data, t_prompt *prompt)
+// {
+// 	char	*line;
+
+// 	line = NULL;
+// 	if (isatty(fileno(stdin)))
+// 		terminal_readline(data, data->env.vars, line);
+// 	else
+// 		return (ft_printf_fd(STDERR, ERR_STDIN), NULL);
+// 	check_signals(data, NULL, NULL);
+// 	return (prompt->input);
+// }
