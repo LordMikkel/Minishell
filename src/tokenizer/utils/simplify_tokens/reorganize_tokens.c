@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 22:44:45 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/20 20:44:09 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 14:59:20 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ int	no_space_at_end(t_shell *data, t_prompt *prompt, t_token *tokens)
 	{
 		if (tokens[i].type == NO_SPACE && (i + 1) == prompt->n_tokens)
 		{
-			eliminate_token(data, prompt, tokens, i); //si es el ultimo token
+			eliminate_token(data, prompt, tokens, i);
 			return (TRUE);
 		}
 		i++;

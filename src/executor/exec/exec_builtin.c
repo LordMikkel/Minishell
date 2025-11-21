@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:23:12 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 02:44:57 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 15:05:12 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,14 @@ static void	hanlde_background_exec(t_shell *data, t_node *node)
 	}
 	data->last_background_pid = pid;
 	ft_printf_fd(STDOUT, "[&] %d\n", pid);
-	data->exit_code = OK; //da 0 porque el fork en si fue exitoso
+	data->exit_code = OK;
 }
 
 void	exec_builtin(t_shell *data, t_node *node, int mode)
 {
 	if (!expansion_final_process(data, node))
 		return ;
-	if (node->background) //si es por background
+	if (node->background)
 	{
 		hanlde_background_exec(data, node);
 		return ;
@@ -76,7 +76,7 @@ void	exec_builtin(t_shell *data, t_node *node, int mode)
 	clean_temp_variables(data, &data->env, data->prompt.tokens, node);
 	if (mode == FATHER)
 		restore_fd(&data->exec);
-	if (mode == CHILD) // si era child de un pipe se sale con su exit_code
+	if (mode == CHILD)
 		exit_succes(data, NULL, data->exit_code);
 	return ;
 }

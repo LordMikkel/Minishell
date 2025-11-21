@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:22:59 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/17 21:04:02 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 15:07:47 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int	calculate_total_length(char *token, char *value, char *key_to_find)
 	len_of_token = ft_strlen(token);
 	len_of_key_value = ft_strlen(value);
 	len_of_key = ft_strlen(key_to_find);
-	total_len = len_of_token + len_of_key_value - len_of_key;//no ay que hacer + 1 porque ya esta implicitamnete al no tener en cuenta el $
+	total_len = len_of_token + len_of_key_value - len_of_key;
 	return (total_len);
 }
 
@@ -129,7 +129,7 @@ int	copy_value(t_shell *d, char **token_val, char *key_value, char *key_to_find)
 	int		total_len;
 
 	total_len = calculate_total_length(*token_val, key_value, key_to_find);
-	if (total_len <= 0) //when the key exist but the value is empty
+	if (total_len <= 0)
 		return (ERROR);
 	new_buffer = ft_calloc(total_len + 1, sizeof(char));
 	if (!new_buffer)

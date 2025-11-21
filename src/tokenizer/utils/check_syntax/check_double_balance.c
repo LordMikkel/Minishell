@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_double_balance.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 22:40:25 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/17 23:29:20 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/21 15:00:24 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,16 @@ int	check_double_balance(t_shell *data, t_prompt *promp, t_token *tokens)
 	i = 0;
 	while (i < promp->n_tokens)
 	{
-		if (tokens[i].type == DOUBLE_QUOTE) //Cadacomilla doble cambia el estado
+		if (tokens[i].type == DOUBLE_QUOTE)
 		{
 			if (inside_quotes == FALSE)
-				inside_quotes = TRUE; // Entramos en comillas
+				inside_quotes = TRUE;
 			else
-				inside_quotes = FALSE; // Salimos de comillas
+				inside_quotes = FALSE;
 		}
 		i++;
 	}
-	if (inside_quotes == TRUE) // Si terminamos dentro de comillas, hay error
+	if (inside_quotes == TRUE)
 	{
 		syntax_error(data, ERR_SYNTAX, EXIT_USE, "\"");
 		return (SYNTAX_ERROR);

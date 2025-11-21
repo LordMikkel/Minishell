@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 22:39:40 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/13 01:04:21 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 15:00:07 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,17 @@ int	check_single_balance(t_shell *data, t_prompt *prompt, t_token *tokens)
 	inside_quotes = FALSE;
 	while (i < prompt->n_tokens)
 	{
-		if (tokens[i].type == SINGLE_QUOTE) //Cadacomilla simple cambia el estado
+		if (tokens[i].type == SINGLE_QUOTE)
 		{
 			if (inside_quotes == FALSE)
-				inside_quotes = TRUE; // Entramos en comillas
+				inside_quotes = TRUE;
 			else
-				inside_quotes = FALSE; // Salimos de comillas
+				inside_quotes = FALSE;
 		}
 		i++;
 	}
-	if (inside_quotes == TRUE) // Si terminamos dentro de comillas, hay error
+	if (inside_quotes == TRUE)
 	{
-		// printf("error en check_single_balance\n\n");
 		syntax_error(data, ERR_SYNTAX, EXIT_USE, "\'");
 		return (SYNTAX_ERROR);
 	}

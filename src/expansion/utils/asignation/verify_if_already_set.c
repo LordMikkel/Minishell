@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 15:36:26 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/21 00:06:09 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 15:03:49 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@
 
 static int	assign_igno_repla_val(t_shell *dat, t_var *var, char **value, int t)
 {
-	if (t == EXP && var->type == EXP) // si solo es una palabra sin ""="" -> hola
+	if (t == EXP && var->type == EXP)
 	{
 		return (IGNORE);
 	}
-	if (var->value && (t == LOCAL || t == ENV || t == TEMP_ASIGNATION)) // si existe su valor y es local o env, solo hay que cambiarlo
+	if (var->value && (t == LOCAL || t == ENV || t == TEMP_ASIGNATION))
 	{
 		if (var->value)
 			free (var->value);
@@ -49,7 +49,7 @@ static int	assign_igno_repla_val(t_shell *dat, t_var *var, char **value, int t)
 			return (ERROR);
 		update_envp(dat);
 	}
-	if (!var->value && var->type == EXP && t != EXP) //Si no existe su valor, solo hay que agregarse
+	if (!var->value && var->type == EXP && t != EXP)
 	{
 		var->value = ft_strdup(*value);
 		if (!var->value)
@@ -63,16 +63,11 @@ static int	handle_plus_assignation(t_shell *d, t_var *var, char **value, int t)
 {
 	char	*tmp;
 
-	if (var->value && t == PLUS_ASIGNATION) //Si existe su valor y es PLUS_ASIGNATION entonces hay que sumarla
+	if (var->value && t == PLUS_ASIGNATION)
 	{
 		tmp = ft_strjoin(var->value, *value);
 		if (!tmp)
-		{
-			//free(var->key);
-			//free(*value);
 			return (ERROR);
-			//exit_error(d, ERR_MALLOC, EXIT_FAILURE);
-		}
 		free (var->value);
 		var->value = tmp;
 		update_envp(d);

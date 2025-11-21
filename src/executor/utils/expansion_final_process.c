@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion_final_process.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 19:04:23 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/21 14:13:19 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/21 15:12:51 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ static int	if_theres_an_expan(t_token *start_t, t_token *tokens, t_prompt *p)
 	int	i;
 
 	i = 0;
-	while (i < p->n_tokens && &tokens[i] != start_t) //probar con hash en lugar de esto
+	while (i < p->n_tokens && &tokens[i] != start_t)
 		i++;
 	while (i < p->n_tokens)
 	{
@@ -176,7 +176,7 @@ static int	if_theres_an_expan(t_token *start_t, t_token *tokens, t_prompt *p)
 	para poder seguir los procesos con afinidad.
 */
 
-int expansion_final_process(t_shell *data, t_node *node)
+int	expansion_final_process(t_shell *data, t_node *node)
 {
 	int	i;
 
@@ -189,7 +189,6 @@ int expansion_final_process(t_shell *data, t_node *node)
 			return (FAILURE);
 		// print_tokens_debug(&data->prompt);
 		prepare_simplify(data, &data->prompt, data->prompt.tokens);
-		// print_tokens_debug(&data->prompt);
 		simplify_tokens(data, &data->prompt, data->prompt.tokens);
 		reconect_nodes_tokens(data, data->ast_root, data->prompt.tokens);
 		split_expansion_result(data, &data->prompt, data->prompt.tokens);
@@ -197,7 +196,7 @@ int expansion_final_process(t_shell *data, t_node *node)
 		i = node->token->id;
 		if (node->args)
 			ft_free_str_array(&node->args);
-		expand_wildcards(data, &data->prompt, data->prompt.tokens, FINAL_PHASE); //Las wildcards que no se hayan expandido llegado este punto es debido a que dependen de una expansion que no se ha podido hacer
+		expand_wildcards(data, &data->prompt, data->prompt.tokens, FINAL_PHASE);
 		node->args = get_args_for_binary(data, data->prompt.tokens, &i);
 	}
 	return (SUCCESS);

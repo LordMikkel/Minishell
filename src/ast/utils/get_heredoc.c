@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/11 04:19:38 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/20 22:35:59 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 15:09:05 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	loop_heredoc(t_shell *data, t_redir *redir, char *delimiter)
 		setup_signals_heredoc();
 		if (isatty(fileno(stdin)))
 			line = ic_readline("> ");
-		else // esto es del test se puede borrar y debe borrarse con la
+		else
 		{
 			// return (ft_printf_fd(STDERR, ERR_STDIN), ERROR);
 			tmp = get_next_line(fileno(stdin));

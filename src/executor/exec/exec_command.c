@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:23:14 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 02:07:12 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 15:05:01 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	wait_cmd_background(t_shell *data, t_node *node, pid_t pid)
 	int	sig;
 	int	status;
 
-	if (!node->background) //si no tiene background se hace el waitpid
+	if (!node->background)
 	{
 		waitpid(pid, &status, 0);
 		if (WIFEXITED(status))
@@ -80,8 +80,6 @@ void	execute_cmd_from_child(t_shell *data, t_node *node, t_env *env)
 	add_var_and_envp(data, ft_strdup("_"), path, ENV);
 	execve(path, node->args, env->envp);
 	exit_error(data, ERR_EXEC, EXIT_CMD_NOT_EXEC, node->token->value);
-	//si es child solo se retorna el exit_code ya que el subshell o pipe
-	//haran el waitpid
 }
 
 void	execute_cmd_from_father(t_shell *data, t_node *node, t_env *env)
@@ -101,9 +99,8 @@ void	execute_cmd_from_father(t_shell *data, t_node *node, t_env *env)
 		add_var_and_envp(data, ft_strdup("_"), path, ENV);
 		execve(path, node->args, env->envp);
 		exit_error(data, ERR_EXEC, EXIT_CMD_NOT_EXEC, node->token->value);
-		//el hijo retorna su exit_code para el padre
 	}
-	wait_cmd_background(data, node, pid);//padre checkea
+	wait_cmd_background(data, node, pid);
 }
 
 void	exec_command(t_shell *data, t_node *node, t_exec *exec, int mode)

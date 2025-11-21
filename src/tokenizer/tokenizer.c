@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:10 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 14:57:38 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 15:01:17 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,37 +93,22 @@ int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 	// print_tokens_debug(prompt);
 	if (!check_if_valid_tokens(data, prompt, prompt->tokens))
 		return (SYNTAX_ERROR);
-
-	//print_tokens_debug(prompt);
-
 	is_it_quoted(prompt, prompt->tokens);
 	move_script_args_to_end(data, prompt, prompt->tokens);
 	create_before_tokens(data, prompt->tokens, prompt);
-
 	if (expansion(data, prompt->tokens, 0, INITIAL_PHASE) == ERROR)
 		return (FAILURE);
-
-	// printf("\n\nAFTER EXPANSION INITIAL_PHASE\n\n");
 	//print_tokens_debug(prompt);
-
 	split_expansion_result(data, prompt, prompt->tokens);
 	simplify_tokens(data, prompt, prompt->tokens);
-
-	// print_tokens_debug(prompt);
 	transform_tokens_logic(data, prompt, prompt->tokens);
-	// print_tokens_debug(prompt);
 	simplify_tokens(data, prompt, prompt->tokens);
-
 	// if (!cmd_correction(data, prompt->tokens, prompt->n_tokens))
 	// 	return (FAILURE);
 	// else
 	// 	transform_tokens_logic(data, prompt, prompt->tokens);
-
 	transform_tokens_logic(data, prompt, prompt->tokens);
-
-	//print_tokens_debug(prompt);
 	expand_wildcards(data, prompt, prompt->tokens, INITIAL_PHASE);
-
 	if (!check_if_valid_tokens(data, prompt, prompt->tokens))
 		return (SYNTAX_ERROR);
 	//print_tokens_debug(prompt);
