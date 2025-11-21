@@ -1,8 +1,3 @@
-ls && ls -
-ls &&
-ls -l
-ls && ls -l
-false ||
 false || ls
 cat <
 cat | cat | ls
@@ -187,8 +182,6 @@ export var=pal*la
 export va=pal*la
 env
 export va=pal*la pala*a
-export
-clear
 pa*ala=hola
 var=hola
 bashbash
@@ -197,3 +190,10 @@ export TES$?T=123
 bash
 export TEST1=123
 cat tmp_lol.c | cat > tmp_lol.c
+lear
+export T*EST=hola
+export t*est=hola
+export make*
+export *file
+clear
+export
