@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/11/21 02:50:40 by migarrid         ###   ########.fr        #
+#    Updated: 2025/11/21 15:46:01 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,6 +85,7 @@ SRCS =				main/main.c \
 					main/utils/time/print_session_start.c \
 					main/utils/time/print_session_end.c \
 					main/utils/time/print_time_of_day.c \
+					main/utils/time/print_minishell_title.c \
 					init/init_minishell.c \
 					init/utils/cmd_structure/add_node_rule.c \
 					init/utils/init/init_data.c \

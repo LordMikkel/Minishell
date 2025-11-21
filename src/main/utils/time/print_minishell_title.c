@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_is_double_quote_II.c                         :+:      :+:    :+:   */
+/*   print_minishell_title.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/13 20:34:54 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 15:54:25 by migarrid         ###   ########.fr       */
+/*   Created: 2025/11/21 15:44:03 by migarrid          #+#    #+#             */
+/*   Updated: 2025/11/21 15:44:22 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/minishell.h"
 
-int	ischrkey(int c)
+void	print_minishell_title(void)
 {
-	if (c == '|' || c == '<' || c == '>' || c == '&' || c == '(' || c == ')'
-		|| c == ';' || c == '-' || c == '/' || c == '\\' || c == '\0')
-		return (0);
-	return (1);
-}
-
-int	is_escapable_char(char c)
-{
-	return (c == '\"' || c == '\\' || c == '`' || c == '\n');
-}
-
-void	copy_escaped_and_advance(char *word, char *clean_word, int *j, int *k)
-{
-	clean_word[(*k)++] = word[(*j) + 1];
-	*j += 2;
+	ft_printf_fd(STDOUT, TITLE_COLOR "\n\n");
+	ft_printf_fd(STDOUT, T1 "\n");
+	ft_printf_fd(STDOUT, T2 "\n");
+	ft_printf_fd(STDOUT, T3 "\n");
+	ft_printf_fd(STDOUT, T4 "\n");
+	ft_printf_fd(STDOUT, T5 "\n");
+	ft_printf_fd(STDOUT, "\n\n" RESET_COLOR);
 }

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 01:46:00 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 15:54:14 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -318,6 +318,7 @@ void	print_ast(t_node *root);
 void	print_tokens_debug(t_prompt *prompt);
 
 //UTILS
+void	print_minishell_title(void);
 char	*cleanner_slash_quotes_d(t_shell *data, char *word, int len, int *flag);
 char	*clean_slash_expan_d(t_shell *data, char *word, int len, char slash);
 void	clean_quote_until_slash_d(char *word, char *clean_word, char quote);
@@ -334,6 +335,8 @@ void	void_tokens_at_the_end(t_token *tokens, int n_alloc, int n_tokens);
 void	clean_quote_until_slash_d(char *word, char *clean_word, char quote);
 char	*clean_slash_expan_d(t_shell *data, char *word, int len, char slash);
 char	*cleanner_slash_quotes_d(t_shell *data, char *word, int len, int *flag);
+void	copy_escaped_and_advance(char *word, char *clean_word, int *j, int *k);
+int		is_escapable_char(char c);
 
 //BUILT_IN
 int		check_arg_syntax(char *arg, const char *built_in_err);

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/11 02:32:54 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 02:07:53 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 16:02:10 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,8 @@ int	handle_redir_heredoc(t_shell *data, t_redir *redir)
 		line = ft_strdup((char *)heredoc_line->content);
 		if (!line)
 		{
-			close(pipe_fd[0]);
 			close(pipe_fd[1]);
-			return (exit_error(data, ERR_MALLOC, EXIT_FAILURE));
+			return (close(pipe_fd[1]), exit_error(data, ERR_MALLOC, 1));
 		}
 		if (redir->expand)
 			expand_line_heredoc(data, &line);
@@ -108,9 +107,7 @@ int	handle_redir_heredoc(t_shell *data, t_redir *redir)
 	}
 	close(pipe_fd[1]);
 	redir->fd_heredoc = pipe_fd[0];
-	dup2(redir->fd_heredoc, STDIN_FILENO);
-	close(redir->fd_heredoc);
-	return (SUCCESS);
+	return (dup2(redir->fd_heredoc, STDIN_FILENO), close(redir->fd_heredoc), 1);
 }
 
 int	apply_redirs(t_shell *data, t_node *node, int mode)

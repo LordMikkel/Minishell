@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 21:34:18 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/20 20:35:51 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 15:39:54 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ int	ask_confirmation(t_shell *data, t_token *token, char *built_in)
 
 	while (1)
 	{
-		ft_printf_fd(1, "\033[1;32mDid you mean %s? y/n\033[0m\n", built_in);
-		ptr = ic_readline("\033[1;32m->\033[0m");
+		ft_printf_fd(1, ASK_CONFIRMATION, built_in);
+		ptr = ic_readline(PROMPT_CMD);
 		if (!ptr)
 			exit_error(data, NULL, EXIT_FATAL_SIGNAL);
 		if (check_signals(data, NULL, NULL))

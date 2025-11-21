@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:23:14 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 15:05:01 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 16:07:49 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,6 @@ void	exec_command(t_shell *data, t_node *node, t_exec *exec, int mode)
 {
 	if (!expansion_final_process(data, node))
 		return ;
-	// print_tokens_debug(&data->prompt);
-	// print_ast(data->ast_root);
 	if (mode == CHILD)
 		execute_cmd_from_child(data, node, exec->env);
 	if (mode == FATHER || mode == SUBSHELL)

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 20:34:54 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/20 20:43:35 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 15:56:43 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,8 @@ void	process_slash_char_quotes_d(char *word, char *clean_word, int *flag)
 				*flag = TRUE;
 				j += 2;
 			}
-			else if (word[j + 1] == '\"' || word[j + 1] == '\\'
-				|| word[j + 1] == '`' || word[j + 1] == '\n')
-			{
-				clean_word[k++] = word[j + 1];
-				j += 2;
-			}
+			else if (is_escapable_char(word[j + 1]))
+				copy_escaped_and_advance(word, clean_word, &j, &k);
 			else
 				clean_word[k++] = word[j++];
 		}

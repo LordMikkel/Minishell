@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 19:04:23 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/21 15:12:51 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 16:08:01 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,6 @@ static int	if_theres_an_expan(t_token *start_t, t_token *tokens, t_prompt *p)
 }
 
 /*
-
 	Se expande solo los args del nodo ya que si intentamos expandir todos los
 	tokens en FINAL_PHASE, luego, si en otro nodo hay un valor que dependia
 	de otro, entonces se queda vacio. Es por esto que no se puede dejar que
@@ -187,7 +186,6 @@ int	expansion_final_process(t_shell *data, t_node *node)
 		expansion(data, data->prompt.tokens, node->token->id, FINAL_PHASE);
 		if (data->prompt.n_tokens == 0)
 			return (FAILURE);
-		// print_tokens_debug(&data->prompt);
 		prepare_simplify(data, &data->prompt, data->prompt.tokens);
 		simplify_tokens(data, &data->prompt, data->prompt.tokens);
 		reconect_nodes_tokens(data, data->ast_root, data->prompt.tokens);
