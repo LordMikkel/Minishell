@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_type_III.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:23:51 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/03 01:50:50 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 14:16:35 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	is_asignation_type(int type)
 int	is_arg_type(int type)
 {
 	if (type == ASIGNATION || type == WORD || type == PLUS_ASIGNATION
-		|| type == EXPANSION)
+		|| type == EXPANSION || type == WILDCARD)
 		return (1);
 	return (0);
 }

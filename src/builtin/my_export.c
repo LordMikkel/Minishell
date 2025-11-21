@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:22:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/20 18:00:08 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 14:11:30 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,14 @@ static int	asignation_type(t_shell *data, t_token *tokens, int i)
 	}
 	else if (tokens[i].type == PLUS_ASIGNATION)
 		asignation(data, &tokens[i], PLUS_ASIGNATION);
+	else if (tokens[i].type == WILDCARD)
+	{
+		expand_wildcards(data, &data->prompt, tokens, FINAL_PHASE);
+		if (check_asignation_syntax(&tokens[i], EXP))
+			asignation(data, &tokens[i], EXP);
+		else if (check_asignation_syntax(&tokens[i], ENV))
+			asignation(data, &tokens[i], ENV);
+	}
 	return (SUCCESS);
 }
 
