@@ -1,7 +1,3 @@
-man gethostname
-echo $$
-vsavas
-asvass
 "$"
 "$a"
 "$sdfasdf"
@@ -167,9 +163,7 @@ cat tmp_lol.c | cat > tmp_lol.c
 lear
 export t*est=hola
 export make*
-export *file
 $var
-export
 export var=*file
 export T*EST=hola
 eche hola
@@ -194,6 +188,12 @@ asev
 sev
 sa
 hola
-ls
 echo ~
 clear
+ls
+export test=file*
+export test=hola*
+export test=*file
+$test
+export *file
+export

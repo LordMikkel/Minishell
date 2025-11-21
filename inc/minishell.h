@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 19:03:18 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/21 20:02:06 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	init_arg(t_shell *data, int ac, char **av);
 void	init_exec(t_exec *exec, t_env *env);
 void	init_builtins(t_shell *data);
 void	init_enviroment(t_shell *data, t_env *env, char **envp);
-void	init_ic_readline(void);
+void	init_ic_readline(int *history_fd);
 
 /* ************************************************************************** */
 /*                               Tokenizer                                    */
@@ -134,11 +134,11 @@ void	clean_redirs(t_redir **lst);
 void	clean_env(t_env *env, t_var *vars);
 void	clean_extras(t_extras *extras);
 void	clean_cycle(t_exec *exec, t_prompt *prompt, t_node **ast_root);
-void	my_clean_unset(t_shell *data, t_env *env, t_token *tokens, int *index);
-void	clean_temp_variables(t_shell *d, t_env *e, t_token *t, t_node *node);
+void	my_clean_unset(t_shell *data, t_token *tokens, int *index);
+void	clean_temp_variables(t_shell *data, t_token *tokens, t_node *node);
 void	clean_builtins_selection(t_builtin *builtins);
 void	restore_fd(t_exec *exec);
-void	clean_fd(t_exec *exec);
+void	clean_fd(t_exec *exec, int history_fd);
 
 /* ************************************************************************** */
 /*                                 Exits                                      */
@@ -197,7 +197,6 @@ int		is_redir_input_type(int type);
 int		is_invalid_char(int c);
 int		is_needed_to_simplify(int type);
 int		is_built_in(t_shell *data, t_token *token, char *str);
-
 
 //VALID TOKENS
 void	is_it_quoted(t_prompt *prompt, t_token *tokens);

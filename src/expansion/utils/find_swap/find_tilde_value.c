@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 15:16:04 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/21 15:02:44 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 19:42:51 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ static int	is_tilde_plus(t_shell *data, t_token *token, char **key_to_find)
 
 static int	is_tilde_minus(t_shell *data, t_token *token, char **key_to_find)
 {
-	char	cwd[PATH_MAX];
 	char	*value;
 
 	free (*key_to_find);

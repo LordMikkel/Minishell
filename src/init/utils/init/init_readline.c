@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 20:37:34 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/20 22:07:21 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 19:14:08 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ void	ensure_dir(const char *path)
  * configura multilínea para una mejor experiencia de usuario
  */
 
-void	init_ic_readline(void)
+void	init_ic_readline(int *history_fd)
 {
-	ensure_dir(DEFAULT_HYSTORY_DIR);
-	open(DEFAULT_HISTORY_FILE, O_WRONLY | O_CREAT | O_APPEND, FILE_PERMS);
-	ic_set_history(DEFAULT_HISTORY_FILE, ILIMITED);
+	ensure_dir(HYSTORY_DIR);
+	*history_fd = open(HISTORY_FILE, O_WRONLY | O_CREAT | O_APPEND, FILE_PERMS);
+	ic_set_history(HISTORY_FILE, ILIMITED);
 	ic_set_prompt_marker("", "");
 	ic_enable_multiline_indent(false);
 	ic_style_def("ic-prompt", "#4A90E2");

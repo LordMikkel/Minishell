@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/20 20:56:27 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 19:12:37 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,7 @@ typedef struct s_shell
 	pid_t		last_background_pid;
 	t_builtin	builtins;
 	t_extras	extras;
+	int			history_fd;
 	bool		error_state;
 	int			exit_code;
 }	t_shell;

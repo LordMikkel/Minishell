@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+         #
+#    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/11/21 19:01:26 by davdiaz-         ###   ########.fr        #
+#    Updated: 2025/11/21 19:59:38 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

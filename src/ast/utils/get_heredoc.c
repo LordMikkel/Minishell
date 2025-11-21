@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/11 04:19:38 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 15:09:05 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/21 19:44:38 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,6 @@ int	loop_heredoc(t_shell *data, t_redir *redir, char *delimiter)
 
 int	get_heredoc(t_shell *data, t_redir *redir, char *delimiter, int expansion)
 {
-	t_list	*heredoc_lines;
-
 	if (expansion == TRUE)
 		redir->expand = TRUE;
 	if (loop_heredoc(data, redir, delimiter) == ERROR)
