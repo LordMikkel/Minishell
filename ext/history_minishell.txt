@@ -1,5 +1,3 @@
-echo A > file && echo < file b
-echo A && echo < file b
 echo A > a&& echo < file b
 echo A > a && echo < file b
 echo A && ls
@@ -31,7 +29,6 @@ export TES0T=123
 export tes$HOME
 export tes$sd
 ./minishell
-echo $?
 echo $/"$<"
 echo $/"$/"
 echo" "$USE.txt
@@ -61,6 +58,9 @@ cat tmp_lol.c | cat > tmp_lol.c
 export t*est=hola
 eche hola
 eche
+celar
+make
+echa
 sl
 slds
 sdv
@@ -123,13 +123,16 @@ export ba*
 echo $ba
 echo $b
 export var=ba*
+<<<<<<< HEAD
 $eef*ef
 $*asfas
+=======
 export test=file*
 export test=hola*
 export test=*file
 $test
 export *file
+>>>>>>> 57e082b5e747adc80a67a5920c4a64ac8689dae9
 iyu
 rty
 erth
@@ -144,14 +147,17 @@ svs
 da
 vsv
 svasv
+sd
 va
 sv
 csa
 cleae
 d
+s
 echo $A
 echo $HOME
 /bin/echo ""$?""
+ls
 csld
 touch hola_mundo
 echo hola*
@@ -179,57 +185,16 @@ export USER=2 && echo $USER
 export a=3 && echo $a
 ECHO HOLA
 echo hola
-export USER=1 && echo $USER
 echo $USER
 USER=3 && echo $USER
 echo $$
 clear &&echo "Starting monster test" && echo "Part 1: Basic Commands" && ls -la | grep "." && pwd && whoami && echo $? && echo $USER && echo "Part 2: Pipes and Redirections" && cat < Makefile | grep "gcc" | wc -l > output.txt && cat output.txt && rm output.txt && echo "Part 3: Multiple Commands" && echo hello > file1 && cat < file1 >> file2 && cat file2 && rm file1 file2 && echo "Part 4: Environment Variables" && export TEST=hello && echo $TEST && unset TEST && echo $TEST && echo "Part 5: Quotes and Special Characters" && echo "  spaces  " && echo '  single quotes  ' && echo "mixed 'quotes' here" && echo $"HOME" && echo $'HOME' && echo "Part 6: Exit Status" && false || echo $? && true && echo $? && echo "Part 7: Complex Pipes" && ls -la | grep "." | wc -l | xargs echo "Files:" && echo "Part 8: Signal Handling Test" && sleep 2 && echo "Part 9: Error Cases" && cd nonexistentdir 2>errorlog.txt || echo "dir not found $?" && ./nonexistentfile 2>/dev/null || echo "file not found $?" && echo "Part 10: AND/OR operators" && false || echo "OR works" && true && echo "AND works" && false || echo "Complex OR" && true && echo "Complex AND" || echo "Should not print" && echo "Monster test completed with exit status $?"
 USER=HOLA && echo $USER
-clear
 export A=1
 A=3; echo $A && A=4; echo $A; export A=0 && echo $A
 export
-sd
-esport
-expord
-espor
-s
-cd
-cd -
-./minishell
-celar
-git status
- /usr/bin/env /bin/sh /tmp/Microsoft-MIEngine-Cmd-u453jqrd.gxk
-echo > $NADA
-ls > $NADA
-ls > *
-echo hola
-echo
-echo > *
-echo > ls
-echo > $NAFA
-echo > $HOME
-echo > $sd
-touch _hola
-touch hola_
-cat Make*
-cat make*
-echo _*
-echo hola*
-echo hola_*
-echo *hola_*
-echo *_hola_*
-echo *_hola
-export $a="'"
-export a="'"
-echo $a"hola"$a
-cat << EOF
-make
-sleep 10
-(sleep 10)
+export USER=1 && echo $USER
+> $a
+USER=1 && echo $USER
 clear
-<< EOG
-echa
-ls
-clcea
-rlr
+> $b
