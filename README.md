@@ -4,11 +4,11 @@ Minishell - Bash
 🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
 🏁                                    RESULT                                                       🏁
 🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
-             TOTAL TEST COUNT: 64  TESTS PASSED: 60  LEAKING: 0
-                     STD_OUT: 2  STD_ERR: 2  EXIT_CODE: ✓
+             TOTAL TEST COUNT: 68  TESTS PASSED: 65  LEAKING: 0
+                     STD_OUT: 3  STD_ERR: ✓   EXIT_CODE: ✓
                          TOTAL FAILED AND PASSED CASES:
-                                     ❌ 4
-                                     ✅ 188
+                                     ❌ 3
+                                     ✅ 201
 
 🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
 🏁                                    MANDATORY                                                    🏁

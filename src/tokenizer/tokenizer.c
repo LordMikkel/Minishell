@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:10 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 20:47:46 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/23 03:04:54 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ void	get_tokens(t_shell *data, t_prompt *prompt, char *input)
 		is_word(data, prompt, input, &i);
 		is_hash(input, &i);
 	}
+	is_it_quoted(&data->prompt, data->prompt.tokens);
+	move_script_args_to_end(data, &data->prompt, data->prompt.tokens);
+	create_before_tokens(data, data->prompt.tokens, &data->prompt);
 }
 
 /*
@@ -89,9 +92,6 @@ int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 	get_tokens(data, prompt, input);
 	if (!check_if_valid_tokens(data, prompt, prompt->tokens))
 		return (SYNTAX_ERROR);
-	is_it_quoted(prompt, prompt->tokens);
-	move_script_args_to_end(data, prompt, prompt->tokens);
-	create_before_tokens(data, prompt->tokens, prompt);
 	if (expansion(data, prompt->tokens, 0, INITIAL_PHASE) == ERROR)
 		return (FAILURE);
 	split_expansion_result(data, prompt, prompt->tokens);

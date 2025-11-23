@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 16:41:59 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 15:02:02 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/23 01:24:34 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,11 +143,9 @@ int	reorder_tokens(t_shell *d, t_token *orig_token, int n_dirs, char **dirs)
 {
 	int		i;
 	int		j;
-	int		orig_size;
 	int		wildcard;
 	t_token	*tmp;
 
-	orig_size = d->prompt.n_tokens;
 	wildcard = orig_token->id;
 	tmp = ft_calloc((d->prompt.n_alloc_tokens + n_dirs), sizeof(t_token));
 	if (!tmp)

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:59 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 01:45:43 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/23 01:23:07 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,14 @@
 	puede expandir las mismas además de la ya descritas temp y exp (vacias)
 */
 
-int	find_key_in_lst(t_shell *d, t_token *token, char **key_to_find, int pashe)
+int	find_key_in_lst(t_shell *d, t_token *token, char **key_to_find)
 {
 	t_var	*var;
 	int		match_for_symbol;
 
 	var = d->env.vars;
 	match_for_symbol = FALSE;
-	if (pashe == FINAL_PHASE)
-		match_for_symbol = is_it_symbol(d, token, key_to_find);
+	match_for_symbol = is_it_symbol(d, token, key_to_find);
 	if (match_for_symbol)
 		return (TRUE);
 	while (var != NULL)

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 20:29:20 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/23 03:03:43 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@
 /* ************************************************************************** */
 /*                                 Globales                                   */
 /* ************************************************************************** */
-extern volatile sig_atomic_t	g_signal[2];
-// extern const char				*g_type_names[];
+extern volatile sig_atomic_t	g_signal;
+extern const char				*g_type_names[];
 
 /* ************************************************************************** */
 /*                             Initialization                                 */
@@ -110,16 +110,14 @@ int		my_export(t_shell *data, t_token *tokens, t_env *env, t_node *node);
 /* ************************************************************************** */
 /*                                Signals                                     */
 /* ************************************************************************** */
-void	setup_signals_interactive(void);
-void	setup_signals_child(void);
-void	setup_signals_heredoc(void);
+void	setup_signals_interactive(t_shell *data);
+void	setup_signals_noninteractive(t_shell *data);
+void	setup_signals_child(t_shell *data);
+void	setup_signals_heredoc(t_shell *data);
 void	handle_sigint_interative(int sig);
 void	handle_sigint_heredoc(int sig);
 int		check_signal_node_heredoc(t_node *node);
 int		check_signals(t_shell *data, t_redir *redir, char *line);
-void	setup_signals_cmd_correction(void);
-int		check_signal_cmd_correction(t_shell *data);
-void	handle_sigint(int sig);
 
 /* ************************************************************************** */
 /*                                 Clean                                      */
@@ -250,7 +248,7 @@ t_redir	*get_redirs(t_shell *data, t_token *tokens, int *i, int mode);
 //EXECUTOR
 char	*get_path(t_shell *data, char *cmd, char **envp);
 int		apply_redirs(t_shell *data, t_node *node, int mode);
-int		check_ambiguous_redir(t_shell *data, const char *filename, int mode);
+int		check_ambiguous_redir(t_shell *data, t_redir *redir, int mode);
 int		expansion_final_process(t_shell *data, t_node *node);
 void	which_builtin(t_shell *data, t_token *token, t_node *node);
 int		apply_properties(t_shell *data, t_node *node, int mode);
@@ -260,7 +258,7 @@ void	apply_temp_asig(t_shell *data, t_token *tokens, t_node *node);
 int		set_arr(t_shell *data, char ***arr, int i, int *count);
 int		process_expansion_token(t_shell *data, t_token *token, int phase);
 int		copy_key(char *buffer, char **key_to_find, int *type);
-int		find_key_in_lst(t_shell *d, t_token *t, char **key_to_f, int phase);
+int		find_key_in_lst(t_shell *d, t_token *t, char **key_to_f);
 int		is_it_tilde(t_shell *data, t_token *token, char **key_to_find);
 int		extract_key(t_shell *d, t_token *t, char **key_to_f, int phase);
 int		is_it_symbol(t_shell *data, t_token *token, char **key_to_find);
@@ -340,7 +338,6 @@ void	void_tokens_at_the_end(t_token *tokens, int n_alloc, int n_tokens);
 void	clean_quote_until_slash_d(char *word, char *clean_word, char quote);
 char	*clean_slash_expan_d(t_shell *data, char *word, int len, char slash);
 char	*cleanner_slash_quotes_d(t_shell *data, char *word, int len, int *flag);
-void	copy_escaped_and_advance(char *word, char *clean_word, int *j, int *k);
 int		is_escapable_char(char c);
 
 //BUILT_IN
@@ -354,6 +351,5 @@ int		find_cmd(t_shell *data, t_cmd *cmd, char *to_find, char *alias);
 void	print_session_end(time_t start);
 void	print_time_of_day(time_t start, char *user_name);
 void	print_session_start(t_shell *data, time_t start, char **user_name);
-int		add_node_rule(t_shell *data, char *value, char *alias, int state);
 
 #endif

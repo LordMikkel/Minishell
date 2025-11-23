@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:23:14 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 19:45:47 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/23 03:03:33 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	wait_cmd_background(t_shell *data, t_node *node, pid_t pid)
 				ft_printf_fd(STDERR, "\n");
 		}
 	}
-	g_signal[0] = SIG_INTERACTIVE;
+	setup_signals_interactive(data);
 	if (node->background)
 	{
 		data->last_background_pid = pid;
@@ -90,10 +90,10 @@ void	execute_cmd_from_father(t_shell *data, t_node *node, t_env *env)
 	pid = fork();
 	if (pid == ERROR)
 		exit_error(data, ERR_FORK, EXIT_FAILURE);
-	g_signal[0] = SIG_CHILD;
+	setup_signals_noninteractive(data);
 	if (pid == 0)
 	{
-		setup_signals_child();
+		setup_signals_child(data);
 		apply_properties(data, node, CHILD);
 		path = get_path(data, node->token->value, env->envp);
 		add_var_and_envp(data, ft_strdup("_"), path, ENV);

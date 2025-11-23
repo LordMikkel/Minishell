@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   transform_word_to_wildcard.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 17:49:40 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/21 20:07:51 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/23 01:22:47 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,8 @@ static int	is_valid_wildcard(t_token *tokens, int i)
 void	transform_word_to_wildcard(t_shell *d, t_prompt *promp, t_token *tokens)
 {
 	int	i;
-	int	len;
 
 	i = 0;
-	len = 0;
 	(void)d;
 	while (i < promp->n_tokens)
 	{

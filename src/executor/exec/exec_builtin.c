@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:23:12 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 19:45:43 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/23 02:51:05 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	hanlde_background_exec(t_shell *data, t_node *node)
 		exit_error(data, ERR_FORK, FAIL);
 	if (pid == 0)
 	{
-		setup_signals_child();
+		setup_signals_child(data);
 		apply_properties(data, node, CHILD);
 		which_builtin(data, node->token, node);
 		exit_succes(data, NULL, data->exit_code);

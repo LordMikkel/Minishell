@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asignation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 22:35:11 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/15 23:42:55 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/23 01:19:15 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,7 @@ static void	aux_value_asig(t_token *token, char **value, int *i)
 		(*i)++;
 	while (token->value[*i] != '\0')
 	{
-		if (token->value[*i] != '\"' && token->value[*i] != '\''
-			&& token->value[*i] != ';')
+		if (token->value[*i] != ';')
 		{
 			(*value)[j++] = token->value[*i];
 		}
