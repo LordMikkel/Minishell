@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 16:15:42 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/23 11:44:00 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/23 17:52:56 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,11 @@ int	extract_wildcard(t_shell *data, char *str, char **ptr, int *wildcard_type)
 		if (str[i] == '*')
 		{
 			if ((str[i + 1] == '\0' || ft_isspace(str[i + 1]))
-				&& (i == 0 || !ft_isalnum(str[i - 1])))
+				&& (i == 0 || !ft_isprint(str[i - 1])))
 				result = handle_case1(ptr, wildcard_type);
 			else if (str[i + 1] != '\0' && !ft_isspace(str[i + 1]))
 				result = handle_case2(str, ptr, wildcard_type, i);
-			else if (i > 0 && ft_isprint(str[i - 1]) && !ft_isspace(str[i - 1]))
+			else if (i > 0 && ft_isprint(str[i - 1]))
 				result = handle_case3(str, ptr, wildcard_type, i);
 			if (result == ERROR)
 				exit_error(data, ERR_MALLOC, EXIT_FAILURE);

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:36:57 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 15:08:47 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/23 01:06:50 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	executor_recursive(t_shell *data, t_node *node, t_exec *exec, int mode)
 	if (!node || node->executed)
 		return ;
 	node->executed = true;
+
 	if (node->type == SEMICOLON)
 		exec_semicolon(data, node, exec, mode);
 	else if (node->type == AND)

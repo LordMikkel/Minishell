@@ -6,13 +6,14 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:18:18 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/07 19:18:20 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/23 01:02:40 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/minishell.h"
 
 /* --- Strings dobles ("...") --- */
+
 int	double_string_hl(ic_highlight_env_t *env, const char *s, size_t *i)
 {
 	size_t	start;
@@ -34,6 +35,7 @@ int	double_string_hl(ic_highlight_env_t *env, const char *s, size_t *i)
 }
 
 /* --- Strings simples ('...') --- */
+
 int	single_string_hl(ic_highlight_env_t *env, const char *s, size_t *i)
 {
 	size_t	start;
@@ -55,6 +57,7 @@ int	single_string_hl(ic_highlight_env_t *env, const char *s, size_t *i)
 }
 
 /* --- Operadores --- */
+
 int	and_hl(ic_highlight_env_t *henv, const char *s, size_t *i)
 {
 	if (s[*i] == '&' && s[*i + 1] == '&')
