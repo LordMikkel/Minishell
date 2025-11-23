@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_key.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:18:26 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/23 17:55:13 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/23 23:03:37 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

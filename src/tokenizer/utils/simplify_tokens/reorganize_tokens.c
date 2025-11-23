@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 22:44:45 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 14:59:20 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/23 22:26:00 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,14 @@ void	reorganize_tokens(t_prompt *p, t_token *tokens, int *range, char *res)
 {
 	int	tokens_to_move;
 	int	tokens_to_remove;
+	int	preserved_hash;
 
+	preserved_hash = tokens[range[0]].hash;
 	tokens_to_remove = range[1] - range[0];
 	tokens_to_move = p->n_alloc_tokens - range[1] - 1;
 	free_tokens_in_range(tokens, range);
 	tokens[range[0]].value = res;
+	tokens[range[0]].hash = preserved_hash;
 	tokens[range[0]].type = WORD;
 	ft_memmove(&tokens[range[0] + 1],
 		&tokens[range[1] + 1],

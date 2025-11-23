@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_key_in_list.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:59 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/23 17:46:24 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/23 23:03:10 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	find_key_in_lst(t_shell *d, t_token *token, char **key_to_find, int phase)
 	var = d->env.vars;
 	match_for_symbol = FALSE;
 	if (phase == FINAL_PHASE)
-	match_for_symbol = is_it_symbol(d, token, key_to_find);
+		match_for_symbol = is_it_symbol(d, token, key_to_find);
 	if (match_for_symbol)
 		return (TRUE);
 	while (var != NULL)

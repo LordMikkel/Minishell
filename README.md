@@ -13,11 +13,11 @@ Minishell - Bash
 🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
 🏁                                    MANDATORY                                                    🏁
 🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
-             TOTAL TEST COUNT: 860  TESTS PASSED: 840  LEAKING: 0
-                     STD_OUT: 9  STD_ERR: 11  EXIT_CODE: 11
+             TOTAL TEST COUNT: 858  TESTS PASSED: 850  LEAKING: 0
+                     STD_OUT: 8  STD_ERR: ✓   EXIT_CODE: ✓
                          TOTAL FAILED AND PASSED CASES:
-                                     ❌ 31
-                                     ✅ 2549
+                                     ❌ 8
+                                     ✅ 2566
 
 ## POR HACER:
 

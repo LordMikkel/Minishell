@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 17:12:22 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/23 17:47:55 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/23 19:30:04 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,12 +119,13 @@ static int	validate_and_move(t_shell *data, t_var *vars, char *new_dir)
 static int	find_home_and_move(t_shell *data)
 {
 	char	*home;
+	int		result;
 
 	home = get_var_value(data->env.vars, "HOME");
 	if (!home)
 		return (ft_printf_fd(STDERR, ERR_HOME_NOT_SET), EXIT_FAILURE);
-	validate_and_move(data, data->env.vars, home);
-	return (SUCCESS);
+	result = validate_and_move(data, data->env.vars, home);
+	return (result);
 }
 
 /*

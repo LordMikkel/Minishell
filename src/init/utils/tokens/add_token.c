@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_token.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 01:07:14 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/23 16:04:14 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/23 23:59:55 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,10 @@ int	add_token(t_shell *data, t_prompt *prompt, char *value, int type)
 	tokens[i].value = value;
 	tokens[i].type = type;
 	tokens[i].expand = TRUE;
+	// if (prompt->n_tokens >= 1 && tokens[i - 1].type == SINGLE_QUOTE)
+	// 	tokens[i].single_quoted = TRUE;
+	// if (prompt->n_tokens >= 1 && tokens[i - 1].type == DOUBLE_QUOTE)
+	// 	tokens[i].double_quoted = TRUE;
 	prompt->n_tokens++;
 	return (tokens[tokens[i].id].id);
 }

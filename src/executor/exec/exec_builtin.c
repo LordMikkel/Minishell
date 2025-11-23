@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:23:12 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/23 02:51:05 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/23 22:28:05 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	hanlde_background_exec(t_shell *data, t_node *node)
 
 void	exec_builtin(t_shell *data, t_node *node, int mode)
 {
-	if (!expansion_final_process(data, node))
+	if (!final_expansion_process(data, node))
 		return ;
 	if (node->background)
 	{

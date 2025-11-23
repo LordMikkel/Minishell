@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:10 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/23 17:46:52 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/24 00:00:25 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,6 @@ int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 	get_tokens(data, prompt, input);
 	if (!check_if_valid_tokens(data, prompt, prompt->tokens))
 		return (SYNTAX_ERROR);
-	is_it_quoted(prompt, prompt->tokens);
-	move_script_args_to_end(data, prompt, prompt->tokens);
 	if (!initial_expansion_process(data, prompt))
 		return (FAILURE);
 	simplify_tokens(data, prompt, prompt->tokens);
@@ -104,6 +102,7 @@ int	tokenizer(t_shell *data, t_prompt *prompt, char *input)
 	// 	return (FAILURE);
 	// else
 	// 	transform_tokens_logic(data, prompt, prompt->tokens);
+	// print_tokens_debug(&data->prompt);
 	expand_wildcards(data, prompt, prompt->tokens, INITIAL_PHASE);
 	if (!check_if_valid_tokens(data, prompt, prompt->tokens))
 		return (SYNTAX_ERROR);

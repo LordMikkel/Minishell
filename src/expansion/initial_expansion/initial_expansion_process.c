@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   initial_expansion_process.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 16:41:34 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/23 17:03:27 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/23 21:06:10 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../inc/minishell.h"
+#include "../../../inc/minishell.h"
 
 static void	search_value_in_tokens(t_token *tokens, char *str, int n_tokens, int i)
 {
@@ -54,8 +54,7 @@ static int	check_for_context(t_token *tokens, int i)
 {
 	while (i >= 0)
 	{
-		if (tokens[i].type == BUILT_IN
-				&& ft_strcmp(tokens[i].value, BUILTIN_EXPORT) == 0)
+		if (tokens[i].type == BUILT_IN && ft_strcmp(tokens[i].value, BUILTIN_EXPORT) == 0)
 			return (TRUE);
 		if (is_delimiter_type(tokens[i].type))
 			return (FALSE);
@@ -99,6 +98,7 @@ static void	dont_expand_this(t_shell *data, t_prompt *prompt, t_token *tokens)
 		i++;
 	}
 }
+
 static void	adjust_expansion(t_token *tokens, int n_tokens)
 {
 	int	i;
@@ -115,7 +115,6 @@ static void	adjust_expansion(t_token *tokens, int n_tokens)
 int	initial_expansion_process(t_shell *data, t_prompt *prompt)
 {
 	dont_expand_this(data, prompt, prompt->tokens);
-	create_before_tokens(data, prompt->tokens, prompt);
 	if (expansion(data, prompt->tokens, 0, INITIAL_PHASE) == ERROR)
 		return (FAILURE);
 	adjust_expansion(prompt->tokens, prompt->n_tokens);

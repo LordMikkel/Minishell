@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expansion_final_process.c                          :+:      :+:    :+:   */
+/*   final_expansion_process.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 19:04:23 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/21 16:08:01 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/24 00:00:21 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,19 +109,30 @@ static void	prepare_simplify(t_shell *data, t_prompt *prompt, t_token *tokens)
 	}
 }
 
-static int	if_theres_an_expan(t_token *start_t, t_token *tokens, t_prompt *p)
+int	if_theres_an_expan(t_node *node, t_token *tokens, t_prompt *prompt)
 {
 	int	i;
 
 	i = 0;
-	while (i < p->n_tokens && &tokens[i] != start_t)
+	while (i < prompt->n_tokens && &tokens[i] != node->token && !node->fake)
 		i++;
-	while (i < p->n_tokens)
+	while (i < prompt->n_tokens)
 	{
 		if (is_delimiter_type(tokens[i].type))
 			return (FALSE);
-		if (tokens[i].type == EXPANSION)
+		if (tokens[i].type == EXPANSION || tokens[i].type == FILENAME)
+		{
+			if (tokens[i].type == FILENAME)
+			{
+				if ((tokens[i].value[0] == '$')
+					&& (ft_strlen(tokens[i].value) >= 2
+						&& ischrkey(tokens[i].value[1])))
+					return (TRUE);
+				else
+					return (FALSE);
+			}
 			return (TRUE);
+		}
 		i++;
 	}
 	return (FALSE);
@@ -175,15 +186,16 @@ static int	if_theres_an_expan(t_token *start_t, t_token *tokens, t_prompt *p)
 	para poder seguir los procesos con afinidad.
 */
 
-int	expansion_final_process(t_shell *data, t_node *node)
+int	final_expansion_process(t_shell *data, t_node *node)
 {
 	int	i;
 
 	i = 0;
-	if (if_theres_an_expan(node->token, data->prompt.tokens, &data->prompt))
+	if (if_theres_an_expan(node, data->prompt.tokens, &data->prompt))
 	{
 		create_before_tokens(data, data->prompt.tokens, &data->prompt);
-		expansion(data, data->prompt.tokens, node->token->id, FINAL_PHASE);
+		if (!expansion(data, data->prompt.tokens, node->token->id, FINAL_PHASE))
+			return (SUCCESS);
 		if (data->prompt.n_tokens == 0)
 			return (FAILURE);
 		prepare_simplify(data, &data->prompt, data->prompt.tokens);
@@ -194,6 +206,8 @@ int	expansion_final_process(t_shell *data, t_node *node)
 		i = node->token->id;
 		if (node->args)
 			ft_free_str_array(&node->args);
+		// print_tokens_debug(&data->prompt);
+		// print_ast(data->ast_root);
 		expand_wildcards(data, &data->prompt, data->prompt.tokens, FINAL_PHASE);
 		node->args = get_args_for_binary(data, data->prompt.tokens, &i);
 	}
