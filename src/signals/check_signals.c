@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/18 02:47:16 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/17 15:43:32 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/23 02:52:35 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,24 @@
 
 int	check_signals(t_shell *data, t_redir *redir, char *line)
 {
-	if (g_signal[0] == SIG_INTERACTIVE)
+	if (data->mode == SIG_INTERACTIVE)
 	{
-		if (g_signal[1] == SIGINT)
+		if (g_signal == SIGINT)
 		{
 			data->exit_code = EXIT_CTRL_C;
-			g_signal[1] = VOID;
+			g_signal = VOID;
 			return (RECIVED_SIGNAL);
 		}
 	}
-	else if (g_signal[0] == SIG_HEREDOC)
+	else if (data->mode == SIG_HEREDOC)
 	{
-		if (g_signal[1] == SIGINT)
+		if (g_signal == SIGINT)
 		{
 			if (line)
 				free(line);
 			redir->signal = TRUE;
 			data->exit_code = EXIT_CTRL_C;
-			g_signal[1] = VOID;
+			g_signal = VOID;
 			return (RECIVED_SIGNAL);
 		}
 	}

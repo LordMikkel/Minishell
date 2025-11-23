@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 01:05:00 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 15:01:48 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/23 01:22:10 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 void	*lstlast_var(void *data, char type)
 {
 	t_var	*lst;
-	t_cmd	*cmd_lst;
 
 	if (!data)
 		return (NULL);
@@ -29,13 +28,6 @@ void	*lstlast_var(void *data, char type)
 		while (lst->next != NULL)
 			lst = lst->next;
 		return ((void *)lst);
-	}
-	else if (type == 'c')
-	{
-		cmd_lst = (t_cmd *)data;
-		while (cmd_lst->next != NULL)
-			cmd_lst = cmd_lst->next;
-		return ((void *)cmd_lst);
 	}
 	return (NULL);
 }
@@ -102,7 +94,9 @@ void	add_var_and_envp_alloc(t_shell *data, char *key, char *value, int type)
 		last_var->next = new_var;
 		new_var->prev = last_var;
 	}
-	return (data->env.size++, update_envp(data));
+	data->env.size++;
+	update_envp(data);
+	return ;
 }
 
 /*

@@ -6,7 +6,7 @@
 #    By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/11/23 16:54:22 by davdiaz-         ###   ########.fr        #
+#    Updated: 2025/11/23 17:47:45 by davdiaz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ NAME				= minishell
 #                            Compiler and Flags                                #
 # **************************************************************************** #
 CC					= cc
-WFLAGS				= -Wall -Wextra -Werror
+#WFLAGS				= -Wall -Wextra -Werror
 DFLAGS				= -g
 #OFLAGS				= -O1 -march=native -flto
 SFLAGS				= -fsanitize=address,undefined
@@ -87,7 +87,6 @@ SRCS =				main/main.c \
 					main/utils/time/print_time_of_day.c \
 					main/utils/time/print_minishell_title.c \
 					init/init_minishell.c \
-					init/utils/cmd_structure/add_node_rule.c \
 					init/utils/init/init_data.c \
 					init/utils/init/init_env.c \
 					init/utils/init/init_arg.c \
@@ -129,7 +128,6 @@ SRCS =				main/main.c \
 					tokenizer/utils/is_tokens/is_type_IV.c \
 					tokenizer/utils/is_tokens/utils_is_double_quote_I.c \
 					tokenizer/utils/is_tokens/utils_is_double_quote_II.c \
-					tokenizer/utils/is_tokens/handle_tilde_expansion.c \
 					tokenizer/utils/check_syntax/is_it_quoted.c \
 					tokenizer/utils/check_syntax/check_redir_input.c \
 					tokenizer/utils/check_syntax/check_redir_output.c \
@@ -174,6 +172,7 @@ SRCS =				main/main.c \
 					expansion/utils/find_swap/expand_empty_str.c \
 					expansion/utils/find_swap/is_it_symbol.c \
 					expansion/utils/find_swap/find_tilde_value.c \
+					expansion/utils/find_swap/handle_tilde_expansion.c \
 					expansion/utils/find_swap/wildcards/expand_wildcards.c \
 					expansion/utils/find_swap/wildcards/reorder_tokens_utils.c \
 					expansion/utils/find_swap/wildcards/process_wildcards.c \

@@ -31,6 +31,7 @@ export TES0T=123
 export tes$HOME
 export tes$sd
 ./minishell
+echo $?
 echo $/"$<"
 echo $/"$/"
 echo" "$USE.txt
@@ -60,9 +61,6 @@ cat tmp_lol.c | cat > tmp_lol.c
 export t*est=hola
 eche hola
 eche
-celar
-make
-echa
 sl
 slds
 sdv
@@ -125,16 +123,13 @@ export ba*
 echo $ba
 echo $b
 export var=ba*
-<<<<<<< HEAD
 $eef*ef
 $*asfas
-=======
 export test=file*
 export test=hola*
 export test=*file
 $test
 export *file
->>>>>>> 57e082b5e747adc80a67a5920c4a64ac8689dae9
 iyu
 rty
 erth
@@ -149,17 +144,14 @@ svs
 da
 vsv
 svasv
-sd
 va
 sv
 csa
 cleae
 d
-s
 echo $A
 echo $HOME
 /bin/echo ""$?""
-ls
 csld
 touch hola_mundo
 echo hola*
@@ -197,3 +189,47 @@ clear
 export A=1
 A=3; echo $A && A=4; echo $A; export A=0 && echo $A
 export
+sd
+esport
+expord
+espor
+s
+cd
+cd -
+./minishell
+celar
+git status
+ /usr/bin/env /bin/sh /tmp/Microsoft-MIEngine-Cmd-u453jqrd.gxk
+echo > $NADA
+ls > $NADA
+ls > *
+echo hola
+echo
+echo > *
+echo > ls
+echo > $NAFA
+echo > $HOME
+echo > $sd
+touch _hola
+touch hola_
+cat Make*
+cat make*
+echo _*
+echo hola*
+echo hola_*
+echo *hola_*
+echo *_hola_*
+echo *_hola
+export $a="'"
+export a="'"
+echo $a"hola"$a
+cat << EOF
+make
+sleep 10
+(sleep 10)
+clear
+<< EOG
+echa
+ls
+clcea
+rlr

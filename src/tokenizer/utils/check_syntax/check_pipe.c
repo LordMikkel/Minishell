@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 22:40:33 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/20 20:46:22 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/23 00:52:46 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,7 @@ int	check_pipe(t_shell *data, t_prompt *prompt, t_token *tokens, int i)
 	if (tokens[i].type == PIPE)
 	{
 		if (check_cases(prompt, tokens, i))
-		{
 			return (SUCCESS);
-		}
 		syntax_error(data, ERR_SYNTAX, EXIT_USE, tokens[i].value);
 		return (SYNTAX_ERROR);
 	}

@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:10 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/23 17:12:25 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/23 17:46:52 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ void	get_tokens(t_shell *data, t_prompt *prompt, char *input)
 		is_word(data, prompt, input, &i);
 		is_hash(input, &i);
 	}
+	is_it_quoted(&data->prompt, data->prompt.tokens);
+	move_script_args_to_end(data, &data->prompt, data->prompt.tokens);
+	create_before_tokens(data, data->prompt.tokens, &data->prompt);
 }
 
 /*

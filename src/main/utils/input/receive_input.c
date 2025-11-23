@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:42:00 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 20:47:42 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/23 01:30:04 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ int	display_info_shell_home(char *user, char *host, char *pwd, char **line)
 {
 	char	*display_shell;
 
-	display_shell = ft_strjoin_multi(9, FUSER, user, "@",
-			ft_strcut(host, '.'), FRESET, FPATH, "~", pwd, FEND);
+	display_shell = ft_strjoin_multi(9, FUSER, user, "@", ft_strcut(host, '.'), FRESET, FPATH, "~", pwd, FEND);
 	*line = ic_readline(display_shell);
 	free(display_shell);
 	return (SUCCESS);
@@ -39,8 +38,7 @@ int	display_info_shell_system(char *user, char *host, char *pwd, char **line)
 {
 	char	*display_shell;
 
-	display_shell = ft_strjoin_multi(8, FUSER, user, "@",
-			ft_strcut(host, '.'), FRESET, FPATH, pwd, FEND);
+	display_shell = ft_strjoin_multi(8, FUSER, user, "@", ft_strcut(host, '.'), FRESET, FPATH, pwd, FEND);
 	*line = ic_readline(display_shell);
 	free(display_shell);
 	return (SUCCESS);
@@ -94,26 +92,14 @@ char	*receive_input(t_shell *data, t_prompt *prompt)
 		terminal_readline(data, data->env.vars, line);
 	else
 	{
-		// ft_printf_fd(STDERR, ERR_STDIN); // se debe entregar asi para la eval
+		// ft_printf_fd(STDERR, ERR_STDIN);
 		line = get_next_line(fileno(stdin));
 		if (!line)
 			return (NULL);
 		prompt->input = ft_strtrim(line, "\n");
+		// prompt->input = ic_readline("");
 		free(line);
 	}
 	check_signals(data, NULL, NULL);
 	return (prompt->input);
 }
-
-// char	*receive_input(t_shell *data, t_prompt *prompt)
-// {
-// 	char	*line;
-
-// 	line = NULL;
-// 	if (isatty(fileno(stdin)))
-// 		terminal_readline(data, data->env.vars, line);
-// 	else
-// 		return (ft_printf_fd(STDERR, ERR_STDIN), NULL);
-// 	check_signals(data, NULL, NULL);
-// 	return (prompt->input);
-// }

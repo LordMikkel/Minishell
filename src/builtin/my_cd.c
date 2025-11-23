@@ -6,7 +6,7 @@
 /*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 17:12:22 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/23 11:26:56 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/23 17:47:55 by davdiaz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,8 @@ static int	validate_and_move(t_shell *data, t_var *vars, char *new_dir)
 	if (!getcwd(new_cwd, sizeof(new_cwd)))
 		return (perror("minishell: cd: "), EXIT_FAILURE);
 	update_var(data, old_cwd, "OLDPWD");
-	return (update_var(data, new_cwd, "PWD"), OK);
+	update_var(data, new_cwd, "PWD");
+	return (OK);
 }
 
 /*

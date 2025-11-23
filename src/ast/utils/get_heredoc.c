@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/11 04:19:38 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 20:48:03 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/23 02:50:59 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	save_heredoc_line(t_shell *data, t_redir *redir, char *line)
 	n_line = 0;
 	while (42)
 	{
-		setup_signals_heredoc();
+		setup_signals_heredoc(data);
 		if (isatty(fileno(stdin)))
 			line = ic_readline("> ");
 		else
@@ -60,6 +60,7 @@ int	save_heredoc_line(t_shell *data, t_redir *redir, char *line)
 			if (!tmp)
 				break ;
 			line = ft_strtrim(tmp, "\n");
+			// line = ic_readline("");
 			free(tmp);
 		}
 		if (!line)
@@ -78,32 +79,6 @@ int	save_heredoc_line(t_shell *data, t_redir *redir, char *line)
 	return (OK);
 }
 
-// int	loop_heredoc(t_shell *data, t_redir *redir, char *delimiter)
-// {
-// 	char	*line;
-// 	int		n_line;
-
-// 	n_line = 0;
-// 	while (42)
-// 	{
-// 		setup_signals_heredoc();
-// 		if (isatty(fileno(stdin)))
-// 			line = ic_readline("> ");
-// 		else
-// 			return (ft_printf_fd(STDERR, ERR_STDIN), ERROR);
-// 		if (!line)
-// 			return (ft_printf_fd(STDERR, ERR_HEREDOC_EOF, n_line, delimiter));
-// 		if (ft_strcmp(line, delimiter) == 0)
-// 			return (free(line), OK);
-// 		if (check_signals(data, redir, line) == RECIVED_SIGNAL)
-// 			return (RECIVED_SIGNAL);
-// 		if (save_heredoc_line(data, redir, line) == ERROR)
-// 			return (ERROR);
-// 		n_line++;
-// 	}
-// 	return (OK);
-// }
-
 /*
  *	Funcion de control principal para iniciar la captura del heredoc.
  *	si el dilimitador no estaba entre comillas marca la redireccion
@@ -117,7 +92,7 @@ int	get_heredoc(t_shell *data, t_redir *redir, char *delimiter, int expansion)
 	if (expansion == TRUE)
 		redir->expand = TRUE;
 	if (loop_heredoc(data, redir, delimiter) == ERROR)
-		return (setup_signals_interactive(), ERROR);
-	setup_signals_interactive();
+		return (setup_signals_interactive(data), ERROR);
+	setup_signals_interactive(data);
 	return (SUCCESS);
 }
