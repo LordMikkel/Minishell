@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/11 04:19:38 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/23 02:50:59 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/23 23:11:37 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	save_heredoc_line(t_shell *data, t_redir *redir, char *line)
  * 	eñal o EOF, el bucle se interrumpe y retorna el estado.
  */
 
- int	loop_heredoc(t_shell *data, t_redir *redir, char *delimiter)
+int	loop_heredoc(t_shell *data, t_redir *redir, char *delimiter)
 {
 	char	*tmp;
 	char	*line;

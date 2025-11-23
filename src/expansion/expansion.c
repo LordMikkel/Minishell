@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:57:33 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/23 15:19:33 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/23 20:46:08 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static int	tokens_size_has_changed(int *original_size, int new_size)
 
 static int	check_for_heredoc(t_token *tokens, int i)
 {
-	if ((i > 1 && tokens[i - 1].type == REDIR_HEREDOC)
+	if ((i >= 1 && tokens[i - 1].type == REDIR_HEREDOC)
 		|| (i >= 2 && is_quote_type(tokens[i - 1].type)
 			&& tokens[i - 2].type == REDIR_HEREDOC))
 		return (TRUE);
@@ -82,7 +82,8 @@ int	expansion(t_shell *data, t_token *tokens, int i, int phase)
 	{
 		if (phase == FINAL_PHASE && is_delimiter_type(tokens[i].type))
 			return (SUCCESS);
-		if (tokens[i].type == EXPANSION && tokens[i].expand)
+		if ((tokens[i].type == EXPANSION && tokens[i].expand)
+			|| (tokens[i].type == FILENAME && !tokens[i].single_quoted))
 		{
 			if (check_for_heredoc(tokens, i))
 			{

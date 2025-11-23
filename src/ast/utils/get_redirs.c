@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 20:59:47 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/23 01:49:20 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/23 22:27:26 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_redir	*add_redir(t_shell *data, t_redir *lst, t_token *token, char *filename)
 		return (error_status_redirs(data, &lst, ERR_MALLOC));
 	redir->type = token->type;
 	redir->filename = ft_strdup(filename);
-	redir->filename_hash = token->hash;
+	redir->filename_hash = token[+1].hash;
 	if (!redir->filename)
 		return (free(redir), error_status_redirs(data, &lst, ERR_MALLOC));
 	if (ft_isdigit(token->value[0]))

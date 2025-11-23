@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/23 17:54:33 by davdiaz-         ###   ########.fr       */
+/*   Updated: 2025/11/23 23:09:49 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,7 +249,7 @@ t_redir	*get_redirs(t_shell *data, t_token *tokens, int *i, int mode);
 char	*get_path(t_shell *data, char *cmd, char **envp);
 int		apply_redirs(t_shell *data, t_node *node, int mode);
 int		check_ambiguous_redir(t_shell *data, t_redir *redir, int mode);
-int		expansion_final_process(t_shell *data, t_node *node);
+int		final_expansion_process(t_shell *data, t_node *node);
 void	which_builtin(t_shell *data, t_token *token, t_node *node);
 int		apply_properties(t_shell *data, t_node *node, int mode);
 void	apply_temp_asig(t_shell *data, t_token *tokens, t_node *node);
@@ -258,7 +258,7 @@ void	apply_temp_asig(t_shell *data, t_token *tokens, t_node *node);
 int		set_arr(t_shell *data, char ***arr, int i, int *count);
 int		process_expansion_token(t_shell *data, t_token *token, int phase);
 int		copy_key(char *buffer, char **key_to_find, int *type);
-int		find_key_in_lst(t_shell *d, t_token *t, char **key_to_f, int phase);
+int		find_key_in_lst(t_shell *d, t_token *t, char **key_to_find, int phase);
 int		is_it_tilde(t_shell *data, t_token *token, char **key_to_find);
 int		extract_key(t_shell *d, t_token *t, char **key_to_f, int phase);
 int		is_it_symbol(t_shell *data, t_token *token, char **key_to_find);
@@ -269,7 +269,6 @@ void	create_before_tokens(t_shell *d, t_token *tokens, t_prompt *prompt);
 void	move_script_args_to_end(t_shell *data, t_prompt *p, t_token *tokens);
 void	reconect_nodes_tokens(t_shell *data, t_node *node, t_token *tokens);
 int		initial_expansion_process(t_shell *d, t_prompt *prompt);
-
 
 //EXPANSION_WILDCARDS
 int		process_wildcard(t_shell *data, t_token *token);
@@ -343,8 +342,6 @@ void	clean_quote_until_slash_d(char *word, char *clean_word, char quote);
 char	*clean_slash_expan_d(t_shell *data, char *word, int len, char slash);
 char	*cleanner_slash_quotes_d(t_shell *data, char *word, int len, int *flag);
 int		is_escapable_char(char c);
-
-
 
 //BUILT_IN
 int		check_arg_syntax(char *arg, const char *built_in_err);

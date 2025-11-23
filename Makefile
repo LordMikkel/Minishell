@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: davdiaz- <davdiaz-@student.42barcelona.    +#+  +:+       +#+         #
+#    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/11/23 17:47:45 by davdiaz-         ###   ########.fr        #
+#    Updated: 2025/11/23 19:48:19 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ NAME				= minishell
 #                            Compiler and Flags                                #
 # **************************************************************************** #
 CC					= cc
-#WFLAGS				= -Wall -Wextra -Werror
+WFLAGS				= -Wall -Wextra -Werror
 DFLAGS				= -g
 #OFLAGS				= -O1 -march=native -flto
 SFLAGS				= -fsanitize=address,undefined
@@ -144,7 +144,6 @@ SRCS =				main/main.c \
 					tokenizer/utils/check_syntax/check_cmd_externs.c \
 					tokenizer/utils/check_syntax/check_full_line_syntax.c \
 					tokenizer/utils/check_syntax/check_ambiguous_redir.c \
-					tokenizer/utils/initial_expansion/initial_expansion_process.c \
 					tokenizer/utils/simplify_tokens/simplify_tokens.c \
 					tokenizer/utils/simplify_tokens/reorganize_tokens.c \
 					tokenizer/utils/simplify_tokens/adjust_range_tokens.c \
@@ -164,6 +163,8 @@ SRCS =				main/main.c \
 					tokenizer/utils/cmd_sugestion/cmd_correction.c \
 					tokenizer/utils/cmd_sugestion/cmd_correction_utils.c \
 					expansion/expansion.c \
+					expansion/initial_expansion/initial_expansion_process.c \
+					expansion/final_expansion/final_expansion_process.c \
 					expansion/utils/find_swap/copy_key.c \
 					expansion/utils/find_swap/copy_value.c \
 					expansion/utils/find_swap/process_expansion_token.c \
@@ -218,7 +219,6 @@ SRCS =				main/main.c \
 					executor/utils/apply_properties.c \
 					executor/utils/apply_redirs.c \
 					executor/utils/apply_temp_asig.c \
-					executor/utils/expansion_final_process.c \
 					executor/utils/reconect_nodes_tokens.c \
 					signals/setup_signals.c \
 					signals/handler_signals.c \
