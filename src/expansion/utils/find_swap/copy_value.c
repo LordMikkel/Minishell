@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:22:59 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 15:07:47 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/23 01:05:16 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,7 @@ static void	expand(char *token_val, char **buffer, char *value, char *key)
 	after_var_to_replace = ft_strlen(dollar_ptr + 1 + key_len);
 	ft_memcpy(*buffer, token_val, before_var_to_replace);
 	ft_memcpy(*buffer + before_var_to_replace, value, ft_strlen(value));
-	ft_memcpy(*buffer + before_var_to_replace + ft_strlen(value),
-		dollar_ptr + 1 + key_len, after_var_to_replace);
+	ft_memcpy(*buffer + before_var_to_replace + ft_strlen(value), dollar_ptr + 1 + key_len, after_var_to_replace);
 }
 
 /*

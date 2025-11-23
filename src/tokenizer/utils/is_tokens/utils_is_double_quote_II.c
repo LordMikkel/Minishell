@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 20:34:54 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 15:54:25 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/23 00:50:53 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,4 @@ int	ischrkey(int c)
 int	is_escapable_char(char c)
 {
 	return (c == '\"' || c == '\\' || c == '`' || c == '\n');
-}
-
-void	copy_escaped_and_advance(char *word, char *clean_word, int *j, int *k)
-{
-	clean_word[(*k)++] = word[(*j) + 1];
-	*j += 2;
 }

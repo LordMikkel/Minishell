@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 19:12:37 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/23 02:48:46 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ struct	s_redir
 	t_type		type;
 	char		*filename;
 	char		*delimiter;
+	int			filename_hash;
 	int			fd_redir;
 	int			fd_heredoc;
 	t_list		*heredoc_lines;
@@ -155,15 +156,6 @@ struct s_node
 	bool		fake;
 	bool		background;
 	bool		executed;
-};
-
-struct s_cmd
-{
-	char	*value;
-	char	*alias;
-	int		active;
-	t_cmd	*prev;
-	t_cmd	*next;
 };
 
 typedef struct s_builtin
@@ -190,6 +182,7 @@ typedef struct s_shell
 	t_builtin	builtins;
 	t_extras	extras;
 	int			history_fd;
+	int			mode;
 	bool		error_state;
 	int			exit_code;
 }	t_shell;

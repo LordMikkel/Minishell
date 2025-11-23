@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 21:34:18 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/21 15:39:54 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/23 00:46:53 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	ask_confirmation(t_shell *data, t_token *token, char *built_in)
 		ft_printf_fd(1, ASK_CONFIRMATION, built_in);
 		ptr = ic_readline(PROMPT_CMD);
 		if (!ptr)
-			exit_error(data, NULL, EXIT_FATAL_SIGNAL);
+			return (FAILURE);
 		if (check_signals(data, NULL, NULL))
 		{
 			free (ptr);

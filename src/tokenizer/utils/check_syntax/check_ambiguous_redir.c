@@ -6,22 +6,34 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 01:02:29 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 02:08:28 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/23 03:12:26 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/minishell.h"
 
-int	check_ambiguous_redir(t_shell *data, const char *filename, int mode)
+int	check_ambiguous_redir(t_shell *data, t_redir *redir, int mode)
 {
-	if (!filename)
+	t_prompt prompt;
+
+	prompt = data->prompt;
+	if (redir->type == REDIR_HEREDOC);
+		return (OK);
+	if (!redir->filename)
 		return (FAIL);
-	if (filename[0] == '*' && filename[1] == '\0')
+	if (redir->filename[0] == '*' && redir->filename[1] == '\0')
 	{
 		if (mode == CHILD)
-			return (exit_error(data, ERR_AMBIGUOUS_REDIR, EXIT_FAILURE));
+			return (exit_error(data, ERR_AMBIGUOUS_REDIR, EXIT_FAILURE, "*"));
 		if (mode == FATHER || mode == SUBSHELL)
-			return (FAIL);
+			return (ft_printf_fd(STDERR, ERR_AMBIGUOUS_REDIR, "*"), FAIL);
+	}
+	else if (redir->filename[0] == '$' && ischrkey(redir->filename[1]))
+	{
+		if (mode == CHILD)
+			return (exit_error(data, ERR_AMBIGUOUS_REDIR, EXIT_FAILURE, redir->filename));
+		if (mode == FATHER)
+			return (ft_printf_fd(STDERR, ERR_AMBIGUOUS_REDIR, redir->filename), FAIL);
 	}
 	return (OK);
 }

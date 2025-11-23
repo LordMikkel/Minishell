@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 17:12:22 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/21 15:41:28 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/23 01:25:12 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,8 @@ static int	validate_and_move(t_shell *data, t_var *vars, char *new_dir)
 	if (!getcwd(new_cwd, sizeof(new_cwd)))
 		return (perror("minishell: cd: "), EXIT_FAILURE);
 	update_var(data, old_cwd, "OLDPWD");
-	return (update_var(data, new_cwd, "PWD"), OK);
+	update_var(data, new_cwd, "PWD");
+	return (OK);
 }
 
 /*
@@ -125,7 +126,7 @@ static int	find_home_and_move(t_shell *data)
 	if (!home)
 		return (ft_printf_fd(STDERR, ERR_HOME_NOT_SET), EXIT_FAILURE);
 	result = validate_and_move(data, data->env.vars, home);
-	return (SUCCESS);
+	return (result);
 }
 
 /*

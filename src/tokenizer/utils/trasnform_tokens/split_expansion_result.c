@@ -6,21 +6,11 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 23:19:18 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/21 00:01:13 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/23 01:45:26 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/minishell.h"
-
-static int	if_was_expansion(t_prompt *prompt, t_token *tokens, int i)
-{
-	if (prompt->before_tokens_type[i] == EXPANSION && tokens[i].type == WORD
-		&& !tokens[i].double_quoted && !tokens[i].single_quoted
-		&& (ft_strchr(tokens[i].value, ' ')
-			|| ft_strchr(tokens[i].value, '\t')))
-		return (TRUE);
-	return (FALSE);
-}
 
 /*
 	En esta función se hace lo mismo que se hace en expansion_final_process.
@@ -45,6 +35,16 @@ static void	update_info(t_prompt *prompt, char **arr, int count, int *i)
 	adjust_id(prompt->tokens, prompt->n_tokens);
 	*i += count;
 	ft_free_str_array(&arr);
+}
+
+static int	if_was_expansion(t_prompt *prompt, t_token *tokens, int i)
+{
+	if (prompt->before_tokens_type[i] == EXPANSION && tokens[i].type == WORD
+		&& !tokens[i].double_quoted && !tokens[i].single_quoted
+		&& (ft_strchr(tokens[i].value, ' ')
+			|| ft_strchr(tokens[i].value, '\t')))
+		return (TRUE);
+	return (FALSE);
 }
 
 void	split_expansion_result(t_shell *data, t_prompt *prompt, t_token *tokens)

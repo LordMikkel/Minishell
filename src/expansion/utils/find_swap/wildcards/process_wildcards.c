@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 16:18:03 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/20 23:54:52 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/23 02:16:00 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	matches(t_shell *dat, t_token *token, t_wild *wildcard, int *n_dirs)
 	if (*n_dirs > 1 && token->id > 0 && is_redir_type(token[-1].type))
 	{
 		free_wildcard(&token->wildcard_info);
-		syntax_error(dat, ERR_AMBIGUOUS_REDIR, EXIT_FAILURE);
+		syntax_error(dat, ERR_AMBIGUOUS_REDIR, EXIT_FAILURE, "*");
 		return (FAILURE);
 	}
 	return (SUCCESS);
