@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:42:00 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/24 22:48:19 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/25 23:24:36 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,22 @@ void	terminal_readline(t_shell *data, t_var *vars, char *line)
 // 	Verifica el estado de las señales antes de devolver la entrada.
 // */
 
+# if defined MAIN
+char	*receive_input(t_shell *data, t_prompt *prompt)
+{
+	char	*line;
+
+	line = NULL;
+	if (isatty(fileno(stdin)))
+		terminal_readline(data, data->env.vars, line);
+	else
+		prompt->input = ic_readline("");
+	check_signals(data, NULL, NULL);
+	return (prompt->input);
+}
+# endif
+
+# if defined MSTEST
 char	*receive_input(t_shell *data, t_prompt *prompt)
 {
 	char	*line;
@@ -92,14 +108,13 @@ char	*receive_input(t_shell *data, t_prompt *prompt)
 		terminal_readline(data, data->env.vars, line);
 	else
 	{
-		// ft_printf_fd(STDERR, ERR_STDIN);
 		line = get_next_line(fileno(stdin));
 		if (!line)
 			return (NULL);
 		prompt->input = ft_strtrim(line, "\n");
-		// prompt->input = ic_readline("");
 		free(line);
 	}
 	check_signals(data, NULL, NULL);
 	return (prompt->input);
 }
+# endif

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/11 04:19:38 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/23 23:11:37 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/25 23:21:04 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,38 @@ int	save_heredoc_line(t_shell *data, t_redir *redir, char *line)
  * 	eñal o EOF, el bucle se interrumpe y retorna el estado.
  */
 
+# ifdef MAIN
+int	loop_heredoc(t_shell *data, t_redir *redir, char *delimiter)
+{
+	char	*line;
+	int		n_line;
+
+	n_line = 0;
+	while (42)
+	{
+		setup_signals_heredoc(data);
+		if (isatty(fileno(stdin)))
+			line = ic_readline("> ");
+		else
+			line = ic_readline("");
+		if (!line)
+			return (ft_printf_fd(STDERR, ERR_HEREDOC_EOF, n_line, delimiter));
+		if (ft_strcmp(line, delimiter) == 0)
+		{
+			free(line);
+			break ;
+		}
+		if (check_signals(data, redir, line) == RECIVED_SIGNAL)
+			return (RECIVED_SIGNAL);
+		if (save_heredoc_line(data, redir, line) == ERROR)
+			return (ERROR);
+		n_line++;
+	}
+	return (OK);
+}
+# endif
+
+# ifdef MSTEST
 int	loop_heredoc(t_shell *data, t_redir *redir, char *delimiter)
 {
 	char	*tmp;
@@ -55,12 +87,10 @@ int	loop_heredoc(t_shell *data, t_redir *redir, char *delimiter)
 			line = ic_readline("> ");
 		else
 		{
-			// return (ft_printf_fd(STDERR, ERR_STDIN), ERROR);
 			tmp = get_next_line(fileno(stdin));
 			if (!tmp)
 				break ;
 			line = ft_strtrim(tmp, "\n");
-			// line = ic_readline("");
 			free(tmp);
 		}
 		if (!line)
@@ -78,6 +108,7 @@ int	loop_heredoc(t_shell *data, t_redir *redir, char *delimiter)
 	}
 	return (OK);
 }
+# endif
 
 /*
  *	Funcion de control principal para iniciar la captura del heredoc.

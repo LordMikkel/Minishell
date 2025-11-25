@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/11/25 03:04:38 by migarrid         ###   ########.fr        #
+#    Updated: 2025/11/25 23:26:16 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ NAME				= minishell
 #                            Compiler and Flags                                #
 # **************************************************************************** #
 CC					= cc
-WFLAGS				= -Wall -Wextra #-Werror
+WFLAGS				= -Wall -Wextra -Werror
 DFLAGS				= -g
 DMAIN				= -D MAIN
 #VFLAGS				= -O1 -march=native -flto
@@ -297,7 +297,7 @@ $(ISOCLINE_A):
 
 # Test minishell rapidly
 test: fclean
-	@$(MAKE) --no-print-directory DMAIN=
+	@$(MAKE) --no-print-directory DMAIN="-D MSTEST"
 
 # Test leaks in minishell
 leaks:

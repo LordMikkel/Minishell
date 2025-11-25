@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 20:29:52 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/20 22:32:17 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/25 17:07:50 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ t_node	*special_cases(t_shell *data, t_token *tokens, int *i, int n_tokens)
 			return (NULL);
 		central->redir = get_redirs(data, tokens, i, TRUE);
 		central->background = get_background(tokens, n_tokens, i);
+		if (data->error_state == TRUE || check_signal_node_heredoc(central))
+			return (clean_node(&central), NULL);
 		return (central);
 	}
 	return (NULL);
