@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:10 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/24 21:46:44 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/28 23:49:44 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	get_tokens(t_shell *data, t_prompt *prompt, char *input)
 	int	i;
 
 	i = 0;
+	if (!input || i > prompt->len)
+		return ;
 	while (input[i] != '\0')
 	{
 		is_not_token(input, &i);

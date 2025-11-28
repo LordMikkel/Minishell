@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:42:00 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/25 23:24:36 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/28 23:49:33 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,10 @@ char	*receive_input(t_shell *data, t_prompt *prompt)
 	if (isatty(fileno(stdin)))
 		terminal_readline(data, data->env.vars, line);
 	else
+	{
 		prompt->input = ic_readline("");
+		prompt->len = ft_strlen(prompt->input);
+	}
 	check_signals(data, NULL, NULL);
 	return (prompt->input);
 }
@@ -112,6 +115,7 @@ char	*receive_input(t_shell *data, t_prompt *prompt)
 		if (!line)
 			return (NULL);
 		prompt->input = ft_strtrim(line, "\n");
+		prompt->len = ft_strlen(line);
 		free(line);
 	}
 	check_signals(data, NULL, NULL);

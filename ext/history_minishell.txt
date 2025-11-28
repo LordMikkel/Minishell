@@ -8,7 +8,6 @@ sclls
 sdd
 c
 sd
-d
 pwt
 l
 esport
@@ -25,10 +24,13 @@ echo 1
 bash
 pwd
 wc
-s
 sc
 ssl
 slc
 ls
 clear
 /bin/echo ""$?""
+sdc
+d
+sdsc
+s
