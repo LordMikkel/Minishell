@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:41 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 19:19:03 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/11/28 23:53:17 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static char	*normalize_wildcards(t_shell *data, char *wildcard, int len)
 		clean_wildcar[k++] = wildcard[j];
 		if (wildcard[j] == '*')
 		{
-			while (wildcard[j + 1] == '*')
+			while (wildcard[j + 1] && wildcard[j + 1] == '*')
 				j++;
 		}
 		j++;
