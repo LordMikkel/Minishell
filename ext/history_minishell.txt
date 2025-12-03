@@ -27,10 +27,10 @@ wc
 sc
 ssl
 slc
-ls
-clear
 /bin/echo ""$?""
 sdc
 d
 sdsc
 s
+clear
+ls

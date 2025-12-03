@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
+#    By: king <king@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/11/25 23:26:16 by migarrid         ###   ########.fr        #
+#    Updated: 2025/12/03 01:00:23 by king             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,6 @@ LIBFT_MAKEFILE		= $(LIBFT_DIR)/Makefile
 ISOCLINE_A			= $(ISOCLINE_DIR)/build/release/libisocline.a
 ISOCLINE_H			= $(ISOCLINE_DIR)/include/isocline.h
 DEPS				= $(HEADER) $(MAKEFILE) $(LIBFT_H) $(LIBFT_MAKEFILE)
-LDLIBS				= -lreadline -lhistory -ltermcap
 
 # **************************************************************************** #
 #                                   Colors                                     #
