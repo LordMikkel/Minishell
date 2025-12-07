@@ -59,27 +59,7 @@ This hierarchical approach allows constructs like `(ls | wc) && echo "done"; sle
 
 ## ⚙️ 3. Core Components: The AST & Execution
 
-```
-#include "../../inc/minishell.h"
-
-int	main(int argc, char **argv, char **envp)
-{
-	t_shell	data;
-
-	init_minishell(&data, argc, argv, envp);
-	while (receive_input(&data, &data.prompt) != NULL)
-	{
-		if (!tokenizer(&data, &data.prompt, data.prompt.input))
-			continue ;
-		ast_builder(&data, data.prompt.tokens, data.prompt.n_tokens);
-		executor_recursive(&data, data.ast_root, &data.exec, FATHER);
-		clean_cycle(&data.exec, &data.prompt, &data.ast_root);
-	}
-	exit_succes(&data, MSG_GOODBYE, data.exit_code);
-	return (data.exit_code);
-}
-
-```
+![Minishell Main](.img/main.png)
 
 ### 3.1. Abstract Syntax Tree (AST) Builder
 
@@ -254,7 +234,7 @@ Executed only upon `exit` or fatal error.
 
 To ensure system robustness we tested our Minishell to intensive automated testing using the community-standard 42_minishell_tester suite. Our customized testing regimen covered everything from basic command execution to edge cases like signal handling, complex pipe chains, and memory leak detection via Valgrind.
 
-### 🏆 Test Results Summary
+###  Test Results Summary
 The implementation successfully passed all validation criteria: ✅ +2566 mandatory tests and ✅ +201 bonus tests.
 
 
