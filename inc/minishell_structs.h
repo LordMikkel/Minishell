@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_structs.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: king <king@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/28 23:48:19 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/12/07 21:19:05 by king             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ typedef enum e_type
 	SUBSHELL,
 	SHELL,
 	TEMP_PLUS_ASIGNATION,
-	NEW_TOKEN_TO_ORGANIZE,
 	DONT_ELIMINATE,
 	SCRIPT_ARG,
 }	t_type;

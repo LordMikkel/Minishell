@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_tokens_debug.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: king <king@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:50:14 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/23 01:28:04 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/12/07 21:19:08 by king             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ const char	*g_type_names[] = {
 	"SUBSHELL",
 	"SHELL",
 	"TEMP_PLUS_ASIGNATION",
-	"NEW_TOKEN_TO_ORGANIZE",
 	"DONT_ELIMINATE",
 	"SCRIPT_ARG",
 };
