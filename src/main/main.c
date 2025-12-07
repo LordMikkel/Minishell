@@ -6,7 +6,7 @@
 /*   By: king <king@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:17:43 by migarrid          #+#    #+#             */
-/*   Updated: 2025/12/03 12:45:31 by king             ###   ########.fr       */
+/*   Updated: 2025/12/08 00:20:30 by king             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
  *	usuario, tokeniza, construye el AST y ejecuta los comandos. Limpia la
  *	memoria tras cada ciclo y termina con `exit_succes` al salir.
 */
+
+#include "../../inc/minishell.h"
 
 int	main(int argc, char **argv, char **envp)
 {
