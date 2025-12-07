@@ -2,12 +2,14 @@
 
 Minishell is a robust POSIX-compatible command interpreter implementation, developed entirely in C as part of 42 School's advanced curriculum.
 
-This project represents a significant milestone for me (@migarrid) and my parthner @davdiaz-: it is our first large-scale collaborative development (10,000+ lines of personal code), designed to delve deep into Unix system architecture, process management, and compiler theory. Unlike basic academic implementations, this shell has been engineered with a focus on user experience (UX), memory stability and optimization, and a scalable AST-based architecture.
+This project represents a significant milestone for me [@LordMikkel](https://github.com/LordMikkel) and my partner [@David-dbd](https://github.com/David-dbd): it is our first large-scale collaborative development (10,000+ lines of personal code), designed to delve deep into Unix system architecture, process management, and compiler theory. Unlike basic academic implementations, this shell has been engineered with a focus on user experience (UX), memory stability and optimization, and a scalable AST-based architecture.
+
+<p align="center"> <img src=".img/score.png" alt="alt text" /> </p>
 
 ## 📥 0. Installation & Usage
 
 ```bash
-git clone https://github.com/your_username/minishell.git
+git clone https://github.com/LordMikkel/Minishell.git
 cd minishell
 make
 ./minishell
@@ -235,8 +237,9 @@ Executed only upon `exit` or fatal error.
 To ensure system robustness we tested our Minishell to intensive automated testing using the community-standard 42_minishell_tester suite. Our customized testing regimen covered everything from basic command execution to edge cases like signal handling, complex pipe chains, and memory leak detection via Valgrind.
 
 ###  Test Results Summary
-The implementation successfully passed all validation criteria: ✅ +2566 mandatory tests and ✅ +201 bonus tests.
-
+The implementation successfully passed all validation criteria:
+* **Mandatory Tests:** ✅ +2566 mandatory tests
+* **Bonus Tests:**✅ +201 bonus tests.
 
 ## ✍️ Credits
 
