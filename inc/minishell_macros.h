@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_macros.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: king <king@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:23:16 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/23 21:04:30 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/12/08 15:49:08 by king             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,7 +187,6 @@ Exec format error\n"
 
 //Syntax Errors
 # define ERR_SYNTAX		"minishell: syntax error near unexpected token `%s'\n"
-# define ERR_COMPLETE	"minishell: syntax error near command completion\n"
 # define ERR_SYNTAX_EOF		"minishell: syntax error: unexpected end of file\n"
 # define ERR_HEREDOC_EOF	"minishell: warning: here-document at line %d \
 delimited by end-of-file (wanted `%s')\n"
