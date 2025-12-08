@@ -4,7 +4,7 @@
 	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
 	"version": "0.2.0",
 	"configurations": [
-		// Configuración principal para debug
+		// Principal Configuration for Debug
 		{
 			"name": "Debug Minishell",
 			"type": "cppdbg",
@@ -29,7 +29,7 @@
 				"engineLogging": false
 			}
 		},
-		// Configuración para simular envp NULL
+		// Configuration to simulate envp NULL
 		{
 			"name": "Debug Minishell with empty env (env -i)",
 			"type": "cppdbg",
@@ -54,7 +54,7 @@
 				"engineLogging": false
 			}
 		},
-		// Configuración para entrada de archivo como prompt sin env
+		// Configuration to pass scripst with empty env
 		{
 			"name": "Debug Minishell with File",
 			"type": "cppdbg",
@@ -75,7 +75,7 @@
 			],
 			"preLaunchTask": "build"
 		},
-		// Configuración para entrada en los chids
+		// Configuration to follow childs after fork
 		{
 			"name": "Debug Minishell (Follow Childs)",
 			"type": "cppdbg",

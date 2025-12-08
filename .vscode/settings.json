@@ -1,5 +1,5 @@
 {
-	// Editor general
+	// General editor
 	"editor.acceptSuggestionOnEnter": "on",
 	"editor.tabSize": 4,
 	"editor.insertSpaces": false,
@@ -7,8 +7,16 @@
 	"editor.renderWhitespace": "boundary",
 	"files.trimTrailingWhitespace": true,
 	"files.insertFinalNewline": true,
+	"editor.rulers": [80],
+	"editor.wordWrap": "off",
+	"editor.bracketPairColorization.enabled": true,
+	"editor.guides.bracketPairs": false,
+	"workbench.colorCustomizations":
+	{
+		"editorRuler.foreground": "#2b2929"
+	},
 
-	// Asociaciones de archivos
+	// File Associations
 	"files.associations":
 	{
 		"*.h": "c",
@@ -48,7 +56,7 @@
 		"cmath": "c"
 	},
 
-	// Configuración C/C++
+	// Configuration C/C++
 	"C_Cpp.default.cStandard": "c99",
 	"C_Cpp.default.compilerPath": "/usr/bin/clang",
 	"C_Cpp.errorSquiggles": "enabled",
@@ -59,7 +67,7 @@
 	"cmake.ignoreCMakeListsMissing": true,
 	"C_Cpp.enhancedColorization": "enabled",
 
-	// Configuración Debug Visualizer para C
+	// Configuration Debug Visualizer for C
 	"debugVisualizer.debugAdapterConfigurations":
 	{
 		"cppdbg":
@@ -69,14 +77,4 @@
 		}
 	},
 	"debugVisualizer.useChromeKioskMode": true,
-
-	// Editor general
-	"editor.rulers": [80],
-	"editor.wordWrap": "off",
-	"editor.bracketPairColorization.enabled": true,
-	"editor.guides.bracketPairs": false,
-	"workbench.colorCustomizations":
-	{
-		"editorRuler.foreground": "#2b2929"
-	}
 }
