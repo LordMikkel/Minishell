@@ -216,8 +216,6 @@ The entire shell state is managed through a main `t_shell` data structure passed
 ### Bonus Features
 We went beyond academic requirements to create a robust and pleasant-to-use tool:
 
-![Bonus Features](.img/bonus_features_minishell.gif)
-
 * **Script Execution:** The shell supports non-interactive mode, allowing it to interpret and execute command files directly (e.g., `./minishell script.sh`), acting as a functional script interpreter.
 * **Advanced Redirections:** Full support for file descriptor manipulation (e.g., `2>`, `2>&1`), giving the user granular control over standard error and output streams.
 * **Background Processes (`&`):** Implementation of asynchronous execution. The shell correctly forks and detaches processes to the background, allowing the user to continue interacting with the prompt immediately.
@@ -232,6 +230,8 @@ We went beyond academic requirements to create a robust and pleasant-to-use tool
     * Current directory (PWD).
     * User and Hostname.
     * Harmonized color theme and visual feedback of the last command's status.
+
+![Bonus Features](.img/bonus_features_minishell.gif)
 
 ## 🧠 5. Technical Complexity
 

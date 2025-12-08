@@ -9,6 +9,7 @@
 *.DS_Store
 ./obj
 minishell
+*.mp4
 
 # Exceptions
 !CMakeLists.txt
