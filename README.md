@@ -212,7 +212,7 @@ The entire shell state is managed through a main `t_shell` data structure passed
 We went beyond academic requirements to create a robust and pleasant-to-use tool:
 
 * **Script Execution:** The shell supports non-interactive mode, allowing it to interpret and execute command files directly (e.g., `./minishell script.sh`), acting as a functional script interpreter.
-* **Advanced Redirections:** Full support for file descriptor manipulation (e.g., `2>`, `2>&1`), giving the user granular control over standard error and output streams.
+* **Advanced Redirections:** Full support for file descriptor manipulation (`2>`), giving the user granular control over standard error and output streams.
 * **Background Processes (`&`):** Implementation of asynchronous execution. The shell correctly forks and detaches processes to the background, allowing the user to continue interacting with the prompt immediately.
 * **Sequential Logic (`;`):** Support for the semicolon separator allows chaining multiple independent commands in a single line, executing them sequentially regardless of the previous exit status.
 * **Line Continuation:** The shell intelligently detects incomplete commands (unclosed quotes, pipes, parentheses) and provides a secondary `>` prompt, allowing users to complete multi-line statements naturally.
@@ -224,7 +224,7 @@ We went beyond academic requirements to create a robust and pleasant-to-use tool
 * **Custom Prompt:** A modern, highly aesthetic prompt that displays:
     * Current directory (PWD).
     * User and Hostname.
-    * Harmonized color theme and visual feedback of the last command's status.
+    * Harmonized color theme.
 
 ![Bonus Features](.img/bonus_features_minishell.gif)
 
@@ -265,7 +265,7 @@ We welcome contributions from the community to help push Minishell closer to ful
 - **Command Substitution:** Implementation of `$(...)` and backticks logic.
 - **Alias Management:** Support for `alias` and `unalias` builtins.
 - **Scripting Functions:** Ability to define and execute custom shell functions.
-- **Stability:** Reporting edge-case bugs and memory leaks via the Issue Tracker.
+- **Stability:** Reporting edge-case bugs and memory leaks.
 
 ![onefetch](.img/onefetch.png)
 
