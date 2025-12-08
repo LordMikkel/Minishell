@@ -54,7 +54,7 @@ We implemented a hybrid expansion strategy:
 
 ### 2.3. Parser & Backtracking (Syntactic Analysis)
 
-This houses one of the greatest logical complexities. We employ a **Recursive Descent Parser** algorithm supported by **Backtracking**.
+We employ a **Recursive Descent Parser** algorithm supported by **Backtracking**.
 
 **Logic:** The parser attempts to build a branch of the linked node tree based on grammatical rules. If it encounters a syntactic inconsistency, the algorithm "backtracks" to try an alternative rule, similar to how programming language compilers operate.
 
@@ -239,12 +239,12 @@ Executed after every command line input (inside the main loop).
 
 ### The `clean_all()` (Shutdown)
 Executed only upon `exit` or fatal error.
-* **Deep Sweep:** Frees environment variables linked lists, history descriptors, and internal shell configurations.
+* **Free All:** Frees environment variables linked lists, history descriptors, ast nodes, token array and internal shell configurations.
 * **Result:** 0 leaks reachable at exit (validated with Valgrind).
 
 ### 🧪 7. Testing & Quality Control
 
-To ensure system robustness we tested our Minishell to intensive automated testing using the community-standard 42_minishell_tester suite. Our customized testing regimen covered everything from basic command execution to edge cases like signal handling, complex pipe chains, and memory leak detection via Valgrind.
+To ensure system robustness we tested our Minishell to intensive automated testing using the community-standard [42_minishell_tester](https://github.com/zstenger93/42_minishell_tester). Our customized testing regimen covered everything from basic command execution to edge cases like signal handling, complex pipe chains, and memory leak detection via Valgrind.
 
 ###  Test Results Summary
 The implementation successfully passed all validation criteria:
