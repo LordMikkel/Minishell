@@ -32,5 +32,77 @@ sdc
 d
 sdsc
 s
-clear
+ls && 
+ls &&  ls
+echo "Hello, World
+!"
+echo "Hello, World !"
+exit
+echo "hello, word!"
+echo "Hello, World!"
+echo /usr/bin/* | wc -w
+if (ft_strcmp(input, "arch") == 0)
+pwd && (cd /tmp && pwd && echo "Estoy en tmp") && pwd && echo "Sigo en mi carpeta"
+ls -lR /usr/include | grep ".h" | head -n 20 | cat -e | wc -l
+< /dev/urandom tr -dc '[:alnum:]' | head -c 1000 | grep "a" --color=auto | cat -e > test_file
+> lista_archivos.txt ls -l -a
+cat lista_archivos.txt
+rm lista_archivos.txt
+cat src/main/main.c | head =n 10
+cat src/main/main.c | head -n 10
+cat src/main/main.c | head -n 15
+cat src/main/main.c | head -n 12
 ls
+cat src/main/main.c | head -r 12
+cat src/main/main.c | head -rn 12
+cat src/main/main.c | tail -n 12
+cat src/main/main.c | tail -n 15
+cat src/main/main.c | tail -n 20
+clar
+cat err_file
+cmd1 2> err_file && cat err_file
+cmd1
+cmd 1 &&
+cmd 1 && cmd2
+echo "this line is not finished
+./minishell
+cat ext/history_minishell.txt
+\x18clear
+cat src/main/main.c | tail -n 19
+cat head
+rm head
+cat src/
+cat src/main/main.c
+cat src/main/ | taol -n 18
+cat src/main/ | tail -n 18
+cat src/main/main.c | taol -n 18
+echoo "this line is not
+echoo "this line is not finished"
+finished
+echo "this line is not finished "
+cat src/ | tail -n 18
+clear
+cmd1 && ""
+echo "this line is not"
+sleep 10 &\n
+cmd1 2> err_log && cat err_log
+echo "this line is not
+echo "this line is not finished"
+cmd1 && 
+cmd1 &&  cmd2
+A=1 && echo $A
+(echo A && exit 1) || (echo B && exit 0) && (echo C); echo D
+sleep 10 &
+cmd1 2> err_file || cat err_file
+cat src/main/main.c | tail -n 18
+ls *
+cat script.sh
+./minishell script.sh
+echo "this is not
+finished"
+echo "this is not finished"
+cmd1 &&
+cmd2
+cmd1 && cmd2
+head -c 100 /dev/urandom | hexdump -C | grep "a" --color=auto
+echoo this is the end?

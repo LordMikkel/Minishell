@@ -15,6 +15,8 @@ make
 ./minishell
 ```
 
+![Minishell Init](.img/init_minishell.gif)
+
 ## 📑 Index
 1. [🔧 System Overview & Dependencies](#-1-system-overview--dependencies)
 2. [🏗️ Architecture & Parsing Logic](#-2-architecture--parsing-logic)
@@ -212,17 +214,24 @@ The entire shell state is managed through a main `t_shell` data structure passed
 *   Process Management: Execution of binaries, scripts, and builtins.
 
 ### Bonus Features
-We went beyond academic requirements to create a pleasant-to-use tool:
+We went beyond academic requirements to create a robust and pleasant-to-use tool:
 
-*   **Line Continuation & Balanced Input:** The shell intelligently detects incomplete commands (unclosed quotes, pipes, parentheses) and provides a secondary `>` prompt, allowing users to complete multi-line statements naturally. This mimics the behavior of advanced shells like `bash` and `zsh`.
-*   **Local Assignments:** Support for `VAR=value` command (the variable exists only for that command) and temporary assignments in the current shell.
-*   **Persistent History:** The shell creates and manages a physical history file, allowing command retrieval from previous sessions.
-*   **Smart Welcome:** On startup, the shell detects the user from the environment, greets according to the time of day, and configures the environment.
-*   **Session Analytics:** Upon exit (`exit`), it informs the user of the total time spent in the session with a farewell message.
-*   **Custom Prompt:** A modern, highly aesthetic prompt that displays:
-    *   Current directory (PWD).
-    *   User and Hostname.
-    *   Harmonized color theme and visual feedback of the last command's status.
+![Bonus Features](.img/bonus_features_minishell.gif)
+
+* **Script Execution:** The shell supports non-interactive mode, allowing it to interpret and execute command files directly (e.g., `./minishell script.sh`), acting as a functional script interpreter.
+* **Advanced Redirections:** Full support for file descriptor manipulation (e.g., `2>`, `2>&1`), giving the user granular control over standard error and output streams.
+* **Background Processes (`&`):** Implementation of asynchronous execution. The shell correctly forks and detaches processes to the background, allowing the user to continue interacting with the prompt immediately.
+* **Sequential Logic (`;`):** Support for the semicolon separator allows chaining multiple independent commands in a single line, executing them sequentially regardless of the previous exit status.
+* **Line Continuation:** The shell intelligently detects incomplete commands (unclosed quotes, pipes, parentheses) and provides a secondary `>` prompt, allowing users to complete multi-line statements naturally.
+* **Local Assignments:** Support for `VAR=value command` syntax (the variable exists only for that command scope) and temporary assignments in the current shell.
+* **Persistent History:** The shell creates and manages a physical history file, allowing command retrieval across different sessions.
+* **Command Auto-Correction:** Implemented a "Did you mean?" heuristic for builtins. If a user mistypes a command (e.g., `exprot` instead of `export`), the shell intelligently suggests the intended correction.
+* **Case-Insensitive Execution:** Enhanced flexibility by allowing commands and builtins to be recognized regardless of case (e.g., `ECHO`, `Ls`, or `pwd` all execute correctly), streamlining the user experience.
+* **Smart Welcome & Analytics:** On startup, the shell detects the user and greets based on the time of day. Upon exit, it provides session analytics (total active time) with a farewell message.
+* **Custom Prompt:** A modern, highly aesthetic prompt that displays:
+    * Current directory (PWD).
+    * User and Hostname.
+    * Harmonized color theme and visual feedback of the last command's status.
 
 ## 🧠 5. Technical Complexity
 
