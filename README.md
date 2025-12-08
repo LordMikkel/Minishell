@@ -233,13 +233,13 @@ We went beyond academic requirements to create a pleasant-to-use tool:
 
 Since `minishell` is a long-running process, memory leaks are unacceptable. We implemented a two-tier cleaning strategy:
 
-### The `clean_cycle()`
+### `clean_cycle`
 Executed after every command line input (inside the main loop).
 * **Restores FDs:** Resets STDIN/STDOUT if redirections altered them.
 * **Prunes AST:** Recursively frees the entire Syntax Tree nodes.
 * **Wipes Token List:** Frees the dynamic array of tokens for the next prompt.
 
-### The `clean_all()` (Shutdown)
+### `clean_all` (Shutdown)
 Executed only upon `exit` or fatal error.
 * **Free All:** Frees environment variables linked lists, history descriptors, ast nodes, token array and internal shell configurations.
 * **Result:** 0 leaks reachable at exit (validated with Valgrind).
