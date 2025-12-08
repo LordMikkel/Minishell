@@ -11,10 +11,6 @@
 	"editor.wordWrap": "off",
 	"editor.bracketPairColorization.enabled": true,
 	"editor.guides.bracketPairs": false,
-	"workbench.colorCustomizations":
-	{
-		"editorRuler.foreground": "#2b2929"
-	},
 
 	// File Associations
 	"files.associations":
