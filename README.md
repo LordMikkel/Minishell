@@ -15,6 +15,16 @@ make
 ./minishell
 ```
 
+## 📑 Index
+1. [🔧 System Overview & Dependencies](#🔧-1-system-overview--dependencies)
+2. [🏗️ Architecture & Parsing Logic](#️🏗️-2-architecture--parsing-logic)
+3. [⚙️ Core Components: The AST & Execution](#️⚙️-3-core-components-the-ast--execution)
+4. [⚡ Features & Capabilities](#⚡-4-features--capabilities)
+5. [🧠 Technical Complexity](#🧠-5-technical-complexity)
+6. [♻️ Memory Management Strategy](#️♻️-6-memory-management-strategy)
+7. [🧪 Testing & Quality Control](#🧪-7-testing--quality-control)
+8. [✍️ Credits](#️✍️-8-credits)
+
 ## 🔧 1. System Overview & Dependencies
 
 The core has been built to operate with efficiency comparable to lightweight production shells, minimizing external dependencies and maximizing control over system resources.
@@ -239,10 +249,13 @@ To ensure system robustness we tested our Minishell to intensive automated testi
 ###  Test Results Summary
 The implementation successfully passed all validation criteria:
 * **Mandatory Tests:** ✅ +2566 mandatory tests
-* **Bonus Tests:**✅ +201 bonus tests.
+* **Bonus Tests:** ✅ +201 bonus tests.
 
 ## ✍️ Credits
 
-I'm Mikel Garrido, a student at 42 Barcelona. I always try to make the simplest but most robust implementation in all my projects. I hope this guide can help you.
+I'm Mikel Garrido [@LordMikkel](https://github.com/LordMikkel), a student at 42 Barcelona. I always try to make the simplest but most robust implementation in all my projects.
+
+This project was developed in collaboration with my partner [@David-dbd](https://github.com/David-dbd). For additional insights and project details, you can also view his personal README in the forked repository: [Minishell](https://github.com/David-dbd/Minishell-SHELL).
 
 [![42](https://img.shields.io/badge/-migarrid-000000?style=flat&logo=42&logoColor=white)](https://profile.intra.42.fr/users/migarrid)
+
