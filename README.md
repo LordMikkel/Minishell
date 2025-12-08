@@ -81,6 +81,8 @@ The data structure is not linear; it's a binary tree representing the logical hi
 *   **Subshells:** Parentheses generate subshell nodes that encapsulate a complete sub-tree.
 *   **Leaves:** The final commands (COMMAND) reside at the tree's leaves.
 
+this video [What Is An Abstract Syntax Tree](https://www.youtube.com/watch?v=wINY109MG10) can help you to undestand the key concept.
+
 ### 3.2. Recursive Executor
 
 The execution engine traverses the AST using a **Depth-First Search (DFS)** strategy:
