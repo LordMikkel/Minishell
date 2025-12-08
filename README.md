@@ -16,14 +16,15 @@ make
 ```
 
 ## 📑 Index
-1. [🔧 System Overview & Dependencies](#🔧-1-system-overview--dependencies)
-2. [🏗️ Architecture & Parsing Logic](#️🏗️-2-architecture--parsing-logic)
-3. [⚙️ Core Components: The AST & Execution](#️⚙️-3-core-components-the-ast--execution)
-4. [⚡ Features & Capabilities](#⚡-4-features--capabilities)
-5. [🧠 Technical Complexity](#🧠-5-technical-complexity)
-6. [♻️ Memory Management Strategy](#️♻️-6-memory-management-strategy)
-7. [🧪 Testing & Quality Control](#🧪-7-testing--quality-control)
-8. [✍️ Credits](#️✍️-8-credits)
+1. [🔧 System Overview & Dependencies](#-1-system-overview--dependencies)
+2. [🏗️ Architecture & Parsing Logic](#-2-architecture--parsing-logic)
+3. [⚙️ Core Components: The AST & Execution](#-3-core-components-the-ast--execution)
+4. [⚡ Features & Capabilities](#-4-features--capabilities)
+5. [🧠 Technical Complexity](#-5-technical-complexity)
+6. [♻️ Memory Management Strategy](#-6-memory-management-strategy)
+7. [🧪 Testing & Quality Control](#-7-testing--quality-control)
+8. [🤝 Contributing & Roadmap](#-8-contributing--roadmap)
+8. [✍️ Credits](#-credits--collaborations)
 
 ## 🔧 1. System Overview & Dependencies
 
@@ -253,11 +254,22 @@ The implementation successfully passed all validation criteria:
 * **Mandatory Tests:** ✅ +2566 mandatory tests
 * **Bonus Tests:** ✅ +201 bonus tests.
 
-## ✍️ Credits
+## 🤝 8. Contributing & Roadmap
+
+We welcome contributions from the community to help push Minishell closer to full POSIX compliance. Whether you are looking to fix bugs or implement new features, your pull requests are welcome. Our current roadmap prioritizes the following enhancements:
+
+- **Command Substitution:** Implementation of `$(...)` and backticks logic.
+- **Alias Management:** Support for `alias` and `unalias` builtins.
+- **Scripting Functions:** Ability to define and execute custom shell functions.
+- **Stability:** Reporting edge-case bugs and memory leaks via the Issue Tracker.
+
+## ✍️ Credits & Collaborations
 
 I'm Mikel Garrido [@LordMikkel](https://github.com/LordMikkel), a student at 42 Barcelona. I always try to make the simplest but most robust implementation in all my projects.
 
 This project was developed in collaboration with my partner [@David-dbd](https://github.com/David-dbd). For additional insights and project details, you can also view his personal README in the forked repository: [Minishell](https://github.com/David-dbd/Minishell-SHELL).
+
+![onefetch](.img/onefetch.png)
 
 [![42](https://img.shields.io/badge/-migarrid-000000?style=flat&logo=42&logoColor=white)](https://profile.intra.42.fr/users/migarrid)
 
