@@ -100,7 +100,9 @@ The entire shell state is managed through a main `t_shell` data structure passed
 
 *   **Signal Handling:** Adhering strictly to POSIX and project norms, we use a single global variable exclusively for the reception and transmission of operating system signals.
 
-### 3.4 Flow Diagram
+## ⚡ 4. Features & Capabilities
+
+### Flow Diagram
 
 ```
 .──────────────────────────────────────────────────────────────────────────────.
@@ -205,13 +207,6 @@ The entire shell state is managed through a main `t_shell` data structure passed
    |   [ SYSTEM HALTED ]                                                  |
    |______________________________________________________________________|
 ```
-
-## ⚡ 4. Features & Capabilities
-
-### Core Features
-*   Complete Operators: Pipes (`|`), Redirections, Append, Heredoc.
-*   Control Logic: `&&`, `||` and `;`.
-*   Process Management: Execution of binaries, scripts, and builtins.
 
 ### Bonus Features
 We went beyond academic requirements to create a robust and pleasant-to-use tool:
