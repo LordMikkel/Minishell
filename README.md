@@ -263,13 +263,13 @@ We welcome contributions from the community to help push Minishell closer to ful
 - **Scripting Functions:** Ability to define and execute custom shell functions.
 - **Stability:** Reporting edge-case bugs and memory leaks via the Issue Tracker.
 
+![onefetch](.img/onefetch.png)
+
 ## ✍️ Credits & Collaborations
 
 I'm Mikel Garrido [@LordMikkel](https://github.com/LordMikkel), a student at 42 Barcelona. I always try to make the simplest but most robust implementation in all my projects.
 
 This project was developed in collaboration with my partner [@David-dbd](https://github.com/David-dbd). For additional insights and project details, you can also view his personal README in the forked repository: [Minishell](https://github.com/David-dbd/Minishell-SHELL).
-
-![onefetch](.img/onefetch.png)
 
 [![42](https://img.shields.io/badge/-migarrid-000000?style=flat&logo=42&logoColor=white)](https://profile.intra.42.fr/users/migarrid)
 
