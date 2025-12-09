@@ -2,7 +2,7 @@
 
 Minishell is a robust POSIX-compatible command interpreter implementation, developed entirely in C as part of 42 School's advanced curriculum.
 
-This project represents a significant milestone for me [@LordMikkel](https://github.com/LordMikkel) and my partner [@David-dbd](https://github.com/David-dbd): it is our first large-scale collaborative development (10,000+ lines of personal code), designed to delve deep into Unix system architecture, process management, and compiler theory. Unlike basic academic implementations, this shell has been engineered with a focus on user experience (UX), memory stability and optimization, and a scalable AST-based architecture.
+This project represents a significant milestone for me [@LordMikkel](https://github.com/LordMikkel) and my partner [@David-dbd](https://github.com/David-dbd): it is our first large-scale collaborative development (10,000+ lines of personal code), designed to delve deep into Unix system architecture, process management, and compiler theory. This shell has been engineered with a focus on user experience (UX), memory stability and optimization, and a scalable AST-based architecture.
 
 <p align="center"> <img src=".img/score.png" alt="alt text" /> </p>
 
@@ -22,10 +22,9 @@ make
 2. [🏗️ Architecture & Parsing Logic](#-2-architecture--parsing-logic)
 3. [⚙️ Core Components: The AST & Execution](#-3-core-components-the-ast--execution)
 4. [⚡ Features & Capabilities](#-4-features--capabilities)
-5. [🧠 Technical Complexity](#-5-technical-complexity)
-6. [♻️ Memory Management Strategy](#-6-memory-management-strategy)
-7. [🧪 Testing & Quality Control](#-7-testing--quality-control)
-8. [🤝 Contributing & Roadmap](#-8-contributing--roadmap)
+5. [♻️ Memory Management Strategy](#-5-memory-management-strategy)
+6. [🧪 Testing & Quality Control](#-6-testing--quality-control)
+7. [🤝 Contributing & Roadmap](#-7-contributing--roadmap)
 8. [✍️ Credits](#-credits--collaborations)
 
 ## 🔧 1. System Overview & Dependencies
@@ -38,6 +37,8 @@ The core has been built to operate with efficiency comparable to lightweight pro
 *   **Isocline (Modified Fork):** We chose isocline as the command-line engine but performed a strategic fork to adapt it to the needs of a real shell.
     *   **Leak Correction:** We detected and patched an existing memory leak in the original library to ensure impeccable memory usage.
     *   **Signal Compatibility:** We modified the internal behavior so that operating system signal reception interacts correctly with our shell's lifecycle, emulating the native behavior of readline.
+
+![Minishell Main](.img/main.png)
 
 ## 🏗️ 2. Architecture & Parsing Logic
 
@@ -72,9 +73,32 @@ To handle complex command combinations properly, our Recursive Descent Parser fo
 
 This hierarchical approach allows constructs like `(ls | wc) && echo "done"; sleep 5` to be parsed naturally into a coherent tree.
 
-## ⚙️ 3. Core Components: The AST & Execution
+here an graphical example that can help to understand it better.
 
-![Minishell Main](.img/main.png)
+```
+User Input   ──▶  "(ls | wc) && echo done; sleep 5"
+                      │
+                      ▼
+Tokenizer    ──▶  [(] [ls] [|] [wc] [)] [&&] [echo] [done] [;] [sleep] [5]
+                      │
+                      ▼
+ Parser      ──▶ [ NODE: SEMICOLON (;) ] ◀── (AST Root Root)
+                 ╱                       ╲
+               ╱                           ╲
+      [ NODE: AND (&&) ]            [ NODE: COMMAND ]
+      ╱                ╲                    │
+     ╱                  ╲               "sleep 5"
+[ NODE: SUBSHELL ]   [ NODE: COMMAND ]
+     │                       │
+[ NODE: PIPE (|) ]     "echo done"
+   ╱            ╲
+  ╱              ╲
+[ COMMAND ]    [ COMMAND ]
+    │              │
+   "ls"           "wc"
+```
+
+## ⚙️ 3. Core Components: The AST & Execution
 
 ### 3.1. Abstract Syntax Tree (AST) Builder
 
@@ -228,13 +252,7 @@ We went beyond academic requirements to create a robust and pleasant-to-use tool
 
 ![Bonus Features](.img/bonus_features_minishell.gif)
 
-## 🧠 5. Technical Complexity
-
-*   **Parsing and Execution Algorithms:** Implementing a parser with backtracking from scratch in C requires extremely meticulous manual handling of the stack and memory to avoid stack overflows or leaks.
-*   **Memory Management:** Since C has no Garbage Collector, every token, AST node, and environment variable is managed manually. Cleaning the AST also requires using recursive functions to clear these structures in a controlled manner.
-*   **Concurrency & Signals:** Synchronization between the parent process (shell) and children (commands), ensuring signals like Ctrl+C only affect the correct processes (blocking vs non-blocking), was one of the biggest synchronization challenges in the project.
-
-## ♻️ 6. Memory Management Strategy
+## ♻️ 5. Memory Management Strategy
 
 Since `minishell` is a long-running process, memory leaks are unacceptable. We implemented a two-tier cleaning strategy:
 
@@ -249,7 +267,7 @@ Executed only upon `exit` or fatal error.
 * **Free All:** Frees environment variables linked lists, history descriptors, ast nodes, token array and internal shell configurations.
 * **Result:** 0 leaks reachable at exit (validated with Valgrind).
 
-### 🧪 7. Testing & Quality Control
+### 🧪 6. Testing & Quality Control
 
 To ensure system robustness we tested our Minishell to intensive automated testing using the community-standard [42_minishell_tester](https://github.com/zstenger93/42_minishell_tester). Our customized testing regimen covered everything from basic command execution to edge cases like signal handling, complex pipe chains, and memory leak detection via Valgrind.
 
@@ -258,7 +276,7 @@ The implementation successfully passed all validation criteria:
 * **Mandatory Tests:** ✅ +2566 mandatory tests
 * **Bonus Tests:** ✅ +201 bonus tests.
 
-## 🤝 8. Contributing & Roadmap
+## 🤝 7. Contributing & Roadmap
 
 We welcome contributions from the community to help push Minishell closer to full POSIX compliance. Whether you are looking to fix bugs or implement new features, your pull requests are welcome. Our current roadmap prioritizes the following enhancements:
 
