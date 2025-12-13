@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: king <king@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 17:12:22 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/23 19:30:04 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/12/13 18:08:20 by king             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,5 +153,5 @@ int	my_cd(t_shell *data, char **args)
 	}
 	else if (result == IGNORE)
 		return (FAILURE);
-	return (FAIL);
+	return (EXIT_USE);
 }

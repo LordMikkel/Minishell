@@ -1,5 +1,4 @@
 encc
-env
 export A="*"
 /usr/bin/printf "%s\\n" * | sort
 clear &&echo "Starting monster test" && echo "Part 1: Basic Commands" && ls -la | grep "." && pwd && whoami && echo $? && echo $USER && echo "Part 2: Pipes and Redirections" && cat < Makefile | grep "gcc" | wc -l > output.txt && cat output.txt && rm output.txt && echo "Part 3: Multiple Commands" && echo hello > file1 && cat < file1 >> file2 && cat file2 && rm file1 file2 && echo "Part 4: Environment Variables" && export TEST=hello && echo $TEST && unset TEST && echo $TEST && echo "Part 5: Quotes and Special Characters" && echo "  spaces  " && echo '  single quotes  ' && echo "mixed 'quotes' here" && echo $"HOME" && echo $'HOME' && echo "Part 6: Exit Status" && false || echo $? && true && echo $? && echo "Part 7: Complex Pipes" && ls -la | grep "." | wc -l | xargs echo "Files:" && echo "Part 8: Signal Handling Test" && sleep 2 && echo "Part 9: Error Cases" && cd nonexistentdir 2>errorlog.txt || echo "dir not found $?" && ./nonexistentfile 2>/dev/null || echo "file not found $?" && echo "Part 10: AND/OR operators" && false || echo "OR works" && true && echo "AND works" && false || echo "Complex OR" && true && echo "Complex AND" || echo "Should not print" && echo "Monster test completed with exit status $?"
@@ -26,11 +25,9 @@ wc
 sc
 ssl
 slc
-/bin/echo ""$?""
 sdc
 d
 sdsc
-s
 ls && 
 ls &&  ls
 echo "Hello, World
@@ -107,14 +104,35 @@ ls>o
 env | grep foo
 export foo="ls>o"
 $foo
-bash
 echo $a hola
 ls | grep src
 ls | grep hola
 grep
 grep | grep
-clear
-ls
 echo$a hola
 lk
 exit
+ls
+cd bark bark
+echo $?
+\x16\x16\x16\x16\x16\x16\x16\x16/bin/echo 
+ls /bin/echo
+ls /bin/
+ls /bin/ | grep echo
+clear
+\x16\x16\x16\x16\x16\x16\x16\x16/bin/echo ""$?""
+\x16\x16/bin/echo ""$?""
+/bin/echo $?"42"
+env | sort | grep -v SHLVL | grep -v \x16^_
+\x16\x16\x16env | sort | grep -v SHLVL | grep -v ^_
+\x16\x16\x16env
+\x16env
+ls 
+env
+env 
+ |
+env | sort | grep -v SHLVL | grep -v ^_
+\x16/bin/echo ""$?""
+/bin/echo ""$?""
+bash
+s
