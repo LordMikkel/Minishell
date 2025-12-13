@@ -6,7 +6,7 @@
 #    By: king <king@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/12/13 18:17:10 by king             ###   ########.fr        #
+#    Updated: 2025/12/13 18:20:49 by king             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ DFLAGS				= -g
 DMAIN				= -D MAIN
 #VFLAGS				= -O1 -march=native -flto
 #OFLAGS				= -Os -flto -ffunction-sections -fdata-sections -Wl,--gc-sections
-#SFLAGS				= -fsanitize=address,undefined
+SFLAGS				= -fsanitize=address,undefined
 DEPFLAGS			= -MMD -MP
 
 # **************************************************************************** #
