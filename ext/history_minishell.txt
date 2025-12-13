@@ -21,7 +21,6 @@ export PATH=" "
 echo $PATH | cat -e
 echo $PATH | /usr/bin/cat -e
 echo 1
-bash
 pwd
 wc
 sc
@@ -37,7 +36,6 @@ ls &&  ls
 echo "Hello, World
 !"
 echo "Hello, World !"
-exit
 echo "hello, word!"
 echo "Hello, World!"
 echo /usr/bin/* | wc -w
@@ -52,7 +50,6 @@ cat src/main/main.c | head =n 10
 cat src/main/main.c | head -n 10
 cat src/main/main.c | head -n 15
 cat src/main/main.c | head -n 12
-ls
 cat src/main/main.c | head -r 12
 cat src/main/main.c | head -rn 12
 cat src/main/main.c | tail -n 12
@@ -81,7 +78,6 @@ echoo "this line is not finished"
 finished
 echo "this line is not finished "
 cat src/ | tail -n 18
-clear
 cmd1 && ""
 echo "this line is not"
 sleep 10 &\n
@@ -106,3 +102,19 @@ cmd2
 cmd1 && cmd2
 head -c 100 /dev/urandom | hexdump -C | grep "a" --color=auto
 echoo this is the end?
+export foo=ls>o
+ls>o
+env | grep foo
+export foo="ls>o"
+$foo
+bash
+echo $a hola
+ls | grep src
+ls | grep hola
+grep
+grep | grep
+clear
+ls
+echo$a hola
+lk
+exit

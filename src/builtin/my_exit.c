@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: king <king@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 23:55:15 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/14 23:09:33 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/12/13 17:34:42 by king             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static int	check_exit(t_shell *data, char **args)
 		}
 		exit_error(data, ERR_EXIT_NUMERIC, EXIT_USE, args[0]);
 	}
-	return (0);
+	return (data->exit_code);
 }
 
 /*
