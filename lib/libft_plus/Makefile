@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/28 19:51:37 by migarrid          #+#    #+#              #
-#    Updated: 2025/11/20 20:31:36 by migarrid         ###   ########.fr        #
+#    Updated: 2025/12/13 17:03:07 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME = libft_plus.a
 
 # Compilador y opciones
-CC = cc
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
 
 # Colores
