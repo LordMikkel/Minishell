@@ -599,6 +599,16 @@ static void sig_handler(int signum, siginfo_t* siginfo, void* uap ) {
     if (sigaction_is_valid(&sh->action.previous)) {
       (sh->action.previous.sa_sigaction)(signum, siginfo, uap);
     }
+    else {
+      if (signum != SIGWINCH && signum != SIGCHLD) {
+          struct sigaction dfl;
+          memset(&dfl, 0, sizeof(dfl));
+          dfl.sa_handler = SIG_DFL;
+          sigemptyset(&dfl.sa_mask);
+          sigaction(signum, &dfl, NULL);
+          raise(signum);
+      }
+	}
   }
 }
 
