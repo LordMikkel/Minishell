@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 17:55:34 by migarrid          #+#    #+#              #
-#    Updated: 2025/12/08 18:25:06 by migarrid         ###   ########.fr        #
+#    Updated: 2025/12/13 17:29:26 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,13 +18,13 @@ NAME				= minishell
 # **************************************************************************** #
 #                            Compiler and Flags                                #
 # **************************************************************************** #
-CC					= cc
+CC					= gcc
 WFLAGS				= -Wall -Wextra -Werror
 DFLAGS				= -g
 DMAIN				= -D MAIN
 #VFLAGS				= -O1 -march=native -flto
 #OFLAGS				= -Os -flto -ffunction-sections -fdata-sections -Wl,--gc-sections
-SFLAGS				= -fsanitize=address,undefined
+#SFLAGS				= -fsanitize=address,undefined
 DEPFLAGS			= -MMD -MP
 
 # **************************************************************************** #
