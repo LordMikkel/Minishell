@@ -3,12 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: king <king@student.42.fr>                  +#+  +:+       +#+         #
+#    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/12/28 19:51:37 by migarrid          #+#    #+#              #
-#    Updated: 2025/12/13 17:47:15 by king             ###   ########.fr        #
+#    Created: 2025/12/21 00:55:35 by migarrid          #+#    #+#              #
+#    Updated: 2025/12/21 00:55:39 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 # Nombre de la biblioteca
 NAME = libft_plus.a
@@ -80,7 +81,6 @@ SRCS =	libft/ft_isalpha.c \
 		libft/ft_strmapi.c \
 		libft/ft_striteri.c \
 		libft/ft_putchar_fd.c \
-		libft/ft_charstr_match.c \
 		libft/ft_intstr_match.c \
 		libft/ft_putstr_fd.c \
 		libft/ft_putendl_fd.c \

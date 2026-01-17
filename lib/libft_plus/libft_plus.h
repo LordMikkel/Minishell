@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/28 16:10:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/20 20:31:39 by migarrid         ###   ########.fr       */
+/*   Created: 2025/12/21 00:55:28 by migarrid          #+#    #+#             */
+/*   Updated: 2025/12/21 00:55:31 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 char	*ft_itoa(int n);
 char	*ft_strdup(const char *s);
 char	*ft_strndup(const char *s, size_t n);
-char	*ft_charstr_match(char *str, char *word_to_find);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
 char	*ft_strcut(char *str, int c);
