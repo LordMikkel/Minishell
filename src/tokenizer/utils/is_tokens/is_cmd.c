@@ -3,84 +3,64 @@
 /*                                                        :::      ::::::::   */
 /*   is_cmd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 21:35:11 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/17 01:09:55 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/05/23 20:33:45 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/minishell.h"
 
 /*
-	Liberar memoria de manera centralizada para path_arr, path_slash y path.
-	- Evita fugas de memoria en find_bin.
+	Libera los buffers temporales creados durante la busqueda en PATH.
 */
 
-static void	set_free(char **path_arr, char **path_slash, char **path)
+static void	free_path_parts(char **path_slash, char **full_path)
 {
-	ft_free_str_array(&path_arr);
 	if (*path_slash)
-		free (*path_slash);
+		free(*path_slash);
 	*path_slash = NULL;
-	if (*path)
-		free (*path);
-	*path = NULL;
-}
-
-/*
-	Comprueba si el path existe en el sistema.
-	- Si existe, libera memoria y devuelve TRUE.
-	- Si no, devuelve FALSE para seguir buscando.
-*/
-
-static int	check_access(char **path_arr, char *path_slash, char *path)
-{
-	int	validate;
-
-	validate = access(path, F_OK);
-	if (validate == OK)
-	{
-		set_free(path_arr, &path_slash, &path);
-		return (TRUE);
-	}
-	return (FALSE);
+	if (*full_path)
+		free(*full_path);
+	*full_path = NULL;
 }
 
 /*
 	Busca un ejecutable en cada directorio del PATH.
 	- path_arr: lista de directorios del PATH.
 	- path_slash: directorio + "/" temporal.
-	- path: directorio + "/" + palabra (posible comando).
+	- full_path: directorio + "/" + palabra (posible comando).
 	- word: nombre del comando a buscar.
 	- Retorna SUCCESS si lo encuentra, NOT_FOUND si no, ERROR si falla malloc.
-	- Usa check_access para validar existencia y set_free para limpiar.
+	- Libera los temporales en cada iteracion.
 */
 
-static int	find_bin(char **path_arr, char *path_slash, char *path, char *word)
+static int	find_bin(char **path_arr, char *word)
 {
 	int	i;
+	char	*path_slash;
+	char	*full_path;
 
 	i = 0;
+	path_slash = NULL;
+	full_path = NULL;
 	while (path_arr[i] != NULL)
 	{
 		path_slash = ft_strjoin(path_arr[i], "/");
-		if (!path_slash && i == 0)
-			return (ERROR);
-		else if (!path_slash && i > 0)
-			return (set_free(path_arr, &path_slash, &path), ERROR);
-		path = ft_strjoin(path_slash, word);
-		if (!path)
-			return (set_free(path_arr, &path_slash, &path), ERROR);
-		if (check_access(path_arr, path_slash, path) == TRUE)
+		if (!path_slash)
+			return (free_path_parts(&path_slash, &full_path), ERROR);
+		full_path = ft_strjoin(path_slash, word);
+		if (!full_path)
+			return (free_path_parts(&path_slash, &full_path), ERROR);
+		if (access(full_path, F_OK) == OK)
+		{
+			free_path_parts(&path_slash, &full_path);
 			return (SUCCESS);
-		free(path_slash);
-		free(path);
-		path_slash = NULL;
-		path = NULL;
+		}
+		free_path_parts(&path_slash, &full_path);
 		i++;
 	}
-	set_free(path_arr, &path_slash, &path);
 	return (NOT_FOUND);
 }
 
@@ -121,17 +101,15 @@ int	is_built_in(t_shell *data, t_token *token, char *str)
 	- Luego busca en PATH si no es built-in.
 	- Si PATH no existe por no env, crea un PATH por defecto.
 	- Actualiza token->type = COMMAND si lo encuentra.
-	- Maneja errores de memoria con set_free y exit_error.
+	- Maneja errores de memoria y limpia recursos temporales.
 */
 
 void	is_cmd(t_shell *data, t_token *token, char *str)
 {
 	char	**path_arr;
-	char	*path_slash;
 	char	*path;
 	int		validate;
 
-	path_slash = NULL;
 	path = get_var_value(data->env.vars, "PATH");
 	if (!path)
 		path = DEFAULT_PATH;
@@ -140,13 +118,14 @@ void	is_cmd(t_shell *data, t_token *token, char *str)
 	path_arr = ft_split(path, ':');
 	if (!path_arr)
 		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
-	validate = find_bin(path_arr, path_slash, path, str);
-	if (validate == SUCCESS)
-		return (token->type = COMMAND, (void)OK);
-	else if (validate == ERROR)
+	validate = find_bin(path_arr, str);
+	if (validate == ERROR)
 	{
-		set_free(path_arr, &path_slash, &path);
+		ft_free_str_array(&path_arr);
 		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
 	}
+	if (validate == SUCCESS)
+		token->type = COMMAND;
+	ft_free_str_array(&path_arr);
 	return ;
 }
