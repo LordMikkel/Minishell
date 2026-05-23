@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 22:05:53 by migarrid          #+#    #+#             */
-/*   Updated: 2026/05/23 21:23:54 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/05/23 22:36:37 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,32 +45,52 @@ int	check_global_balance(t_prompt *prompt, t_token *tokens)
 	return (BALANCE);
 }
 
+bool	append_line(t_shell *d, t_prompt *prompt, char **full_line, char *line)
+{
+	char	*tmp;
+
+	tmp = *full_line;
+	*full_line = ft_strjoin_multi(3, tmp, " ", line);
+	if (!(*full_line))
+	{
+		prompt->input = NULL;
+		free(tmp);
+		free(line);
+		return (exit_error(d, ERR_MALLOC, EXIT_FAILURE));
+	}
+	free(tmp);
+	free(line);
+	prompt->input = *full_line;
+	return (OK);
+}
+
 int	join_lines_until_balanced(t_shell *data, t_prompt *prompt, char **full_line)
 {
 	char	*line;
-	char	*tmp;
-	int		unbalance;
+	char	*saved_input;
+	int		status;
 
 	while (42)
 	{
+		prompt->input = *full_line;
 		allocate_tokens(data, prompt);
 		get_tokens(data, prompt, *full_line);
-		unbalance = check_global_balance(prompt, prompt->tokens);
+		status = check_global_balance(prompt, prompt->tokens);
+		saved_input = prompt->input;
+		prompt->input = NULL;
 		clean_prompt(prompt);
-		if (unbalance == CANT_CONTINUE)
+		prompt->input = saved_input;
+		if (status == CANT_CONTINUE)
 			return (CANT_CONTINUE);
-		else if (unbalance == BALANCE)
+		else if (status == BALANCE)
 			break ;
 		line = ic_readline("> ");
 		if (!line)
 			break ;
-		tmp = *full_line;
-		*full_line = ft_strjoin_multi(3, tmp, " ", line);
-		if (!(*full_line))
-			return (free(tmp), free(line), exit_error(data, ERR_MALLOC, 1));
-		free(tmp);
-		free(line);
+		if ((append_line(data, prompt, full_line, line)))
+			return (KO);
 	}
+	prompt->input = *full_line;
 	return (OK);
 }
 
@@ -78,11 +98,14 @@ char	*read_until_balanced(t_shell *data, char *initial_line)
 {
 	char	*full_line;
 
+	if (!initial_line)
+		return (NULL);
 	full_line = ft_strdup(initial_line);
 	free(initial_line);
 	if (!full_line)
 		return (NULL);
 	if (join_lines_until_balanced(data, &data->prompt, &full_line) != OK)
 		return (full_line);
+	data->prompt.input = full_line;
 	return (full_line);
 }
