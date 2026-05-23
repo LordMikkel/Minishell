@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
+#    By: migarrid <migarrid@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:55:08 by migarrid          #+#    #+#              #
-#    Updated: 2025/12/21 00:55:12 by migarrid         ###   ########.fr        #
+#    Updated: 2026/05/23 21:14:04 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ DFLAGS				= -g
 DMAIN				= -D MAIN
 #VFLAGS				= -O1 -march=native -flto
 #OFLAGS				= -Os -flto -ffunction-sections -fdata-sections -Wl,--gc-sections
-SFLAGS				= -fsanitize=address,undefined
+#SFLAGS				= -fsanitize=address,undefined
 DEPFLAGS			= -MMD -MP
 
 # **************************************************************************** #

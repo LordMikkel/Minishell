@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_until_balanced.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 22:05:53 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/14 23:20:40 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/05/23 21:23:54 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,10 @@ char	*read_until_balanced(t_shell *data, char *initial_line)
 	char	*full_line;
 
 	full_line = ft_strdup(initial_line);
+	free(initial_line);
 	if (!full_line)
-		return (free(initial_line), NULL);
+		return (NULL);
 	if (join_lines_until_balanced(data, &data->prompt, &full_line) != OK)
-		return (free(full_line), initial_line);
-	return (free(initial_line), full_line);
+		return (full_line);
+	return (full_line);
 }
