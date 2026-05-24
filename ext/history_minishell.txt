@@ -6,7 +6,6 @@ lsd
 sclls
 sdd
 c
-sd
 pwt
 l
 esport
@@ -26,7 +25,6 @@ sc
 ssl
 slc
 sdc
-d
 sdsc
 ls &&
 ls &&  ls
@@ -59,7 +57,6 @@ cmd1
 cmd 1 &&
 cmd 1 && cmd2
 echo "this line is not finished
-./minishell
 cat ext/history_minishell.txt
 \x18clear
 cat src/main/main.c | tail -n 19
@@ -81,7 +78,6 @@ sleep 10 &\n
 cmd1 2> err_log && cat err_log
 echo "this line is not
 echo "this line is not finished"
-cmd1 &&
 cmd1 &&  cmd2
 A=1 && echo $A
 (echo A && exit 1) || (echo B && exit 0) && (echo C); echo D
@@ -112,14 +108,12 @@ grep | grep
 echo$a hola
 lk
 exit
-ls
 cd bark bark
 echo $?
 \x16\x16\x16\x16\x16\x16\x16\x16/bin/echo
 ls /bin/echo
 ls /bin/
 ls /bin/ | grep echo
-clear
 \x16\x16\x16\x16\x16\x16\x16\x16/bin/echo ""$?""
 \x16\x16/bin/echo ""$?""
 /bin/echo $?"42"
@@ -127,8 +121,6 @@ env | sort | grep -v SHLVL | grep -v \x16^_
 \x16\x16\x16env | sort | grep -v SHLVL | grep -v ^_
 \x16\x16\x16env
 \x16env
-ls
-env
 env
  |
 env | sort | grep -v SHLVL | grep -v ^_
@@ -152,9 +144,12 @@ A="aaaaaaaaaaaaaaaaaaaa"
 A+="$A$A"
 ls
 echo
-export A="10
 export A="10 "
 export A="10
 (ls)
 export A="10  s d d d d (ls) "
 (ls  && exit 12) || (python3 print 100000 && exit 0) && (ls | cat | cat | cat | cat | cat | cat)
+sd
+s
+d
+dd
