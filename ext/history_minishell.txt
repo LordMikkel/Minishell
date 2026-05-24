@@ -1,7 +1,160 @@
+encc
+export A="*"
+/usr/bin/printf "%s\\n" * | sort
+clear &&echo "Starting monster test" && echo "Part 1: Basic Commands" && ls -la | grep "." && pwd && whoami && echo $? && echo $USER && echo "Part 2: Pipes and Redirections" && cat < Makefile | grep "gcc" | wc -l > output.txt && cat output.txt && rm output.txt && echo "Part 3: Multiple Commands" && echo hello > file1 && cat < file1 >> file2 && cat file2 && rm file1 file2 && echo "Part 4: Environment Variables" && export TEST=hello && echo $TEST && unset TEST && echo $TEST && echo "Part 5: Quotes and Special Characters" && echo "  spaces  " && echo '  single quotes  ' && echo "mixed 'quotes' here" && echo $"HOME" && echo $'HOME' && echo "Part 6: Exit Status" && false || echo $? && true && echo $? && echo "Part 7: Complex Pipes" && ls -la | grep "." | wc -l | xargs echo "Files:" && echo "Part 8: Signal Handling Test" && sleep 2 && echo "Part 9: Error Cases" && cd nonexistentdir 2>errorlog.txt || echo "dir not found $?" && ./nonexistentfile 2>/dev/null || echo "file not found $?" && echo "Part 10: AND/OR operators" && false || echo "OR works" && true && echo "AND works" && false || echo "Complex OR" && true && echo "Complex AND" || echo "Should not print" && echo "Monster test completed with exit status $?"
+lsd
+sclls
+sdd
+c
+sd
+pwt
+l
+esport
+export
+exporr
+export A="  1      2       3    4    "
+echo $A$A
+echo $A$A$A
+make
+export PATH=" "
+echo $PATH | cat -e
+echo $PATH | /usr/bin/cat -e
+echo 1
+pwd
+wc
+sc
+ssl
+slc
+sdc
+d
+sdsc
+ls &&
+ls &&  ls
+echo "Hello, World
+!"
+echo "Hello, World !"
+echo "hello, word!"
+echo "Hello, World!"
+echo /usr/bin/* | wc -w
+if (ft_strcmp(input, "arch") == 0)
+pwd && (cd /tmp && pwd && echo "Estoy en tmp") && pwd && echo "Sigo en mi carpeta"
+ls -lR /usr/include | grep ".h" | head -n 20 | cat -e | wc -l
+< /dev/urandom tr -dc '[:alnum:]' | head -c 1000 | grep "a" --color=auto | cat -e > test_file
+> lista_archivos.txt ls -l -a
+cat lista_archivos.txt
+rm lista_archivos.txt
+cat src/main/main.c | head =n 10
+cat src/main/main.c | head -n 10
+cat src/main/main.c | head -n 15
+cat src/main/main.c | head -n 12
+cat src/main/main.c | head -r 12
+cat src/main/main.c | head -rn 12
+cat src/main/main.c | tail -n 12
+cat src/main/main.c | tail -n 15
+cat src/main/main.c | tail -n 20
+clar
+cat err_file
+cmd1 2> err_file && cat err_file
+cmd1
+cmd 1 &&
+cmd 1 && cmd2
+echo "this line is not finished
+./minishell
+cat ext/history_minishell.txt
+\x18clear
+cat src/main/main.c | tail -n 19
+cat head
+rm head
+cat src/
+cat src/main/main.c
+cat src/main/ | taol -n 18
+cat src/main/ | tail -n 18
+cat src/main/main.c | taol -n 18
+echoo "this line is not
+echoo "this line is not finished"
+finished
+echo "this line is not finished "
+cat src/ | tail -n 18
+cmd1 && ""
+echo "this line is not"
+sleep 10 &\n
+cmd1 2> err_log && cat err_log
+echo "this line is not
+echo "this line is not finished"
+cmd1 &&
+cmd1 &&  cmd2
+A=1 && echo $A
+(echo A && exit 1) || (echo B && exit 0) && (echo C); echo D
+sleep 10 &
+cmd1 2> err_file || cat err_file
+cat src/main/main.c | tail -n 18
+ls *
+cat script.sh
+./minishell script.sh
+echo "this is not
+finished"
+echo "this is not finished"
+cmd1 &&
+cmd2
+cmd1 && cmd2
+head -c 100 /dev/urandom | hexdump -C | grep "a" --color=auto
+echoo this is the end?
+export foo=ls>o
+ls>o
+env | grep foo
+export foo="ls>o"
+$foo
+echo $a hola
+ls | grep src
+ls | grep hola
+grep
+grep | grep
+echo$a hola
+lk
+exit
+ls
+cd bark bark
+echo $?
+\x16\x16\x16\x16\x16\x16\x16\x16/bin/echo
+ls /bin/echo
+ls /bin/
+ls /bin/ | grep echo
+clear
+\x16\x16\x16\x16\x16\x16\x16\x16/bin/echo ""$?""
+\x16\x16/bin/echo ""$?""
+/bin/echo $?"42"
+env | sort | grep -v SHLVL | grep -v \x16^_
+\x16\x16\x16env | sort | grep -v SHLVL | grep -v ^_
+\x16\x16\x16env
+\x16env
+ls
+env
+env
+ |
+env | sort | grep -v SHLVL | grep -v ^_
+\x16/bin/echo ""$?""
+/bin/echo ""$?""
+bash
 ./minishell
 A=A
+echo $PATH$PATH$PATH
+clear
+echo a b c d e f g h i j k l m n o p q r s t u v w x y z
 export A=A
 export A+="$A$A$A"
-echo $PATH$PATH$PATH
-echo a b c d e f g h i j k l m n o p q r s t u v w x y z
-clear
+echo hola
+wow
+A="AAAAA"
+hola
+echo "hola
+echo "hola "
+A="aaaaaaaaaaaaaaaaaaaa"
+A+="$A$A"
+ls
+echo
+export A="10
+export A="10 "
+export A="10
+(ls)
+export A="10  s d d d d (ls) "
+(ls  && exit 12) || (python3 print 100000 && exit 0) && (ls | cat | cat | cat | cat | cat | cat)

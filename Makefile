@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: migarrid <migarrid@student.42.fr>          +#+  +:+       +#+         #
+#    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:55:08 by migarrid          #+#    #+#              #
-#    Updated: 2026/05/23 21:27:34 by migarrid         ###   ########.fr        #
+#    Updated: 2026/05/24 20:19:44 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ NAME				= minishell
 #                            Compiler and Flags                                #
 # **************************************************************************** #
 CC					= gcc
-WFLAGS				= -Wall -Wextra -Werror
+WFLAGS				= -Wall -Wextra -Werror -Wshadow
 DFLAGS				= -g
 DMAIN				= -D MAIN
 #VFLAGS				= -O1 -march=native -flto
