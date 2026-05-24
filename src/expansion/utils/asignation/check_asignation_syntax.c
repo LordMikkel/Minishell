@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 22:34:34 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/21 20:32:31 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/05/24 18:26:08 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,20 +57,16 @@ static int	count_syntax(t_token *token)
 	int	i;
 	int	check_for_equal;
 	int	text_before_equal;
-	int	text_after_equal;
 
 	i = 0;
 	check_for_equal = 0;
 	text_before_equal = 0;
-	text_after_equal = 0;
 	while (token->value[i] != '\0')
 	{
 		if (token->value[i] == '=')
 			check_for_equal++;
 		else if (check_for_equal == 0)
 			text_before_equal++;
-		else if (check_for_equal > 0)
-			text_after_equal++;
 		i++;
 	}
 	if (!check_for_equal || !text_before_equal)
