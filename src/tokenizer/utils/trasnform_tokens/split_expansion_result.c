@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 23:19:18 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/24 21:19:15 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/05/25 04:30:24 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	if_was_expansion(t_token *tokens, int i)
 	return (FALSE);
 }
 
-void	split_expansion_result(t_shell *data, t_prompt *prompt, t_token *tokens)
+int	split_expansion_result(t_shell *data, t_prompt *prompt, t_token *tokens)
 {
 	char	**arr;
 	int		result;
@@ -66,12 +66,12 @@ void	split_expansion_result(t_shell *data, t_prompt *prompt, t_token *tokens)
 			}
 			result = reorder_tokens(data, &tokens[i], count, arr);
 			if (result == ERROR)
-				return (ft_free_str_array(&arr),
-					(void)exit_error(data, ERR_MALLOC, 1));
+				return (ft_free_str_array(&arr), exit_error(data, ERR_MALLOC, 1));
 			tokens = data->prompt.tokens;
 			update_info(prompt, arr, count, &i);
 		}
 		else
 			i++;
 	}
+	return (OK);
 }

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:23:20 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/23 03:03:36 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/05/25 04:31:03 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	handle_child(t_shell *data, t_node *node, int *pipefd, int side)
 	}
 }
 
-void	exec_pipe(t_shell *data, t_node *node, t_exec *exec, int mode)
+int	exec_pipe(t_shell *data, t_node *node, t_exec *exec, int mode)
 {
 	int		pipefd[2];
 	pid_t	pid[2];
@@ -96,14 +96,15 @@ void	exec_pipe(t_shell *data, t_node *node, t_exec *exec, int mode)
 		exit_error(data, ERR_PIPE, EXIT_FAILURE);
 	pid[0] = fork();
 	if (pid[0] == ERROR)
-		return (close_pipes(pipefd), (void)exit_error(data, ERR_FORK, FAIL));
+		return (close_pipes(pipefd), exit_error(data, ERR_FORK, FAIL));
 	if (pid[0] == 0)
 		handle_child(data, node->left, pipefd, LEFT);
 	pid[1] = fork();
 	if (pid[1] == ERROR)
-		return (close_pipes(pipefd), (void)exit_error(data, ERR_FORK, FAIL));
+		return (close_pipes(pipefd), exit_error(data, ERR_FORK, FAIL));
 	if (pid[1] == 0)
 		handle_child(data, node->right, pipefd, RIGHT);
 	close_pipes(pipefd);
 	check_if_background(data, node, pid, mode);
+	return (OK);
 }

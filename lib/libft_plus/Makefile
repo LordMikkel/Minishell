@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:55:35 by migarrid          #+#    #+#              #
-#    Updated: 2025/12/21 00:55:39 by migarrid         ###   ########.fr        #
+#    Updated: 2026/05/25 04:35:23 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME = libft_plus.a
 
 # Compilador y opciones
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -Wpedantic -Wformat -Wshadow -Wnull-dereference -Wlogical-op -Wduplicated-cond -Wduplicated-branches -Wcast-align -Wdouble-promotion -Wcast-align -pipe -lm
 
 # Colores
 DEFAULT = \033[0;39m

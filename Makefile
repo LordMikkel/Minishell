@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:55:08 by migarrid          #+#    #+#              #
-#    Updated: 2026/05/25 02:58:46 by migarrid         ###   ########.fr        #
+#    Updated: 2026/05/25 04:27:27 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ NAME				= minishell
 #                            Compiler and Flags                                #
 # **************************************************************************** #
 CC					= gcc
-WFLAGS				= -Wall -Wextra -Werror -Wshadow
+WFLAGS				= -Wall -Wextra -Werror -Wpedantic -Wformat -Wshadow -Wnull-dereference -Wlogical-op -Wduplicated-cond -Wduplicated-branches -Wcast-align -Wdouble-promotion -Wcast-align -pipe
 DFLAGS				= -g
 DMAIN				= -D MAIN
 AFLAGS				= -fprofile-arcs -ftest-coverage #-fanalyzer

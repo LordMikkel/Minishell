@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 01:02:53 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 00:26:03 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/05/25 04:28:07 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*get_var_value(t_var *vars, const char *key)
  *	como PWD, SHLVL y PATH mínimo.
 */
 
-static void	init_no_env(t_shell *data)
+static int	init_no_env(t_shell *data)
 {
 	char	**var;
 
@@ -55,11 +55,12 @@ static void	init_no_env(t_shell *data)
 	var[4] = strdup("PATH");
 	var[5] = strdup("/usr/local/bin:/usr/bin:/bin");
 	if (!var[0] || !var[1] || !var[2] || !var[3] || !var[4] || !var[5])
-		return (ft_free_str_array(&var), (void)exit_error(data, ERR_MALLOC, 1));
+		return (ft_free_str_array(&var), exit_error(data, ERR_MALLOC, 1));
 	add_var(data, var[0], var[1], ENV);
 	add_var(data, var[2], var[3], ENV);
 	add_var(data, var[4], var[5], ENV);
 	free(var);
+	return (OK);
 }
 
 /*

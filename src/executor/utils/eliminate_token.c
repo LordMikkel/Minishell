@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 00:04:17 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/20 23:38:57 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/05/25 04:32:27 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,18 @@ int	is_expansion_cmd(t_node *node, t_token *tokens, int i)
 	return (is_expansion_cmd(node->right, tokens, i));
 }
 
-void	eliminate_token(t_shell *data, t_prompt *prompt, t_token *tokens, int i)
+int	eliminate_token(t_shell *data, t_prompt *prompt, t_token *tokens, int i)
 {
 	int	j;
 
 	j = i;
 	if (is_expansion_cmd(data->ast_root, tokens, i))
-		return (convert_to_true_token(data, tokens, i));
+		return (convert_to_true_token(data, tokens, i), OK);
 	reorganize(prompt, tokens, i);
 	while (j < prompt->n_tokens)
 	{
 		tokens[j].id -= 1;
 		j++;
 	}
+	return (OK);
 }

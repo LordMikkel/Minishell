@@ -6,22 +6,23 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 19:24:46 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/19 17:05:38 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/05/25 04:31:56 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/minishell.h"
 
-void	special_cases_path_dir(t_shell *data, char *cmd)
+int	special_cases_path_dir(t_shell *data, char *cmd)
 {
 	if (!cmd)
-		return ;
+		return (KO);
 	if (ft_strcmp(cmd, ".") == 0)
-		return ((void)exit_error(data, ERR_IS_DIR, 126, cmd));
+		return (exit_error(data, ERR_IS_DIR, 126, cmd));
 	if (ft_strcmp(cmd, "..") == 0)
-		return ((void)exit_error(data, ERR_CMD_NOT_FOUND, 127, cmd));
+		return (exit_error(data, ERR_CMD_NOT_FOUND, 127, cmd));
 	if (ft_strcmp(cmd, "") == 0)
-		return ((void)exit_error(data, ERR_CMD_NOT_FOUND, 127, cmd));
+		return (exit_error(data, ERR_CMD_NOT_FOUND, 127, cmd));
+	return (OK);
 }
 
 char	*build_and_check_path(t_shell *data, const char *dir, const char *cmd)

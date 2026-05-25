@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 01:05:00 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/23 01:22:10 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/05/25 04:29:21 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,22 +68,22 @@ int	add_var(t_shell *data, char *key, char *value, int type)
 	char **envp necesario para execve
 */
 
-void	add_var_and_envp_alloc(t_shell *data, char *key, char *value, int type)
+int	add_var_and_envp_alloc(t_shell *data, char *key, char *value, int type)
 {
 	t_var	*new_var;
 	t_var	*last_var;
 
 	new_var = ft_calloc(1, sizeof(t_var));
 	if (!new_var)
-		return ((void)exit_error(data, ERR_MALLOC, EXIT_FAIL));
+		return (exit_error(data, ERR_MALLOC, EXIT_FAIL));
 	new_var->key = ft_strdup(key);
 	if (!new_var->key)
-		return (free(new_var), (void)exit_error(data, ERR_MALLOC, EXIT_FAIL));
+		return (free(new_var), exit_error(data, ERR_MALLOC, EXIT_FAIL));
 	new_var->value = ft_strdup(value);
 	if (!new_var->value)
 	{
 		ft_free_multi(2, new_var->key, new_var);
-		return ((void)exit_error(data, ERR_MALLOC, 1));
+		return (exit_error(data, ERR_MALLOC, 1));
 	}
 	new_var->type = type;
 	last_var = lstlast_var(data->env.vars, 'v');
@@ -96,7 +96,7 @@ void	add_var_and_envp_alloc(t_shell *data, char *key, char *value, int type)
 	}
 	data->env.size++;
 	update_envp(data);
-	return ;
+	return (OK);
 }
 
 /*
@@ -105,14 +105,14 @@ void	add_var_and_envp_alloc(t_shell *data, char *key, char *value, int type)
 	dinamica en el heap. Ademas reconstruye el char **envp necesario para execve
 */
 
-void	add_var_and_envp(t_shell *data, char *key, char *value, int type)
+int	add_var_and_envp(t_shell *data, char *key, char *value, int type)
 {
 	t_var	*new_var;
 	t_var	*last_var;
 
 	new_var = ft_calloc(1, sizeof(t_var));
 	if (!new_var)
-		return (free(key), free(value), (void)exit_error(data, ERR_MALLOC, 1));
+		return (free(key), free(value), exit_error(data, ERR_MALLOC, 1));
 	new_var->key = key;
 	new_var->value = value;
 	new_var->type = type;
@@ -128,4 +128,5 @@ void	add_var_and_envp(t_shell *data, char *key, char *value, int type)
 	}
 	data->env.size++;
 	update_envp(data);
+	return (OK);
 }

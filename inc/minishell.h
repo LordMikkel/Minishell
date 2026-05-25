@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2026/05/25 04:02:36 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/05/25 04:32:43 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	executor_recursive(t_shell *data, t_node *root, t_exec *exec, int mode);
 void	exec_semicolon(t_shell *data, t_node *node, t_exec *exec, int mode);
 void	exec_and(t_shell *data, t_node *node, t_exec *exec, int mode);
 void	exec_or(t_shell *data, t_node *node, t_exec *exec, int mode);
-void	exec_pipe(t_shell *data, t_node *node, t_exec *exec, int mode);
+int		exec_pipe(t_shell *data, t_node *node, t_exec *exec, int mode);
 void	exec_subshell(t_shell *data, t_node *node, t_exec *exec, int mode);
 void	exec_builtin(t_shell *data, t_node *node, int mode);
 void	exec_command(t_shell *data, t_node *node, t_exec *exec, int mode);
@@ -234,7 +234,7 @@ void	transform_command_built_lowercase(t_prompt *prompt, t_token *tokens);
 void	transform_asig_to_temp(t_prompt *prompt, t_token *tokens);
 void	transform_cmd_to_built_in(t_shell *data, t_prompt *p, t_token *tokens);
 void	transform_word_to_wildcard(t_prompt *prompt, t_token *tokens);
-void	split_expansion_result(t_shell *data, t_prompt *promp, t_token *tokens);
+int		split_expansion_result(t_shell *data, t_prompt *promp, t_token *tokens);
 
 //AST
 int		get_heredoc(t_shell *data, t_redir *redir, char *delimiter, int mode);
@@ -293,8 +293,8 @@ void	aux_value_asig(t_token *token, char **value, int *i);
 
 //ENV
 int		add_var(t_shell *data, char *key, char *value, int type);
-void	add_var_and_envp_alloc(t_shell *data, char *key, char *value, int type);
-void	add_var_and_envp(t_shell *data, char *key, char *value, int type);
+int		add_var_and_envp_alloc(t_shell *data, char *key, char *value, int type);
+int		add_var_and_envp(t_shell *data, char *key, char *value, int type);
 void	update_shlvl(t_var *vars);
 void	delete_var(t_shell *data, t_env *env, char *key);
 void	*lstlast_var(void *data, char type);
@@ -329,7 +329,7 @@ char	*cleanner_slash_quotes_d(t_shell *data, char *word, int len, int *flag);
 char	*clean_slash_expan_d(t_shell *data, char *word, int len, char slash);
 void	clean_quote_until_slash_d(char *word, char *clean_word, char quote);
 void	void_tokens_at_the_end(t_token *tokens, int n_alloc, int n_tokens);
-void	eliminate_token(t_shell *d, t_prompt *p, t_token *t, int i);
+int		eliminate_token(t_shell *d, t_prompt *p, t_token *t, int i);
 int		cmd_correction(t_shell *data, t_token *tokens, int n_tokens);
 void	safe_index_plus(int *i, int n_tokens);
 void	normalize_token_to_lower(char *str);
