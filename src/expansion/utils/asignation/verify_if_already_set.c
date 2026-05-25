@@ -99,7 +99,6 @@ int	verify_if_already_set(t_shell *data, char *key, char **value, int t)
 	t_var	*var;
 	int		result;
 
-	result = 0;
 	var = data->env.vars;
 	while (var)
 	{

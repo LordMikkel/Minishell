@@ -34,6 +34,7 @@ char	*cleanner_exp(t_shell *data, char *expansion, int len, char trash)
 		{
 			free(expansion);
 			exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+			return (NULL);
 		}
 		while (expansion[j])
 		{
@@ -94,7 +95,7 @@ static int	isn_exp(const char *str, int *i, int str_len, int *flag)
 	Finalmente añade el token al prompt.
 */
 
-static void	make_expan_token(t_shell *data, const char *str, int start, int *i)
+static int	make_expan_token(t_shell *data, const char *str, int start, int *i)
 {
 	int		len;
 	char	*expansion;
@@ -104,7 +105,7 @@ static void	make_expan_token(t_shell *data, const char *str, int start, int *i)
 	{
 		expansion = ft_substr(str, start, len);
 		if (!expansion)
-			exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+			return (exit_error(data, ERR_MALLOC, EXIT_FAILURE));
 		expansion = cleanner_exp(data, expansion, len, '{');
 		expansion = cleanner_exp(data, expansion, len, '}');
 		if (ft_strcmp(expansion, "$") == 0)
@@ -112,6 +113,7 @@ static void	make_expan_token(t_shell *data, const char *str, int start, int *i)
 		else
 			add_token(data, &data->prompt, expansion, EXPANSION);
 	}
+	return (OK);
 }
 
 /*

@@ -34,7 +34,9 @@ static void	aux_alloc_mem(t_shell *data, char **str, char **new_str, int len)
 	if (!*new_str)
 	{
 		free(*str);
+		*new_str = NULL;
 		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+		return ;
 	}
 }
 
@@ -78,6 +80,8 @@ void	ignore_words(t_shell *data, t_token *token, char **str, int len)
 	i = 0;
 	j = 0;
 	aux_alloc_mem(data, str, &new_str, len);
+	if (!new_str || !str || !*str)
+		return ;
 	while ((*str)[i] != '\0')
 	{
 		if ((*str)[i] == '$' && (*str)[i + 1]
@@ -110,7 +114,6 @@ int	expand_empty_str(t_shell *dat, t_token *token, char **key_to_find, int type)
 	int	token_len;
 
 	key_len = 0;
-	token_len = 0;
 	if (type == DOLLAR)
 		key_len = ft_strlen(*key_to_find) + 1;
 	else if (type == TILDE)

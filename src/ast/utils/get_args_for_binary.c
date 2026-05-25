@@ -116,7 +116,6 @@ char	**get_args_for_binary(t_shell *data, t_token *tokens, int *i)
 	if (tokens[*i].type == BUILT_IN)
 		safe_index_plus(i, data->prompt.n_tokens);
 	j = *i;
-	k = 0;
 	n_args = 0;
 	arg_count(tokens, data->prompt.n_tokens, i, &n_args);
 	if (n_args == 0)

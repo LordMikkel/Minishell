@@ -5,6 +5,8 @@
 *.o
 *.a
 *.py
+*.gcda
+*.gcno
 *.swp
 *.DS_Store
 ./obj

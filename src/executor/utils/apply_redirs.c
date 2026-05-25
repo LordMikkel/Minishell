@@ -29,6 +29,7 @@ int	handle_redir_output(t_shell *data, char *filename, int fd_redir, int mode)
 			return (exit_error(data, NULL, EXIT_FAILURE));
 		if (mode == FATHER || mode == SUBSHELL)
 			return (FAIL);
+		return (FAIL);
 	}
 	dup2(file_fd, fd_redir);
 	close(file_fd);
@@ -52,6 +53,7 @@ int	handle_redir_append(t_shell *data, char *filename, int fd_redir, int mode)
 			return (exit_error(data, NULL, EXIT_FAILURE));
 		if (mode == FATHER || mode == SUBSHELL)
 			return (FAIL);
+		return (FAIL);
 	}
 	dup2(file_fd, fd_redir);
 	close(file_fd);
@@ -75,6 +77,7 @@ int	handle_redir_input(t_shell *data, char *filename, int fd_redir, int mode)
 			return (exit_error(data, NULL, EXIT_FAILURE));
 		if (mode == FATHER || mode == SUBSHELL)
 			return (FAIL);
+		return (FAIL);
 	}
 	dup2(file_fd, fd_redir);
 	close(file_fd);

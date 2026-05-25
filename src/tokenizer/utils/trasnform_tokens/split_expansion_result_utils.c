@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 21:01:25 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/21 00:01:00 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/05/25 04:00:03 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static void	altern_arr(t_shell *d, char ***arr, int add_space, int multiple_str)
 	char	*tmp;
 
 	tmp = NULL;
+	if (!arr || !*arr || !(*arr)[add_space])
+		return ;
 	if (add_space != 0 || (add_space == 0 && !multiple_str))
 	{
 		tmp = ft_strjoin((*arr)[add_space], " ");

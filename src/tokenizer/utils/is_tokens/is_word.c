@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/13 00:52:48 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/05/25 03:55:41 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ char	*cleanner_slash(t_shell *data, char *word, int len, char slash)
 
 	j = 0;
 	k = 0;
+	if (!word)
+		return (NULL);
 	if (ft_strchr(word, slash))
 	{
 		clean_word = ft_calloc(len + 1, sizeof(char));
@@ -53,6 +55,7 @@ char	*cleanner_slash(t_shell *data, char *word, int len, char slash)
 		{
 			free(word);
 			exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+			return (NULL);
 		}
 		while (word[j])
 			process_slash_char(word, clean_word, &j, &k);
@@ -98,7 +101,7 @@ static int	ft_bash_w(const char *str, int *i, int *flag)
 	- Crea token WORD y detecta si requiere NO_SPACE antes del siguiente token.
 */
 
-void	is_word(t_shell *data, t_prompt *prompt, const char *str, int *i)
+int	is_word(t_shell *data, t_prompt *prompt, const char *str, int *i)
 {
 	int		flag;
 	int		len;
@@ -115,11 +118,12 @@ void	is_word(t_shell *data, t_prompt *prompt, const char *str, int *i)
 	{
 		word = ft_substr(str, start, len);
 		if (!word)
-			exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+			return(exit_error(data, ERR_MALLOC, EXIT_FAILURE));
 		word = cleanner_slash(data, word, len, '\\');
 		token_id = add_token(data, prompt, word, WORD);
 		is_cmd(data, &prompt->tokens[token_id], word);
 		if (flag == TRUE)
 			add_token(data, prompt, "", NO_SPACE);
 	}
+	return (OK);
 }

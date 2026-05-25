@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:47 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/19 21:40:34 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/05/25 03:52:00 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static char	*cleanner_word(t_shell *data, char *word, int len, char quote)
 
 	j = 0;
 	k = 0;
+	if (!word)
+		return (NULL);
 	if (ft_strchr(word, quote))
 	{
 		clean_word = ft_calloc(len + 1, sizeof(char));
@@ -33,6 +35,7 @@ static char	*cleanner_word(t_shell *data, char *word, int len, char quote)
 		{
 			free(word);
 			exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+			return (NULL);
 		}
 		while (word[j])
 		{
@@ -55,17 +58,18 @@ static char	*cleanner_word(t_shell *data, char *word, int len, char quote)
 	- Registra si es un comando con is_cmd.
 */
 
-void	make_word_s(t_shell *data, t_prompt *p, const char *s, int range[2])
+int	make_word_s(t_shell *data, t_prompt *p, const char *s, int range[2])
 {
 	char	*word;
 	int		token_id;
 
 	word = ft_substr(s, range[0], range[1] - range[0]);
 	if (!word)
-		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+		return (exit_error(data, ERR_MALLOC, EXIT_FAILURE));
 	word = cleanner_word(data, word, range[1] - range[0], '\'');
 	token_id = add_token(data, p, word, WORD);
 	is_cmd(data, &p->tokens[token_id], word);
+	return (OK);
 }
 
 /*

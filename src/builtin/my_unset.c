@@ -93,7 +93,6 @@ static void	process_unset_token(t_shell *data, t_token *token, char *ptr)
 	char	*char_to_find;
 	int		len;
 
-	len = 0;
 	char_to_find = NULL;
 	if (token->type == TEMP_ASIGNATION)
 		char_to_find = ft_strchr(token->value, '=');

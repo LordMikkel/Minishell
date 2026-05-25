@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 21:23:28 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/21 20:01:28 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/05/25 04:07:19 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,11 @@ static int	if_find_dollar(char *str, char **key_to_find, int i)
 static void	aux_copy_tilde(char *str, char **key_to_find, int i)
 {
 	int	j;
-	int	flag;
 
 	j = 0;
-	flag = FALSE;
 	(*key_to_find)[j++] = '~';
-	while ((str[i] == '+' || str[i] == '-' || str[i] == '/') && flag == FALSE)
+	while (str[i] == '+' || str[i] == '-' || str[i] == '/')
 	{
-		if (str[i] == '$' || str[i] == '~')
-		{
-			flag = TRUE;
-			break ;
-		}
 		(*key_to_find)[j++] = str[i];
 		i++;
 	}

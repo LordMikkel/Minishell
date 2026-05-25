@@ -76,8 +76,6 @@ static int	check_wildcard_asig(t_shell *data, t_token *tokens, int i)
 	int	result_asig;
 	int	result_word;
 
-	result_asig = 0;
-	result_word = 0;
 	expand_wildcards(data, &data->prompt, tokens, FINAL_PHASE);
 	result_asig = check_asignation_syntax(&tokens[i], ENV);
 	if (result_asig)

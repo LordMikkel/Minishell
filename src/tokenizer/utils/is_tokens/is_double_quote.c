@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:47 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/20 20:31:08 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/05/25 03:50:22 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static char	*cleanner_word(t_shell *data, char *word, int len, char quote)
 {
 	char	*clean_word;
 
+	if (!word)
+		return (NULL);
 	if (ft_strchr(word, quote))
 	{
 		clean_word = ft_calloc(len + 1, sizeof(char));
@@ -30,6 +32,7 @@ static char	*cleanner_word(t_shell *data, char *word, int len, char quote)
 		{
 			free(word);
 			exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+			return (NULL);
 		}
 		clean_quote_until_slash_d(word, clean_word, quote);
 		free(word);
@@ -45,7 +48,7 @@ static char	*cleanner_word(t_shell *data, char *word, int len, char quote)
 	- Registra como comando si corresponde.
 */
 
-void	make_word_d(t_shell *data, t_prompt *promp, const char *s, int range[2])
+int	make_word_d(t_shell *data, t_prompt *promp, const char *s, int range[2])
 {
 	char	*ptr;
 	char	*word;
@@ -55,10 +58,9 @@ void	make_word_d(t_shell *data, t_prompt *promp, const char *s, int range[2])
 	flag = FALSE;
 	word = ft_substr(s, range[0], range[1] - range[0]);
 	if (!word)
-		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+		return(exit_error(data, ERR_MALLOC, EXIT_FAILURE));
 	word = cleanner_word(data, word, range[1] - range[0], '\"');
-	word = cleanner_slash_quotes_d(data, word, range[1] - range[0], &flag);
-	ptr = ft_strchr(word, '$');
+	word = cleanner_slash_quotes_d(data, word, range[1] - range[0], &flag);	ptr = ft_strchr(word, '$');
 	if (ptr && *ptr == '$' && ischrkey((*(ptr + 1))) && !ft_isspace(*(ptr + 1)))
 	{
 		if (flag == TRUE)
@@ -69,6 +71,7 @@ void	make_word_d(t_shell *data, t_prompt *promp, const char *s, int range[2])
 	else
 		token_id = add_token(data, promp, word, WORD);
 	is_cmd(data, &promp->tokens[token_id], word);
+	return (OK);
 }
 
 /*

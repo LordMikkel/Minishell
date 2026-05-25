@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 17:28:08 by migarrid          #+#    #+#             */
-/*   Updated: 2025/03/18 15:26:47 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/05/25 02:31:52 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	ft_apply_precision(char **str, t_format *fmt)
 	int		len;
 	int		is_neg;
 
+	if (!str || !*str || !fmt)
+		return ;
 	if (fmt->precision < 0 || ft_strncmp(*str, "(nil)", 5) == 0)
 		return ;
 	len = ft_strlen(*str);

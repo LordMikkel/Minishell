@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 10:55:44 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/21 19:17:31 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/05/25 03:09:37 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	check_if_error(char **builtins, int len)
  *	de memoria hayan sido exitosas antes de almacenarlas en `data`.
  */
 
-void	init_builtins(t_shell *data)
+int	init_builtins(t_shell *data)
 {
 	char	**built_ins;
 	int		len;
@@ -51,7 +51,7 @@ void	init_builtins(t_shell *data)
 	len = N_BULTINS;
 	built_ins = ft_calloc(len + 1, sizeof(char *));
 	if (!built_ins)
-		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+		return (exit_error(data, ERR_MALLOC, EXIT_FAILURE));
 	built_ins[0] = ft_strdup("cd");
 	built_ins[1] = ft_strdup("echo");
 	built_ins[2] = ft_strdup("export");
@@ -61,7 +61,8 @@ void	init_builtins(t_shell *data)
 	built_ins[6] = ft_strdup("pwd");
 	built_ins[7] = NULL;
 	if (check_if_error(built_ins, len) == ERROR)
-		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+		return (exit_error(data, ERR_MALLOC, EXIT_FAILURE));
 	data->builtins.builtins_selection = built_ins;
 	data->builtins.n_builtins = len;
+	return (OK);
 }

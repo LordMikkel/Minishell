@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 01:23:24 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/20 22:41:37 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/05/25 04:16:28 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static void	handle_n_flag(char **args, int *new_line, int *i)
 {
 	int	j;
 
-	j = 0;
 	while (args[*i] && args[*i][0] == '-' && args[*i][1] == 'n')
 	{
 		j = 2;

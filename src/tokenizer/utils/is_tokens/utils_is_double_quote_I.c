@@ -101,6 +101,8 @@ char	*cleanner_slash_quotes_d(t_shell *data, char *word, int len, int *flag)
 {
 	char	*clean_word;
 
+	if (!word)
+		return (NULL);
 	if (ft_strchr(word, '\\'))
 	{
 		clean_word = ft_calloc(len + 1, sizeof(char));
@@ -108,6 +110,7 @@ char	*cleanner_slash_quotes_d(t_shell *data, char *word, int len, int *flag)
 		{
 			free(word);
 			exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+			return (NULL);
 		}
 		process_slash_char_quotes_d(word, clean_word, flag);
 		free(word);

@@ -20,7 +20,6 @@ int	extract_key(t_shell *data, t_token *token, char **key_to_find, int phase)
 	int	type;
 
 	type = INDIFERENT;
-	found = FALSE;
 	match = copy_key(token->value, key_to_find, &type);
 	if (!match)
 		return (FAILURE);

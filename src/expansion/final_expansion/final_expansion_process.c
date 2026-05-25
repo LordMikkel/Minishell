@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 19:04:23 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/24 22:48:52 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/05/25 04:01:47 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 	pueden ir cambiando a medida que se expande y simplifica
 */
 
-void	create_before_tokens(t_shell *d, t_token *tokens, t_prompt *prompt)
+int	create_before_tokens(t_shell *d, t_token *tokens, t_prompt *prompt)
 {
 	int	i;
 	int	*token_type_buffer;
@@ -32,13 +32,14 @@ void	create_before_tokens(t_shell *d, t_token *tokens, t_prompt *prompt)
 	}
 	token_type_buffer = ft_calloc(prompt->n_tokens + 1, sizeof(int));
 	if (!token_type_buffer)
-		exit_error(d, ERR_MALLOC, EXIT_FAILURE);
+		return (exit_error(d, ERR_MALLOC, EXIT_FAILURE));
 	while (i < prompt->n_tokens)
 	{
 		token_type_buffer[i] = tokens[i].type;
 		i++;
 	}
 	prompt->before_tokens_type = token_type_buffer;
+	return (OK);
 }
 
 /*

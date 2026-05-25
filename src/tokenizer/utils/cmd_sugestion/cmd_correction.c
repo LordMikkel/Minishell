@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 20:48:00 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/24 22:50:32 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/05/25 04:00:45 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,18 +99,15 @@ static int	is_valid_value(char *str)
 
 int	process_token(t_shell *data, t_token *tokens, char **builtins, int i)
 {
-	int	result;
 	int	j;
 
 	j = 0;
-	result = FALSE;
 	while (j < data->builtins.n_builtins)
 	{
 		if (is_valid_value(tokens[i].value)
 			&& find_match(tokens[i].value, builtins[j]))
 		{
-			result = ask_confirmation(data, &tokens[i], builtins[j]);
-			return (result);
+			return (ask_confirmation(data, &tokens[i], builtins[j]));
 		}
 		j++;
 	}

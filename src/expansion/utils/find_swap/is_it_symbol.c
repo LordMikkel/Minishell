@@ -20,7 +20,14 @@ static void	sym_expa(t_shell *d, t_token *token, char **key_to_f, int sym_value)
 	if (!value_of_symbol_expansion)
 	{
 		free (*key_to_f);
+		*key_to_f = NULL;
 		exit_error(d, ERR_MALLOC, EXIT_FAILURE);
+		return ;
+	}
+	if (!key_to_f || !*key_to_f)
+	{
+		free(value_of_symbol_expansion);
+		return ;
 	}
 	copy_value(d, &token->value, value_of_symbol_expansion, *key_to_f);
 	if (value_of_symbol_expansion)

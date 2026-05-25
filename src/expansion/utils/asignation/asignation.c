@@ -33,6 +33,8 @@ int	aux_mem_alloc_asignation(char **key, char **value, int len)
 	{
 		free (*key);
 		free (*value);
+		*key = NULL;
+		*value = NULL;
 		return (ERROR);
 	}
 	return (SUCCESS);
@@ -43,6 +45,8 @@ void	aux_key_asig(t_token *token, char **key, int *i)
 	int	j;
 
 	j = 0;
+	if (!key || !*key)
+		return ;
 	while (token->value[*i] != '=' && token->value[j] != '\0')
 	{
 		if (token->value[*i] == '+')
@@ -62,6 +66,8 @@ void	aux_value_asig(t_token *token, char **value, int *i)
 	int	j;
 
 	j = 0;
+	if (!value || !*value)
+		return ;
 	if (token->value[*i] == '=')
 		(*i)++;
 	while (token->value[*i] != '\0')

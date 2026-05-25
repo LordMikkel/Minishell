@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:43:41 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/28 23:53:17 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/05/25 03:53:50 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,14 @@ static char	*normalize_wildcards(t_shell *data, char *wildcard, int len)
 
 	j = 0;
 	k = 0;
+	if (!wildcard)
+		return (NULL);
 	clean_wildcar = ft_calloc(len + 1, sizeof(char));
 	if (!clean_wildcar)
 	{
 		free (wildcard);
 		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+		return (NULL);
 	}
 	while (wildcard[j] != '\0')
 	{
@@ -60,6 +63,8 @@ char	*cleanner_wildcar(t_shell *data, char *wildcar, int len, char trash)
 
 	j = 0;
 	k = 0;
+	if (!wildcar)
+		return (NULL);
 	if (ft_strchr(wildcar, trash))
 	{
 		clean_wildcar = ft_calloc(len + 1, sizeof(char));
@@ -67,6 +72,7 @@ char	*cleanner_wildcar(t_shell *data, char *wildcar, int len, char trash)
 		{
 			free(wildcar);
 			exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+			return (NULL);
 		}
 		while (wildcar[j])
 		{
@@ -116,7 +122,7 @@ static void	if_expan_or_quotes(t_shell *d, t_prompt *p, const char *str, int i)
 	- Crea el token WILDCAR
 */
 
-void	is_wildcar(t_shell *data, t_prompt *prompt, const char *str, int *i)
+int	is_wildcar(t_shell *data, t_prompt *prompt, const char *str, int *i)
 {
 	int		len;
 	int		start;
@@ -133,7 +139,7 @@ void	is_wildcar(t_shell *data, t_prompt *prompt, const char *str, int *i)
 			len = *i - start;
 			wildcar = ft_substr(str, start, len);
 			if (!wildcar)
-				exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+				return (exit_error(data, ERR_MALLOC, EXIT_FAILURE));
 			wildcar = cleanner_wildcar(data, wildcar, len, ';');
 			wildcar = cleanner_wildcar(data, wildcar, len, '?');
 			wildcar = normalize_wildcards(data, wildcar, len);
@@ -141,4 +147,5 @@ void	is_wildcar(t_shell *data, t_prompt *prompt, const char *str, int *i)
 		}
 		if_expan_or_quotes(data, prompt, str, *i);
 	}
+	return (OK);
 }

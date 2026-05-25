@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 22:31:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/24 21:16:19 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/05/25 04:02:36 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	init_minishell(t_shell *data, int argc, char **argv, char **envp);
 void	init_data(t_shell *data, char **envp);
 void	init_arg(t_shell *data, int ac, char **av);
 void	init_exec(t_exec *exec, t_env *env);
-void	init_builtins(t_shell *data);
+int		init_builtins(t_shell *data);
 void	init_enviroment(t_shell *data, t_env *env, char **envp);
 void	init_ic_readline(int *history_fd);
 
@@ -161,12 +161,11 @@ int		get_paren_balance(t_prompt *prompt, t_token *tokens);
 // GET TOKENS
 void	handle_tilde_expansion(t_shell *d, t_prompt *p, const char *st, int *i);
 void	allocate_tokens(t_shell *data, t_prompt *prompt);
-void	is_cmd(t_shell *data, t_token *token, char *str);
-void	is_word(t_shell *data, t_prompt *prompt, const char *str, int *i);
+int		is_cmd(t_shell *data, t_token *token, char *str);
+int		is_word(t_shell *data, t_prompt *prompt, const char *str, int *i);
 void	is_dolar(t_shell *data, t_prompt *prompt, const char *str, int *i);
 void	is_single_quote(t_shell *d, t_prompt *prompt, const char *s, int *i);
 void	is_double_quote(t_shell *d, t_prompt *prompt, const char *s, int *i);
-void	is_wildcar(t_shell *data, t_prompt *prompt, const char *str, int *i);
 void	is_scape(t_shell *data, t_prompt *prompt, const char *str, int *i);
 void	is_redir(t_shell *data, t_prompt *prompt, const char *str, int *i);
 void	is_heredoc(t_shell *data, t_prompt *prompt, const char *str, int *i);
@@ -176,6 +175,7 @@ void	is_pipe(t_shell *data, t_prompt *prompt, const char *str, int *i);
 void	is_or(t_shell *data, t_prompt *prompt, const char *str, int *i);
 void	is_and(t_shell *data, t_prompt *prompt, const char *str, int *i);
 void	is_parenten(t_shell *data, t_prompt *prompt, const char *str, int *i);
+int		is_wildcar(t_shell *data, t_prompt *prompt, const char *str, int *i);
 void	is_not_token(const char *str, int *i);
 void	is_hash(const char *str, int *i);
 int		is_symbol(int c);
@@ -265,7 +265,7 @@ int		is_it_symbol(t_shell *data, t_token *token, char **key_to_find);
 void	reconect_nodes_tokens(t_shell *data, t_node *node, t_token *tokens);
 int		copy_value(t_shell *d, char **t_val, char *key_value, char *key_to_f);
 int		expand_empty_str(t_shell *d, t_token *to, char **key_to_find, int type);
-void	create_before_tokens(t_shell *d, t_token *tokens, t_prompt *prompt);
+int		create_before_tokens(t_shell *d, t_token *tokens, t_prompt *prompt);
 void	move_script_args_to_end(t_shell *data, t_prompt *p, t_token *tokens);
 void	reconect_nodes_tokens(t_shell *data, t_node *node, t_token *tokens);
 int		initial_expansion_process(t_shell *d, t_prompt *prompt);

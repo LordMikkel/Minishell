@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 00:54:29 by migarrid          #+#    #+#             */
-/*   Updated: 2025/03/18 15:21:06 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/05/25 00:42:53 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	unsigned char	*d;
 	unsigned char	*s;
 
-	if ((!dest && !src) && n > 0)
+	if (!dest || !src)
 		return (NULL);
 	d = (unsigned char *)dest;
 	s = (unsigned char *)src;

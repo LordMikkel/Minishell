@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:55:08 by migarrid          #+#    #+#              #
-#    Updated: 2026/05/24 20:19:44 by migarrid         ###   ########.fr        #
+#    Updated: 2026/05/25 02:58:46 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,13 +22,14 @@ CC					= gcc
 WFLAGS				= -Wall -Wextra -Werror -Wshadow
 DFLAGS				= -g
 DMAIN				= -D MAIN
+AFLAGS				= -fprofile-arcs -ftest-coverage #-fanalyzer
 #VFLAGS				= -O1 -march=native -flto
 #OFLAGS				= -Os -flto -ffunction-sections -fdata-sections -Wl,--gc-sections
 #SFLAGS				= -fsanitize=address,undefined
 DEPFLAGS			= -MMD -MP
 
 # **************************************************************************** #
-#                               Shell Comands                                  #
+#                               Shell Commands                                  #
 # **************************************************************************** #
 RM					= rm -rf
 PRINT				= printf
@@ -104,9 +105,9 @@ SRCS =				main/main.c \
 					init/utils/env/update_var.c \
 					init/utils/env/delete_var.c \
 					init/utils/env/update_envp.c \
-					init/utils/highlighther/highlighter.c \
-					init/utils/highlighther/is_highlighter_I.c \
-					init/utils/highlighther/is_highlighter_II.c \
+					init/utils/highlighter/highlighter.c \
+					init/utils/highlighter/is_highlighter_I.c \
+					init/utils/highlighter/is_highlighter_II.c \
 					tokenizer/tokenizer.c \
 					tokenizer/utils/is_tokens/is_and.c \
 					tokenizer/utils/is_tokens/is_dolar.c \
@@ -268,7 +269,7 @@ ${OBJ_DIR}/%.o: ${SRC_DIR}/%.c $(DEPS) $(LIBFT_A) | $(OBJ_DIR)
 	@$(eval SRC_COUNT = $(shell expr $(SRC_COUNT) + 1))
 	@$(PRINT) "\r%100s\r[ %d/%d (%d%%) ] Compiling $(BLUE)$<$(DEFAULT)...\n" "" $(SRC_COUNT) $(SRC_COUNT_TOT) $(SRC_PCT)
 	@$(MKDIR) $(dir $@)
-	@$(CC) $(WFLAGS) $(DMAIN) $(DFLAGS) $(SFLAGS) $(VFLAGS) $(OFLAGS) -I$(INC_DIR) $(DEPFLAGS) -c -o $@ $<
+	@$(CC) $(DMAIN) $(WFLAGS) $(AFLAGS)  $(DFLAGS) $(SFLAGS) $(VFLAGS) $(OFLAGS) -I$(INC_DIR) $(DEPFLAGS) -c -o $@ $<
 
 # Include .deps files
 -include $(DEPS_FILES)
@@ -281,7 +282,7 @@ all: $(ISOCLINE_A) $(LIBFT_A) $(NAME)
 
 # Build executable
 $(NAME): $(OBJS) $(LIBFT_A) $(HISTORY_A) $(ISOCLINE_A)
-	@$(CC) $(WFLAGS) $(DMAIN) $(DFLAGS) $(SFLAGS) $(VFLAGS) $(OFLAGS) $(OBJS) $(LIBFT_A) $(ISOCLINE_A) -I$(INC_DIR) $(LDLIBS) -o $(NAME)
+	@$(CC) $(DFLAGS) $(WFLAGS) $(AFLAGS) $(DFLAGS) $(SFLAGS) $(VFLAGS) $(OFLAGS) $(OBJS) $(LIBFT_A) $(ISOCLINE_A) -I$(INC_DIR) $(LDLIBS) -o $(NAME)
 	@$(PRINT) "${CLEAR}${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}${GREEN}»${RESET} [${PURPLE}${BOLD}${NAME}${RESET}]: ${RED}${BOLD}${NAME} ${RESET}compiled ${GREEN}successfully${RESET}.${GREY}\n${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}"
 
 # Rebuild libft.a

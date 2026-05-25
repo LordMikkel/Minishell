@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 21:40:12 by migarrid          #+#    #+#             */
-/*   Updated: 2025/05/30 23:14:45 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/05/25 02:32:27 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ float	ft_strtof(const char *nptr)
 			sign = -1;
 	}
 	while (ft_isdigit(nptr[i]))
-		result = result * 10.0f + (nptr[i++] - '0');
+		result = result * 10.0 + (nptr[i++] - '0');
 	if (nptr[i] == '.')
 		result = process_decimal_part(nptr, &i, result);
 	return (result * sign);

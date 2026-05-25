@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_cmd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 21:35:11 by migarrid          #+#    #+#             */
-/*   Updated: 2026/05/23 20:33:45 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/05/25 03:58:40 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	is_built_in(t_shell *data, t_token *token, char *str)
 	- Maneja errores de memoria y limpia recursos temporales.
 */
 
-void	is_cmd(t_shell *data, t_token *token, char *str)
+int	is_cmd(t_shell *data, t_token *token, char *str)
 {
 	char	**path_arr;
 	char	*path;
@@ -114,18 +114,18 @@ void	is_cmd(t_shell *data, t_token *token, char *str)
 	if (!path)
 		path = DEFAULT_PATH;
 	if (is_built_in(data, token, str) == YES)
-		return ;
+		return (OK);
 	path_arr = ft_split(path, ':');
 	if (!path_arr)
-		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+		return (exit_error(data, ERR_MALLOC, EXIT_FAILURE));
 	validate = find_bin(path_arr, str);
 	if (validate == ERROR)
 	{
 		ft_free_str_array(&path_arr);
-		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+		return (exit_error(data, ERR_MALLOC, EXIT_FAILURE));
 	}
 	if (validate == SUCCESS)
 		token->type = COMMAND;
 	ft_free_str_array(&path_arr);
-	return ;
+	return (OK);
 }
