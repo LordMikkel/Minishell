@@ -30,7 +30,6 @@
 # include <strings.h>
 # include <termios.h>
 # include <dirent.h>
-# include <string.h>
 # include <signal.h>
 # include <errno.h>
 # include <term.h>
@@ -295,7 +294,7 @@ void	aux_value_asig(t_token *token, char **value, int *i);
 int		add_var(t_shell *data, char *key, char *value, int type);
 int		add_var_and_envp_alloc(t_shell *data, char *key, char *value, int type);
 int		add_var_and_envp(t_shell *data, char *key, char *value, int type);
-void	update_shlvl(t_var *vars);
+void	update_shlvl(t_shell *data, t_var *vars);
 void	delete_var(t_shell *data, t_env *env, char *key);
 void	*lstlast_var(void *data, char type);
 void	path_null_no_env(t_shell *data, char **path);

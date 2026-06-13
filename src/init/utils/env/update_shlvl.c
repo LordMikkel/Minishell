@@ -17,7 +17,7 @@
  * maneja casos límite como valores demasiado altos o negativos
  */
 
-void	update_shlvl(t_var *vars)
+void	update_shlvl(t_shell *data, t_var *vars)
 {
 	t_var			*var;
 	long			lvl;
@@ -25,7 +25,7 @@ void	update_shlvl(t_var *vars)
 	var = vars;
 	while (var)
 	{
-		if (ft_strcmp(var->key, "SHLVL") == 0)
+		if (var->key && ft_strcmp(var->key, "SHLVL") == 0)
 		{
 			lvl = ft_atol(var->value) + 1;
 			if (lvl > INT_MAX)
@@ -40,6 +40,8 @@ void	update_shlvl(t_var *vars)
 			}
 			free(var->value);
 			var->value = ft_itoa(lvl);
+			if (!var->value)
+				exit_error(data, ERR_MALLOC, EXIT_FAILURE);
 			return ;
 		}
 		var = var->next;
