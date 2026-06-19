@@ -79,6 +79,7 @@ void	execute_cmd_from_child(t_shell *data, t_node *node, t_env *env)
 	path = get_path(data, node->token->value, env->envp);
 	add_var_and_envp(data, ft_strdup("_"), path, ENV);
 	signal(SIGPIPE, SIG_DFL);
+	clean_fd(&data->exec, data->history_fd);
 	execve(path, node->args, env->envp);
 	exit_error(data, ERR_EXEC, EXIT_CMD_NOT_EXEC, node->token->value);
 }
@@ -99,6 +100,7 @@ void	execute_cmd_from_father(t_shell *data, t_node *node, t_env *env)
 		path = get_path(data, node->token->value, env->envp);
 		add_var_and_envp(data, ft_strdup("_"), path, ENV);
 		signal(SIGPIPE, SIG_DFL);
+		clean_fd(&data->exec, data->history_fd);
 		execve(path, node->args, env->envp);
 		exit_error(data, ERR_EXEC, EXIT_CMD_NOT_EXEC, node->token->value);
 	}

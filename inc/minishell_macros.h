@@ -125,8 +125,8 @@
 /*                              Default Values                                */
 /* ************************************************************************** */
 # define DEFAULT_PATH				"/usr/local/bin:/usr/bin:/bin"
-# define HISTORY_FILE		"./ext/history_minishell.txt"
-# define HYSTORY_DIR		"./ext"
+# define HISTORY_FILE				"./ext/history_minishell.txt"
+# define HYSTORY_DIR				"./ext"
 
 /* ************************************************************************** */
 /*                                   ARGS                                     */
@@ -147,60 +147,54 @@
 /*                              Error Messages                                */
 /* ************************************************************************** */
 //General Errors
-# define ERRNO			"Errno: %s\n"
-# define ERR_MALLOC		"minishell: memory allocation failed\n"
-# define MALLOC			"minishell: memory allocation failed\n"
-# define ERR_FORK		"minishell: fork: Resource temporarily unavailable\n"
-# define ERR_PIPE		"minishell: pipe: Too many open files\n"
-# define ERR_DUP		"minishell: dup2: Bad file descriptor\n"
-# define ERR_SIGNAL		"minishell: signals state failed\n"
-# define ERR_MAX_TOKENS "minishell: error: maximum number of tokens exceeded\n"
-# define ERR_STDIN		"minishell: error: no input outside a terminal is \
-allowed\n"
+# define ERRNO					"Errno: %s\n"
+# define ERR_MALLOC				"minishell: memory allocation failed\n"
+# define MALLOC					"minishell: memory allocation failed\n"
+# define ERR_FORK				"minishell: fork: Resource temporarily unavailable\n"
+# define ERR_PIPE				"minishell: pipe: Too many open files\n"
+# define ERR_DUP				"minishell: dup2: Bad file descriptor\n"
+# define ERR_SIGNAL				"minishell: signals state failed\n"
+# define ERR_MAX_TOKENS 		"minishell: error: maximum number of tokens exceeded\n"
+# define ERR_STDIN				"minishell: error: no input outside a terminal is allowed\n"
 
 //File Directory Errors
-# define ERR_FILE_NOT_FOUND	"minishell: %s: No such file or directory\n"
-# define ERR_PERM_DENIED	"minishell: %s: Permission denied\n"
-# define ERR_IS_DIR			"minishell: %s: Is a directory\n"
-# define ERR_NOT_DIR		"minishell: %s: Not a directory\n"
-# define ERR_HOME_NOT_SET	"minishell: ~: HOME not set\n"
+# define ERR_FILE_NOT_FOUND		"minishell: %s: No such file or directory\n"
+# define ERR_PERM_DENIED		"minishell: %s: Permission denied\n"
+# define ERR_IS_DIR				"minishell: %s: Is a directory\n"
+# define ERR_NOT_DIR			"minishell: %s: Not a directory\n"
+# define ERR_HOME_NOT_SET		"minishell: ~: HOME not set\n"
 
 //Command Errors
-# define ERR_CMD_NOT_FOUND	"minishell: %s: command not found\n"
-# define ERR_CMD_NOT_EXEC	"minishell: %s: cannot execute binary file\n"
-# define ERR_EXEC			"minishell: %s: cannot execute binary file: \
-Exec format error\n"
+# define ERR_CMD_NOT_FOUND		"minishell: %s: command not found\n"
+# define ERR_CMD_NOT_EXEC		"minishell: %s: cannot execute binary file\n"
+# define ERR_EXEC				"minishell: %s: cannot execute binary file: Exec format error\n"
 
 //Built-in Errors
-# define ERR_CD_TOO_MANY	"minishell: cd: too many arguments\n"
-# define ERR_CD_NO_HOME		"minishell: cd: HOME not set\n"
-# define ERR_CD_OLDPWD		"minishell: cd: OLDPWD not set\n"
-# define ERR_OLDPWD_NOT_SET	"minishell: ~-: OLDPWD not set\n"
-# define ERR_EXPORT			"minishell: export: `%s': not a valid identifier\n"
-# define ERR_UNSET			"minishell: unset: `%s': not a valid identifier\n"
-# define ERR_EXIT_NUMERIC	"minishell: exit: %s: numeric argument required\n"
-# define ERR_LIMIT_LONG		"minishell: exit: %s: long argument required\n"
-# define ERR_EXIT_TOO_MANY	"minishell: exit: too many arguments\n"
-# define ERR_ENV		"minishell: env: does not accept arguments\n"
-# define ERR_PWD		"minishell: pwd: error retrieving current directory\n"
+# define ERR_CD_TOO_MANY		"minishell: cd: too many arguments\n"
+# define ERR_CD_NO_HOME			"minishell: cd: HOME not set\n"
+# define ERR_CD_OLDPWD			"minishell: cd: OLDPWD not set\n"
+# define ERR_OLDPWD_NOT_SET		"minishell: ~-: OLDPWD not set\n"
+# define ERR_EXPORT				"minishell: export: `%s': not a valid identifier\n"
+# define ERR_UNSET				"minishell: unset: `%s': not a valid identifier\n"
+# define ERR_EXIT_NUMERIC		"minishell: exit: %s: numeric argument required\n"
+# define ERR_LIMIT_LONG			"minishell: exit: %s: long argument required\n"
+# define ERR_EXIT_TOO_MANY		"minishell: exit: too many arguments\n"
+# define ERR_ENV				"minishell: env: does not accept arguments\n"
+# define ERR_PWD				"minishell: pwd: error retrieving current directory\n"
 # define ERR_BUILTIN_ALIAS		"minishell: alias: `%s': not a valid alias\n"
 # define ERR_BUILTIN_UNALIAS	"minishell: unalias: `%s': not a valid alias\n"
 
 //Syntax Errors
-# define ERR_SYNTAX		"minishell: syntax error near unexpected token `%s'\n"
-# define ERR_SYNTAX_EOF		"minishell: syntax error: unexpected end of file\n"
-# define ERR_HEREDOC_EOF	"minishell: warning: here-document at line %d \
-delimited by end-of-file (wanted `%s')\n"
-# define ERR_DOUBLE_PARENT	"minishell: ((: %s: syntax error in expression \
-(error token is \"%s\")\n"
+# define ERR_SYNTAX				"minishell: syntax error near unexpected token `%s'\n"
+# define ERR_SYNTAX_EOF			"minishell: syntax error: unexpected end of file\n"
+# define ERR_HEREDOC_EOF		"minishell: warning: here-document at line %d delimited by end-of-file (wanted `%s')\n"
+# define ERR_DOUBLE_PARENT		"minishell: ((: %s: syntax error in expression (error token is \"%s\")\n"
 
 //Variable Errors
-# define ERR_VAR_NOT_SET	"minishell: %s: parameter null or not set\n"
-# define ERR_BAD_SUBST		"minishell: %s: bad substitution\n"
-# define ERR_SHLVL_HIGH		"\033[1m\033[1;31mminishell: warning: shell level \
-(INT_MAX) too high, resetting to 1\033[0m\n"
-# define ERR_SHLVL_LOW		"\033[1m\033[1;31mminishell: warning: shell level \
-is negative resetting to 1\033[0m\n"
+# define ERR_VAR_NOT_SET		"minishell: %s: parameter null or not set\n"
+# define ERR_BAD_SUBST			"minishell: %s: bad substitution\n"
+# define ERR_SHLVL_HIGH			"\033[1m\033[1;31mminishell: warning: shell level (INT_MAX) too high, resetting to 1\033[0m\n"
+# define ERR_SHLVL_LOW			"\033[1m\033[1;31mminishell: warning: shell level is negative resetting to 1\033[0m\n"
 
 //Redirection Errors
 # define ERR_AMBIGUOUS_REDIR	"minishell: %s: ambiguous redirect\n"
