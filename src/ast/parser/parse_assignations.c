@@ -36,7 +36,7 @@
 	COMMANDS o BUILT-IN ó ASIGNATIONS que son independientes.
 */
 
-t_node	*parse_assignations(t_shell *dat, t_token *tokens, int *i, int n_tokens)
+t_node	*parse_assignations(t_shell *data, t_token *tokens, int *i, int n_tokens)
 {
 	t_node	*central;
 	t_node	*left;
@@ -44,17 +44,17 @@ t_node	*parse_assignations(t_shell *dat, t_token *tokens, int *i, int n_tokens)
 
 	if (*i >= n_tokens || !is_real_assignation_type(tokens[*i].type))
 		return (NULL);
-	left = create_node(dat, &tokens[*i], tokens[*i].type);
+	left = create_node(data, &tokens[*i], tokens[*i].type);
 	if (!left)
 		return (NULL);
 	safe_index_plus(i, n_tokens);
 	while (*i < n_tokens && is_real_assignation_type(tokens[*i].type))
 	{
-		central = create_node(dat, NULL, SEMICOLON);
+		central = create_node(data, NULL, SEMICOLON);
 		if (!central)
-			return (clean_node(&left), NULL);
+			return (clean_ast(&left), NULL);
 		central->left = left;
-		right = create_node(dat, &tokens[*i], tokens[*i].type);
+		right = create_node(data, &tokens[*i], tokens[*i].type);
 		if (!right)
 			return (clean_node(&central), clean_ast(&left), NULL);
 		safe_index_plus(i, n_tokens);

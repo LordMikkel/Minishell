@@ -72,18 +72,15 @@ t_redir	*add_redir(t_shell *data, t_redir *lst, t_token *token, char *filename)
 	redir->filename_hash = token[+1].hash;
 	if (!redir->filename)
 		return (free(redir), error_status_redirs(data, &lst, ERR_MALLOC));
+	redir->fd_redir = STDOUT_FILENO;
+	if (redir->type == REDIR_INPUT)
+		redir->fd_redir = STDIN_FILENO;
 	if (ft_isdigit(token->value[0]))
 		redir->fd_redir = token->value[0] - '0';
-	else
-	{
-		if (redir->type == REDIR_INPUT)
-			redir->fd_redir = STDIN_FILENO;
-		else
-			redir->fd_redir = STDOUT_FILENO;
-	}
 	if (redir->type == REDIR_HEREDOC)
 		if (get_heredoc(data, redir, filename, expand_heredoc(token)) == ERROR)
-			return (free(redir), error_status_redirs(data, &lst, ERR_MALLOC));
+			return (clean_redirs(&redir),
+				error_status_redirs(data, &lst, ERR_MALLOC));
 	if (!lst)
 		return (redir);
 	last = lstlast_redir(lst);

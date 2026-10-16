@@ -118,13 +118,13 @@ char	**find_matches(t_shell *data, t_wild *wildcard_info, int n_dirs)
 	if (!directory)
 	{
 		perror("minishell: opendir: ");
-		free (wildcard_info->key);
+		ft_free((void **)&wildcard_info->key);
 		return (NULL);
 	}
 	if (aux_alloc_mem(&dirs, n_dirs) == ERROR
 		|| through_dir(data, wildcard_info, directory, dirs) == ERROR)
 	{
-		free (wildcard_info->key);
+		ft_free((void **)&wildcard_info->key);
 		ft_free_str_array(&dirs);
 		closedir(directory);
 		exit_error(data, ERR_MALLOC, EXIT_FAILURE);

@@ -21,6 +21,8 @@ void	clean_tokens(t_prompt **prompt)
 {
 	int	i;
 
+	if (!(*prompt)->tokens)
+		return ;
 	i = 0;
 	while (i < (*prompt)->n_alloc_tokens)
 	{

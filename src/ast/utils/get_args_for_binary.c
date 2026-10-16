@@ -47,7 +47,7 @@ static int	extract_bin_arg(t_shell *data, char **arg_extract, char *word)
 	*arg_extract = ft_strdup(word);
 	if (!*arg_extract)
 	{
-		ft_free_str_array(&arg_extract);
+		ft_printf_fd(STDERR, ERR_MALLOC);
 		data->error_state = TRUE;
 		return (ERROR);
 	}
@@ -124,7 +124,7 @@ char	**get_args_for_binary(t_shell *data, t_token *tokens, int *i)
 		return (NULL);
 	k = assign_arg_value(data, j, n_args, &args);
 	if (k == -1)
-		return (NULL);
+		return (ft_free_str_array(&args), NULL);
 	if (k == 0)
 	{
 		ft_free_str_array(&args);
