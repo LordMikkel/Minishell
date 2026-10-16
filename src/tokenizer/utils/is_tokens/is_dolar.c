@@ -125,14 +125,14 @@ static int	make_expan_token(t_shell *data, const char *str, int start, int *i)
 	  de la variable que debe expandir
 */
 
-static void	is_ignore_token(t_shell *d, t_prompt *prom, const char *str, int *i)
+static void	is_ignore_token(t_shell *d, t_prompt *p, const char *str, int *i)
 {
 	char	*token_to_ignore;
 
 	token_to_ignore = ft_substr(str, *i - 1, 2);
 	if (!token_to_ignore)
 		exit_error(d, ERR_MALLOC, EXIT_FAILURE);
-	add_token(d, prom, token_to_ignore, SCRIPT_ARG);
+	add_token(d, p, token_to_ignore, SCRIPT_ARG);
 	(*i)++;
 }
 

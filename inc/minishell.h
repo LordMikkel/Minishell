@@ -278,7 +278,7 @@ int		extract_wildcard(t_shell *d, char *str, char **ptr, int *wildcard_type);
 int		reorder_tokens(t_shell *d, t_token *oritoken, int orisize, char **dirs);
 int		should_ignore_file(char *filename, t_wild *wildcard);
 int		handle_complex_case(t_shell *d, char *file, char *key, int wild_type);
-int		create_hash(t_shell *da, int n_dirs, int n_tokens, int starting_hash);
+int		create_hash(t_shell *data, int n_dirs, int n_tokens, int starting_hash);
 void	free_tmp_tokens(t_token *tmp, int count);
 void	free_tokens(t_prompt *prompt);
 

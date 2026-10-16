@@ -18,7 +18,7 @@
 	- Crea token REDIR_APPEND y avanza el índice.
 */
 
-void	is_redir_append(t_shell *data, t_prompt *promp, const char *str, int *i)
+void	is_redir_append(t_shell *data, t_prompt *p, const char *str, int *i)
 {
 	char	*append;
 
@@ -27,7 +27,7 @@ void	is_redir_append(t_shell *data, t_prompt *promp, const char *str, int *i)
 		append = ft_substr(str, *i, 3);
 		if (!append)
 			exit_error(data, ERR_MALLOC, EXIT_FAILURE);
-		add_token(data, promp, append, REDIR_APPEND);
+		add_token(data, p, append, REDIR_APPEND);
 		(*i) += 3;
 	}
 	else if (str[*i] == '>' && str[*i + 1] == '>')
@@ -35,7 +35,7 @@ void	is_redir_append(t_shell *data, t_prompt *promp, const char *str, int *i)
 		append = ft_strdup(">>");
 		if (!append)
 			exit_error(data, ERR_MALLOC, EXIT_FAILURE);
-		add_token(data, promp, append, REDIR_APPEND);
+		add_token(data, p, append, REDIR_APPEND);
 		(*i) += 2;
 	}
 }
@@ -46,7 +46,7 @@ void	is_redir_append(t_shell *data, t_prompt *promp, const char *str, int *i)
 	- Crea token REDIR_OUTPUT y avanza el índice.
 */
 
-void	is_redir_output(t_shell *data, t_prompt *promp, const char *str, int *i)
+void	is_redir_output(t_shell *data, t_prompt *p, const char *str, int *i)
 {
 	char	*output;
 
@@ -55,7 +55,7 @@ void	is_redir_output(t_shell *data, t_prompt *promp, const char *str, int *i)
 		output = ft_substr(str, *i, 2);
 		if (!output)
 			exit_error(data, ERR_MALLOC, EXIT_FAILURE);
-		add_token(data, promp, output, REDIR_OUTPUT);
+		add_token(data, p, output, REDIR_OUTPUT);
 		(*i) += 2;
 	}
 	else if (str[*i] == '>' && str[*i + 1] != '>')
@@ -63,7 +63,7 @@ void	is_redir_output(t_shell *data, t_prompt *promp, const char *str, int *i)
 		output = ft_strdup(">");
 		if (!output)
 			exit_error(data, ERR_MALLOC, EXIT_FAILURE);
-		add_token(data, promp, output, REDIR_OUTPUT);
+		add_token(data, p, output, REDIR_OUTPUT);
 		(*i)++;
 	}
 }
@@ -74,7 +74,7 @@ void	is_redir_output(t_shell *data, t_prompt *promp, const char *str, int *i)
 	- Crea token REDIR_OUTPUT y avanza el índice.
 */
 
-void	is_redir_noclobber(t_shell *d, t_prompt *promp, const char *str, int *i)
+void	is_redir_noclobber(t_shell *d, t_prompt *p, const char *str, int *i)
 {
 	char	*no_clobber;
 
@@ -83,7 +83,7 @@ void	is_redir_noclobber(t_shell *d, t_prompt *promp, const char *str, int *i)
 		no_clobber = ft_substr(str, *i, 3);
 		if (!no_clobber)
 			exit_error(d, ERR_MALLOC, EXIT_FAILURE);
-		add_token(d, promp, no_clobber, REDIR_OUTPUT);
+		add_token(d, p, no_clobber, REDIR_OUTPUT);
 		(*i) += 3;
 	}
 	else if (str[*i] == '>' && str[*i + 1] == '|')
@@ -91,7 +91,7 @@ void	is_redir_noclobber(t_shell *d, t_prompt *promp, const char *str, int *i)
 		no_clobber = ft_substr(str, *i, 2);
 		if (!no_clobber)
 			exit_error(d, ERR_MALLOC, EXIT_FAILURE);
-		add_token(d, promp, no_clobber, REDIR_OUTPUT);
+		add_token(d, p, no_clobber, REDIR_OUTPUT);
 		(*i) += 2;
 	}
 }
@@ -102,7 +102,7 @@ void	is_redir_noclobber(t_shell *d, t_prompt *promp, const char *str, int *i)
 	- Crea token REDIR_INPUT y avanza el índice.
 */
 
-void	is_redir_input(t_shell *data, t_prompt *promp, const char *str, int *i)
+void	is_redir_input(t_shell *data, t_prompt *prompt, const char *str, int *i)
 {
 	char	*input;
 
@@ -111,7 +111,7 @@ void	is_redir_input(t_shell *data, t_prompt *promp, const char *str, int *i)
 		input = ft_substr(str, *i, 2);
 		if (!input)
 			exit_error(data, ERR_MALLOC, EXIT_FAILURE);
-		add_token(data, promp, input, REDIR_INPUT);
+		add_token(data, prompt, input, REDIR_INPUT);
 		(*i) += 2;
 	}
 	else if (str[*i] == '<' && str[*i + 1] != '<')
@@ -119,7 +119,7 @@ void	is_redir_input(t_shell *data, t_prompt *promp, const char *str, int *i)
 		input = ft_strdup("<");
 		if (!input)
 			exit_error(data, ERR_MALLOC, EXIT_FAILURE);
-		add_token(data, promp, input, REDIR_INPUT);
+		add_token(data, prompt, input, REDIR_INPUT);
 		(*i)++;
 	}
 }

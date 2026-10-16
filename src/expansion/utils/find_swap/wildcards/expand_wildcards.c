@@ -18,7 +18,7 @@ static void	reconect_tokens_and_nodes(t_shell *data, int phase)
 		reconect_nodes_tokens(data, data->ast_root, data->prompt.tokens);
 }
 
-int	expand_wildcards(t_shell *dat, t_prompt *p, t_token *tokens, int phase)
+int	expand_wildcards(t_shell *data, t_prompt *p, t_token *tokens, int phase)
 {
 	int	i;
 
@@ -34,13 +34,13 @@ int	expand_wildcards(t_shell *dat, t_prompt *p, t_token *tokens, int phase)
 				i++;
 				continue ;
 			}
-			if (!process_wildcard(dat, &tokens[i]))
+			if (!process_wildcard(data, &tokens[i]))
 			{
 				i++;
 				continue ;
 			}
-			tokens = dat->prompt.tokens;
-			reconect_tokens_and_nodes(dat, phase);
+			tokens = data->prompt.tokens;
+			reconect_tokens_and_nodes(data, phase);
 		}
 		i++;
 	}

@@ -34,7 +34,7 @@ static int	if_theres_match(char *file, char *key, int wild_type)
 	return (FALSE);
 }
 
-static int	go_through_dir(t_shell *data, t_wild *wildc, DIR *dir)
+static int	go_through_dir(t_shell *data, t_wild *wild, DIR *dir)
 {
 	int				count;
 	struct dirent	*entry;
@@ -45,13 +45,13 @@ static int	go_through_dir(t_shell *data, t_wild *wildc, DIR *dir)
 		entry = readdir(dir);
 		if (!entry)
 			break ;
-		if (should_ignore_file(entry->d_name, wildc))
+		if (should_ignore_file(entry->d_name, wild))
 			continue ;
-		if (wildc->type == ALL)
+		if (wild->type == ALL)
 			count++;
-		if (handle_complex_case(data, entry->d_name, wildc->key, wildc->type))
+		if (handle_complex_case(data, entry->d_name, wild->key, wild->type))
 			count++;
-		if (if_theres_match(entry->d_name, wildc->key, wildc->type))
+		if (if_theres_match(entry->d_name, wild->key, wild->type))
 			count++;
 	}
 	return (count);

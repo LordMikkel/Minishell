@@ -108,7 +108,7 @@ void	handle_double_quoted_token(t_token *token, int token_len)
 	token->value[1] = '\0';
 }
 
-int	expand_empty_str(t_shell *dat, t_token *token, char **key_to_find, int type)
+int	expand_empty_str(t_shell *d, t_token *token, char **key_to_find, int type)
 {
 	int	key_len;
 	int	token_len;
@@ -129,9 +129,9 @@ int	expand_empty_str(t_shell *dat, t_token *token, char **key_to_find, int type)
 		else if (token->heredoc)
 			ft_memset(token->value, 0, token_len);
 		else
-			eliminate_token(dat, &dat->prompt, dat->prompt.tokens, token->id);
+			eliminate_token(d, &d->prompt, d->prompt.tokens, token->id);
 	}
 	else
-		return (ignore_words(dat, token, &token->value, token_len), REPLACED);
+		return (ignore_words(d, token, &token->value, token_len), REPLACED);
 	return (SUCCESS);
 }

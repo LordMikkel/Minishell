@@ -24,12 +24,12 @@ static int	check_plus_asig_syntax(const char *str)
 	return (FALSE);
 }
 
-void	transform_asig_to_asig_plus(t_prompt *prom, t_token *tokens)
+void	transform_asig_to_asig_plus(t_prompt *prompt, t_token *tokens)
 {
 	int	i;
 
 	i = 0;
-	while (i < prom->n_tokens)
+	while (i < prompt->n_tokens)
 	{
 		if (tokens[i].type != ASIGNATION && tokens[i].type != TEMP_ASIGNATION)
 		{

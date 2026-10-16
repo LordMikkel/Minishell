@@ -43,9 +43,9 @@ static int	extract(t_shell *data, t_token *token, t_wild *wildcard)
 	return (SUCCESS);
 }
 
-static int	matches(t_shell *dat, t_token *token, t_wild *wildcard, int *n_dirs)
+static int	matches(t_shell *d, t_token *token, t_wild *wildcard, int *n_dirs)
 {
-	*n_dirs = count_matches(dat, wildcard);
+	*n_dirs = count_matches(d, wildcard);
 	if (*n_dirs == 0)
 	{
 		free_wildcard(&token->wildcard_info);
@@ -54,7 +54,7 @@ static int	matches(t_shell *dat, t_token *token, t_wild *wildcard, int *n_dirs)
 	if (*n_dirs > 1 && token->id > 0 && is_redir_type(token[-1].type))
 	{
 		free_wildcard(&token->wildcard_info);
-		syntax_error(dat, ERR_AMBIGUOUS_REDIR, EXIT_FAILURE, "*");
+		syntax_error(d, ERR_AMBIGUOUS_REDIR, EXIT_FAILURE, "*");
 		return (FAILURE);
 	}
 	return (SUCCESS);

@@ -51,20 +51,20 @@ void	free_tmp_tokens(t_token *tmp, int count)
 	deberia de ser 1 2 3 4 5 6 7 8
 */
 
-int	create_hash(t_shell *da, int n_dirs, int n_tokens, int starting_hash)
+int	create_hash(t_shell *data, int n_dirs, int n_tokens, int starting_hash)
 {
 	int	i;
 	int	collision;
 	int	hash_generator;
 
-	hash_generator = starting_hash + da->prompt.n_tokens + n_dirs;
+	hash_generator = starting_hash + data->prompt.n_tokens + n_dirs;
 	while (1)
 	{
 		collision = FALSE;
 		i = 0;
 		while (i < n_tokens)
 		{
-			if (da->prompt.tokens[i].hash == hash_generator)
+			if (data->prompt.tokens[i].hash == hash_generator)
 			{
 				collision = TRUE;
 				hash_generator++;

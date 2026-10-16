@@ -65,7 +65,7 @@ static int	if_theres_match(char *file, char *key, int wild_type)
 	return (FALSE);
 }
 
-static int	through_dir(t_shell *data, t_wild *wd, DIR *dir, char **dirs)
+static int	through_dir(t_shell *data, t_wild *wild, DIR *dir, char **dirs)
 {
 	int				count;
 	struct dirent	*entry;
@@ -76,15 +76,15 @@ static int	through_dir(t_shell *data, t_wild *wd, DIR *dir, char **dirs)
 		entry = readdir(dir);
 		if (!entry)
 			break ;
-		if (should_ignore_file(entry->d_name, wd))
+		if (should_ignore_file(entry->d_name, wild))
 			continue ;
-		if (wd->type == ALL)
+		if (wild->type == ALL)
 		{
 			if (extract_dir(&dirs[count++], entry->d_name) == ERROR)
 				return (ERROR);
 		}
-		else if (if_theres_match(entry->d_name, wd->key, wd->type)
-			|| handle_complex_case(data, entry->d_name, wd->key, wd->type))
+		else if (if_theres_match(entry->d_name, wild->key, wild->type)
+			|| handle_complex_case(data, entry->d_name, wild->key, wild->type))
 		{
 			if (extract_dir(&dirs[count++], entry->d_name) == ERROR)
 				return (ERROR);
