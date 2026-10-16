@@ -43,6 +43,13 @@ char	*build_and_check_path(t_shell *data, const char *dir, const char *cmd)
 	return (NULL);
 }
 
+static char	*search_in_cwd(t_shell *data, char *cmd)
+{
+	if (access(cmd, F_OK) == 0 && access(cmd, X_OK) != 0)
+		return (exit_error(data, ERR_PERM_DENIED, 126, cmd), NULL);
+	return (build_and_check_path(data, ".", cmd));
+}
+
 static char	*search_in_path(t_shell *data, char *cmd, char **envp)
 {
 	char	**paths;
@@ -53,7 +60,7 @@ static char	*search_in_path(t_shell *data, char *cmd, char **envp)
 	while (envp[i] && ft_strncmp(envp[i], "PATH=", 5) != 0)
 		i++;
 	if (!envp[i])
-		return (build_and_check_path(data, ".", cmd));
+		return (search_in_cwd(data, cmd));
 	paths = ft_split(envp[i] + 5, ':');
 	if (!paths)
 		return (exit_error(data, ERR_MALLOC, EXIT_FAIL), NULL);
