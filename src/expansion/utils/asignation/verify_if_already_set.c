@@ -34,7 +34,7 @@
  	variable existente o se crea una nueva.
 */
 
-static int	assign_igno_repla_val(t_shell *dat, t_var *var, char **value, int t)
+static int	assign_igno_repla_val(t_shell *d, t_var *var, char **value, int t)
 {
 	if (t == EXP && var->type == EXP)
 	{
@@ -47,14 +47,14 @@ static int	assign_igno_repla_val(t_shell *dat, t_var *var, char **value, int t)
 		var->value = ft_strdup(*value);
 		if (!var->value)
 			return (ERROR);
-		update_envp(dat);
+		update_envp(d);
 	}
 	if (!var->value && var->type == EXP && t != EXP)
 	{
 		var->value = ft_strdup(*value);
 		if (!var->value)
 			return (ERROR);
-		update_envp(dat);
+		update_envp(d);
 	}
 	return (0);
 }
@@ -75,14 +75,14 @@ static int	handle_plus_assignation(t_shell *d, t_var *var, char **value, int t)
 	return (0);
 }
 
-static int	handle_existing_value(t_shell *dat, t_var *var, char **value, int t)
+static int	handle_existing_value(t_shell *d, t_var *var, char **value, int t)
 {
 	int	result;
 
-	result = assign_igno_repla_val(dat, var, value, t);
+	result = assign_igno_repla_val(d, var, value, t);
 	if (result == ERROR || result == IGNORE)
 		return (result);
-	result = handle_plus_assignation(dat, var, value, t);
+	result = handle_plus_assignation(d, var, value, t);
 	return (result);
 }
 

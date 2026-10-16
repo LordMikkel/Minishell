@@ -227,13 +227,13 @@ void	transform_asig_to_asig_plus(t_prompt *prompt, t_token *tokens);
 void	transform_cmd_to_word(t_shell *data, t_token *tokens, int phase);
 void	transform_invalid_asig_to_word(t_prompt *prompt, t_token *tokens);
 void	transform_word_to_asignation(t_shell *data, t_token *tokens, int phase);
-void	transform_tokens_logic(t_shell *data, t_prompt *promp, t_token *tokens);
+void	transform_tokens_logic(t_shell *data, t_prompt *p, t_token *tokens);
 void	transform_word_to_file(t_prompt *prompt, t_token *tokens);
 void	transform_command_built_lowercase(t_prompt *prompt, t_token *tokens);
 void	transform_asig_to_temp(t_prompt *prompt, t_token *tokens);
 void	transform_cmd_to_built_in(t_shell *data, t_prompt *p, t_token *tokens);
 void	transform_word_to_wildcard(t_prompt *prompt, t_token *tokens);
-int		split_expansion_result(t_shell *data, t_prompt *promp, t_token *tokens);
+int		split_expansion_result(t_shell *data, t_prompt *p, t_token *tokens);
 
 //AST
 int		get_heredoc(t_shell *data, t_redir *redir, char *delimiter, int mode);

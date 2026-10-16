@@ -18,14 +18,14 @@
 	Cada comilla doble cambia el estado.
 */
 
-int	check_double_balance(t_shell *data, t_prompt *promp, t_token *tokens)
+int	check_double_balance(t_shell *data, t_prompt *prompt, t_token *tokens)
 {
 	int	inside_quotes;
 	int	i;
 
 	inside_quotes = FALSE;
 	i = 0;
-	while (i < promp->n_tokens)
+	while (i < prompt->n_tokens)
 	{
 		if (tokens[i].type == DOUBLE_QUOTE)
 		{

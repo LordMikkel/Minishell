@@ -96,21 +96,21 @@ static int	check_case_only_right(t_token *tokens, t_token *token, int n_tokens)
 	return (0);
 }
 
-int	check_externs_syntax(t_shell *data, t_token *tokens, t_token *token, int type)
+int	check_externs_syntax(t_shell *d, t_token *tokens, t_token *token, int type)
 {
 	int	result;
 
 	result = FALSE;
-	if (token->id >= 1 && token->id < data->prompt.n_tokens
-		&& (token->id + 1 < data->prompt.n_tokens
+	if (token->id >= 1 && token->id < d->prompt.n_tokens
+		&& (token->id + 1 < d->prompt.n_tokens
 			&& (tokens[token->id + 1].type || tokens[token->id - 1].type))
 		&& (token->type == ASIGNATION || token->type == WORD))
 	{
-		if (check_case_both_sides(tokens, token, data->prompt.n_tokens))
+		if (check_case_both_sides(tokens, token, d->prompt.n_tokens))
 			result = check_asignation_syntax(token, type);
-		if (check_case_only_left(tokens, token, data->prompt.n_tokens))
+		if (check_case_only_left(tokens, token, d->prompt.n_tokens))
 			result = check_asignation_syntax(token, type);
-		if (check_case_only_right(tokens, token, data->prompt.n_tokens))
+		if (check_case_only_right(tokens, token, d->prompt.n_tokens))
 			result = check_asignation_syntax(token, type);
 	}
 	else

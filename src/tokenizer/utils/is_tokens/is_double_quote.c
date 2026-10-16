@@ -48,7 +48,7 @@ static char	*cleanner_word(t_shell *data, char *word, int len, char quote)
 	- Registra como comando si corresponde.
 */
 
-int	make_word_d(t_shell *data, t_prompt *promp, const char *s, int range[2])
+int	make_word_d(t_shell *data, t_prompt *prompt, const char *s, int range[2])
 {
 	char	*ptr;
 	char	*word;
@@ -60,17 +60,18 @@ int	make_word_d(t_shell *data, t_prompt *promp, const char *s, int range[2])
 	if (!word)
 		return (exit_error(data, ERR_MALLOC, EXIT_FAILURE));
 	word = cleanner_word(data, word, range[1] - range[0], '\"');
-	word = cleanner_slash_quotes_d(data, word, range[1] - range[0], &flag);	ptr = ft_strchr(word, '$');
+	word = cleanner_slash_quotes_d(data, word, range[1] - range[0], &flag);
+	ptr = ft_strchr(word, '$');
 	if (ptr && *ptr == '$' && ischrkey((*(ptr + 1))) && !ft_isspace(*(ptr + 1)))
 	{
 		if (flag == TRUE)
-			token_id = add_token(data, promp, word, WORD);
+			token_id = add_token(data, prompt, word, WORD);
 		else
-			token_id = add_token(data, promp, word, EXPANSION);
+			token_id = add_token(data, prompt, word, EXPANSION);
 	}
 	else
-		token_id = add_token(data, promp, word, WORD);
-	is_cmd(data, &promp->tokens[token_id], word);
+		token_id = add_token(data, prompt, word, WORD);
+	is_cmd(data, &prompt->tokens[token_id], word);
 	return (OK);
 }
 
@@ -148,21 +149,21 @@ int	is_special_word_d(t_shell *data, t_prompt *prompt, const char *str, int *i)
 	- Añade token NO_SPACE si la palabra termina pegada a un símbolo.
 */
 
-void	is_double_quote(t_shell *data, t_prompt *promp, const char *str, int *i)
+void	is_double_quote(t_shell *data, t_prompt *p, const char *str, int *i)
 {
 	int	status;
 
 	if (str[*i] == '\"')
 	{
-		add_token(data, promp, "\"", DOUBLE_QUOTE);
+		add_token(data, p, "\"", DOUBLE_QUOTE);
 		(*i)++;
-		status = is_special_word_d(data, promp, str, i);
+		status = is_special_word_d(data, p, str, i);
 		if (status == TRUE || status == NO_SPACE)
 		{
-			add_token(data, promp, "\"", DOUBLE_QUOTE);
+			add_token(data, p, "\"", DOUBLE_QUOTE);
 			(*i)++;
 			if (status == NO_SPACE)
-				add_token(data, promp, "", NO_SPACE);
+				add_token(data, p, "", NO_SPACE);
 		}
 	}
 }
