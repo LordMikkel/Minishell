@@ -21,7 +21,7 @@ void	reconect_nodes_tokens(t_shell *data, t_node *node, t_token *tokens)
 	i = 0;
 	while (i < data->prompt.n_tokens)
 	{
-		if (tokens[i].hash == node->token_hash)
+		if (!node->fake && tokens[i].hash == node->token_hash)
 		{
 			node->token = &tokens[i];
 			node->token->id = i;
