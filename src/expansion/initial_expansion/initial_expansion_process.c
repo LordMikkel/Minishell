@@ -18,7 +18,7 @@ static void	search_value_in_tokens(t_token *tokens, char *str, int n_tokens, int
 	{
 		if (tokens[i].type == EXPANSION)
 		{
-			if (ft_strcmp(tokens[i].value + 1, str) == 0) //omito el dolar
+			if (ft_strcmp(tokens[i].value + 1, str) == 0)
 				tokens[i].expand = FALSE;
 		}
 		i++;
@@ -87,12 +87,12 @@ static void	dont_expand_this(t_shell *data, t_prompt *prompt, t_token *tokens)
 	while (i < prompt->n_tokens)
 	{
 		if (i == 0)
-			if_asignation(data, &tokens[i]); //aqui checo el caso especial de la primera posicion
-		else if (i > 0 && is_delimiter_type(tokens[i].type)) //aqui busco export por la izquierda del delimitador y también compruebo por la derecha del delimi
+			if_asignation(data, &tokens[i]);
+		else if (i > 0 && is_delimiter_type(tokens[i].type))
 		{
-			if ((i + 1) < prompt->n_tokens) //check cmd after delimiters
+			if ((i + 1) < prompt->n_tokens)
 				if_asignation(data, &tokens[i + 1]);
-			if (check_for_context(tokens, i - 1)) //check for export
+			if (check_for_context(tokens, i - 1))
 				if_asignation(data, &tokens[i - 1]);
 		}
 		i++;
