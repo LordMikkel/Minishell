@@ -93,7 +93,6 @@ static void	init_env(t_shell *data, char **envp)
 		i++;
 	}
 	delete_var(data, &data->env, "_");
-	delete_var(data, &data->env, "SHELL");
 	update_shlvl(data, data->env.vars);
 }
 
