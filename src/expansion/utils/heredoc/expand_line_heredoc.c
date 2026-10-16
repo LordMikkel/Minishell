@@ -61,7 +61,7 @@ int	expand_line_heredoc(t_shell *data, char **line)
 		*line = token.value;
 	}
 	else
-		free(token.value);
+		ft_free((void **)&token.value);
 	key_to_find = NULL;
 	return (found);
 }

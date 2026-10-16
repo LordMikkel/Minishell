@@ -25,7 +25,7 @@ void	update_var(t_shell *d, char *new_value, char *key_to_find)
 		{
 			flag_found = TRUE;
 			if (var->value)
-				free (var->value);
+				ft_free((void **)&var->value);
 			var->value = ft_strdup(new_value);
 			if (!var->value)
 				exit_error(d, ERR_MALLOC, EXIT_FAILURE);

@@ -38,7 +38,7 @@ void	update_shlvl(t_shell *data, t_var *vars)
 				ft_printf_fd(STDERR, ERR_SHLVL_LOW);
 				lvl = 1;
 			}
-			free(var->value);
+			ft_free((void **)&var->value);
 			var->value = ft_itoa(lvl);
 			if (!var->value)
 				exit_error(data, ERR_MALLOC, EXIT_FAILURE);

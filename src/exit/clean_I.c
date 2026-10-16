@@ -34,7 +34,7 @@ void	clean_tokens(t_prompt **prompt)
 		}
 		i++;
 	}
-	free((*prompt)->tokens);
+	ft_free((void **)&(*prompt)->tokens);
 	(*prompt)->tokens = NULL;
 }
 
@@ -48,9 +48,9 @@ void	clean_prompt(t_prompt *prompt)
 	if (!prompt)
 		return ;
 	if (prompt->input)
-		free(prompt->input);
+		ft_free((void **)&prompt->input);
 	if (prompt->before_tokens_type)
-		free(prompt->before_tokens_type);
+		ft_free((void **)&prompt->before_tokens_type);
 	clean_tokens(&prompt);
 	*prompt = (t_prompt){0};
 }
@@ -72,12 +72,12 @@ void	clean_env(t_env *env, t_var *vars)
 		next = var->next;
 		if (var->key)
 		{
-			free(var->key);
+			ft_free((void **)&var->key);
 			var->key = NULL;
 		}
 		if (var->value)
 		{
-			free(var->value);
+			ft_free((void **)&var->value);
 			var->value = NULL;
 		}
 		free(var);

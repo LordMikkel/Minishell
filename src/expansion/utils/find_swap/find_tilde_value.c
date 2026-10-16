@@ -35,7 +35,7 @@
 static void	expand_tilde(t_shell *d, t_token *t, char *value_to_copy, char *key)
 {
 	if (t->value)
-		free (t->value);
+		ft_free((void **)&t->value);
 	t->value = ft_strdup(value_to_copy);
 	if (!t->value)
 	{

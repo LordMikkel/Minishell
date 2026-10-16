@@ -27,7 +27,7 @@ int	create_before_tokens(t_shell *d, t_token *tokens, t_prompt *prompt)
 	i = 0;
 	if (prompt->before_tokens_type)
 	{
-		free (prompt->before_tokens_type);
+		ft_free((void **)&prompt->before_tokens_type);
 		prompt->before_tokens_type = NULL;
 	}
 	token_type_buffer = ft_calloc(prompt->n_tokens + 1, sizeof(int));

@@ -32,7 +32,7 @@ void	clean_extras(t_extras *extras)
 {
 	if (extras->user_name)
 	{
-		free(extras->user_name);
+		ft_free((void **)&extras->user_name);
 		extras->user_name = NULL;
 	}
 	*extras = (t_extras){0};

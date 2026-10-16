@@ -43,7 +43,7 @@ static int	assign_igno_repla_val(t_shell *d, t_var *var, char **value, int t)
 	if (var->value && (t == LOCAL || t == ENV || t == TEMP_ASIGNATION))
 	{
 		if (var->value)
-			free (var->value);
+			ft_free((void **)&var->value);
 		var->value = ft_strdup(*value);
 		if (!var->value)
 			return (ERROR);
@@ -68,7 +68,7 @@ static int	handle_plus_assignation(t_shell *d, t_var *var, char **value, int t)
 		tmp = ft_strjoin(var->value, *value);
 		if (!tmp)
 			return (ERROR);
-		free (var->value);
+		ft_free((void **)&var->value);
 		var->value = tmp;
 		update_envp(d);
 	}

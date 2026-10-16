@@ -16,12 +16,12 @@ static void	aux_delete(t_var **node, t_env *env)
 {
 	if ((*node)->key)
 	{
-		free((*node)->key);
+		ft_free((void **)&(*node)->key);
 		(*node)->key = NULL;
 	}
 	if ((*node)->value)
 	{
-		free((*node)->value);
+		ft_free((void **)&(*node)->value);
 		(*node)->value = NULL;
 	}
 	free(*node);

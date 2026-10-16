@@ -93,7 +93,7 @@ void	free_tokens(t_prompt *prompt)
 		}
 		i++;
 	}
-	free (prompt->tokens);
+	ft_free((void **)&prompt->tokens);
 	prompt->tokens = NULL;
 	prompt->n_tokens = 0;
 	prompt->n_alloc_tokens = 0;

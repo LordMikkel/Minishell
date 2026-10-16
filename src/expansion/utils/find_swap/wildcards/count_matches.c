@@ -40,7 +40,7 @@ int	count_matches(t_wild *wildcard)
 	if (!directory)
 	{
 		perror("minishell: opendir: ");
-		free (wildcard->key);
+		ft_free((void **)&wildcard->key);
 		wildcard->key = NULL;
 		return (0);
 	}

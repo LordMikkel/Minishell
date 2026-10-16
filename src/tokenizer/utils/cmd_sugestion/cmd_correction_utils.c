@@ -35,7 +35,7 @@ static	int	parse_answer(t_shell *d, t_token *token, char *str, char *built_in)
 	result = is_yes_or_no(str);
 	if (result == YES)
 	{
-		free (token->value);
+		ft_free((void **)&token->value);
 		token->value = ft_strdup(built_in);
 		if (!token->value)
 			exit_error(d, ERR_MALLOC, EXIT_FAILURE);

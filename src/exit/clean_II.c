@@ -23,7 +23,7 @@ void	clean_token(t_token **token)
 		return ;
 	if ((*token)->value)
 	{
-		free((*token)->value);
+		ft_free((void **)&(*token)->value);
 		(*token)->value = NULL;
 	}
 	if (*token)
@@ -71,7 +71,7 @@ void	clean_node(t_node **node)
 	if ((*node)->args)
 		ft_free_str_array(&(*node)->args);
 	if ((*node)->arg_types)
-		free((*node)->arg_types);
+		ft_free((void **)&(*node)->arg_types);
 	if ((*node)->redir)
 		clean_redirs(&(*node)->redir);
 	if ((*node)->assig_tmp)
