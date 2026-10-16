@@ -78,7 +78,7 @@ t_node	*create_node(t_shell *data, t_token *token, t_type type)
 	if (node->type == WILDCARD || node->type == EXPANSION)
 		node->type = COMMAND;
 	node->token = token;
-	node->token_hash = token->hash;
+	node->token_hash = token ? token->hash : -1;
 	node->args = NULL;
 	node->redir = NULL;
 	node->arg_types = NULL;
