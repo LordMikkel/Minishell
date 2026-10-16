@@ -27,25 +27,28 @@ static void	free_wildcard(t_wild **wildcard_ptr)
 	if (!wildcard)
 		return ;
 	if (wildcard->key)
-		free(wildcard->key);
-	free (wildcard);
+		ft_free((void **)&wildcard->key);
+	ft_free((void **)&wildcard);
 	*wildcard_ptr = NULL;
 }
 
 static int	extract(t_shell *data, t_token *token, t_wild *wildcard)
 {
+	if (!ft_strchr(token->value, '*'))
+		return (FAILURE);
 	if (token->value[0] == '.')
 		wildcard->starts_with_dot = TRUE;
 	else
 		wildcard->starts_with_dot = FALSE;
-	if (!extract_wildcard(data, token->value, &wildcard->key, &wildcard->type))
-		return (FAILURE);
+	wildcard->key = ft_strdup(token->value);
+	if (!wildcard->key)
+		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
 	return (SUCCESS);
 }
 
-static int	matches(t_shell *d, t_token *token, t_wild *wildcard, int *n_dirs)
+static int	matches(t_shell *data, t_token *token, t_wild *wildcard, int *n_dirs)
 {
-	*n_dirs = count_matches(d, wildcard);
+	*n_dirs = count_matches(wildcard);
 	if (*n_dirs == 0)
 	{
 		free_wildcard(&token->wildcard_info);
@@ -54,7 +57,7 @@ static int	matches(t_shell *d, t_token *token, t_wild *wildcard, int *n_dirs)
 	if (*n_dirs > 1 && token->id > 0 && is_redir_type(token[-1].type))
 	{
 		free_wildcard(&token->wildcard_info);
-		syntax_error(d, ERR_AMBIGUOUS_REDIR, EXIT_FAILURE, "*");
+		syntax_error(data, ERR_AMBIGUOUS_REDIR, EXIT_FAILURE, token->value);
 		return (FAILURE);
 	}
 	return (SUCCESS);
@@ -71,7 +74,7 @@ int	process_wildcard(t_shell *data, t_token *token)
 		return (FAILURE);
 	init_wildcard(data, &token->wildcard_info);
 	if (!extract(data, token, token->wildcard_info))
-		return (FAILURE);
+		return (free_wildcard(&token->wildcard_info), FAILURE);
 	if (!matches(data, token, token->wildcard_info, &n_dirs))
 		return (FAILURE);
 	new_tokens = find_matches(data, token->wildcard_info, n_dirs);
@@ -83,5 +86,5 @@ int	process_wildcard(t_shell *data, t_token *token)
 	free_wildcard(&token->wildcard_info);
 	rebuild_tokens(data, token, new_tokens, n_dirs);
 	ft_free_str_array(&new_tokens);
-	return (SUCCESS);
+	return (n_dirs);
 }

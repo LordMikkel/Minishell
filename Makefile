@@ -184,9 +184,8 @@ SRCS =				main/main.c \
 					expansion/utils/find_swap/wildcards/count_matches.c \
 					expansion/utils/find_swap/wildcards/find_matches.c \
 					expansion/utils/find_swap/wildcards/rebuild_tokens.c \
-					expansion/utils/find_swap/wildcards/extract_wildcard.c \
 					expansion/utils/find_swap/wildcards/reorder_tokens.c \
-					expansion/utils/find_swap/wildcards/handle_complex_case.c \
+					expansion/utils/find_swap/wildcards/match_wildcard.c \
 					expansion/utils/find_swap/wildcards/should_ignore_file.c \
 					expansion/utils/asignation/asignation.c \
 					expansion/utils/asignation/verify_if_already_set.c \

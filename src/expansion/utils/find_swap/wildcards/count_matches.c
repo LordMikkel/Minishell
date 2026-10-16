@@ -12,29 +12,7 @@
 
 #include "../../../../../inc/minishell.h"
 
-static int	if_theres_match(char *file, char *key, int wild_type)
-{
-	int		file_len;
-	int		key_len;
-
-	file_len = ft_strlen(file);
-	key_len = ft_strlen(key);
-	if (key_len > file_len)
-		return (FALSE);
-	if (wild_type == BEGINING)
-	{
-		if (ft_strcmp(file + (file_len - key_len), key) == 0)
-			return (TRUE);
-	}
-	else if (wild_type == END)
-	{
-		if (ft_strncmp(file, key, key_len) == 0)
-			return (TRUE);
-	}
-	return (FALSE);
-}
-
-static int	go_through_dir(t_shell *data, t_wild *wild, DIR *dir)
+static int	go_through_dir(t_wild *wild, DIR *dir)
 {
 	int				count;
 	struct dirent	*entry;
@@ -47,17 +25,13 @@ static int	go_through_dir(t_shell *data, t_wild *wild, DIR *dir)
 			break ;
 		if (should_ignore_file(entry->d_name, wild))
 			continue ;
-		if (wild->type == ALL)
-			count++;
-		if (handle_complex_case(data, entry->d_name, wild->key, wild->type))
-			count++;
-		if (if_theres_match(entry->d_name, wild->key, wild->type))
+		if (match_wildcard(wild->key, entry->d_name))
 			count++;
 	}
 	return (count);
 }
 
-int	count_matches(t_shell *data, t_wild *wildcard)
+int	count_matches(t_wild *wildcard)
 {
 	int		n_dirs;
 	DIR		*directory;
@@ -70,7 +44,7 @@ int	count_matches(t_shell *data, t_wild *wildcard)
 		wildcard->key = NULL;
 		return (0);
 	}
-	n_dirs = go_through_dir(data, wildcard, directory);
+	n_dirs = go_through_dir(wildcard, directory);
 	closedir(directory);
 	return (n_dirs);
 }

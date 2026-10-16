@@ -43,29 +43,7 @@ static int	extract_dir(char **dir_extract, char *word)
 	Cabe resaltar que ignoramos elemtos del sistema que tengan "." o ".."
 */
 
-static int	if_theres_match(char *file, char *key, int wild_type)
-{
-	int		file_len;
-	int		key_len;
-
-	file_len = ft_strlen(file);
-	key_len = ft_strlen(key);
-	if (key_len > file_len)
-		return (FALSE);
-	if (wild_type == BEGINING)
-	{
-		if (ft_strcmp(file + (file_len - key_len), key) == 0)
-			return (TRUE);
-	}
-	else if (wild_type == END)
-	{
-		if (ft_strncmp(file, key, key_len) == 0)
-			return (TRUE);
-	}
-	return (FALSE);
-}
-
-static int	through_dir(t_shell *data, t_wild *wild, DIR *dir, char **dirs)
+static int	through_dir(t_wild *wild, DIR *dir, char **dirs)
 {
 	int				count;
 	struct dirent	*entry;
@@ -78,19 +56,38 @@ static int	through_dir(t_shell *data, t_wild *wild, DIR *dir, char **dirs)
 			break ;
 		if (should_ignore_file(entry->d_name, wild))
 			continue ;
-		if (wild->type == ALL)
-		{
-			if (extract_dir(&dirs[count++], entry->d_name) == ERROR)
-				return (ERROR);
-		}
-		else if (if_theres_match(entry->d_name, wild->key, wild->type)
-			|| handle_complex_case(data, entry->d_name, wild->key, wild->type))
+		if (match_wildcard(wild->key, entry->d_name))
 		{
 			if (extract_dir(&dirs[count++], entry->d_name) == ERROR)
 				return (ERROR);
 		}
 	}
 	return (SUCCESS);
+}
+
+/*
+	Ordena los matches alfabeticamente igual que bash.
+*/
+
+static void	sort_matches(char **dirs)
+{
+	int		i;
+	int		j;
+	char	*tmp;
+
+	i = 1;
+	while (dirs[0] && dirs[i])
+	{
+		j = i;
+		while (j > 0 && ft_strcmp(dirs[j - 1], dirs[j]) > 0)
+		{
+			tmp = dirs[j];
+			dirs[j] = dirs[j - 1];
+			dirs[j - 1] = tmp;
+			j--;
+		}
+		i++;
+	}
 }
 
 /*
@@ -122,7 +119,7 @@ char	**find_matches(t_shell *data, t_wild *wildcard_info, int n_dirs)
 		return (NULL);
 	}
 	if (aux_alloc_mem(&dirs, n_dirs) == ERROR
-		|| through_dir(data, wildcard_info, directory, dirs) == ERROR)
+		|| through_dir(wildcard_info, directory, dirs) == ERROR)
 	{
 		ft_free((void **)&wildcard_info->key);
 		ft_free_str_array(&dirs);
@@ -130,5 +127,6 @@ char	**find_matches(t_shell *data, t_wild *wildcard_info, int n_dirs)
 		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
 	}
 	closedir(directory);
+	sort_matches(dirs);
 	return (dirs);
 }

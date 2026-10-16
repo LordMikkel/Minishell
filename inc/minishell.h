@@ -272,13 +272,12 @@ int		initial_expansion_process(t_shell *d, t_prompt *prompt);
 
 //EXPANSION_WILDCARDS
 int		process_wildcard(t_shell *data, t_token *token);
-int		count_matches(t_shell *data, t_wild *wildcard);
+int		count_matches(t_wild *wildcard);
 char	**find_matches(t_shell *d, t_wild *wildcard_info, int n_dirs);
 void	rebuild_tokens(t_shell *data, t_token *token, char **dirs, int n_dirs);
-int		extract_wildcard(t_shell *d, char *str, char **ptr, int *wildcard_type);
 int		reorder_tokens(t_shell *d, t_token *oritoken, int orisize, char **dirs);
 int		should_ignore_file(char *filename, t_wild *wildcard);
-int		handle_complex_case(t_shell *d, char *file, char *key, int wild_type);
+int		match_wildcard(char *pattern, char *name);
 int		create_hash(t_shell *data, int n_dirs, int n_tokens, int starting_hash);
 void	free_tmp_tokens(t_token *tmp, int count);
 void	free_tokens(t_prompt *prompt);
