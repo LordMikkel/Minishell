@@ -104,11 +104,10 @@ static int	asignation_type(t_shell *data, t_token *tokens, int i)
 		asignation(data, &tokens[i], ENV);
 	else if (tokens[i].type == WORD)
 	{
-		if (check_asignation_syntax(&tokens[i], EXP) == FALSE)
-		{
-			ft_printf_fd(STDERR, ERR_EXPORT, tokens[i].value);
-			return (ERROR);
-		}
+		if (check_asignation_syntax(&tokens[i], ENV))
+			asignation(data, &tokens[i], ENV);
+		else if (check_asignation_syntax(&tokens[i], EXP) == FALSE)
+			return (ft_printf_fd(STDERR, ERR_EXPORT, tokens[i].value), ERROR);
 		else
 			asignation(data, &tokens[i], EXP);
 	}
