@@ -26,7 +26,7 @@ void	ft_apply_left_align(char **str, t_format *fmt)
 		{
 			free(*str);
 			*str = NULL;
-			return;
+			return ;
 		}
 		ft_memset(padding, ' ', fmt->width - len);
 		new_str = ft_strjoin(*str, padding);

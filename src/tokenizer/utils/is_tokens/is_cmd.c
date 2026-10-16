@@ -38,7 +38,7 @@ static void	free_path_parts(char **path_slash, char **full_path)
 
 static int	find_bin(char **path_arr, char *word)
 {
-	int	i;
+	int		i;
 	char	*path_slash;
 	char	*full_path;
 

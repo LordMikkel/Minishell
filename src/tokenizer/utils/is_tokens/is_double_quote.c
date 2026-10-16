@@ -58,7 +58,7 @@ int	make_word_d(t_shell *data, t_prompt *promp, const char *s, int range[2])
 	flag = FALSE;
 	word = ft_substr(s, range[0], range[1] - range[0]);
 	if (!word)
-		return(exit_error(data, ERR_MALLOC, EXIT_FAILURE));
+		return (exit_error(data, ERR_MALLOC, EXIT_FAILURE));
 	word = cleanner_word(data, word, range[1] - range[0], '\"');
 	word = cleanner_slash_quotes_d(data, word, range[1] - range[0], &flag);	ptr = ft_strchr(word, '$');
 	if (ptr && *ptr == '$' && ischrkey((*(ptr + 1))) && !ft_isspace(*(ptr + 1)))

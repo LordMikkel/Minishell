@@ -118,7 +118,7 @@ int	is_word(t_shell *data, t_prompt *prompt, const char *str, int *i)
 	{
 		word = ft_substr(str, start, len);
 		if (!word)
-			return(exit_error(data, ERR_MALLOC, EXIT_FAILURE));
+			return (exit_error(data, ERR_MALLOC, EXIT_FAILURE));
 		word = cleanner_slash(data, word, len, '\\');
 		token_id = add_token(data, prompt, word, WORD);
 		is_cmd(data, &prompt->tokens[token_id], word);
