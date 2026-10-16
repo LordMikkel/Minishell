@@ -46,5 +46,5 @@ void	which_builtin(t_shell *data, t_token *token, t_node *node)
 {
 	asignations(data, token);
 	env_cmds(data, &data->env, token, node);
-	basic_builtins(data, token, node);
+	basic_builtins(data, node->token, node);
 }

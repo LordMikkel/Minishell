@@ -77,6 +77,7 @@ static int	check_wildcard_asig(t_shell *data, t_token *tokens, int i)
 	int	result_word;
 
 	expand_wildcards(data, &data->prompt, tokens, FINAL_PHASE);
+	tokens = data->prompt.tokens;
 	result_asig = check_asignation_syntax(&tokens[i], ENV);
 	if (result_asig)
 		asignation(data, &tokens[i], ENV);
@@ -143,6 +144,7 @@ int	my_export(t_shell *data, t_token *tokens, t_env *env, t_node *node)
 	i = 0;
 	while (node->arg_types[i] != -1)
 	{
+		tokens = data->prompt.tokens;
 		if (check_for_valid_args(tokens, node->arg_types[i]) == FALSE)
 			break ;
 		if ((is_asignation_type(tokens[node->arg_types[i]].type)
