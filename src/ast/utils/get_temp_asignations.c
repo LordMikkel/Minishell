@@ -34,7 +34,7 @@ static int	extract_bin_arg(t_shell *data, char **arg_extract, char *word)
 	*arg_extract = ft_strdup(word);
 	if (!*arg_extract)
 	{
-		ft_free_str_array(&arg_extract);
+		ft_printf_fd(STDERR, ERR_MALLOC);
 		data->error_state = TRUE;
 		return (FAILURE);
 	}
@@ -50,16 +50,14 @@ static int	extract_bin_arg(t_shell *data, char **arg_extract, char *word)
 	var=hola ls -> start--; -> start == -1
 */
 
-static int	get_correct_index(t_token *tokens, int n_tokens, int start)
+static int	get_correct_index(t_token *tokens, int start)
 {
 	if (start >= 1 && is_asignation_type(tokens[start - 1].type))
 	{
 		start--;
 		while (start >= 0 && is_asignation_type(tokens[start].type))
 			start--;
-		if (start < 0 && (start < n_tokens
-				|| !is_asignation_type(tokens[start].type)))
-			start++;
+		start++;
 	}
 	return (start);
 }
@@ -82,7 +80,7 @@ char	**get_temp_asignations(t_shell *data, t_token *tokens, int i)
 
 	if (i == 0)
 		return (NULL);
-	start = get_correct_index(tokens, data->prompt.n_tokens, i);
+	start = get_correct_index(tokens, i);
 	if (start == i)
 		return (NULL);
 	temp_count = 0;
@@ -96,7 +94,7 @@ char	**get_temp_asignations(t_shell *data, t_token *tokens, int i)
 	while (start < i)
 	{
 		if (!extract_bin_arg(data, &args[temp_count], tokens[start].value))
-			return (NULL);
+			return (ft_free_str_array(&args), NULL);
 		start++;
 		temp_count++;
 	}

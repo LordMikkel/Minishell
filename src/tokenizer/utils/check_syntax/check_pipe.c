@@ -28,14 +28,14 @@ static int	check_cases(t_prompt *prompt, t_token *tokens, int i)
 {
 	if ((i > 0 && i + 1 < prompt->n_tokens) && tokens[i + 1].type
 		&& tokens[i - 1].type && ((tokens[i + 1].type == COMMAND
-				|| tokens[i + 1].type == WORD
-				|| tokens[i + 1].type == BUILT_IN
+				|| tokens[i + 1].type == WORD || tokens[i + 1].type == BUILT_IN
 				|| tokens[i + 1].type == PAREN_OPEN
 				|| tokens[i + 1].type == EXPANSION
 				|| tokens[i + 1].type == WILDCARD
 				|| is_quote_type(tokens[i + 1].type)
 				|| is_redir_type(tokens[i + 1].type)
-				|| is_asignation_type(tokens[i + 1].type)))
+				|| is_asignation_type(tokens[i + 1].type)
+				|| tokens[i + 1].type == TEMP_PLUS_ASIGNATION))
 		&& (tokens[i - 1].type == COMMAND
 			|| tokens[i - 1].type == WORD
 			|| tokens[i - 1].type == BUILT_IN

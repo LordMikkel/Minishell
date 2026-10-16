@@ -38,14 +38,18 @@
 static void	apply_to_built_in_loop(t_shell *data, t_token *tokens, t_node *node)
 {
 	int	i;
+	int	type;
 
+	type = LOCAL;
+	if (ft_strcmp(node->token->value, BUILTIN_ENV) == 0)
+		type = ENV;
 	i = 0;
 	while (node->arg_types[i] != -1)
 	{
 		if (is_real_assignation_type(tokens[node->arg_types[i]].type))
 			return ;
 		if (tokens[node->arg_types[i]].type == TEMP_ASIGNATION)
-			asignation(data, &tokens[node->arg_types[i]], LOCAL);
+			asignation(data, &tokens[node->arg_types[i]], type);
 		else if (tokens[node->arg_types[i]].type == TEMP_PLUS_ASIGNATION)
 			asignation(data, &tokens[node->arg_types[i]], PLUS_ASIGNATION);
 		i++;

@@ -67,9 +67,9 @@ static int	verify_till_valid_token(t_prompt *prompt, t_token *tokens, int i)
 	entonces debe ser parte de un ASIGNATION comun y corriente
 */
 
-static int	verify_till_valid_token_case_2(t_prompt *p, t_token *tokens, int i)
+static int	verify_till_valid_token_case_2(t_prompt *prompt, t_token *tokens, int i)
 {
-	while (i < p->n_tokens && tokens[i].type)
+	while (i < prompt->n_tokens && tokens[i].type)
 	{
 		if (is_delimiter_type(tokens[i].type) || tokens[i].type == WORD)
 			return (SUCCESS);
@@ -80,7 +80,7 @@ static int	verify_till_valid_token_case_2(t_prompt *p, t_token *tokens, int i)
 	return (SUCCESS);
 }
 
-static int	check_if_temp_asig(t_prompt *promp, t_token *tokens, t_token *token)
+static int	check_if_temp_asig(t_prompt *prompt, t_token *tokens, t_token *token)
 {
 	int	i;
 
@@ -94,11 +94,11 @@ static int	check_if_temp_asig(t_prompt *promp, t_token *tokens, t_token *token)
 			&& ft_strcmp(tokens[i].value, BUILTIN_EXPORT) == 0)
 			return (FALSE);
 	}
-	if (token->id < promp->n_tokens)
+	if (token->id < prompt->n_tokens)
 	{
 		if ((is_cmd_builtin_type(tokens[token->id + 1].type)
 				|| (is_asignation_type(tokens[token->id + 1].type)
-					&& !verify_till_valid_token(promp, tokens, token->id))
+					&& !verify_till_valid_token(prompt, tokens, token->id))
 				|| tokens[token->id + 1].type == BUILT_IN))
 			return (SUCCESS);
 		else if (tokens[token->id + 1].type == PAREN_OPEN)
@@ -107,15 +107,14 @@ static int	check_if_temp_asig(t_prompt *promp, t_token *tokens, t_token *token)
 	return (FALSE);
 }
 
-static int	check_if_temp_plus(t_prompt *promp, t_token *tokens, t_token *token)
+static int	check_if_temp_plus(t_prompt *prompt, t_token *tokens, t_token *token)
 {
-	if (token->id < promp->n_tokens && (token->id + 1) < promp->n_tokens
-		&& token->id > 0)
+	if ((token->id + 1) < prompt->n_tokens)
 	{
-		if (tokens[token->id - 1].type == TEMP_ASIGNATION
+		if ((token->id > 0 && tokens[token->id - 1].type == TEMP_ASIGNATION)
 			|| tokens[token->id + 1].type == TEMP_ASIGNATION)
 			return (SUCCESS);
-		else if (!verify_till_valid_token_case_2(promp, tokens, token->id))
+		else if (!verify_till_valid_token_case_2(prompt, tokens, token->id))
 			return (SUCCESS);
 	}
 	return (FALSE);
