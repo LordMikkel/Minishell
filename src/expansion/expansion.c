@@ -100,3 +100,35 @@ int	expansion(t_shell *data, t_token *tokens, int i, int phase)
 	}
 	return (found);
 }
+
+/*
+	Si al expandir quedan varios NO_SPACE seguidos (por variables vacias),
+	se deja solo uno para que los tokens de los lados se junten bien.
+	Eg. $HOME$NOPE$PWD -> WORD NO_SPACE NO_SPACE WORD -> WORD NO_SPACE WORD
+*/
+
+void	collapse_no_space(t_shell *data, t_prompt *prompt, t_token *tokens)
+{
+	int	i;
+	int	n;
+	int	removed;
+
+	i = 0;
+	removed = FALSE;
+	while (i + 1 < prompt->n_tokens)
+	{
+		n = prompt->n_tokens;
+		if (tokens[i].type == NO_SPACE && tokens[i + 1].type == NO_SPACE)
+		{
+			eliminate_token(data, prompt, tokens, i);
+			if (prompt->n_tokens < n)
+			{
+				removed = TRUE;
+				continue ;
+			}
+		}
+		i++;
+	}
+	if (removed)
+		reconect_nodes_tokens(data, data->ast_root, prompt->tokens);
+}

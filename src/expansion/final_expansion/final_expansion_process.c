@@ -200,6 +200,7 @@ int	final_expansion_process(t_shell *data, t_node *node)
 		if (data->prompt.n_tokens == 0)
 			return (FAILURE);
 		prepare_simplify(data, &data->prompt, data->prompt.tokens);
+		collapse_no_space(data, &data->prompt, data->prompt.tokens);
 		simplify_tokens(data, &data->prompt, data->prompt.tokens);
 		reconect_nodes_tokens(data, data->ast_root, data->prompt.tokens);
 		split_expansion_result(data, &data->prompt, data->prompt.tokens);

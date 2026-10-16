@@ -66,6 +66,7 @@ int		add_token(t_shell *data, t_prompt *prompt, char *value, int type);
 /* ************************************************************************** */
 int		asignation(t_shell *data, t_token *token, int type);
 int		expansion(t_shell *data, t_token *tokens, int i, int phase);
+void	collapse_no_space(t_shell *data, t_prompt *prompt, t_token *tokens);
 int		expand_wildcards(t_shell *d, t_prompt *pro, t_token *tokens, int phase);
 int		expand_line_heredoc(t_shell *data, char **line);
 
