@@ -37,7 +37,7 @@ void	init_arg(t_shell *data, int ac, char **av)
 
 	if (ac >= 2)
 	{
-		fd = open(av[1], O_RDONLY);
+		fd = open(av[1], O_RDONLY | O_CLOEXEC);
 		if (fd < 0)
 			open_error(data, av[1]);
 		data->prompt.input = get_next_line(fd);
